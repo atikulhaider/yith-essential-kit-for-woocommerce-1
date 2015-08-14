@@ -1,13 +1,13 @@
 <?php
 /*
 Plugin Name: YITH Essential Kit for WooCommerce #1
-Plugin URI: http://wordpress.org/plugins/hello-dolly/
+Plugin URI: https://wordpress.org/plugins/yith-essential-kit-for-woocommerce-1/
 Description: With YITH Essential Kit for WooCommerce #1 you will be free to add new and powerful features to make your e-commerce site unique. Activate the plugin you want and start using your site to a new and improved level.
 Text Domain: yith-jetpack
 Domain Path: /languages/
 Author: YIThemes
 Author URI: http://yithemes.com/
-Version: 1.0.2
+Version: 1.0.3
 */
 
 if ( ! defined( 'ABSPATH' ) ) {

@@ -42,10 +42,10 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
             $this->_menu_title  = $title;
             $this->_activate_module_option_name  = self::ACTIVATED_MODULES_OPTION_BASE_NAME.$index;
 
+			$this->load_modules();
+			
             add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ), 5 );
-
-            add_action( 'plugins_loaded', array( $this, 'load_modules' ) );
-
+			
             // admin page
             add_action( 'admin_init', array( $this, 'deactivate_singular_plugins' ) );
             add_action( 'admin_init', array( $this, 'activate_module_action' ) );

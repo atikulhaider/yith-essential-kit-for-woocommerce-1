@@ -4,7 +4,7 @@ Contributors: yithemes
 Tags: woocommerce,jetpack, essential, kit, plugins, plugin, product, e-commerce, ecommerce, commerce, shop, yith, yit, yithemes,yith woocommerce colors and labels variations, colors and labels variations,yith woocommerce zoom magnifier,zoom magnifier,yith woocommerce wishlist,wishlist,yith woocommerce compare,compare,yith woocommerce ajax product filter,ajax product filter,yith woocommerce ajax search,ajax search,yith woocommerce catalog mode,catalog mode,yith woocommerce order tracking,order tracking, yith woocommerce advanced reviews,advanced reviews,yith woocommerce badges management,badges management,yith woocommerce cart messages,cart messages,yith woocommerce review reminder,review reminder,yith woocommerce quick view,quick view,yith live chat,live chat,yith woocommerce eu vat,eu vat,yith woocommerce mailchimp,mailchimp,yith woocommerce stripe,stripe,yith infinite scrolling,infinite scrolling,yith woocommerce request a quote,request a quote,yith woocommerce waiting list,waiting list,yith woocommerce tab manager,tab manager,yith woocommerce multi vendor,multi vendor,product vendor,products vendor
 Requires at least: 3.5.1
 Tested up to: 4.2.4
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,6 +61,10 @@ YITH Essential Kit for WooCommerce #1 will add a new submenu called "YITH Essent
 
 == Changelog ==
 
+= 1.0.3 =
+
+* Added: Wordpress 4.3 compatibility
+
 = 1.0.2 =
 
 * Fixed: mixed bugs
@@ -75,5 +79,5 @@ YITH Essential Kit for WooCommerce #1 will add a new submenu called "YITH Essent
 
 == Upgrade Notice ==
 
-Last Stable Tag 1.0.2
+Last Stable Tag 1.0.3
 
