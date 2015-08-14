@@ -28,6 +28,7 @@ With YITH Essential Kit for WooCommerce #1 you will be free to add new and power
 * YITH WooCommerce Cart Messages
 * YITH WooCommerce Stripe
 * YITH WooCommerce Request A Quote
+* YITH WooCommerce Review Reminder
 * YITH WooCommerce Quick View
 * YITH WooCommerce Multi Vendor
 * YITH WooCommerce Tab Manager
