@@ -42,10 +42,11 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
             $this->_menu_title  = $title;
             $this->_activate_module_option_name  = self::ACTIVATED_MODULES_OPTION_BASE_NAME.$index;
 
+            $this->plugin_fw_loader();
 			$this->load_modules();
-			
+
             add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ), 5 );
-			
+
             // admin page
             add_action( 'admin_init', array( $this, 'deactivate_singular_plugins' ) );
             add_action( 'admin_init', array( $this, 'activate_module_action' ) );
@@ -65,6 +66,21 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
             ) );
 
         }
+		
+		  /**
+		   * Load plugin framework
+		   *
+		   * @author Andrea Grillo <andrea.grillo@yithemes.com>
+		   * @since  1.0
+		   * @return void
+		   */
+        public function plugin_fw_loader() {
+            if ( ! defined( 'YIT' ) || ! defined( 'YIT_CORE_PLUGIN' ) ) {
+                ! defined( 'YIT' ) && define( 'YIT', true );
+                require_once( YJP_DIR . 'plugin-fw/yit-plugin.php' );
+            }
+        }
+
 
         /**
          * Action Links
@@ -197,7 +213,6 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
         public function load_modules() {
             $modules        = $this->get_modules();
             $active_modules = $this->active_modules();
-
             foreach ( $modules as $module => $args ) {
                 if ( in_array( $module, array_keys( $active_modules ) ) ) {
                     include_once( $this->module_path( $module, $args['file'] ) );
