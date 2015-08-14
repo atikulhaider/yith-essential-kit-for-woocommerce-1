@@ -7,7 +7,7 @@ Text Domain: yith-jetpack
 Domain Path: /languages/
 Author: YIThemes
 Author URI: http://yithemes.com/
-Version: 1.0.0
+Version: 1.0.1
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
