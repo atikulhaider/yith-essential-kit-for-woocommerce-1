@@ -1,7 +1,7 @@
 === YITH Essential Kit for WooCommerce #1 ===
 
 Contributors: yithemes
-Tags: woocommerce,jetpack,woocommerce jetpack, essential, kit, plugins, plugin, product, e-commerce, ecommerce, commerce, shop, yith, yit, yithemes,yith woocommerce colors and labels variations, colors and labels variations,colors and labels variations jetpack,yith woocommerce zoom magnifier,zoom magnifier,zoom magnifier jetpack,yith woocommerce wishlist,wishlist,wishlist jetpack,yith woocommerce compare,compare,compare jetpack,yith woocommerce ajax product filter,ajax product filter,ajax product filter jetpack,yith woocommerce ajax search,ajax search,ajax search jetpack,yith woocommerce catalog mode,catalog mode,catalog mode jetpack,yith woocommerce order tracking,order tracking,order tracking jetpack, yith woocommerce advanced reviews,advanced reviews,advanced reviews jetpack,yith woocommerce badges management,badges management,badges management jetpack,yith woocommerce cart messages,cart messages,cart messages jetpack,yith woocommerce review reminder,review reminder,review reminder jetpack,yith woocommerce quick view,quick view,quick view jetpack,yith live chat,live chat,live chat jetpack,yith woocommerce eu vat,eu vat,eu vat jetpack,yith woocommerce mailchimp,mailchimp,mailchimp jetpack,yith woocommerce stripe,stripe, stripe jetpack,yith infinite scrolling,infinite scrolling,infinite scrolling jetpack,yith woocommerce request a quote,request a quote,request a quote jetpack,yith woocommerce waiting list,waiting list,waiting list jetpack,yith woocommerce tab manager,tab manager,tab manager jetpack,yith woocommerce multi vendor,multi vendor,multi vendor jetpack,product vendor,products vendor,products vendor jetpack
+Tags: woocommerce,jetpack,woocommerce jetpack, essential, kit, plugins, plugin, product, e-commerce, ecommerce, commerce, shop, yith, yit, yithemes,yith woocommerce colors and labels variations, colors and labels variations,colors and labels variations jetpack,yith woocommerce zoom magnifier,zoom magnifier,zoom magnifier jetpack,yith woocommerce wishlist,wishlist,wishlist jetpack,yith woocommerce compare,compare,compare jetpack,yith woocommerce ajax product filter,ajax product filter,ajax product filter jetpack,yith woocommerce ajax search,ajax search,ajax search jetpack,yith woocommerce catalog mode,catalog mode,catalog mode jetpack,yith woocommerce order tracking,order tracking,order tracking jetpack, yith woocommerce advanced reviews,advanced reviews,advanced reviews jetpack,yith woocommerce badges management,badges management,badges management jetpack,yith woocommerce cart messages,cart messages,cart messages jetpack,yith woocommerce review reminder,review reminder,review reminder jetpack,yith woocommerce quick view,quick view,quick view jetpack,yith live chat,live chat,live chat jetpack,yith woocommerce eu vat,eu vat,eu vat jetpack,yith woocommerce mailchimp,mailchimp,mailchimp jetpack,yith woocommerce stripe,stripe, stripe jetpack,yith infinite scrolling,infinite scrolling,infinite scrolling jetpack,yith woocommerce request a quote,request a quote,request a quote jetpack,yith woocommerce waiting list,waiting list,waiting list jetpack,yith woocommerce tab manager,tab manager,tab manager jetpack,yith woocommerce multi vendor,multi vendor,multi vendor jetpack,product vendor,products vendor,products vendor jetpack, booster for woocommerce
 Requires at least: 3.5.1
 Tested up to: 4.2.4
 Stable tag: 1.0.6
@@ -12,8 +12,19 @@ The YITH Essential Kit for WooCommerce #1 plugin enhance your WordPress site wit
 
 == Description ==
 
-With YITH Essential Kit for WooCommerce #1 you will be free to add new and powerful features to make your e-commerce site unique. Activate the plugin you want and start using your site to a new and improved level.
-When you look for a plugin on wordpress.org and you do not know which one best meets your needs, it is difficult to choose the right one. And it often happens that when looking for a plugin you find another one that interests you and that might help you solve another problem and so on endlessly until you get lost among a heap of plugins and end up closing your browser page and put your search off to the next day. Especially because it is difficult to make them all work well together and not conflict with each other. Isn't that true? So, no problem, this is why we have packed a group of our plugins all together: all the main extensions for your site, from wishlist and image zoom to quote requests, multi vendor store and credit card payments. You won't need to look for each of them on wordpress.org, you can just download and install **YITH Essential Kit for WooCommerce #1** and choose later to activate the plugins that you really need and deactivate them when you do not need them: and they will always be there, easy to find, certain to work.
+With YITH Essential Kit for WooCommerce #1 you will be free to add new and powerful features to make your e-commerce site unique.<br />
+
+Activate the plugin you want and start using your site to a new and improved level.<br />
+
+When you look for a plugin on wordpress.org and you do not know which one best meets your needs, it is difficult to choose the right one.<br />
+
+And it often happens that when looking for a plugin you find another one that interests you and that might help you solve another problem and so on endlessly until you get lost among a heap of plugins and end up closing your browser page and put your search off to the next day.<br />
+
+Especially because it is difficult to make them all work well together and not conflict with each other.<br />
+
+Isn't that true? So, no problem, this is why we have packed a group of our plugins all together: all the main extensions for your site, from wishlist and image zoom to quote requests, multi vendor store and credit card payments.<br />
+
+You won't need to look for each of them on wordpress.org, you can just download and install **YITH Essential Kit for WooCommerce #1** and choose later to activate the plugins that you really need and deactivate them when you do not need them: and they will always be there, easy to find, certain to work.
 
 **Plugins Included:**
 
@@ -105,20 +116,15 @@ Of course not, what makes your site heavier is the activation of many plugins at
 
 You can get additional features of the plugins installed with the premium version of each of them, that you can get by clicking the button "Premium version" and that takes you to yithemes.com where you can purchase them and discover other products and offers from YITH.
 
-= Installation =
-
-Once you have installed the plugin, you just need to activate the plugin in order to enable it.
-
-= Configuration =
-
-YITH Essential Kit for WooCommerce #1 will add a new submenu called "YITH Essential Kit for WooCommerce #1" under "YIT Plugins" menu. Here you are able to activate/deactivate all the plugins within.
-
-
 == Installation ==
 
 1. Unzip the downloaded zip file.
 2. Upload the plugin folder into the `wp-content/plugins/` directory of your WordPress site.
 3. Activate `YITH Essential Kit for WooCommerce #1` from Plugins page
+
+= Configuration =
+
+YITH Essential Kit for WooCommerce #1 will add a new submenu called "YITH Essential Kit for WooCommerce #1" under "YIT Plugins" menu. Here you are able to activate/deactivate all the plugins within.
 
 == Changelog ==
 
