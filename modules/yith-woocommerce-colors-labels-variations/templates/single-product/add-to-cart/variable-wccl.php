@@ -53,7 +53,7 @@ $attribute_keys = array_keys( $attributes );
             <tr>
                 <td class="label"><label for="<?php echo sanitize_title( $name ); ?>"><?php echo $wc_attribute_label_name; ?></label></td>
                 <td class="value">
-                    <select id="<?php echo esc_attr( sanitize_title($name) ); ?>" name="<?php echo esc_attr( $name ) ?>" data-attribute_name="attribute_<?php echo esc_attr( sanitize_title( $name ) ) ?>" data-type="<?php echo $attributes_types[$name] ?>">
+                    <select id="<?php echo esc_attr( sanitize_title($name) ); ?>" name="<?php echo 'attribute_' . esc_attr( $name ) ?>" data-attribute_name="attribute_<?php echo esc_attr( sanitize_title( $name ) ) ?>" data-type="<?php echo $attributes_types[$name] ?>">
                         <option value=""><?php echo __( 'Choose an option', 'woocommerce' ) ?>&hellip;</option>
                         <?php
                         if (  ! empty( $options ) ) {

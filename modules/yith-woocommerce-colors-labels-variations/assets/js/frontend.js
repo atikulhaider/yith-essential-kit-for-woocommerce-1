@@ -122,23 +122,26 @@
         this.updateOptions = function () {
             var variations;
 
-            form.find('.variations select').each(function (index, el) {
+            if( (typeof yith_wccl_arg != 'undefined') && ! yith_wccl_arg.is_wc24 ) {
 
-                var s = $(this),
-                    selected = s.val(),
-                    attribute_options = s.data('active_options') ? s.data('active_options') : s.data('attribute_options');
+                form.find('.variations select').each(function (index, el) {
 
-                if ( ! attribute_options ) return false;
+                    var s = $(this),
+                        selected = s.val(),
+                        attribute_options = s.data('active_options') ? s.data('active_options') : s.data('attribute_options');
 
-                if (selected != '') {
-                    $.each(attribute_options, function (index, option_html) {
-                        s.append(option_html);
-                    });
-                } else {
-                    s.data('active_options', s.find('option').get());
-                }
+                    if ( ! attribute_options ) return false;
 
-            });
+                    if (selected != '') {
+                        $.each( attribute_options, function (index, option_html) {
+                            s.append(option_html);
+                        });
+                    } else {
+                        s.data('active_options', s.find('option').get());
+                    }
+
+                });
+            }
 
             return form;
         };
@@ -148,7 +151,7 @@
             .clean()
             .generateOutput()
             .onSelect();
-    }
+    };
 
 
     jQuery(function ($) {

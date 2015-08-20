@@ -129,7 +129,7 @@ if( !class_exists( 'YITH_WCCL_Frontend' ) ) {
          * @since 1.0.0
          */
         public function enqueue_static() {
-            global $post;
+            global $post, $woocommerce;
 
             $suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
@@ -141,6 +141,10 @@ if( !class_exists( 'YITH_WCCL_Frontend' ) ) {
             if( is_product() || ( ! empty( $post->post_content ) && strstr( $post->post_content, '[product_page' ) ) ) {
                 wp_enqueue_script( 'yith_wccl_frontend' );
                 wp_enqueue_style( 'yith_wccl_frontend' );
+
+                wp_localize_script( 'yith_wccl_frontend', 'yith_wccl_arg', array(
+                    'is_wc24' => version_compare( preg_replace( '/-beta-([0-9]+)/', '', $woocommerce->version ), '2.3', '>' )
+                ));
             }
         }
 

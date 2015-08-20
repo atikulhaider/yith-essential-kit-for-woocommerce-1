@@ -1,3 +1,10 @@
+=== 1.1.8 ===
+Fixed: Missing attributes when adding to cart variation
+
+=== 1.1.7 ===
+Added: Support Wordpress 4.3
+Fixed: WooCommerce variation issue 
+
 === 1.1.6 ===
 Added: Support to WooCommerce 2.4
 Updated: Templare variable-wccl to 2.4 wc version
