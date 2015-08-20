@@ -12,7 +12,7 @@ The YITH Essential Kit for WooCommerce #1 plugin enhance your WordPress site wit
 
 == Description ==
 
-With YITH Essential Kit for WooCommerce #1 you will be free to add new and powerful features to make your e-commerce site unique.<br />
+With YITH Essential Kit for **WooCommerce** #1 you will be free to add new and powerful features to make your e-commerce site unique.<br />
 
 Activate the plugin you want and start using your site to a new and improved level.<br />
 
