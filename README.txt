@@ -4,7 +4,7 @@ Contributors: yithemes
 Tags: woocommerce,jetpack,woocommerce jetpack, essential, kit, plugins, plugin, product, e-commerce, ecommerce, commerce, shop, yith, yit, yithemes,yith woocommerce colors and labels variations, colors and labels variations,colors and labels variations jetpack,yith woocommerce zoom magnifier,zoom magnifier,zoom magnifier jetpack,yith woocommerce wishlist,wishlist,wishlist jetpack,yith woocommerce compare,compare,compare jetpack,yith woocommerce ajax product filter,ajax product filter,ajax product filter jetpack,yith woocommerce ajax search,ajax search,ajax search jetpack,yith woocommerce catalog mode,catalog mode,catalog mode jetpack,yith woocommerce order tracking,order tracking,order tracking jetpack, yith woocommerce advanced reviews,advanced reviews,advanced reviews jetpack,yith woocommerce badges management,badges management,badges management jetpack,yith woocommerce cart messages,cart messages,cart messages jetpack,yith woocommerce review reminder,review reminder,review reminder jetpack,yith woocommerce quick view,quick view,quick view jetpack,yith live chat,live chat,live chat jetpack,yith woocommerce eu vat,eu vat,eu vat jetpack,yith woocommerce mailchimp,mailchimp,mailchimp jetpack,yith woocommerce stripe,stripe, stripe jetpack,yith infinite scrolling,infinite scrolling,infinite scrolling jetpack,yith woocommerce request a quote,request a quote,request a quote jetpack,yith woocommerce waiting list,waiting list,waiting list jetpack,yith woocommerce tab manager,tab manager,tab manager jetpack,yith woocommerce multi vendor,multi vendor,multi vendor jetpack,product vendor,products vendor,products vendor jetpack, booster for woocommerce
 Requires at least: 3.5.1
 Tested up to: 4.2.4
-Stable tag: 1.0.6
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -105,6 +105,28 @@ Multi store and live chat<br />
 
 == Screenshots ==
 1. Admin: plugins list
+2. YITH WooCommerce Wishlist add all Wishlist features to your website. Needs WooCommerce to work. WooCommerce 2.3.x compatible.
+3. YITH WooCommerce Zoom Magnifier add zoom effect to product images and a customizable image slider.
+4. YITH WooCommerce Compare allows you to compare more products of your shop in one complete table. WooCommerce Compatible up to 2.4.x
+5. YITH WooCommerce Ajax Product Filter offers the perfect way to filter all the products of your shop.
+6. YITH WooCommerce Ajax Search allows your users to search products in real time.
+7. YITH WooCommerce Advanced Reviews extends the basic functionality of woocommerce reviews and add a histogram table to the reviews of your products, as well as you see in most trendy e-
+8. YITH WooCommerce Order Tracking add an easy tool to manage order shipping information of your shop and to notified your customers about the shipping.
+9. YITH WooCommerce Catalog Mode, a plugin for disabling sales in your e-commerce and turn it into an e-commerce into an online catalogue.
+10. YITH Authorize.net allows your users to pay using the Authorize.net network services. It requires WooCommerce to work. WooCommerce 2.3.x compatible.
+11. YITH Woocommerce Cart Messages plugin let you add custom messages in the cart page and/or in the checkout page.
+12. YITH WooCommerce Stripe plugin let you add a new payment gateway based on Stripe.com
+13. YITH Woocommerce Request A Quote plugin lets your customers ask for an estimate of a list of products they are interested into.
+14. YITH WooCommerce Review Reminder allows you to send a reminder to customers with an invitation to do a review of the items purchased.
+15. YITH WooCommerce Quick View adds the possibility to have a quick preview of the products right from product list
+16. YITH WooCommerce Multi Vendor is a plugin developed to switch your website into a platform hosting more than one shop, like a multivendor marketplace.
+17. YITH Live Chat, an exceptional plugin to make your clients feel comfortable as in a physical shop. Ask for information and get immediate feedback
+18. YITH WooCommerce Badge Management allows you to create and manage custom badges for products.
+19. YITH Infinite Scrolling add infinite scrolling to archive post or shop page.
+20. YITH WooCommerce Tab Manager plugin let you add custom tabs in single product page
+21. YITH WooCommerce Mailchimp integrate MailChimp into your e-commerce shop to manage users' subscription directly from your store. WooCommerce 2.3.x compatible.
+22. YITH WooCommerce Waiting List enables registered users to request an email notification when an out-of-stock product comes back into stock.
+23. YITH WooCommerce EU VAT manage correctly your European customers with their own tax laws about digital goods.
 
 == Frequently Asked Questions ==
 
@@ -127,6 +149,13 @@ You can get additional features of the plugins installed with the premium versio
 YITH Essential Kit for WooCommerce #1 will add a new submenu called "YITH Essential Kit for WooCommerce #1" under "YIT Plugins" menu. Here you are able to activate/deactivate all the plugins within.
 
 == Changelog ==
+
+= 1.0.7 =
+
+* Updated: YITH WooCommerce Badge Mangement
+* Updated: YITH WooCommerce Color and Label Variations
+* Updated: YITH WooCommerce Compare
+* Updated: YITH WooCommerce Quick View
 
 = 1.0.6 =
 
@@ -158,5 +187,5 @@ YITH Essential Kit for WooCommerce #1 will add a new submenu called "YITH Essent
 
 == Upgrade Notice ==
 
-Last Stable Tag 1.0.6
+Last Stable Tag 1.0.7
 

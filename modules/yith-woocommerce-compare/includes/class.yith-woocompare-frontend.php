@@ -340,7 +340,7 @@ if( !class_exists( 'YITH_Woocompare_Frontend' ) ) {
 
             if ( ! $product_id ) {
                 global $product;
-                $product_id = isset( $product->id ) && $product->exists() ? $product->id : 0;
+                $product_id = isset( $product->id ) ? $product->id : 0;
             }
 
             // return if product doesn't exist
@@ -415,7 +415,7 @@ if( !class_exists( 'YITH_Woocompare_Frontend' ) ) {
 	        $product = $this->wc_get_product( $product_id );
 
 	        // don't add the product if doesn't exist
-	        if ( $product && ! $product->exists() && ! in_array( $product_id, $this->products_list ) ) {
+	        if ( isset( $product->id ) && ! in_array( $product_id, $this->products_list ) ) {
 		        $this->add_product_to_compare( $product_id );
 	        }
 
@@ -433,7 +433,7 @@ if( !class_exists( 'YITH_Woocompare_Frontend' ) ) {
 		    $product = $this->wc_get_product( $product_id );
 
 	        // don't add the product if doesn't exist
-	        if ( $product && $product->exists() && ! in_array( $product_id, $this->products_list ) ) {
+	        if ( isset( $product->id ) && ! in_array( $product_id, $this->products_list ) ) {
 		        $this->add_product_to_compare( $product_id );
 	        }
 
@@ -605,7 +605,7 @@ if( !class_exists( 'YITH_Woocompare_Frontend' ) ) {
              */
             if ( ! $atts['product'] ) {
                 global $product;
-                $product_id = isset( $product->id ) && $product->exists() ? $product->id : 0;
+                $product_id = isset( $product->id ) ? $product->id : 0;
             } else {
                 global $wpdb;
                 $product = $wpdb->get_row( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE ID = %d OR post_name = %s OR post_title = %s LIMIT 1", $atts['product'], $atts['product'], $atts['product'] ) );

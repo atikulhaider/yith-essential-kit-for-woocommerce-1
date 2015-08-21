@@ -1,3 +1,7 @@
+=== 1.1.9 ===
+Added: ITA Language
+Fixed: Error with attributes created directly from edit product page
+
 === 1.1.8 ===
 Fixed: Missing attributes when adding to cart variation
 

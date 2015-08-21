@@ -53,7 +53,7 @@ $attribute_keys = array_keys( $attributes );
             <tr>
                 <td class="label"><label for="<?php echo sanitize_title( $name ); ?>"><?php echo $wc_attribute_label_name; ?></label></td>
                 <td class="value">
-                    <select id="<?php echo esc_attr( sanitize_title($name) ); ?>" name="<?php echo 'attribute_' . esc_attr( $name ) ?>" data-attribute_name="attribute_<?php echo esc_attr( sanitize_title( $name ) ) ?>" data-type="<?php echo $attributes_types[$name] ?>">
+                    <select id="<?php echo esc_attr( sanitize_title($name) ); ?>" name="<?php echo 'attribute_' . esc_attr( sanitize_title( $name ) ) ?>" data-attribute_name="attribute_<?php echo esc_attr( sanitize_title( $name ) ) ?>" data-type="<?php echo $attributes_types[$name] ?>">
                         <option value=""><?php echo __( 'Choose an option', 'woocommerce' ) ?>&hellip;</option>
                         <?php
                         if (  ! empty( $options ) ) {
@@ -81,7 +81,7 @@ $attribute_keys = array_keys( $attributes );
 
                                 foreach ( $options as $option ) {
                                     // This handles < 2.4.0 bw compatibility where text attributes were not sanitized.
-                                    $selected_value = sanitize_title( $args['selected'] ) === $args['selected'] ? selected( $args['selected'], sanitize_title( $option ), false ) : selected( $args['selected'], $option, false );
+                                    $selected = sanitize_title( $selected_value ) === $selected_value ? selected( $selected_value, sanitize_title( $option ), false ) : selected( $selected_value, $option, false );
                                     echo '<option value="' . esc_attr( sanitize_title( $option ) ) . '" ' . $selected . '>' . esc_html( apply_filters( 'woocommerce_variation_option_name', $option ) ) . '</option>';
                                 }
 

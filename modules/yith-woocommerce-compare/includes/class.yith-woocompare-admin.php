@@ -115,7 +115,9 @@ if ( ! class_exists( 'YITH_Woocompare_Admin' ) ) {
 		public function action_links( $links ) {
 
 			$links[] = '<a href="' . admin_url( "admin.php?page={$this->_panel_page}" ) . '">' . __( 'Settings', 'yith-wcmp' ) . '</a>';
-			$links[] = '<a href="' . $this->get_premium_landing_uri() . '" target="_blank">' . __( 'Premium Version', 'yith-wcmp' ) . '</a>';
+			if ( ! ( defined( 'YITH_WOOCOMPARE_PREMIUM' ) && YITH_WOOCOMPARE_PREMIUM ) ) {
+				$links[] = '<a href="' . $this->get_premium_landing_uri() . '" target="_blank">' . __( 'Premium Version', 'yith-wcmp' ) . '</a>';
+			}
 
 			return $links;
 		}
@@ -209,9 +211,10 @@ if ( ! class_exists( 'YITH_Woocompare_Admin' ) ) {
 		 */
 		public function plugin_row_meta( $plugin_meta, $plugin_file, $plugin_data, $status ) {
 
-			if ( defined( 'YITH_WOOCOMPARE_FREE_INIT' ) && YITH_WOOCOMPARE_FREE_INIT == $plugin_file ) {
+			if ( defined( 'YITH_WOOCOMPARE_INIT' ) && YITH_WOOCOMPARE_INIT == $plugin_file ) {
 				$plugin_meta[] = '<a href="' . $this->doc_url . '" target="_blank">' . __( 'Plugin Documentation', 'yith-wcmp' ) . '</a>';
 			}
+
 			return $plugin_meta;
 		}
 
