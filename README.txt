@@ -121,8 +121,8 @@ Multi store and live chat<br />
 15. YITH WooCommerce Quick View adds the possibility to have a quick preview of the products right from product list
 16. YITH WooCommerce Multi Vendor is a plugin developed to switch your website into a platform hosting more than one shop, like a multivendor marketplace.
 17. YITH Live Chat, an exceptional plugin to make your clients feel comfortable as in a physical shop. Ask for information and get immediate feedback
-18. YITH WooCommerce Badge Management allows you to create and manage custom badges for products.
-19. YITH Infinite Scrolling add infinite scrolling to archive post or shop page.
+18. YITH Infinite Scrolling add infinite scrolling to archive post or shop page.
+19. YITH WooCommerce Badge Management allows you to create and manage custom badges for products.
 20. YITH WooCommerce Tab Manager plugin let you add custom tabs in single product page
 21. YITH WooCommerce Mailchimp integrate MailChimp into your e-commerce shop to manage users' subscription directly from your store. WooCommerce 2.3.x compatible.
 22. YITH WooCommerce Waiting List enables registered users to request an email notification when an out-of-stock product comes back into stock.
