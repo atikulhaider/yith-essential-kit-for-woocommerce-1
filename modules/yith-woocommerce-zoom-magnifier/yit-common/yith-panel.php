@@ -287,15 +287,9 @@ if ( ! class_exists( 'YITH_Panel' ) ) {
 		 * @access protected
 		 */
 		public function _get_tab() {
-			if ( isset( $_POST['panel_page'] ) && $_POST['panel_page'] != '' ) {
-				return $_POST['panel_page'];
-			} elseif ( isset( $_GET['panel_page'] ) && $_GET['panel_page'] != '' ) {
-				return $_GET['panel_page'];
-			} else {
-				$tabs = array_keys( $this->options );
-
-				return $tabs[0];
-			}
+			$panel_page = ! empty( $_REQUEST['panel_page'] )  ? sanitize_title_for_query( $_REQUEST['panel_page'] ) : '';
+			$tabs       = array_keys( $this->options );
+			return ! empty( $panel_page ) ? $panel_page : $tabs[0];
 		}
 
 		/**

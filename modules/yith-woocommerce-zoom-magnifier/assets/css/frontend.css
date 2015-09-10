@@ -57,3 +57,9 @@ span.onsale {
     z-index: 10000
 }
 
+div.pp_woocommerce a.pp_expand {
+    display: inline;
+    bottom: 10px;
+    top: initial;
+    left: 10px;
+}

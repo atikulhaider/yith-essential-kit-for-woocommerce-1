@@ -100,7 +100,7 @@ if ( ! class_exists( 'YITH_Vendors_Admin' ) ) {
 	        add_action( 'pre_get_posts', array( $this, 'filter_vendor_linked_products' ), 10, 1 );
 
 	        /* Vendor media management */
-	        add_filter( 'pre_get_posts', array( $this, 'remove_attachments' ), 10, 1 );
+	        add_filter( 'ajax_query_attachments_args', array( $this, 'filter_vendor_media' ), 10, 1 );
 
 	        /* Vendor menu */
 	        add_action( 'admin_menu', array( $this, 'menu_items' ) );
@@ -268,7 +268,7 @@ if ( ! class_exists( 'YITH_Vendors_Admin' ) ) {
         }
 
         /**
-         * Remove the 'Unattached' media
+         * Filter the vendor media library
          *
          * @param array $query The Query
          *
@@ -276,48 +276,18 @@ if ( ! class_exists( 'YITH_Vendors_Admin' ) ) {
          * @return array         Modified views
          * @since    1.0
          */
-        public function remove_attachments( $query = array() ) {
+        public function filter_vendor_media( $query = array() ) {
 	        $vendor = yith_get_vendor( 'current', 'user' );
 
-	        if ( $vendor->is_super_user() || ! $vendor->is_user_admin() ) {
-				return;
-	        }
+            if ( $vendor->is_valid() && $vendor->has_limited_access() ) {
+                $vendor_admin_ids = $vendor->get_admins();
 
-	        global $pagenow, $wpdb;
+                if ( ! empty( $vendor_admin_ids ) ) {
+                    $query['author__in'] = $vendor_admin_ids;
+                }
 
-	        $mode               = isset( $_GET['mode'] ) ? $_GET['mode'] : false;
-	        $restrict           = false;
-	        $is_attachment_page = isset( $_GET['attachment_id'] ) ? true : false;
-
-	        /**
-	         * Request Media Gallery List View by query string
-	         */
-	        if ( $mode && 'list' == $mode && 'upload.php' == $pagenow ) {
-		        $restrict = true;
-	        }
-
-	        /**
-	         * If not set $_GET['mode']:
-	         *
-	         * 1. Grid View Requested by query string
-	         * 2. Last used View ( grid or list )
-	         */
-	        if ( ! $mode && ! $is_attachment_page ) {
-
-		        $wp_list_table = _get_list_table( 'WP_Media_List_Table', array( 'screen' => 'upload' ) );
-
-		        if ( 'query-attachments' == $wp_list_table->current_action() || 'upload.php' == $pagenow ) {
-			        $restrict = true;
-		        }
-	        }
-
-	        if ( $restrict ) {
-		        $vendor_admin_ids = $vendor->get_admins();
-
-		        if ( ! empty( $vendor_admin_ids ) ) {
-			        $query->set( 'author__in', $vendor_admin_ids );
-		        }
-	        }
+            }
+            return $query;
         }
 
         /**

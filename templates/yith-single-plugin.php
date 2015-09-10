@@ -68,7 +68,7 @@ else {
         $active_class = '';
     }
 
-    $action_links[] = '<a class="activate-now button '.$active_class.'" data-slug="' . $plugin['slug'] . '" href="' . $url . '" aria-label="' . sprintf( __( 'activate %s now', 'yith-jetpack' ), $plugin['slug'] ) . '" data-name="' . $plugin['name'] . '">' . __( 'Activate', 'yith-jetpack' ) . '</a>';
+    $action_links[] = '<a class="activate-now button '.$active_class.'" data-slug="' . $plugin['slug'] . '" href="' . $url . '" aria-label="' . sprintf( __( 'activate %s now', 'yith-jetpack' ), $plugin['slug'] ) . '" data-name="' . $plugin['name'] . '" target="_blank">' . __( 'Activate', 'yith-jetpack' ) . '</a>';
 }
 
 if(  ! $is_yith_repository ) {

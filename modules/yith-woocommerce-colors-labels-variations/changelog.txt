@@ -1,3 +1,9 @@
+=== 1.2.1 ===
+Fixed: Issue with default variation attributes
+
+=== 1.2.0 ===
+Fixed: Error with WooCommerce 2.3.x
+
 === 1.1.9 ===
 Added: ITA Language
 Fixed: Error with attributes created directly from edit product page

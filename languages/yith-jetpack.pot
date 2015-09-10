@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: YIT Framework\n"
-"POT-Creation-Date: 2015-08-07 11:18+0100\n"
-"PO-Revision-Date: 2015-08-11 14:05+0100\n"
+"POT-Creation-Date: 2015-09-09 10:27+0100\n"
+"PO-Revision-Date: 2015-09-09 10:27+0100\n"
 "Last-Translator: Giustino Borzacchiello <giustinob@gmail.com>\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -19,159 +19,157 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: plugin-fw\n"
 "X-Poedit-SearchPathExcluded-1: modules\n"
 
-#: templates/yith-list-plugins.php:27
+#: templates/yith-list-plugins.php:31
 msgid "Module <strong>activated</strong>."
 msgstr ""
 
-#: templates/yith-list-plugins.php:30
+#: templates/yith-list-plugins.php:34
 msgid "Module <strong>deactivated</strong>."
 msgstr ""
 
-#: templates/yith-list-plugins.php:34
+#: templates/yith-list-plugins.php:38
 msgid "Modules <strong>activated</strong>."
 msgstr ""
 
-#: templates/yith-list-plugins.php:38
+#: templates/yith-list-plugins.php:42
 msgid "Modules <strong>deactivated</strong>."
 msgstr ""
 
-#: templates/yith-list-plugins.php:42
-msgid "YITH WooCommerce JetPack 1"
-msgstr ""
-
-#: templates/yith-list-plugins.php:44
+#: templates/yith-list-plugins.php:48
 msgid ""
 "Here you can activate or deactive some of our plugins to enhance your e-"
 "commerce site."
 msgstr ""
 
-#: templates/yith-list-plugins.php:49
+#: templates/yith-list-plugins.php:53
+#, fuzzy
 msgid "Activate all"
-msgstr ""
+msgstr "TUTTI PARI PARI"
 
-#: templates/yith-list-plugins.php:50
+#: templates/yith-list-plugins.php:54
 msgid "Deactivate all"
 msgstr ""
 
-#: templates/yith-list-plugins.php:59
+#: templates/yith-list-plugins.php:63
 msgid "All"
 msgstr ""
 
-#: templates/yith-list-plugins.php:60
+#: templates/yith-list-plugins.php:64
 msgid "Active"
 msgstr ""
 
-#: templates/yith-list-plugins.php:61
+#: templates/yith-list-plugins.php:65
 msgid "Inactive"
 msgstr ""
 
-#: templates/yith-single-plugin.php:50
+#: templates/yith-single-plugin.php:54
 #, fuzzy, php-format
 msgid "By %s"
 msgstr ""
 "Note: Delivery and taxes are estimated%s and will be updated during checkout "
 "based on your billing and shipping information."
 
-#: templates/yith-single-plugin.php:55
+#: templates/yith-single-plugin.php:59
 #, php-format
 msgid "Deactivate %s now"
 msgstr ""
 
-#: templates/yith-single-plugin.php:55
+#: templates/yith-single-plugin.php:59
 msgid "Deactivate"
 msgstr ""
 
-#: templates/yith-single-plugin.php:67
+#: templates/yith-single-plugin.php:71
 #, php-format
 msgid "activate %s now"
 msgstr ""
 
-#: templates/yith-single-plugin.php:67
+#: templates/yith-single-plugin.php:71
+#, fuzzy
 msgid "Activate"
-msgstr ""
+msgstr "TUTTI PARI PARI"
 
-#: templates/yith-single-plugin.php:74
+#: templates/yith-single-plugin.php:78
 #, php-format
 msgid "More information about %s"
 msgstr ""
 
-#: templates/yith-single-plugin.php:74
+#: templates/yith-single-plugin.php:78
 msgid "More Details"
 msgstr ""
 
-#: templates/yith-single-plugin.php:80
+#: templates/yith-single-plugin.php:84
 msgid "Premium Installed"
 msgstr ""
 
-#: templates/yith-single-plugin.php:84
+#: templates/yith-single-plugin.php:88
 msgid "Premium Version"
 msgstr ""
 
-#: templates/yith-single-plugin.php:88
+#: templates/yith-single-plugin.php:92
 #, php-format
 msgid "Premium Version of %s"
 msgstr ""
 
-#: templates/yith-single-plugin.php:91
+#: templates/yith-single-plugin.php:95
 msgid "M j, Y @ H:i"
 msgstr ""
 
-#: templates/yith-single-plugin.php:126
+#: templates/yith-single-plugin.php:130
 msgid "Last Updated:"
 msgstr ""
 
-#: templates/yith-single-plugin.php:127
+#: templates/yith-single-plugin.php:131
 #, php-format
 msgid "%s ago"
 msgstr ""
 
-#: templates/yith-single-plugin.php:138
+#: templates/yith-single-plugin.php:142
 msgctxt "Active plugin installs"
 msgid "1+ Million"
 msgstr ""
 
-#: templates/yith-single-plugin.php:145
+#: templates/yith-single-plugin.php:149
 msgctxt "Downloaded"
 msgid "1+ Million"
 msgstr ""
 
-#: templates/yith-single-plugin.php:150
+#: templates/yith-single-plugin.php:154
 #, php-format
 msgid "%s Download, %s Active Installs"
 msgstr ""
 
-#: yith-jetpack.php:86
+#: yith-jetpack.php:100
 msgid "Plugins List"
 msgstr ""
 
-#: yith-jetpack.php:392
+#: yith-jetpack.php:405
 msgid "YIT Plugins"
 msgstr ""
 
-#: yith-jetpack.php:425
+#: yith-jetpack.php:438
 #, php-format
 msgid ""
 "There are new plugins available on <b>%s</b>, <a href=\"%s\">take a look at "
 "them</a> !"
 msgstr ""
 
-#: yith-jetpack.php:475 yith-jetpack.php:507
+#: yith-jetpack.php:488 yith-jetpack.php:520
 msgid "The module is not valid."
 msgstr ""
 
-#: yith-jetpack.php:475 yith-jetpack.php:480 yith-jetpack.php:484
-#: yith-jetpack.php:507 yith-jetpack.php:512 yith-jetpack.php:516
+#: yith-jetpack.php:488 yith-jetpack.php:493 yith-jetpack.php:497
+#: yith-jetpack.php:520 yith-jetpack.php:525 yith-jetpack.php:529
 msgid "Back to modules"
 msgstr ""
 
-#: yith-jetpack.php:480
+#: yith-jetpack.php:493
 msgid "The module is already activated."
 msgstr ""
 
-#: yith-jetpack.php:484 yith-jetpack.php:516
+#: yith-jetpack.php:497 yith-jetpack.php:529
 msgid "Activation of the module is not possible."
 msgstr ""
 
-#: yith-jetpack.php:512
+#: yith-jetpack.php:525
 msgid "The module is already deactivated."
 msgstr ""

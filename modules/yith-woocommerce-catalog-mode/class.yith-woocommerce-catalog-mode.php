@@ -125,10 +125,17 @@ class YITH_WC_Catalog_Mode {
      * Hides "Add to cart" button from single product page
      *
      * @since   1.0.0
+     *
+     * @param   $action
+     *
      * @author  Alberto Ruggiero
      * @return  void
      */
-    public function hide_add_to_cart_single( $action = 'woocommerce_single_product_summary' ) {
+    public function hide_add_to_cart_single( $action = '' ) {
+
+        if ( $action == '' ) {
+            $action = 'woocommerce_single_product_summary';
+        }
 
         $priority = has_action( $action, 'woocommerce_template_single_add_to_cart' );
 

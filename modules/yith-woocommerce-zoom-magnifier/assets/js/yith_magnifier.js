@@ -7,8 +7,7 @@
  * MIT License.
  */
 
-;
-(function (window, $, undefined) {
+;(function (window, $, undefined) {
     'use strict';
 
     //include imagesLoaded plugin
@@ -23,8 +22,7 @@
         /*jshint curly: true, eqeqeq: true, noempty: true, strict: true, undef: true, browser: true */
         /*global jQuery: false */
 
-        ;
-        (function ($, undefined) {
+        ;(function ($, undefined) {
             'use strict';
 
             // blank image data-uri bypasses webkit log warning (thx doug jones)
@@ -203,6 +201,8 @@
         _init: function (options) {
             var self = this;
 
+            $(document).trigger('yith_magnifier_before_init');
+
             $.each($.yith_magnifier.defaults.elements, function (i, v) {
                 var el = $.yith_magnifier.defaults.elements;
                 el[i] = $(v, self);
@@ -217,6 +217,8 @@
                 self._initZoom();
                 self._initGallery();
             });
+
+            $(document).trigger('yith_magnifier_after_init');
         },
 
 
@@ -254,7 +256,8 @@
                 //gallery.filter(':first').trigger('click');
 
                 if (self.options.enableSlider) {
-                    gallery.parents('ul')[self.options.slider](self.options.sliderOptions);
+                    gallery.closest('ul').trigger('yith_magnifier_slider_destroy');
+                    gallery.closest('ul')[self.options.slider](self.options.sliderOptions);
                 }
 
             } else {
@@ -280,11 +283,13 @@
             if (this.mouseTrap === undefined) {
                 var w = this.options.elements.zoom.width();
 
-                $('<div class="yith_magnifier_loading">' + this.options.loadingLabel + '</div>').css({
-                    'width': w,
-                    'text-align': 'center',
-                    opacity: .5
-                }).appendTo(this.options.elements.zoom.parent());
+                if (this.options.loadingLabel) {
+                    $('<div class="yith_magnifier_loading">' + this.options.loadingLabel + '</div>').css({
+                     'width': w,
+                     'text-align': 'center',
+                     opacity: .5
+                     }).appendTo(this.options.elements.zoom.parent());
+                }
             }
         },
 
@@ -749,7 +754,7 @@
                 var instance = $.data(this, 'yith_magnifier');
                 if (!instance) {
                     $.error("cannot call methods on yith_magnifier prior to initialization; " +
-                    "attempted to call method '" + options + "'");
+                        "attempted to call method '" + options + "'");
                     return;
                 }
                 if (!$.isFunction(instance[options]) || options.charAt(0) === "_") {

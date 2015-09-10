@@ -18,12 +18,22 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
 
         const MODULES_LIST_QUERY_VALUE = 'yith-jetpack-modules';
 
+        const PLUGIN_LIST_HIDE_NOTICE_OPTION_NAME = 'yith_jetpack_m_hide_notice';
+
         /** @var array plugin path */
         protected $_plugin_path = '';
 
         protected $_package_title = '';
 
         protected $_activate_module_option_name = null;
+
+        protected $_deactivated_plugin_option_name = null;
+
+        protected $_module_list_option_name = null;
+
+        protected $_modules_list_query_value = null;
+
+        protected $_plugin_list_hide_notice_option_name = null;
 
         /** @var array All modules to active */
         protected $_modules = null;
@@ -41,7 +51,12 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
             $this->_plugin_path = $path;
             $this->_menu_title  = $title;
             $this->_activate_module_option_name  = self::ACTIVATED_MODULES_OPTION_BASE_NAME.$index;
+            $this->_deactivated_plugin_option_name  = self::DEACTIVATED_PLUGIN_OPTION_NAME.$index;
+            $this->_module_list_option_name  = self::MODULE_LIST_OPTION_NAME.$index;
+            $this->_modules_list_query_value  = self::MODULES_LIST_QUERY_VALUE.$index;
+            $this->_plugin_list_hide_notice_option_name = self::PLUGIN_LIST_HIDE_NOTICE_OPTION_NAME.$index;
 
+            $this->load_plugin_textdomain();
             $this->plugin_fw_loader();
 			$this->load_modules();
 
@@ -53,6 +68,7 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
             add_action( 'admin_init', array( $this, 'deactivate_module_action' ) );
             add_action( 'admin_init', array( $this, 'deactivate_modules_after_premium_installed' ) );
             add_action( 'activate_plugin', array( $this, 'deactivate_modules_after_premium_installed' ) );
+            add_action( 'deactivate_plugin', array( $this, 'reset_yith_jetpack_option' ) );
             add_action( 'admin_menu', array( $this, 'add_admin_modules_page' ), 100 );
 
             add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
@@ -64,6 +80,104 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
                 $this,
                 'action_links'
             ) );
+
+            // filter list of plugin
+            add_filter( 'all_plugins', array( $this, 'remove_modules' ), 10, 1 );
+            // add notice
+            add_action( 'admin_notices', array( $this, 'notice' ), 20 );
+            // hide notice
+            add_action( 'admin_init', array( $this, 'hide_notice' ) );
+
+        }
+
+        /**
+         * Remove modules from plugins list.
+         *
+         * @param array $plugins
+         * @return mixed
+         * @author Andrea Frascaspata
+         */
+        public function remove_modules( $plugins ) {
+
+            $modules = $this->get_modules();
+
+            foreach ( $modules as $module => $args ) {
+                if ( ! is_plugin_active( $module . '/' . $args['file'] ) ) {
+                    $unset =  $module . '/' . $args['file'];
+                    unset( $plugins[ $unset ] );
+                }
+            }
+
+            return $plugins;
+        }
+
+        /**
+         * Add admin notice
+         *
+         * @author Andrea Frascaspata
+         */
+        public function notice() {
+
+            global $pagenow;
+
+            if( $pagenow != 'plugins.php' || get_option( $this->_plugin_list_hide_notice_option_name ) ) {
+                return;
+            }
+
+            $modules = $this->get_modules();
+            if( count( $modules ) < 2 ) return;
+
+            $i=0;
+            $plugin_info = array();
+            foreach( $modules as $module ) {
+                $plugin_info[] =  $module['name'];
+                $i++;
+                if( $i == 2 ) break;
+            }
+            ?>
+            <div id="yit-framework-notice" class="update-nag settings-error notice is-dismissible">
+                <p><?php
+                    $url = menu_page_url( $this->_modules_list_query_value, false );
+                    printf( __( 'Some plugins as %s, %s , etc.. have been removed from this plugins list. You can activate or deactive it from <a href="%s">%s</a> panel.', 'yith-jetpack' ), $plugin_info[0] , $plugin_info[1] , $url , $this->_menu_title );
+                    ?></p>
+                <div class="action-link">
+                    <a class="dismiss-notice" href="<?php echo esc_url( add_query_arg( $this->_plugin_list_hide_notice_option_name, 1 ) ); ?>"><?php _e( 'Dismiss this notice', 'yit' ); ?></a>
+                </div>
+            </div>
+            <?php
+
+            $notice = ob_get_clean();
+
+            echo apply_filters( 'yith_jetpack_framework_modules_notice', $notice );
+        }
+
+        /**
+         * Hide notice
+         *
+         * @author Andrea Frascaspata
+         */
+        public function hide_notice() {
+            if( ! isset( $_GET[ $this->_plugin_list_hide_notice_option_name ] ) || ! $_GET[ $this->_plugin_list_hide_notice_option_name ] ) {
+                return;
+            }
+
+            update_option( $this->_plugin_list_hide_notice_option_name , true );
+        }
+
+        /**
+         * Reset YIT_Framework option
+         *
+         * @since 1.0.0
+         * @author Andrea Frascaspata
+         */
+        public function reset_yith_jetpack_option( $plugin ) {
+
+            if ( $plugin == plugin_basename( $this->_plugin_path ) ) {
+                delete_option( $this->_activate_module_option_name );
+                delete_option( $this->_deactivated_plugin_option_name );
+                delete_option( $this->_module_list_option_name );
+                delete_option( $this->_plugin_list_hide_notice_option_name );
+            }
 
         }
 		
@@ -97,7 +211,7 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
          */
         public function action_links( $links ) {
 
-            $links[] = '<a href="' . esc_url( admin_url( "admin.php?page=".self::MODULES_LIST_QUERY_VALUE ) ) . '">' . __( 'Plugins List', 'yith-jetpack' ) . '</a>';
+            $links[] = '<a href="' . esc_url( admin_url( "admin.php?page=".$this->_modules_list_query_value ) ) . '">' . __( 'Plugins List', 'yith-jetpack' ) . '</a>';
 
             return $links;
         }
@@ -412,15 +526,21 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
                 $title .= '<span class="awaiting-mod count-2"><span class="pending-count">'.( $new_plugins_count ).'</span></span>';
             }
 
-            add_submenu_page( 'yit_plugin_panel', $title, $title, 'install_plugins', self::MODULES_LIST_QUERY_VALUE, array( $this, 'admin_modules_page' ) );
+            add_submenu_page( 'yit_plugin_panel', $title, $title, 'install_plugins', $this->_modules_list_query_value , array( $this, 'admin_modules_page' ) );
         }
 
         public function get_new_added_plugin(){
             $modules = $this->get_modules();
             $modules_count = count( $modules );
-            $modules_inserted_count = count( get_option( self::MODULE_LIST_OPTION_NAME , array() ) );
+            $modules_inserted_count = count( get_option( $this->_module_list_option_name , array() ) );
 
-            return $modules_count - $modules_inserted_count;
+            if ( $modules_inserted_count > 0 ) {
+                return $modules_count - $modules_inserted_count;
+            }
+
+            else {
+                return 0;
+            }
         }
 
         /**
@@ -428,14 +548,13 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
          *
          */
         function new_added_plugin_admin_notice() {
-            global $wp_db_version;
             if ( !is_super_admin() )
                 return false;
 
             $new_plugins_count = $this->get_new_added_plugin();
 
             if( $new_plugins_count > 0 ) {
-                echo "<div class='update-nag'>" . sprintf( __( 'There are new plugins available on <b>%s</b>, <a href="%s">take a look at them</a> !' , 'yith-jetpack' ), $this->_menu_title, esc_url( admin_url( "admin.php?page=".self::MODULES_LIST_QUERY_VALUE."&plugin_status=inactive" ) ) ) . "</div>";
+                echo "<div class='update-nag'>" . sprintf( __( 'There are new plugins available on <b>%s</b>, <a href="%s">take a look at them</a> !' , 'yith-jetpack' ), $this->_menu_title, esc_url( admin_url( "admin.php?page=".$this->_modules_list_query_value."&plugin_status=inactive" ) ) ) . "</div>";
             }
         }
 
@@ -475,7 +594,7 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
          * @since 1.0.0
          */
         public function activate_module_action() {
-            if ( empty( $_GET['page'] ) || $_GET['page'] != self::MODULES_LIST_QUERY_VALUE || ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce'], 'activate-yit-plugin' ) ) {
+            if ( empty( $_GET['page'] ) || $_GET['page'] != $this->_modules_list_query_value || ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce'], 'activate-yit-plugin' ) ) {
                 return;
             }
 
@@ -507,7 +626,7 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
          * @since 1.0.0
          */
         public function deactivate_module_action() {
-            if ( empty( $_GET['page'] ) || $_GET['page'] != self::MODULES_LIST_QUERY_VALUE || ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce'], 'deactivate-yit-plugin' ) ) {
+            if ( empty( $_GET['page'] ) || $_GET['page'] != $this->_modules_list_query_value || ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce'], 'deactivate-yit-plugin' ) ) {
                 return;
             }
 
@@ -539,7 +658,7 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
          * @since 1.0.0
          */
         public function deactivate_singular_plugins() {
-            if ( get_option( self::DEACTIVATED_PLUGIN_OPTION_NAME ) ) {
+            if ( get_option( $this->_deactivated_plugin_option_name ) ) {
                 return;
             }
 
@@ -556,7 +675,7 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
                 }
             }
 
-            update_option( self::DEACTIVATED_PLUGIN_OPTION_NAME, true );
+            update_option( $this->_deactivated_plugin_option_name, true );
 
             wp_safe_redirect( wp_unslash( $_SERVER['REQUEST_URI'] ) );
             exit();
@@ -572,7 +691,7 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
          * @author   Emanuela Castorina <emanuela.castorina@yithemes.it>
          */
         public function admin_enqueue_scripts() {
-             if( isset($_GET['page']) && $_GET['page']=='yith-jetpack-modules') {
+             if( isset($_GET['page']) && $_GET['page']==$this->_modules_list_query_value) {
                  wp_enqueue_style( 'yit-layout', YJP_ASSETS_URL . '/css/list-layout.css' );
              }
         }

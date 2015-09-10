@@ -14,7 +14,11 @@ global $post, $product, $woocommerce;
 $enable_slider = get_option('yith_wcmg_enableslider') == 'yes' ? true : false;
 
 $attachment_ids = $product->get_gallery_attachment_ids();
+
 if ( ! empty( $attachment_ids ) ) array_unshift( $attachment_ids, get_post_thumbnail_id() );
+
+//  make sure attachments ids are unique
+$attachment_ids = array_unique($attachment_ids);
 
 if ( $attachment_ids ) {
     ?>

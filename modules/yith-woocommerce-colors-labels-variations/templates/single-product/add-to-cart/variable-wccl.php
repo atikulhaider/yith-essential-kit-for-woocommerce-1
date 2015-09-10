@@ -58,7 +58,17 @@ $attribute_keys = array_keys( $attributes );
                         <?php
                         if (  ! empty( $options ) ) {
 
-                            $selected_value = isset( $_REQUEST[ 'attribute_' . sanitize_title( $name ) ] ) ? wc_clean( $_REQUEST[ 'attribute_' . sanitize_title( $name ) ] ) : $product->get_variation_default_attribute( $name );
+                            if ( version_compare( preg_replace( '/-beta-([0-9]+)/', '', $woocommerce->version ), '2.4', '<' ) ) {
+                                if ( isset( $_REQUEST[ 'attribute_' . sanitize_title( $name ) ] ) ) {
+                                    $selected_value = $_REQUEST[ 'attribute_' . sanitize_title( $name ) ];
+                                } elseif ( isset( $selected_attributes[ sanitize_title( $name ) ] ) ) {
+                                    $selected_value = $selected_attributes[ sanitize_title( $name ) ];
+                                } else {
+                                    $selected_value = '';
+                                }
+                            } else {
+                                $selected_value = isset( $_REQUEST[ 'attribute_' . sanitize_title( $name ) ] ) ? wc_clean( $_REQUEST[ 'attribute_' . sanitize_title( $name ) ] ) : $product->get_variation_default_attribute( $name );
+                            }
 
                             // Get terms if this is a taxonomy - ordered
                             if ( $product && taxonomy_exists( $name ) ) {
@@ -107,6 +117,7 @@ $attribute_keys = array_keys( $attributes );
 
         /**
          * woocommerce_single_variation hook. Used to output the cart button and placeholder for variation data.
+         *
          * @since 2.4.0
          * @hooked woocommerce_single_variation - 10 Empty div for variation data.
          * @hooked woocommerce_single_variation_add_to_cart_button - 20 Qty and cart button.

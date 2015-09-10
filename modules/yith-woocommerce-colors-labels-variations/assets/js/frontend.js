@@ -174,6 +174,8 @@
             form.removeData('last_change');
         });
 
+        select.trigger('focusin');
+
     });
 
 })(jQuery, window, document);

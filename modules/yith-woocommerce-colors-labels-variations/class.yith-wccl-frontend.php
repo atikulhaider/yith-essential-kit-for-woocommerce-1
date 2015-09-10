@@ -43,6 +43,8 @@ if( !class_exists( 'YITH_WCCL_Frontend' ) ) {
 
             // YITH WCCL Loaded
             do_action( 'yith_wccl_loaded' );
+
+            add_action( 'woocommerce_single_variation', array( $this, 'single_variation' ) );
         }
 
 
@@ -146,6 +148,40 @@ if( !class_exists( 'YITH_WCCL_Frontend' ) ) {
                     'is_wc24' => version_compare( preg_replace( '/-beta-([0-9]+)/', '', $woocommerce->version ), '2.3', '>' )
                 ));
             }
+        }
+
+        /**
+         * single variation template for variable_wccl
+         *
+         * @since 1.2
+         * @author Francesco Licandro
+         */
+        public function single_variation() {
+
+            global $product, $woocommerce;
+
+            if( version_compare( preg_replace( '/-beta-([0-9]+)/', '', $woocommerce->version ), '2.4', '>=' ) ) {
+                return;
+            }
+
+            ob_start();
+
+            ?>
+
+            <div class="single_variation"></div>
+            <div class="variations_button">
+
+                <?php woocommerce_quantity_input(); ?>
+                <button type="submit" class="single_add_to_cart_button button alt"><?php echo apply_filters('single_add_to_cart_text', __( 'Add to cart', 'woocommerce' ), $product->product_type); ?></button>
+            </div>
+
+            <input type="hidden" name="add-to-cart" value="<?php echo $product->id; ?>" />
+            <input type="hidden" name="product_id" value="<?php echo esc_attr( $product->ID ); ?>" />
+            <input type="hidden" name="variation_id" class="variation_id" value="" />
+
+            <?php
+
+            echo ob_get_clean();
         }
 
     }

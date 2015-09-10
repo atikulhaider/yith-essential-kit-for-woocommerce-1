@@ -21,7 +21,7 @@ $videobox = defined( 'YWCTM_PREMIUM' ) ? '' : array(
         'title_first_column'        => __( 'Discover the Advanced Features', 'ywctm' ),
         'description_first_column'  => __( 'Upgrade to the PREMIUM VERSION of YITH WooCommerce Catalog Mode to benefit from all features!', 'ywctm' ),
         'video'                     => array(
-            'video_id'          => '118792418',
+            'video_id'          => '120697979',
             'video_image_url'   =>  YWCTM_ASSETS_URL.'/images/yith-woocommerce-catalog-mode.jpg',
             'video_description' => __( 'YITH WooCommerce Catalog Mode', 'ywctm' ),
         ),
