@@ -20,6 +20,8 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
 
         const PLUGIN_LIST_HIDE_NOTICE_OPTION_NAME = 'yith_jetpack_m_hide_notice';
 
+        protected $index = 0;
+
         /** @var array plugin path */
         protected $_plugin_path = '';
 
@@ -48,13 +50,14 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
          */
         public function __construct( $path, $title , $index ) {
 
+            $this->$index = $index;
             $this->_plugin_path = $path;
             $this->_menu_title  = $title;
-            $this->_activate_module_option_name  = self::ACTIVATED_MODULES_OPTION_BASE_NAME.$index;
-            $this->_deactivated_plugin_option_name  = self::DEACTIVATED_PLUGIN_OPTION_NAME.$index;
-            $this->_module_list_option_name  = self::MODULE_LIST_OPTION_NAME.$index;
-            $this->_modules_list_query_value  = self::MODULES_LIST_QUERY_VALUE.$index;
-            $this->_plugin_list_hide_notice_option_name = self::PLUGIN_LIST_HIDE_NOTICE_OPTION_NAME.$index;
+            $this->_activate_module_option_name  = self::ACTIVATED_MODULES_OPTION_BASE_NAME.$this->$index;
+            $this->_deactivated_plugin_option_name  = self::DEACTIVATED_PLUGIN_OPTION_NAME.$this->$index;
+            $this->_module_list_option_name  = self::MODULE_LIST_OPTION_NAME.$this->$index;
+            $this->_modules_list_query_value  = self::MODULES_LIST_QUERY_VALUE.$this->$index;
+            $this->_plugin_list_hide_notice_option_name = self::PLUGIN_LIST_HIDE_NOTICE_OPTION_NAME.$this->$index;
 
             $this->load_plugin_textdomain();
             $this->plugin_fw_loader();
@@ -490,6 +493,26 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
         }
 
         /**
+         * Deactivate a module
+         *
+         * @param $premium_constant string The premium constant related to the module
+         *
+         * @since 1.0.0
+         * @return bool
+         */
+        public function deactivate_module_by_premium_constant( $premium_constant ) {
+            $active_modules = $this->active_modules();
+            foreach ( $active_modules as $module => $args ) {
+                if( $premium_constant == $args['premium_constat'] ) {
+                    $this->deactivate_module($module);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /**
          * Get the plugin url.
          *
          *
@@ -564,7 +587,7 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
          *
          * @since 1.0.0
          */
-        public function print_single_plugin( $module_data, $is_active , $is_new) {
+        public function print_single_plugin( $module_data, $is_active , $is_new , $is_recommended , $is_premium_installed ) {
 
             $plugins_allowedtags = array(
                 'a'    => array( 'href' => array(), 'title' => array(), 'target' => array() ),

@@ -3,6 +3,9 @@
 
     $.fn.yit_infinitescroll = function (options) {
 
+        // reset
+        $( window ).unbind( 'yith_infs_start' );
+
         var opts = $.extend({
 
                 nextSelector   : false,
@@ -62,21 +65,19 @@
                         position_elem( last_elem, columns, elem );
                     }
 
-                    elem.css({
-                        'opacity':'0'
-                    });
-
                     last_elem.after( elem );
 
                     $( '.yith-infs-loader' ).remove();
 
                     $(document).trigger( 'yith_infs_adding_elem' );
 
-                    elem.animate({
-                        opacity: 1
-                    }, 1000, function() {
+                    elem.addClass( 'yith-infs-animated' );
+
+                    setTimeout( function(){
                         loading = false;
-                    });
+                        elem.removeClass( 'yith-infs-animated' );
+                        $(document).trigger( 'yith_infs_added_elem' );
+                    }, 1000 );
 
                 }
             });
@@ -108,13 +109,17 @@
 
         // scroll event
         $( window ).on( 'scroll touchstart', function (){
-            var t       = $(this),
+            $(this).trigger('yith_infs_start');
+        });
+
+        $( window ).on( 'yith_infs_start', function(){
+            var w       = $(this),
                 offset  = $( opts.itemSelector ).last().offset();
 
-            if ( ! loading && ! finished && t.scrollTop() >= Math.abs( offset.top - ( t.height() - 150 ) ) ) {
+            if ( ! loading && ! finished && w.scrollTop() >= Math.abs( offset.top - ( w.height() - 150 ) ) ) {
                 main_ajax();
             }
-        });
+        })
     }
 
 })( jQuery, window, document );

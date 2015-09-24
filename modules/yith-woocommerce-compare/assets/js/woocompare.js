@@ -15,8 +15,8 @@ jQuery(document).ready(function($) {
 
         // add ajax loader
         if( typeof woocommerce_params != 'undefined' ) {
-            button.block({message: null, overlayCSS: {background: '#fff url(' + woocommerce_params.ajax_loader_url + ') no-repeat center', backgroundSize: '16px 16px', opacity: 0.6}});
-            widget_list.block({message: null, overlayCSS: {background: '#fff url(' + woocommerce_params.ajax_loader_url + ') no-repeat center', backgroundSize: '16px 16px', opacity: 0.6}});
+            button.block({message: null, overlayCSS: { background: '#fff url(' + yith_woocompare.loader + ') no-repeat center', backgroundSize: '16px 16px', opacity: 0.6}});
+            widget_list.block({message: null, overlayCSS: { background: '#fff url(' + yith_woocompare.loader + ') no-repeat center', backgroundSize: '16px 16px', opacity: 0.6}});
         }
 
         $.ajax({
@@ -76,7 +76,7 @@ jQuery(document).ready(function($) {
                         };
 
                     if( typeof woocommerce_params != 'undefined' ) {
-                        widget_list.block({message: null, overlayCSS: {background: '#fff url(' + woocommerce_params.ajax_loader_url + ') no-repeat center', backgroundSize: '16px 16px', opacity: 0.6}});
+                        widget_list.block({message: null, overlayCSS: {background: '#fff url(' + yith_woocompare.loader + ') no-repeat center', backgroundSize: '16px 16px', opacity: 0.6}});
                     }
 
                     $.ajax({
@@ -137,7 +137,7 @@ jQuery(document).ready(function($) {
             button.block({
                 message: null,
                 overlayCSS: {
-                    background: '#fff url(' + woocommerce_params.ajax_loader_url + ') no-repeat center',
+                    background: '#fff url(' + yith_woocompare.loader + ') no-repeat center',
                     backgroundSize: '16px 16px',
                     opacity: 0.6
                 }
@@ -205,7 +205,7 @@ jQuery(document).ready(function($) {
             if( typeof woocommerce_params != 'undefined' ) {
                 product_list.block({message: null,
                     overlayCSS             : {
-                        background    : '#fff url(' + woocommerce_params.ajax_loader_url + ') no-repeat center',
+                        background    : '#fff url(' + yith_woocompare.loader + ') no-repeat center',
                         backgroundSize: '16px 16px',
                         opacity       : 0.6
                     }

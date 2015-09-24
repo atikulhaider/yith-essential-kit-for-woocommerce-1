@@ -48,7 +48,7 @@ $localized_table_text = function_exists( 'icl_translate' ) ? icl_translate( 'Plu
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>" />
     <meta name="viewport" content="width=device-width" />
-    <title><?php _e( 'Product Comparison', 'yith-wcmp' ) ?></title>
+    <title><?php _e( 'Product Comparison', 'yith-woocommerce-compare' ) ?></title>
     <link rel="profile" href="http://gmpg.org/xfn/11" />
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" />
@@ -73,7 +73,7 @@ $localized_table_text = function_exists( 'icl_translate' ) ? icl_translate( 'Plu
 
 <h1>
     <?php echo $localized_table_text ?>
-    <?php if ( ! $is_iframe ) : ?><a class="close" href="#"><?php _e( 'Close window [X]', 'yith-wcmp' ) ?></a><?php endif; ?>
+    <?php if ( ! $is_iframe ) : ?><a class="close" href="#"><?php _e( 'Close window [X]', 'yith-woocommerce-compare' ) ?></a><?php endif; ?>
 </h1>
 
 <?php do_action( 'yith_woocompare_before_main_table' ); ?>
@@ -100,7 +100,7 @@ $localized_table_text = function_exists( 'icl_translate' ) ? icl_translate( 'Plu
     <?php if ( empty( $products ) ) : ?>
 
         <tr class="no-products">
-            <td><?php _e( 'No products added in the compare table.', 'yith-wcmp' ) ?></td>
+            <td><?php _e( 'No products added in the compare table.', 'yith-woocommerce-compare' ) ?></td>
         </tr>
 
     <?php else : ?>
@@ -108,7 +108,7 @@ $localized_table_text = function_exists( 'icl_translate' ) ? icl_translate( 'Plu
             <th>&nbsp;</th>
             <?php foreach( $products as $i => $product ) : $product_class = ( $i % 2 == 0 ? 'odd' : 'even' ) . ' product_' . $product->id ?>
                 <td class="<?php echo $product_class; ?>">
-                    <a href="<?php echo add_query_arg( 'redirect', 'view', $this->remove_product_url( $product->id ) ) ?>" data-product_id="<?php echo $product->id; ?>"><?php _e( 'Remove', 'yit' ) ?> <span class="remove">x</span></a>
+                    <a href="<?php echo add_query_arg( 'redirect', 'view', $this->remove_product_url( $product->id ) ) ?>" data-product_id="<?php echo $product->id; ?>"><?php _e( 'Remove', 'yith-woocommerce-compare' ) ?> <span class="remove">x</span></a>
                 </td>
             <?php endforeach ?>
         </tr>

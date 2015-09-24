@@ -3,15 +3,15 @@
  * Plugin Name: YITH WooCommerce Compare
  * Plugin URI: https://yithemes.com/
  * Description: YITH WooCommerce Compare allows you to compare more products with WooCommerce plugin, through product attributes.
- * Version: 2.0.3
+ * Version: 2.0.4
  * Author: Yithemes
  * Author URI: http://yithemes.com/
- * Text Domain: yith-wcmp
+ * Text Domain: yith-woocommerce-compare
  * Domain Path: /languages/
  *
  * @author Yithemes
  * @package YITH WooCommerce Compare
- * @version 2.0.3
+ * @version 2.0.4
  */
 /*  Copyright 2013  Your Inspiration Themes  (email : plugins@yithemes.com)
 
@@ -37,7 +37,7 @@ if ( ! function_exists( 'is_plugin_active' ) ) {
 function yith_woocompare_install_woocommerce_admin_notice() {
 	?>
 	<div class="error">
-		<p><?php _e( 'YITH WooCommerce Compare is enabled but not effective. It requires WooCommerce in order to work.', 'yith-wcmp' ); ?></p>
+		<p><?php _e( 'YITH WooCommerce Compare is enabled but not effective. It requires WooCommerce in order to work.', 'yith-woocommerce-compare' ); ?></p>
 	</div>
 <?php
 }
@@ -45,7 +45,7 @@ function yith_woocompare_install_woocommerce_admin_notice() {
 function yith_woocompare_install_free_admin_notice() {
 	?>
 	<div class="error">
-		<p><?php _e( 'You can\'t activate the free version of YITH WooCommerce Compare while you are using the premium one.', 'yith-wcmp' ); ?></p>
+		<p><?php _e( 'You can\'t activate the free version of YITH WooCommerce Compare while you are using the premium one.', 'yith-woocommerce-compare' ); ?></p>
 	</div>
 <?php
 }
@@ -56,7 +56,7 @@ if ( ! function_exists( 'yith_plugin_registration_hook' ) ) {
 register_activation_hook( __FILE__, 'yith_plugin_registration_hook' );
 
 if ( ! defined( 'YITH_WOOCOMPARE_VERSION' ) ){
-	define( 'YITH_WOOCOMPARE_VERSION', '2.0.3' );
+	define( 'YITH_WOOCOMPARE_VERSION', '2.0.4' );
 }
 if ( ! defined( 'YITH_WOOCOMPARE_FREE_INIT' ) ) {
 	define( 'YITH_WOOCOMPARE_FREE_INIT', plugin_basename( __FILE__ ) );
@@ -98,7 +98,7 @@ function yith_woocompare_constructor() {
 		return;
 	}
 
-    load_plugin_textdomain( 'yith-wcmp', false, dirname( plugin_basename( __FILE__ ) ). '/languages/' );
+    load_plugin_textdomain( 'yith-woocommerce-compare', false, dirname( plugin_basename( __FILE__ ) ). '/languages/' );
 
     // Load required classes and functions
     require_once('includes/class.yith-woocompare-helper.php');

@@ -42,12 +42,12 @@ if( !class_exists( 'YITH_Woocompare_Helper' ) ) {
         public static function standard_fields( $with_attr = true ) {
 
 	        $fields = array(
-                'image' => __( 'Image', 'yith-wcmp' ),
-                'title' => __( 'Title', 'yith-wcmp' ),
-                'price' => __( 'Price', 'yith-wcmp' ),
-                'add-to-cart' => __( 'Add to cart', 'yith-wcmp' ),
-                'description' => __( 'Description', 'yith-wcmp' ),
-                'stock' => __( 'Availability', 'yith-wcmp' )
+                'image' => __( 'Image', 'yith-woocommerce-compare' ),
+                'title' => __( 'Title', 'yith-woocommerce-compare' ),
+                'price' => __( 'Price', 'yith-woocommerce-compare' ),
+                'add-to-cart' => __( 'Add to cart', 'yith-woocommerce-compare' ),
+                'description' => __( 'Description', 'yith-woocommerce-compare' ),
+                'stock' => __( 'Availability', 'yith-woocommerce-compare' )
             );
 
 	        if( $with_attr )

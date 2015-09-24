@@ -34,6 +34,14 @@
     background-color:#971d00;
 }
 
+.yith-jetpack .plugin-card .plugin-action-buttons li > a.btn-premium.toactive {
+    background: #0073aa;
+}
+
+.yith-jetpack .plugin-card .plugin-action-buttons li > a.btn-premium.toactive:hover {
+    background: #005984;
+}
+
 .yith-jetpack .plugin-card .plugin-action-buttons li > a.btn-premium.installed,.yith-jetpack .plugin-card .plugin-action-buttons li > a.btn-premium.installed:hover {
     background-color: green;
     cursor: default;
@@ -66,6 +74,18 @@
     top: 0;
     left: 0;
     z-index: 10;
+}
+
+.yith-jetpack a.activate-now.button  {
+   background: #0073aa;
+   border-color: #0073aa;
+   color: #ffffff;
+   -webkit-box-shadow: none;
+   box-shadow: none;
+}
+
+.yith-jetpack a.activate-now.button:hover {
+    background: #005984;
 }
 
 @media screen and (max-width: 1100px) and (min-width: 782px), (max-width: 480px) {

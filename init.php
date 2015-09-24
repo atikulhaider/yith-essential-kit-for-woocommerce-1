@@ -7,7 +7,7 @@ Text Domain: yith-jetpack
 Domain Path: /languages/
 Author: YIThemes
 Author URI: http://yithemes.com/
-Version: 1.0.8
+Version: 1.1.1
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -39,6 +39,14 @@ if ( ! function_exists( 'yith_plugin_registration_hook' ) ) {
 }
 register_activation_hook( __FILE__, 'yith_plugin_registration_hook' );
 
+/**
+ * Check if a jetpack module is currently active and try disabling before activating this one
+ */
+if ( ! function_exists( 'yith_deactive_jetpack_module' ) ) {
+    require_once 'yith-deactive-module.php';
+}
+
 require_once( YJP_DIR. 'yith-jetpack.php' );
 
-$jetpack1 = new YITH_JetPack( __FILE__ , 'YITH Essential Kit for WooCommerce #1' , 1 ) ;
+global $yith_jetpack_1;
+$yith_jetpack_1 = new YITH_JetPack( __FILE__ , 'YITH Essential Kit for WooCommerce #1' , 1 ) ;

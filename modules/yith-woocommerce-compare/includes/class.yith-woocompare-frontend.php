@@ -139,9 +139,10 @@ if( !class_exists( 'YITH_Woocompare_Frontend' ) ) {
                 'actionadd' => $this->action_add,
                 'actionremove' => $this->action_remove,
                 'actionview' => $this->action_view,
-                'added_label' => __( 'Added', 'yith-wcmp' ),
-                'table_title' => __( 'Product Comparison', 'yith-wcmp' ),
-                'auto_open' => get_option( 'yith_woocompare_auto_open', 'yes' )
+                'added_label' => __( 'Added', 'yith-woocommerce-compare' ),
+                'table_title' => __( 'Product Comparison', 'yith-woocommerce-compare' ),
+                'auto_open' => get_option( 'yith_woocompare_auto_open', 'yes' ),
+                'loader'    => YITH_WOOCOMPARE_ASSETS_URL . '/images/loader.gif'
             ));
 
             // colorbox
@@ -207,7 +208,7 @@ if( !class_exists( 'YITH_Woocompare_Frontend' ) ) {
             if ( defined('WC_TEMPLATE_PATH') ) {
 
                 $template_path = get_template_directory() . '/' . WC_TEMPLATE_PATH . $this->template_file;
-                $child_path    = get_stylesheet_directory() . '/'  .WC_TEMPLATE_PATH . $this->template_file;
+                $child_path    = get_stylesheet_directory() . '/' . WC_TEMPLATE_PATH . $this->template_file;
             }
             else {
                 $template_path = get_template_directory() . '/' . $woocommerce->template_url . $this->template_file;
@@ -262,7 +263,7 @@ if( !class_exists( 'YITH_Woocompare_Frontend' ) ) {
                         case 'stock':
                             $availability = $product->get_availability();
                             if ( empty( $availability['availability'] ) ) {
-                                $availability['availability'] = __( 'In stock', 'yith-wcmp' );
+                                $availability['availability'] = __( 'In stock', 'yith-woocommerce-compare' );
                             }
                             $product->fields[$field] = sprintf( '<span class="%s">%s</span>', esc_attr( $availability['class'] ), esc_html( $availability['availability'] ) );
                             break;
@@ -350,7 +351,7 @@ if( !class_exists( 'YITH_Woocompare_Frontend' ) ) {
             $is_button = ! isset( $button_or_link ) || ! $button_or_link ? get_option( 'yith_woocompare_is_button' ) : $button_or_link;
 
             if ( ! isset( $button_text ) || $button_text == 'default' ) {
-                $button_text = get_option( 'yith_woocompare_button_text', __( 'Compare', 'yith-wcmp' ) );
+                $button_text = get_option( 'yith_woocompare_button_text', __( 'Compare', 'yith-woocommerce-compare' ) );
                 $button_text = function_exists( 'icl_translate' ) ? icl_translate( 'Plugins', 'plugin_yit_compare_button_text', $button_text ) : $button_text;
             }
 
@@ -545,7 +546,7 @@ if( !class_exists( 'YITH_Woocompare_Frontend' ) ) {
             }
 
             if ( empty( $this->products_list ) ) {
-                echo '<li>' . __( 'No products to compare', 'yith-wcmp' ) . '</li>';
+                echo '<li>' . __( 'No products to compare', 'yith-woocommerce-compare' ) . '</li>';
                 return ob_get_clean();
             }
 
@@ -556,7 +557,7 @@ if( !class_exists( 'YITH_Woocompare_Frontend' ) ) {
                 ?>
                 <li>
                     <a class="title" href="<?php echo get_permalink( $product_id ) ?>"><?php echo $product->get_title() ?></a>
-                    <a href="<?php echo $this->remove_product_url( $product_id ) ?>" data-product_id="<?php echo $product_id; ?>" class="remove" title="<?php _e( 'Remove', 'yith-wcmp' ) ?>">x</a>
+                    <a href="<?php echo $this->remove_product_url( $product_id ) ?>" data-product_id="<?php echo $product_id; ?>" class="remove" title="<?php _e( 'Remove', 'yith-woocommerce-compare' ) ?>">x</a>
                 </li>
             <?php
             }

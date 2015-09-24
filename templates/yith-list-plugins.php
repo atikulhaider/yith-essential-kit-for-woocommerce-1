@@ -12,15 +12,26 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
+if ( ! current_user_can( 'activate_plugins' ) ) {
+  ?>
+    <div id="message" class="updated notice is-dismissible">
+        <p><?php _e( 'Sorry, you don\'t have sufficient permission to access to this page.', 'yith-jetpack' ) ?></p></div>
+<?php
+   return;
+}
+
 //--- read module list -----------------------------
 
 $modules = $this->get_admin_modules_list();
 $active_modules = $this->active_modules();
 $module_inserted_list = array();
 $module_inserted_old_list = get_option( YITH_JetPack::MODULE_LIST_OPTION_NAME , array() );
+$recommended_modules_list = apply_filters( 'yiht_jetpack_recommended_list' , array() );
+
 $count_all = count( $modules );
 $count_active = count( $active_modules );
 $count_inactive = $count_all - $count_active;
+$count_recommended = count( $recommended_modules_list );
 
 $plugin_filter_status = ! isset( $_GET['plugin_status'] ) ? 'all' : $_GET['plugin_status'];
 
@@ -40,7 +51,7 @@ elseif ( isset( $_GET['message'] ) && $_GET['message'] == 'activated-all' ) : ?>
 elseif ( isset( $_GET['message'] ) && $_GET['message'] == 'deactivated-all' ) : ?>
     <div id="message" class="updated notice is-dismissible">
         <p><?php _e( 'Modules <strong>deactivated</strong>.', 'yith-jetpack' ); ?></p></div>
-<?php endif; ?>
+<?php endif ?>
 
 <div class="wrap">
     <h1><?php echo $this->_menu_title; ?></h1>
@@ -59,11 +70,16 @@ elseif ( isset( $_GET['message'] ) && $_GET['message'] == 'deactivated-all' ) : 
     <div class="wp-list-table widefat plugin-install-network yith-jetpack">
 
         <?php
-        echo '<ul class="subsubsub">
-            <li class="all"><a href="'.esc_url( add_query_arg( array( 'plugin_status' => 'all' ) ) ).'" '.( $plugin_filter_status=='all' ? 'class="current"' : '' ).'>'.__( 'All', 'yith-jetpack' ).' <span class="count">('.$count_all.')</span></a> |</li>
+        echo '<ul class="subsubsub">';
+
+       echo '<li class="all"><a href="'.esc_url( add_query_arg( array( 'plugin_status' => 'all' ) ) ).'" '.( $plugin_filter_status=='all' ? 'class="current"' : '' ).'>'.__( 'All', 'yith-jetpack' ).' <span class="count">('.$count_all.')</span></a> |</li>
             <li class="active"><a href="'.esc_url( add_query_arg( array( 'plugin_status' => 'active' ) ) ).'" '.( $plugin_filter_status=='active' ? 'class="current"' : '' ).'>'.__( 'Active', 'yith-jetpack' ).' <span class="count">('.$count_active.')</span></a> |</li>
-            <li class="inactive"><a href="'.esc_url( add_query_arg( array( 'plugin_status' => 'inactive' ) ) ).'" '.( $plugin_filter_status=='inactive' ? 'class="current"' : '' ).'>'.__( 'Inactive', 'yith-jetpack' ).' <span class="count">('.$count_inactive.')</span></a></li>
-        </ul>';
+            <li class="inactive"><a href="'.esc_url( add_query_arg( array( 'plugin_status' => 'inactive' ) ) ).'" '.( $plugin_filter_status=='inactive' ? 'class="current"' : '' ).'>'.__( 'Inactive', 'yith-jetpack' ).' <span class="count">('.$count_inactive.')</span></a></li>';
+      if( $count_recommended > 0 ) {
+        echo  '<li class="recommended">| <a href="'.esc_url( add_query_arg( array( 'plugin_status' => 'recommended' ) ) ).'" '.( $plugin_filter_status=='recommended' ? 'class="current"' : '' ).'>'.__( 'Recommended', 'yith-jetpack' ).' <span class="count">('.$count_recommended.')</span></a></li>';
+      }
+
+        echo '</ul>';
         ?>
 
         <div id="the-list">
@@ -78,11 +94,16 @@ elseif ( isset( $_GET['message'] ) && $_GET['message'] == 'deactivated-all' ) : 
 
                 $is_active = in_array( $key, array_keys( $active_modules ) );
                 $is_new = ! in_array( $key, $module_inserted_old_list );
-                if ( ( $plugin_filter_status == 'active' && ! $is_active ) || ( $plugin_filter_status == 'inactive' && $is_active ) ) {
+                $is_recommended = in_array( $key, $recommended_modules_list );
+
+                $premium_dir = isset( $module_data[ 'premium-dir' ] ) ? $module_data[ 'premium-dir' ] : $key;
+                $is_premium_installed = file_exists( WP_PLUGIN_DIR . '/' . $premium_dir . '-premium' );
+
+                if ( ( $plugin_filter_status == 'active' && ! $is_active ) || ( $plugin_filter_status == 'inactive' && $is_active ) || ( $plugin_filter_status == 'recommended' && !$is_recommended ) ) {
                     continue;
                 }
 
-                $this->print_single_plugin( $module_data, $is_active , $is_new );
+                $this->print_single_plugin( $module_data, $is_active , $is_new , $is_recommended , $is_premium_installed );
 
             }
 

@@ -89,7 +89,7 @@ if ( ! class_exists( 'YITH_Woocompare_Admin' ) ) {
 			// add image size
 			YITH_Woocompare_Helper::set_image_size();
 
-			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles_scripts' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles_scripts' ), 20 );
 
 			add_action( 'woocommerce_admin_field_woocompare_image_width', array( $this, 'admin_fields_woocompare_image_width' ) );
 			add_action( 'woocommerce_admin_field_woocompare_attributes', array( $this, 'admin_fields_attributes' ), 10, 1 );
@@ -114,9 +114,9 @@ if ( ! class_exists( 'YITH_Woocompare_Admin' ) ) {
 		 */
 		public function action_links( $links ) {
 
-			$links[] = '<a href="' . admin_url( "admin.php?page={$this->_panel_page}" ) . '">' . __( 'Settings', 'yith-wcmp' ) . '</a>';
+			$links[] = '<a href="' . admin_url( "admin.php?page={$this->_panel_page}" ) . '">' . __( 'Settings', 'yith-woocommerce-compare' ) . '</a>';
 			if ( ! ( defined( 'YITH_WOOCOMPARE_PREMIUM' ) && YITH_WOOCOMPARE_PREMIUM ) ) {
-				$links[] = '<a href="' . $this->get_premium_landing_uri() . '" target="_blank">' . __( 'Premium Version', 'yith-wcmp' ) . '</a>';
+				$links[] = '<a href="' . $this->get_premium_landing_uri() . '" target="_blank">' . __( 'Premium Version', 'yith-woocommerce-compare' ) . '</a>';
 			}
 
 			return $links;
@@ -138,18 +138,18 @@ if ( ! class_exists( 'YITH_Woocompare_Admin' ) ) {
 			}
 
 			$admin_tabs = array(
-				'general' => __( 'Settings', 'yith-wcmp' ),
+				'general' => __( 'Settings', 'yith-woocommerce-compare' ),
 			);
 
 			if ( ! ( defined( 'YITH_WOOCOMPARE_PREMIUM' ) && YITH_WOOCOMPARE_PREMIUM ) ) {
-				$admin_tabs['premium'] = __( 'Premium Version', 'yith-wcmp' );
+				$admin_tabs['premium'] = __( 'Premium Version', 'yith-woocommerce-compare' );
 			}
 
 			$args = array(
 				'create_menu_page' => true,
 				'parent_slug'      => '',
-				'page_title'       => __( 'Compare', 'yith-wcmp' ),
-				'menu_title'       => __( 'Compare', 'yith-wcmp' ),
+				'page_title'       => __( 'Compare', 'yith-woocommerce-compare' ),
+				'menu_title'       => __( 'Compare', 'yith-woocommerce-compare' ),
 				'capability'       => 'manage_options',
 				'parent'           => '',
 				'parent_page'      => 'yit_plugin_panel',
@@ -212,7 +212,7 @@ if ( ! class_exists( 'YITH_Woocompare_Admin' ) ) {
 		public function plugin_row_meta( $plugin_meta, $plugin_file, $plugin_data, $status ) {
 
 			if ( defined( 'YITH_WOOCOMPARE_INIT' ) && YITH_WOOCOMPARE_INIT == $plugin_file ) {
-				$plugin_meta[] = '<a href="' . $this->doc_url . '" target="_blank">' . __( 'Plugin Documentation', 'yith-wcmp' ) . '</a>';
+				$plugin_meta[] = '<a href="' . $this->doc_url . '" target="_blank">' . __( 'Plugin Documentation', 'yith-woocommerce-compare' ) . '</a>';
 			}
 
 			return $plugin_meta;
@@ -232,7 +232,7 @@ if ( ! class_exists( 'YITH_Woocompare_Admin' ) ) {
 				'pointer_id' => 'yith_woocompare_panel',
 				'target'     => '#toplevel_page_yit_plugin_panel',
 				'content'    => sprintf( '<h3> %s </h3> <p> %s </p>',
-					__( 'YITH WooCommerce Compare Activated', 'yith-wcmp' ),
+					__( 'YITH WooCommerce Compare Activated', 'yith-woocommerce-compare' ),
 					apply_filters( 'yith_woocompare_activated_pointer_content', sprintf( __( 'In the YIT Plugin tab you can find the YITH WooCommerce Compare options. With this menu, you can access to all the settings of our plugins that you have activated. YITH WooCommerce Compare is available in an outstanding PREMIUM version with many new options, <a href="%s">discover it now</a>.', 'yit' ), $this->get_premium_landing_uri() ) )
 				),
 				'position'   => array( 'edge' => 'left', 'align' => 'center' ),
@@ -244,7 +244,7 @@ if ( ! class_exists( 'YITH_Woocompare_Admin' ) ) {
 				'pointer_id' => 'yith_woocompare_panel',
 				'target'     => '#toplevel_page_yit_plugin_panel',
 				'content'    => sprintf( '<h3> %s </h3> <p> %s </p>',
-					__( 'YITH WooCommerce Compare Updated', 'yith-wcmp' ),
+					__( 'YITH WooCommerce Compare Updated', 'yith-woocommerce-compare' ),
 					apply_filters( 'yith_woocompare_updated_pointer_content', sprintf( __( 'From now on, you can find all the options of YITH WooCommerce Compare under YIT Plugin -> Compare instead of WooCommerce -> Settings -> Compare, as in the previous version. When one of our plugins is updated, a new voice will be added to this menu. YITH WooCommerce Compare has been updated with new available options, <a href="%s">discover the PREMIUM version.</a>', 'yit' ), $this->get_premium_landing_uri() ) )
 				),
 				'position'   => array( 'edge' => 'left', 'align' => 'center' ),
@@ -390,7 +390,7 @@ if ( ! class_exists( 'YITH_Woocompare_Admin' ) ) {
 				<input name="<?php echo esc_attr( $value['id'] ); ?>[width]" id="<?php echo esc_attr( $value['id'] ); ?>-width" type="text" size="3" value="<?php echo $width; ?>" /> &times;
 				<input name="<?php echo esc_attr( $value['id'] ); ?>[height]" id="<?php echo esc_attr( $value['id'] ); ?>-height" type="text" size="3" value="<?php echo $height; ?>" />px
 
-				<label><input name="<?php echo esc_attr( $value['id'] ); ?>[crop]" id="<?php echo esc_attr( $value['id'] ); ?>-crop" type="checkbox" <?php echo $crop; ?> /> <?php _e( 'Do you want to hard crop the image?', 'yith-wcmp' ); ?>
+				<label><input name="<?php echo esc_attr( $value['id'] ); ?>[crop]" id="<?php echo esc_attr( $value['id'] ); ?>-crop" type="checkbox" <?php echo $crop; ?> /> <?php _e( 'Do you want to hard crop the image?', 'yith-woocommerce-compare' ); ?>
 				</label>
 				<p class="description"><?php echo $value['desc'] ?></p>
 

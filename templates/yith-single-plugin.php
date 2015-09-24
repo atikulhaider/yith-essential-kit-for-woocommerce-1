@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
-$is_premium_installed = isset( $module_data['premium_constat'] ) && defined( $module_data['premium_constat'] );
+$is_premium_activated = isset( $module_data['premium_constat'] ) && defined( $module_data['premium_constat'] );
 $is_yith_repository = ( isset( $module_data['repository'] ) && $module_data['repository'] == 'yith'  );
 // yith repository
 if ( $is_yith_repository ) {
@@ -60,7 +60,7 @@ if ( $is_active ) {
 }
 else {
 
-    if( $is_premium_installed ) {
+    if( $is_premium_activated ) {
         $url = '#';
         $active_class = 'disabled';
     } else {
@@ -68,7 +68,8 @@ else {
         $active_class = '';
     }
 
-    $action_links[] = '<a class="activate-now button '.$active_class.'" data-slug="' . $plugin['slug'] . '" href="' . $url . '" aria-label="' . sprintf( __( 'activate %s now', 'yith-jetpack' ), $plugin['slug'] ) . '" data-name="' . $plugin['name'] . '" target="_blank">' . __( 'Activate', 'yith-jetpack' ) . '</a>';
+    if( ! $is_premium_activated )
+    $action_links[] = '<a class="activate-now button '.$active_class.'" data-slug="' . $plugin['slug'] . '" href="' . $url . '" aria-label="' . sprintf( __( 'activate %s now', 'yith-jetpack' ), $plugin['slug'] ) . '" data-name="' . $plugin['name'] . '" >' . __( 'Activate', 'yith-jetpack' ) . '</a>';
 }
 
 if(  ! $is_yith_repository ) {
@@ -78,18 +79,24 @@ if(  ! $is_yith_repository ) {
     $action_links[] = '<a href="' . esc_url( $details_link ) . '" class="thickbox" aria-label="' . esc_attr( sprintf( __( 'More information about %s' ), $name ) ) . '" data-title="' . esc_attr( $name ) . '">' . __( 'More Details' ) . '</a>';
 }
 
-if( $is_premium_installed ) {
-    $premium_url    = '#';
-    $btn_class = 'btn-premium installed';
-    $btn_title =  __( 'Premium Installed' ) ;
-} else {
-    $premium_url    = 'http://yithemes.com/themes/plugins/' . ( isset( $module_data['premium-url'] ) ? $module_data['premium-url'] : $plugin['slug'] );
-    $btn_class = 'btn-premium';
-    $btn_title =  __( 'Premium Version' ) ;
+if ( $is_premium_activated ) {
+    $premium_url = '#';
+    $btn_class   = 'btn-premium installed';
+    $btn_title   = __( 'Premium Installed' );
+}
+else if ( $is_premium_installed ) {
+    $premium_url = get_admin_url(null,'plugins.php');
+    $btn_class   = 'btn-premium toactive';
+    $btn_title   = __( 'Activate Premium' );
+}
+else {
+    $premium_url = 'http://yithemes.com/themes/plugins/' . ( isset( $module_data['premium-url'] ) ? $module_data['premium-url'] : $plugin['slug'] );
+    $btn_class   = 'btn-premium';
+    $btn_title   = __( 'Premium Version' );
 }
 
 
-$action_links[] = '<a class="'.$btn_class.'" href="' . esc_url( $premium_url ) . '" aria-label="' . esc_attr( sprintf( __( 'Premium Version of %s' ), $name ) ) . '" data-title="' . esc_attr( $name ) . '">' .$btn_title. '</a>';
+$action_links[] = '<a class="'.$btn_class.'" href="' . esc_url( $premium_url ) . '" aria-label="' . esc_attr( sprintf( __( 'Premium Version of %s' ), $name ) ) . '" data-title="' . esc_attr( $name ) . '" target="_blank">' .$btn_title. '</a>';
 
 
 $date_format            = __( 'M j, Y @ H:i' );
@@ -103,7 +110,11 @@ $last_updated_timestamp = strtotime( $plugin['last_updated'] );
 
         <span class="product-icon"><img src="<?php echo YJP_ASSETS_URL . '/images/badge-new.png';?>" alt="New Icon"></span>
 
-        <?php endif; ?>
+        <?php elseif( $is_recommended ) : ?>
+
+                <span class="product-icon"><img src="<?php echo YJP_ASSETS_URL . '/images/badge-recommended.png';?>" alt="New Icon"></span>
+
+        <?php endif ?>
 
         <a href="<?php echo esc_url( $details_link ); ?>" class="thickbox plugin-icon"><img src="<?php echo esc_attr( $plugin_icon_url ) ?>" /></a>
 
