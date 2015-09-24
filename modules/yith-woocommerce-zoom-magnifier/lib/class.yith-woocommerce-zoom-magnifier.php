@@ -25,7 +25,7 @@ if ( ! class_exists( 'YITH_WooCommerce_Zoom_Magnifier' ) ) {
 		 * @var string
 		 * @since 1.0.0
 		 */
-		public $version = '1.2.9';
+		public $version = '1.2.10';
 
 		/**
 		 * Plugin object

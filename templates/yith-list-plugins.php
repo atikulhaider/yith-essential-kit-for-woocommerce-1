@@ -26,7 +26,7 @@ $modules = $this->get_admin_modules_list();
 $active_modules = $this->active_modules();
 $module_inserted_list = array();
 $module_inserted_old_list = get_option( YITH_JetPack::MODULE_LIST_OPTION_NAME , array() );
-$recommended_modules_list = apply_filters( 'yiht_jetpack_recommended_list' , array() );
+$recommended_modules_list = apply_filters( 'yith_jetpack_recommended_list' , array() );
 
 $count_all = count( $modules );
 $count_active = count( $active_modules );
@@ -61,8 +61,8 @@ elseif ( isset( $_GET['message'] ) && $_GET['message'] == 'deactivated-all' ) : 
     <div class="tablenav top">
         <div class="alignleft actions">
             <p>
-                <a href="<?php echo wp_nonce_url( add_query_arg( array( 'action' => 'activate', 'module' => 'all' ) ), 'activate-yit-plugin' ) ?>"><?php _e( 'Activate all', 'yith-jetpack' ) ?></a> |
-                <a href="<?php echo wp_nonce_url( add_query_arg( array( 'action' => 'deactivate', 'module' => 'all' ) ), 'deactivate-yit-plugin' ) ?>"><?php _e( 'Deactivate all', 'yith-jetpack' ) ?></a>
+                <a href="<?php echo wp_nonce_url( add_query_arg( array( 'action' => 'activate', 'module' => 'all' ) ), 'activate-yit-plugin' ) ?>"><?php !( $plugin_filter_status == 'recommended' ) ? _e( 'Activate all', 'yith-jetpack' ) : _e( 'Activate recommended', 'yith-jetpack' )  ?></a> |
+                <a href="<?php echo wp_nonce_url( add_query_arg( array( 'action' => 'deactivate', 'module' => 'all' ) ), 'deactivate-yit-plugin' ) ?>"><?php !( $plugin_filter_status == 'recommended' ) ? _e( 'Deactivate all', 'yith-jetpack' ) : _e( 'Deactivate recommended', 'yith-jetpack' ) ?></a>
             </p>
         </div>
     </div>

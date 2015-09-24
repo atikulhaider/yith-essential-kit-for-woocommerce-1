@@ -432,13 +432,24 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
             }
 
             if ( $is_all_activated ) {
+
+                $plugin_filter_status = ! isset( $_GET['plugin_status'] ) ? 'all' : $_GET['plugin_status'];
+
+                if( $plugin_filter_status == 'active' ) return;
+
                 $this->_active_modules = $modules;
 
+                $recommended_modules_list = apply_filters( 'yith_jetpack_recommended_list' , array() );
+
                 foreach ( $this->_active_modules as $key => $item ) {
+
+                    $is_active = in_array( $key, array_keys( $active_modules ) );
+                    $is_recommended = in_array( $key, $recommended_modules_list );
+
                     if ( is_plugin_active( $key . '/' . $item['file'] ) ) {
                         deactivate_plugins( $key . '/' . $item['file'] );
                     }
-                    else if( isset( $item['premium_constat'] ) && defined( $item['premium_constat'] ) ) {
+                    else if( !$is_active && ( ( isset( $item['premium_constat'] ) && defined( $item['premium_constat'] ) ) || ( $plugin_filter_status == 'recommended' && !$is_recommended ) ) ) {
                         unset( $this->_active_modules[ $key ] );
                     }
                 }
@@ -479,7 +490,22 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
             }
 
             if ( 'all' == $module ) {
-                $this->_active_modules = array();
+
+                $plugin_filter_status = ! isset( $_GET['plugin_status'] ) ? 'all' : $_GET['plugin_status'];
+                $recommended_modules_list = apply_filters( 'yith_jetpack_recommended_list' , array() );
+
+                if ( $plugin_filter_status == 'recommended' ) {
+                    foreach ( $this->_active_modules as $key => $item ) {
+                        $is_recommended = in_array( $key, $recommended_modules_list );
+                        if ( $is_recommended ) {
+                            unset( $this->_active_modules[$key] );
+                        }
+                    }
+                }
+                else {
+                    $this->_active_modules = array();
+                }
+
             }
             else {
                 if ( isset( $this->_active_modules[$module] ) ) {

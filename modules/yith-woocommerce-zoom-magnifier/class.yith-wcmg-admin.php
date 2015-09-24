@@ -87,8 +87,8 @@ if ( ! class_exists( 'YITH_WCMG_Admin' ) ) {
             unset( $settings[count( $settings ) - 1] );
 
             $settings[] = array(
-                'name'     => __( 'Image Size', 'ywzm' ),
-                'desc'     => __( 'The size of the images used within the magnifier box', 'ywzm' ),
+                'name'     => __( 'Image Size', 'yith-woocommerce-zoom-magnifier' ),
+                'desc'     => __( 'The size of the images used within the magnifier box', 'yith-woocommerce-zoom-magnifier' ),
                 'id'       => 'woocommerce_magnifier_image',
                 'css'      => '',
                 'type'     => 'image_width',

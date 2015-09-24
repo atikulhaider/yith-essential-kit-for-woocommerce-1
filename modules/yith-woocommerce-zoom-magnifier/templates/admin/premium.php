@@ -190,16 +190,16 @@
         <div class="landing-container">
             <div class="premium-cta">
                 <p>
-                   <?php echo sprintf(__('Upgrade to the %1$s premium version %2$s of %1$s YITH WooCommerce Zoom Magnifier %2$s to benefit from all features!','ywzm'),'<span class="highlight">','</span>' );?>
+                   <?php echo sprintf(__('Upgrade to the %1$s premium version %2$s of %1$s YITH WooCommerce Zoom Magnifier %2$s to benefit from all features!','yith-woocommerce-zoom-magnifier'),'<span class="highlight">','</span>' );?>
                 </p>
                 <a href="<?php echo YITH_YWZM_Plugin_FW_Loader::get_instance()->get_premium_landing_uri(); ?>" target="_blank" class="premium-cta-button button btn">
-                    <?php echo sprintf(__('%1$sUPGRADE%2$s%3$sto the premium version%2$s','ywzm'),'<span class="highlight">','</span>','<span>');?>
+                    <?php echo sprintf(__('%1$sUPGRADE%2$s%3$sto the premium version%2$s','yith-woocommerce-zoom-magnifier'),'<span class="highlight">','</span>','<span>');?>
                 </a>
             </div>
         </div>
     </div>
     <div class="section section-even clear" style="background: url(<?php echo YITH_YWZM_ASSETS_IMAGES_URL ?>01-bg.png) no-repeat #fff; background-position: 85% 75%">
-        <?php echo sprintf(__('%1$sPremium Features%2$s','ywzm'),'<h1>','</h1>');?>
+        <?php echo sprintf(__('%1$sPremium Features%2$s','yith-woocommerce-zoom-magnifier'),'<h1>','</h1>');?>
         <div class="landing-container">
             <div class="col-1">
                 <img src="<?php echo YITH_YWZM_ASSETS_IMAGES_URL ?>01.png" alt="Review Title" />
@@ -207,10 +207,10 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YITH_YWZM_ASSETS_IMAGES_URL ?>01-icon.png" alt="Review Title"/>
-                    <h2><?php _e('ZOOM BOX POSITION','ywzm');?></h2>
+                    <h2><?php _e('ZOOM BOX POSITION','yith-woocommerce-zoom-magnifier');?></h2>
                 </div>
                 <p>
-                    <?php echo sprintf(__('Choose where you want to show the %1$szoomed version%2$s of the image of your products. Place it above or below the original image, on its left or its right, or you can even place it over it.$2$s','ywzm'),'<b>','</b>');?>
+                    <?php echo sprintf(__('Choose where you want to show the %1$szoomed version%2$s of the image of your products. Place it above or below the original image, on its left or its right, or you can even place it over it.$2$s','yith-woocommerce-zoom-magnifier'),'<b>','</b>');?>
                 </p>
             </div>
         </div>
@@ -220,9 +220,9 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YITH_YWZM_ASSETS_IMAGES_URL ?>02-icon.png" alt="Attachment List" />
-                    <h2><?php _e('ENLARGE THE IMAGES','ywzm');?></h2>
+                    <h2><?php _e('ENLARGE THE IMAGES','yith-woocommerce-zoom-magnifier');?></h2>
                 </div>
-                <p><?php _e('Just one click and the product image will appear in a bigger size in a modal window. A further chance to let users analyze in a better way what you sell.','ywzm');?></p>
+                <p><?php _e('Just one click and the product image will appear in a bigger size in a modal window. A further chance to let users analyze in a better way what you sell.','yith-woocommerce-zoom-magnifier');?></p>
             </div>
             <div class="col-1">
                 <img src="<?php echo YITH_YWZM_ASSETS_IMAGES_URL ?>02.png" alt="Attachment List" />
@@ -237,9 +237,9 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YITH_YWZM_ASSETS_IMAGES_URL ?>03-icon.png" alt="Vote the review" />
-                    <h2><?php _e('EXCLUDE PRODUCTS','ywzm');?></h2>
+                    <h2><?php _e('EXCLUDE PRODUCTS','yith-woocommerce-zoom-magnifier');?></h2>
                 </div>
-                <p><?php _e('Tailored options to limit the plugin features only to certain products. Some of these could have too small images to be zoomed, or maybe being part of categories that do not imply zoomed images. Select the products and the categories to exclude and delete all your problems','ywzm');?></p>
+                <p><?php _e('Tailored options to limit the plugin features only to certain products. Some of these could have too small images to be zoomed, or maybe being part of categories that do not imply zoomed images. Select the products and the categories to exclude and delete all your problems','yith-woocommerce-zoom-magnifier');?></p>
             </div>
         </div>
     </div>
@@ -248,10 +248,10 @@
         <div class="landing-container">
             <div class="premium-cta">
                 <p>
-                <?php echo sprintf(__('Upgrade to the %1$spremium version%2$s of %1$sYITH WooCommerce Zoom Magnifier%2$s to benefit from all features!','ywzm'),'<span class="highlight">','</span>');?>
+                <?php echo sprintf(__('Upgrade to the %1$spremium version%2$s of %1$sYITH WooCommerce Zoom Magnifier%2$s to benefit from all features!','yith-woocommerce-zoom-magnifier'),'<span class="highlight">','</span>');?>
                 </p>
                 <a href="<?php echo YITH_YWZM_Plugin_FW_Loader::get_instance()->get_premium_landing_uri(); ?>" target="_blank" class="premium-cta-button button btn">
-                <?php echo sprintf(__('%1$sUPGRADE%2$s %3$sto the premium version%2$s','ywzm'),'<span class="highlight">','</span>','<span>');?>
+                <?php echo sprintf(__('%1$sUPGRADE%2$s %3$sto the premium version%2$s','yith-woocommerce-zoom-magnifier'),'<span class="highlight">','</span>','<span>');?>
                 </a>
             </div>
         </div>

@@ -82,7 +82,7 @@ if(  ! $is_yith_repository ) {
 if ( $is_premium_activated ) {
     $premium_url = '#';
     $btn_class   = 'btn-premium installed';
-    $btn_title   = __( 'Premium Installed' );
+    $btn_title   = __( 'Premium Activated' );
 }
 else if ( $is_premium_installed ) {
     $premium_url = get_admin_url(null,'plugins.php');
@@ -91,12 +91,12 @@ else if ( $is_premium_installed ) {
 }
 else {
     $premium_url = 'http://yithemes.com/themes/plugins/' . ( isset( $module_data['premium-url'] ) ? $module_data['premium-url'] : $plugin['slug'] );
-    $btn_class   = 'btn-premium';
-    $btn_title   = __( 'Premium Version' );
+    $btn_class   = 'btn-premium tobuy';
+    $btn_title   = __( 'Buy Premium Version' );
 }
 
 
-$action_links[] = '<a class="'.$btn_class.'" href="' . esc_url( $premium_url ) . '" aria-label="' . esc_attr( sprintf( __( 'Premium Version of %s' ), $name ) ) . '" data-title="' . esc_attr( $name ) . '" target="_blank">' .$btn_title. '</a>';
+$action_links[] = '<a class="'.$btn_class.'" href="' . esc_url( $premium_url ) . '" aria-label="' . esc_attr( sprintf( __( 'Buy Premium Version of %s' ), $name ) ) . '" data-title="' . esc_attr( $name ) . '" target="_blank">' .$btn_title. '</a>';
 
 
 $date_format            = __( 'M j, Y @ H:i' );

@@ -121,12 +121,12 @@ if ( ! class_exists( 'YITH_YWZM_Plugin_FW_Loader' ) ) {
 				return;
 			}
 
-			$admin_tabs['general'] = __( 'General', 'ywzm' );
+			$admin_tabs['general'] = __( 'General', 'yith-woocommerce-zoom-magnifier' );
 
 			if ( ! defined( 'YITH_YWZM_PREMIUM' ) ) {
-				$admin_tabs['premium-landing'] = __( 'Premium Version', 'ywzm' );
+				$admin_tabs['premium-landing'] = __( 'Premium Version', 'yith-woocommerce-zoom-magnifier' );
 			} else {
-				$admin_tabs['exclusions'] = __( 'Product exclusion list', 'ywzm' );
+				$admin_tabs['exclusions'] = __( 'Product exclusion list', 'yith-woocommerce-zoom-magnifier' );
 			}
 
 			$args = array(
@@ -185,10 +185,10 @@ if ( ! class_exists( 'YITH_YWZM_Plugin_FW_Loader' ) ) {
 		 * @use plugin_action_links_{$plugin_file_name}
 		 */
 		public function action_links( $links ) {
-			$links[] = '<a href="' . admin_url( "admin.php?page={$this->_panel_page}" ) . '">' . __( 'Settings', 'ywzm' ) . '</a>';
+			$links[] = '<a href="' . admin_url( "admin.php?page={$this->_panel_page}" ) . '">' . __( 'Settings', 'yith-woocommerce-zoom-magnifier' ) . '</a>';
 
 			if ( defined( 'YITH_YWZM_FREE_INIT' ) ) {
-				$links[] = '<a href="' . $this->_premium_landing . '" target="_blank">' . __( 'Premium Version', 'ywzm' ) . '</a>';
+				$links[] = '<a href="' . $this->_premium_landing . '" target="_blank">' . __( 'Premium Version', 'yith-woocommerce-zoom-magnifier' ) . '</a>';
 			}
 
 			return $links;
@@ -213,7 +213,7 @@ if ( ! class_exists( 'YITH_YWZM_Plugin_FW_Loader' ) ) {
 			if ( ( defined( 'YITH_YWZM_INIT' ) && ( YITH_YWZM_INIT == $plugin_file ) ) ||
 			     ( defined( 'YITH_YWZM_FREE_INIT' ) && ( YITH_YWZM_FREE_INIT == $plugin_file ) )
 			) {
-				$plugin_meta[] = '<a href="' . $this->_official_documentation . '" target="_blank">' . __( 'Plugin Documentation', 'ywzm' ) . '</a>';
+				$plugin_meta[] = '<a href="' . $this->_official_documentation . '" target="_blank">' . __( 'Plugin Documentation', 'yith-woocommerce-zoom-magnifier' ) . '</a>';
 			}
 
 			return $plugin_meta;
@@ -226,16 +226,16 @@ if ( ! class_exists( 'YITH_YWZM_Plugin_FW_Loader' ) ) {
 
 			$premium_message = defined( 'YITH_YWZM_PREMIUM' )
 				? ''
-				: __( 'YITH WooCommerce Zoom Magnifier is available in an outstanding PREMIUM version with many new options, discover it now.', 'ywzm' ) .
-				  ' <a href="' . $this->_premium_landing . '">' . __( 'Premium version', 'ywzm' ) . '</a>';
+				: __( 'YITH WooCommerce Zoom Magnifier is available in an outstanding PREMIUM version with many new options, discover it now.', 'yith-woocommerce-zoom-magnifier' ) .
+				  ' <a href="' . $this->_premium_landing . '">' . __( 'Premium version', 'yith-woocommerce-zoom-magnifier' ) . '</a>';
 
 			$args[] = array(
 				'screen_id'  => 'plugins',
 				'pointer_id' => 'yith_woocommerce_zoom-magnifier',
 				'target'     => '#toplevel_page_yit_plugin_panel',
 				'content'    => sprintf( '<h3> %s </h3> <p> %s </p>',
-					__( 'YITH WooCommerce Zoom Magnifier', 'ywzm' ),
-					__( 'In YIT Plugins tab you can find  YITH WooCommerce Zoom Magnifier options.<br> From this menu you can access all settings of the YITH plugins activated.', 'ywzm' ) . '<br>' . $premium_message
+					__( 'YITH WooCommerce Zoom Magnifier', 'yith-woocommerce-zoom-magnifier' ),
+					__( 'In YIT Plugins tab you can find  YITH WooCommerce Zoom Magnifier options.<br> From this menu you can access all settings of the YITH plugins activated.', 'yith-woocommerce-zoom-magnifier' ) . '<br>' . $premium_message
 				),
 				'position'   => array( 'edge' => 'left', 'align' => 'center' ),
 				'init'       => defined( 'YITH_YWZM_PREMIUM' ) ? YITH_YWZM_INIT : YITH_YWZM_FREE_INIT

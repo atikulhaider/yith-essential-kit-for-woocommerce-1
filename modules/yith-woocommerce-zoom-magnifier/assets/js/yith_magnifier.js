@@ -190,7 +190,6 @@
     };
 
     $.yith_magnifier.prototype = {
-
         /**
          * Let's start the magnifier
          *
@@ -285,10 +284,10 @@
 
                 if (this.options.loadingLabel) {
                     $('<div class="yith_magnifier_loading">' + this.options.loadingLabel + '</div>').css({
-                     'width': w,
-                     'text-align': 'center',
-                     opacity: .5
-                     }).appendTo(this.options.elements.zoom.parent());
+                        'width': w,
+                        'text-align': 'center',
+                        opacity: .5
+                    }).appendTo(this.options.elements.zoom.parent());
                 }
             }
         },
@@ -327,6 +326,8 @@
                     self._initTrap();
                 });
             }
+
+            $(document).trigger('yith_magnifier_after_init_zoom')
         },
 
         /**

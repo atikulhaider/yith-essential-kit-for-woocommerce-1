@@ -3,15 +3,15 @@
  * Plugin Name: YITH WooCommerce Zoom Magnifier
  * Plugin URI: http://yithemes.com/themes/plugins/yith-woocommerce-zoom-magnifier/
  * Description: YITH WooCommerce Zoom Magnifier enables you to add a zoom effect to product images and a thumbnail slider for the product image gallery.
- * Version: 1.2.9
+ * Version: 1.2.10
  * Author: Yithemes
  * Author URI: http://yithemes.com/
- * Text Domain: ywzm
+ * Text Domain: yith-woocommerce-zoom-magnifier
  * Domain Path: /languages/
  *
  * @author Your Inspiration Themes
  * @package YITH WooCommerce Magnifier
- * @version 1.2.9
+ * @version 1.2.10
  */
 /*  Copyright 2013-2015  Your Inspiration Themes  (email : plugins@yithemes.com)
 
@@ -40,7 +40,7 @@ if ( ! function_exists( 'is_plugin_active' ) ) {
 function yith_ywzm_install_woocommerce_admin_notice() {
 	?>
 	<div class="error">
-		<p><?php _e( 'YITH WooCommerce Zoom Magnifier is enabled but not effective. It requires WooCommerce in order to work.', 'ywzm' ); ?></p>
+		<p><?php _e( 'YITH WooCommerce Zoom Magnifier is enabled but not effective. It requires WooCommerce in order to work.', 'yith-woocommerce-zoom-magnifier' ); ?></p>
 	</div>
 <?php
 }
@@ -49,7 +49,7 @@ function yith_ywzm_install_woocommerce_admin_notice() {
 function yith_ywzm_install_free_admin_notice() {
 	?>
 	<div class="error">
-		<p><?php _e( 'You can\'t activate the free version of YITH WooCommerce Zoom Magnifier while you are using the premium one.', 'ywzm' ); ?></p>
+		<p><?php _e( 'You can\'t activate the free version of YITH WooCommerce Zoom Magnifier while you are using the premium one.', 'yith-woocommerce-zoom-magnifier' ); ?></p>
 	</div>
 <?php
 }
@@ -65,7 +65,7 @@ if ( ! defined( 'YITH_YWZM_FREE_INIT' ) ) {
 }
 
 if ( ! defined( 'YITH_YWZM_VERSION' ) ) {
-	define( 'YITH_YWZM_VERSION', '1.2.9' );
+	define( 'YITH_YWZM_VERSION', '1.2.10' );
 }
 
 if ( ! defined( 'YITH_YWZM_FILE' ) ) {
@@ -110,7 +110,7 @@ function yith_ywzm_init() {
 	/**
 	 * Load text domain and start plugin
 	 */
-	load_plugin_textdomain( 'ywzm', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+	load_plugin_textdomain( 'yith-woocommerce-zoom-magnifier', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
 	add_option( 'yith_wcmg_slider_direction', apply_filters( 'yith_wcmg_slider_direction', 'left' ) );
 

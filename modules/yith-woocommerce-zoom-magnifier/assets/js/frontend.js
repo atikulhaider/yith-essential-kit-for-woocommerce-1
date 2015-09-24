@@ -3,7 +3,7 @@
  *
  * @author Your Inspiration Themes
  * @package YITH WooCommerce Zoom Magnifier
- * @version 1.2.9
+ * @version 1.2.10
  */
 jQuery(document).ready(function ($) {
 
@@ -14,7 +14,7 @@ jQuery(document).ready(function ($) {
     var yith_wcmg_default_zoom = yith_wcmg.find('.yith_magnifier_zoom').attr('href');
     var yith_wcmg_default_image = yith_wcmg.find('.yith_magnifier_zoom img').attr('src');
 
-    yith_wcmg.yith_magnifier(yith_magnifier_options);
+    //yith_wcmg.yith_magnifier(yith_magnifier_options);
 
     $(document).on('found_variation', 'form.variations_form', function (event, variation) {
         var image_magnifier = variation.image_magnifier ? variation.image_magnifier : yith_wcmg_default_zoom;
@@ -41,7 +41,7 @@ jQuery(document).ready(function ($) {
         }
 
         yith_wcmg.yith_magnifier(yith_magnifier_options);
-    })
+    });
 
     $('form.variations_form .variations select').trigger('change');
 });
