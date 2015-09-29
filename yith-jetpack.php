@@ -59,11 +59,8 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
             $this->_modules_list_query_value  = self::MODULES_LIST_QUERY_VALUE.$this->$index;
             $this->_plugin_list_hide_notice_option_name = self::PLUGIN_LIST_HIDE_NOTICE_OPTION_NAME.$this->$index;
 
-            $this->load_plugin_textdomain();
             $this->plugin_fw_loader();
 			$this->load_modules();
-
-            add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ), 5 );
 
             // admin page
             add_action( 'admin_init', array( $this, 'deactivate_singular_plugins' ) );
@@ -141,7 +138,7 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
             <div id="yit-framework-notice" class="update-nag settings-error notice is-dismissible">
                 <p><?php
                     $url = menu_page_url( $this->_modules_list_query_value, false );
-                    printf( __( 'Some plugins as %s, %s , etc.. have been removed from this plugins list. You can activate or deactive it from <a href="%s">%s</a> panel.', 'yith-jetpack' ), $plugin_info[0] , $plugin_info[1] , $url , $this->_menu_title );
+                    printf( __( 'Some plugins as %s, %s , etc.. have been removed from this plugins list. You can activate or deactive it from <a href="%s">%s</a> panel.', 'yith-essential-kit-for-woocommerce-1' ), $plugin_info[0] , $plugin_info[1] , $url , $this->_menu_title );
                     ?></p>
                 <div class="action-link">
                     <a class="dismiss-notice" href="<?php echo esc_url( add_query_arg( $this->_plugin_list_hide_notice_option_name, 1 ) ); ?>"><?php _e( 'Dismiss this notice', 'yit' ); ?></a>
@@ -214,19 +211,10 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
          */
         public function action_links( $links ) {
 
-            $links[] = '<a href="' . esc_url( admin_url( "admin.php?page=".$this->_modules_list_query_value ) ) . '">' . __( 'Plugins List', 'yith-jetpack' ) . '</a>';
+            $links[] = '<a href="' . esc_url( admin_url( "admin.php?page=".$this->_modules_list_query_value ) ) . '">' . __( 'Plugins List', 'yith-essential-kit-for-woocommerce-1' ) . '</a>';
 
             return $links;
         }
-
-
-        /**
-         * Load the textdomain for the YITH JetPack
-         */
-        public function load_plugin_textdomain() {
-            load_plugin_textdomain( 'yith-jetpack', false, plugin_basename( $this->_plugin_path ) . "/languages" );
-        }
-
 
         /**
          * Get the plugin url.
@@ -565,7 +553,7 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
         public function add_admin_modules_page() {
 
             $position = apply_filters( 'yit_plugins_menu_item_position', '62.32' );
-            add_menu_page( 'yit_plugin_panel', __( 'YIT Plugins', 'yith-jetpack' ), 'nosuchcapability', 'yit_plugin_panel', NULL, $this->plugin_url() . '/assets/images/yithemes-icon.png', $position );
+            add_menu_page( 'yit_plugin_panel', __( 'YIT Plugins', 'yith-essential-kit-for-woocommerce-1' ), 'nosuchcapability', 'yit_plugin_panel', NULL, $this->plugin_url() . '/assets/images/yithemes-icon.png', $position );
 
             $title = $this->_menu_title;
 
@@ -603,7 +591,7 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
             $new_plugins_count = $this->get_new_added_plugin();
 
             if( $new_plugins_count > 0 ) {
-                echo "<div class='update-nag'>" . sprintf( __( 'There are new plugins available on <b>%s</b>, <a href="%s">take a look at them</a> !' , 'yith-jetpack' ), $this->_menu_title, esc_url( admin_url( "admin.php?page=".$this->_modules_list_query_value."&plugin_status=inactive" ) ) ) . "</div>";
+                echo "<div class='update-nag'>" . sprintf( __( 'There are new plugins available on <b>%s</b>, <a href="%s">take a look at them</a> !' , 'yith-essential-kit-for-woocommerce-1' ), $this->_menu_title, esc_url( admin_url( "admin.php?page=".$this->_modules_list_query_value."&plugin_status=inactive" ) ) ) . "</div>";
             }
         }
 
@@ -653,16 +641,16 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
 
             // exit if is not a valid module
             if ( empty( $_GET['module'] ) || 'all' != $module && ! in_array( $module, array_keys( $modules ) ) ) {
-                wp_die( __( 'The module is not valid.', 'yith-jetpack' ) . sprintf( ' <a href="%s">%s</a>', remove_query_arg( array( 'action', 'module', '_wpnonce' ) ), __( 'Back to modules', 'yith-jetpack' ) ) );
+                wp_die( __( 'The module is not valid.', 'yith-essential-kit-for-woocommerce-1' ) . sprintf( ' <a href="%s">%s</a>', remove_query_arg( array( 'action', 'module', '_wpnonce' ) ), __( 'Back to modules', 'yith-essential-kit-for-woocommerce-1' ) ) );
             }
 
             // exit if is a module already activated
             if ( 'all' != $module && in_array( $module, array_keys( $activated_modules ) ) ) {
-                wp_die( __( 'The module is already activated.', 'yith-jetpack' ) . sprintf( ' <a href="%s">%s</a>', remove_query_arg( array( 'action', 'module', '_wpnonce' ) ), __( 'Back to modules', 'yith-jetpack' ) ) );
+                wp_die( __( 'The module is already activated.', 'yith-essential-kit-for-woocommerce-1' ) . sprintf( ' <a href="%s">%s</a>', remove_query_arg( array( 'action', 'module', '_wpnonce' ) ), __( 'Back to modules', 'yith-essential-kit-for-woocommerce-1' ) ) );
             }
 
             if ( ! $this->activate_module( $module ) ) {
-                wp_die( __( "Activation of the module is not possible.", 'yith-jetpack' ) . sprintf( ' <a href="%s">%s</a>', remove_query_arg( array( 'action', 'module', '_wpnonce' ) ), __( 'Back to modules', 'yith-jetpack' ) ) );
+                wp_die( __( "Activation of the module is not possible.", 'yith-essential-kit-for-woocommerce-1' ) . sprintf( ' <a href="%s">%s</a>', remove_query_arg( array( 'action', 'module', '_wpnonce' ) ), __( 'Back to modules', 'yith-essential-kit-for-woocommerce-1' ) ) );
             }
 
             wp_redirect( add_query_arg( 'message', 'all' == $module ? 'activated-all' : 'activated', remove_query_arg( array( 'action', 'module', '_wpnonce' ) ) ) );
@@ -685,16 +673,16 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
 
             // exit if is not a valid module
             if ( empty( $_GET['module'] ) || 'all' != $module && ! in_array( $module, array_keys( $modules ) ) ) {
-                wp_die( __( 'The module is not valid.', 'yith-jetpack' ) . sprintf( ' <a href="%s">%s</a>', remove_query_arg( array( 'action', 'module', '_wpnonce' ) ), __( 'Back to modules', 'yith-jetpack' ) ) );
+                wp_die( __( 'The module is not valid.', 'yith-essential-kit-for-woocommerce-1' ) . sprintf( ' <a href="%s">%s</a>', remove_query_arg( array( 'action', 'module', '_wpnonce' ) ), __( 'Back to modules', 'yith-essential-kit-for-woocommerce-1' ) ) );
             }
 
             // exit if is a module already activated
             if ( 'all' != $module && ! in_array( $module, array_keys( $activated_modules ) ) ) {
-                wp_die( __( 'The module is already deactivated.', 'yith-jetpack' ) . sprintf( ' <a href="%s">%s</a>', remove_query_arg( array( 'action', 'module', '_wpnonce' ) ), __( 'Back to modules', 'yith-jetpack' ) ) );
+                wp_die( __( 'The module is already deactivated.', 'yith-essential-kit-for-woocommerce-1' ) . sprintf( ' <a href="%s">%s</a>', remove_query_arg( array( 'action', 'module', '_wpnonce' ) ), __( 'Back to modules', 'yith-essential-kit-for-woocommerce-1' ) ) );
             }
 
             if ( ! $this->deactivate_module( $module ) ) {
-                wp_die( __( "Activation of the module is not possible.", 'yith-jetpack' ) . sprintf( ' <a href="%s">%s</a>', remove_query_arg( array( 'action', 'module', '_wpnonce' ) ), __( 'Back to modules', 'yith-jetpack' ) ) );
+                wp_die( __( "Activation of the module is not possible.", 'yith-essential-kit-for-woocommerce-1' ) . sprintf( ' <a href="%s">%s</a>', remove_query_arg( array( 'action', 'module', '_wpnonce' ) ), __( 'Back to modules', 'yith-essential-kit-for-woocommerce-1' ) ) );
             }
 
             wp_redirect( add_query_arg( 'message', 'all' == $module ? 'deactivated-all' : 'deactivated', remove_query_arg( array( 'action', 'module', '_wpnonce' ) ) ) );

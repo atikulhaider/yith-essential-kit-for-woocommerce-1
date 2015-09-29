@@ -54,7 +54,7 @@ function yith_wcan_attributes_table( $type, $attribute, $id, $name, $values = ar
 
     elseif ( 'color' == $type ) {
         if ( ! empty( $terms ) ) {
-            $return = sprintf( '<table><tr><th>%s</th><th>%s</th></tr>', __( 'Term', 'yith_wc_ajxnav' ), __( 'Color', 'yith_wc_ajxnav' ) );
+            $return = sprintf( '<table><tr><th>%s</th><th>%s</th></tr>', __( 'Term', 'yith-woocommerce-ajax-navigation' ), __( 'Color', 'yith-woocommerce-ajax-navigation' ) );
 
             foreach ( $terms as $term ) {
                 $return .= "<tr><td><label for='{$id}{$term->term_id}'>{$term->name}</label></td><td><input type='text' id='{$id}{$term->term_id}' name='{$name}[colors][{$term->term_id}]' value='" . ( isset( $values[$term->term_id] ) ? $values[$term->term_id] : '' ) . "' size='3' class='yith-colorpicker' /></td></tr>";
@@ -68,7 +68,7 @@ function yith_wcan_attributes_table( $type, $attribute, $id, $name, $values = ar
 
     elseif ( 'multicolor' == $type ) {
         if ( ! empty( $terms ) ) {
-            $return = sprintf( '<table class="yith-wcan-multicolor"><tr><th>%s</th><th>%s</th><th>%s</th></tr>', __( 'Term', 'yith_wc_ajxnav' ), _x( 'Color 1', 'For multicolor: I.E. white and red T-Shirt', 'yith_wc_ajxnav' ), _x( 'Color 2', 'For multicolor: I.E. white and red T-Shirt', 'yith_wc_ajxnav' ) );
+            $return = sprintf( '<table class="yith-wcan-multicolor"><tr><th>%s</th><th>%s</th><th>%s</th></tr>', __( 'Term', 'yith-woocommerce-ajax-navigation' ), _x( 'Color 1', 'For multicolor: I.E. white and red T-Shirt', 'yith-woocommerce-ajax-navigation' ), _x( 'Color 2', 'For multicolor: I.E. white and red T-Shirt', 'yith-woocommerce-ajax-navigation' ) );
 
             foreach ( $terms as $term ) {
 
@@ -90,7 +90,7 @@ function yith_wcan_attributes_table( $type, $attribute, $id, $name, $values = ar
 
     elseif ( 'label' == $type ) {
         if ( ! empty( $terms ) ) {
-            $return = sprintf( '<table><tr><th>%s</th><th>%s</th></tr>', __( 'Term', 'yith_wc_ajxnav' ), __( 'Labels', 'yith_wc_ajxnav' ) );
+            $return = sprintf( '<table><tr><th>%s</th><th>%s</th></tr>', __( 'Term', 'yith-woocommerce-ajax-navigation' ), __( 'Labels', 'yith-woocommerce-ajax-navigation' ) );
 
             foreach ( $terms as $term ) {
                 $return .= "<tr><td><label for='{$id}{$term->term_id}'>{$term->name}</label></td><td><input type='text' id='{$id}{$term->term_id}' name='{$name}[labels][{$term->term_id}]' value='" . ( isset( $values[$term->term_id] ) ? $values[$term->term_id] : '' ) . "' size='3' /></td></tr>";

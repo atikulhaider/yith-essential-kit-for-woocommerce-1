@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! current_user_can( 'activate_plugins' ) ) {
   ?>
     <div id="message" class="updated notice is-dismissible">
-        <p><?php _e( 'Sorry, you don\'t have sufficient permission to access to this page.', 'yith-jetpack' ) ?></p></div>
+        <p><?php _e( 'Sorry, you don\'t have sufficient permission to access to this page.', 'yith-essential-kit-for-woocommerce-1' ) ?></p></div>
 <?php
    return;
 }
@@ -39,30 +39,30 @@ $plugin_filter_status = ! isset( $_GET['plugin_status'] ) ? 'all' : $_GET['plugi
 
 if ( isset( $_GET['message'] ) && $_GET['message'] == 'activated' ) : ?>
     <div id="message" class="updated notice is-dismissible">
-        <p><?php _e( 'Module <strong>activated</strong>.', 'yith-jetpack' ) ?></p></div>
+        <p><?php _e( 'Module <strong>activated</strong>.', 'yith-essential-kit-for-woocommerce-1' ) ?></p></div>
 <?php elseif ( isset( $_GET['message'] ) && $_GET['message'] == 'deactivated' ) : ?>
     <div id="message" class="updated notice is-dismissible">
-        <p><?php _e( 'Module <strong>deactivated</strong>.', 'yith-jetpack' ); ?></p></div>
+        <p><?php _e( 'Module <strong>deactivated</strong>.', 'yith-essential-kit-for-woocommerce-1' ); ?></p></div>
 <?php
 elseif ( isset( $_GET['message'] ) && $_GET['message'] == 'activated-all' ) : ?>
     <div id="message" class="updated notice is-dismissible">
-        <p><?php _e( 'Modules <strong>activated</strong>.', 'yith-jetpack' ) ?></p></div>
+        <p><?php _e( 'Modules <strong>activated</strong>.', 'yith-essential-kit-for-woocommerce-1' ) ?></p></div>
 <?php
 elseif ( isset( $_GET['message'] ) && $_GET['message'] == 'deactivated-all' ) : ?>
     <div id="message" class="updated notice is-dismissible">
-        <p><?php _e( 'Modules <strong>deactivated</strong>.', 'yith-jetpack' ); ?></p></div>
+        <p><?php _e( 'Modules <strong>deactivated</strong>.', 'yith-essential-kit-for-woocommerce-1' ); ?></p></div>
 <?php endif ?>
 
 <div class="wrap">
     <h1><?php echo $this->_menu_title; ?></h1>
 
-    <p><?php _e( "Here you can activate or deactive some of our plugins to enhance your e-commerce site.", 'yith-jetpack' ) ?></p>
+    <p><?php _e( "Here you can activate or deactive some of our plugins to enhance your e-commerce site.", 'yith-essential-kit-for-woocommerce-1' ) ?></p>
 
     <div class="tablenav top">
         <div class="alignleft actions">
             <p>
-                <a href="<?php echo wp_nonce_url( add_query_arg( array( 'action' => 'activate', 'module' => 'all' ) ), 'activate-yit-plugin' ) ?>"><?php !( $plugin_filter_status == 'recommended' ) ? _e( 'Activate all', 'yith-jetpack' ) : _e( 'Activate recommended', 'yith-jetpack' )  ?></a> |
-                <a href="<?php echo wp_nonce_url( add_query_arg( array( 'action' => 'deactivate', 'module' => 'all' ) ), 'deactivate-yit-plugin' ) ?>"><?php !( $plugin_filter_status == 'recommended' ) ? _e( 'Deactivate all', 'yith-jetpack' ) : _e( 'Deactivate recommended', 'yith-jetpack' ) ?></a>
+                <a href="<?php echo wp_nonce_url( add_query_arg( array( 'action' => 'activate', 'module' => 'all' ) ), 'activate-yit-plugin' ) ?>"><?php !( $plugin_filter_status == 'recommended' ) ? _e( 'Activate all', 'yith-essential-kit-for-woocommerce-1' ) : _e( 'Activate recommended', 'yith-essential-kit-for-woocommerce-1' )  ?></a> |
+                <a href="<?php echo wp_nonce_url( add_query_arg( array( 'action' => 'deactivate', 'module' => 'all' ) ), 'deactivate-yit-plugin' ) ?>"><?php !( $plugin_filter_status == 'recommended' ) ? _e( 'Deactivate all', 'yith-essential-kit-for-woocommerce-1' ) : _e( 'Deactivate recommended', 'yith-essential-kit-for-woocommerce-1' ) ?></a>
             </p>
         </div>
     </div>
@@ -72,11 +72,11 @@ elseif ( isset( $_GET['message'] ) && $_GET['message'] == 'deactivated-all' ) : 
         <?php
         echo '<ul class="subsubsub">';
 
-       echo '<li class="all"><a href="'.esc_url( add_query_arg( array( 'plugin_status' => 'all' ) ) ).'" '.( $plugin_filter_status=='all' ? 'class="current"' : '' ).'>'.__( 'All', 'yith-jetpack' ).' <span class="count">('.$count_all.')</span></a> |</li>
-            <li class="active"><a href="'.esc_url( add_query_arg( array( 'plugin_status' => 'active' ) ) ).'" '.( $plugin_filter_status=='active' ? 'class="current"' : '' ).'>'.__( 'Active', 'yith-jetpack' ).' <span class="count">('.$count_active.')</span></a> |</li>
-            <li class="inactive"><a href="'.esc_url( add_query_arg( array( 'plugin_status' => 'inactive' ) ) ).'" '.( $plugin_filter_status=='inactive' ? 'class="current"' : '' ).'>'.__( 'Inactive', 'yith-jetpack' ).' <span class="count">('.$count_inactive.')</span></a></li>';
+       echo '<li class="all"><a href="'.esc_url( add_query_arg( array( 'plugin_status' => 'all' ) ) ).'" '.( $plugin_filter_status=='all' ? 'class="current"' : '' ).'>'.__( 'All', 'yith-essential-kit-for-woocommerce-1' ).' <span class="count">('.$count_all.')</span></a> |</li>
+            <li class="active"><a href="'.esc_url( add_query_arg( array( 'plugin_status' => 'active' ) ) ).'" '.( $plugin_filter_status=='active' ? 'class="current"' : '' ).'>'.__( 'Active', 'yith-essential-kit-for-woocommerce-1' ).' <span class="count">('.$count_active.')</span></a> |</li>
+            <li class="inactive"><a href="'.esc_url( add_query_arg( array( 'plugin_status' => 'inactive' ) ) ).'" '.( $plugin_filter_status=='inactive' ? 'class="current"' : '' ).'>'.__( 'Inactive', 'yith-essential-kit-for-woocommerce-1' ).' <span class="count">('.$count_inactive.')</span></a></li>';
       if( $count_recommended > 0 ) {
-        echo  '<li class="recommended">| <a href="'.esc_url( add_query_arg( array( 'plugin_status' => 'recommended' ) ) ).'" '.( $plugin_filter_status=='recommended' ? 'class="current"' : '' ).'>'.__( 'Recommended', 'yith-jetpack' ).' <span class="count">('.$count_recommended.')</span></a></li>';
+        echo  '<li class="recommended">| <a href="'.esc_url( add_query_arg( array( 'plugin_status' => 'recommended' ) ) ).'" '.( $plugin_filter_status=='recommended' ? 'class="current"' : '' ).'>'.__( 'Recommended', 'yith-essential-kit-for-woocommerce-1' ).' <span class="count">('.$count_recommended.')</span></a></li>';
       }
 
         echo '</ul>';

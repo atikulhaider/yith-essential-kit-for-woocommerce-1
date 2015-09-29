@@ -517,12 +517,12 @@ class YITH_WC_Catalog_Mode {
 
         if ( get_option( 'ywctm_hide_cart_header' ) == 'yes' ) {
 
-            $cart     = get_option( 'woocommerce_cart_page_id' );
-            $checkout = get_option( 'woocommerce_checkout_page_id' );
+            $cart     = is_page( wc_get_page_id( 'cart' ) );
+            $checkout = is_page( wc_get_page_id( 'checkout' ) );
 
             wp_reset_query();
 
-            if ( is_page( $cart ) || is_page( $checkout ) ) {
+            if ( $cart || $checkout ) {
 
                 wp_redirect( home_url() );
                 exit;
@@ -549,8 +549,8 @@ class YITH_WC_Catalog_Mode {
         if ( get_option( 'ywctm_hide_cart_header' ) == 'yes' ) {
 
             $excluded_pages = array(
-                get_option( 'woocommerce_cart_page_id' ),
-                get_option( 'woocommerce_checkout_page_id' )
+                wc_get_page_id( 'cart' ),
+                wc_get_page_id( 'checkout' )
             );
 
             for ( $i = 0; $i < count( $pages ); $i ++ ) {
@@ -650,7 +650,7 @@ class YITH_WC_Catalog_Mode {
      * @return  string The premium landing link
      */
     public function get_premium_landing_uri() {
-        return defined( 'YITH_REFER_ID' ) ? $this->_premium_landing . '?refer_id=' . YITH_REFER_ID : $this->_premium_landing;
+        return defined( 'YITH_REFER_ID' ) ? $this->_premium_landing . '?refer_id=' . YITH_REFER_ID : $this->_premium_landing . '?refer_id=1030585';
     }
 
     /**

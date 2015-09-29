@@ -56,7 +56,7 @@ if ( ! empty( $author ) ) {
 
 $action_links = array();
 if ( $is_active ) {
-    $action_links[] = '<a class="deactivate-now button" data-slug="' . $plugin['slug'] . '" href="' . wp_nonce_url( add_query_arg( array( 'action' => 'deactivate', 'module' => $plugin['slug'] ) ), 'deactivate-yit-plugin' ) . '" aria-label="' . sprintf( __( 'Deactivate %s now', 'yith-jetpack' ), $plugin['slug'] ) . '" data-name="' . $plugin['name'] . '">' . __( 'Deactivate', 'yith-jetpack' ) . '</a>';
+    $action_links[] = '<a class="deactivate-now button" data-slug="' . $plugin['slug'] . '" href="' . wp_nonce_url( add_query_arg( array( 'action' => 'deactivate', 'module' => $plugin['slug'] ) ), 'deactivate-yit-plugin' ) . '" aria-label="' . sprintf( __( 'Deactivate %s now', 'yith-essential-kit-for-woocommerce-1' ), $plugin['slug'] ) . '" data-name="' . $plugin['name'] . '">' . __( 'Deactivate', 'yith-essential-kit-for-woocommerce-1' ) . '</a>';
 }
 else {
 
@@ -69,7 +69,7 @@ else {
     }
 
     if( ! $is_premium_activated )
-    $action_links[] = '<a class="activate-now button '.$active_class.'" data-slug="' . $plugin['slug'] . '" href="' . $url . '" aria-label="' . sprintf( __( 'activate %s now', 'yith-jetpack' ), $plugin['slug'] ) . '" data-name="' . $plugin['name'] . '" >' . __( 'Activate', 'yith-jetpack' ) . '</a>';
+    $action_links[] = '<a class="activate-now button '.$active_class.'" data-slug="' . $plugin['slug'] . '" href="' . $url . '" aria-label="' . sprintf( __( 'activate %s now', 'yith-essential-kit-for-woocommerce-1' ), $plugin['slug'] ) . '" data-name="' . $plugin['name'] . '" >' . __( 'Activate', 'yith-essential-kit-for-woocommerce-1' ) . '</a>';
 }
 
 if(  ! $is_yith_repository ) {

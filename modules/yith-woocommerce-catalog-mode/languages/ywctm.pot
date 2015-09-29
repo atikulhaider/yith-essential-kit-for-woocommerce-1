@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: YITH WooCommerce Catalog Mode\n"
-"POT-Creation-Date: 2015-07-09 12:20+0100\n"
-"PO-Revision-Date: 2015-07-09 12:20+0100\n"
+"POT-Creation-Date: 2015-09-25 10:53+0100\n"
+"PO-Revision-Date: 2015-09-25 10:53+0100\n"
 "Last-Translator: \n"
 "Language-Team: Your Inspiration Themes <plugins@yithemes.com>\n"
 "Language: en\n"
@@ -19,30 +19,30 @@ msgstr ""
 "X-Poedit-SearchPath-0: ..\n"
 "X-Poedit-SearchPathExcluded-0: ../plugin-fw\n"
 
-#: ../class.yith-woocommerce-catalog-mode.php:598
-#: ../class.yith-woocommerce-catalog-mode.php:666
+#: ../class.yith-woocommerce-catalog-mode.php:602
+#: ../class.yith-woocommerce-catalog-mode.php:671
 msgid "Settings"
 msgstr ""
 
-#: ../class.yith-woocommerce-catalog-mode.php:602
+#: ../class.yith-woocommerce-catalog-mode.php:606
 msgid "Premium Settings"
 msgstr ""
 
-#: ../class.yith-woocommerce-catalog-mode.php:603
+#: ../class.yith-woocommerce-catalog-mode.php:607
 msgid "Exclusion List"
 msgstr ""
 
-#: ../class.yith-woocommerce-catalog-mode.php:605
-#: ../class.yith-woocommerce-catalog-mode.php:669
+#: ../class.yith-woocommerce-catalog-mode.php:610
+#: ../class.yith-woocommerce-catalog-mode.php:674
 msgid "Premium Version"
 msgstr ""
 
-#: ../class.yith-woocommerce-catalog-mode.php:611
-#: ../class.yith-woocommerce-catalog-mode.php:612
+#: ../class.yith-woocommerce-catalog-mode.php:616
+#: ../class.yith-woocommerce-catalog-mode.php:617
 msgid "Catalog Mode"
 msgstr ""
 
-#: ../class.yith-woocommerce-catalog-mode.php:695
+#: ../class.yith-woocommerce-catalog-mode.php:700
 msgid "Plugin Documentation"
 msgstr ""
 
@@ -58,76 +58,76 @@ msgid ""
 "you are using the premium one."
 msgstr ""
 
-#: ../plugin-options/settings-options.php:17
+#: ../plugin-options/settings-options.php:18
 msgid "Upgrade to the PREMIUM VERSION"
 msgstr ""
 
-#: ../plugin-options/settings-options.php:20
-#: ../plugin-options/settings-options.php:26
+#: ../plugin-options/settings-options.php:21
+#: ../plugin-options/settings-options.php:27
 msgid "YITH WooCommerce Catalog Mode"
 msgstr ""
 
-#: ../plugin-options/settings-options.php:21
+#: ../plugin-options/settings-options.php:22
 msgid "Discover the Advanced Features"
 msgstr ""
 
-#: ../plugin-options/settings-options.php:22
+#: ../plugin-options/settings-options.php:23
 msgid ""
 "Upgrade to the PREMIUM VERSION of YITH WooCommerce Catalog Mode to benefit "
 "from all features!"
 msgstr ""
 
-#: ../plugin-options/settings-options.php:28
+#: ../plugin-options/settings-options.php:29
 msgid "Get Support and Pro Features"
 msgstr ""
 
-#: ../plugin-options/settings-options.php:29
+#: ../plugin-options/settings-options.php:30
 msgid ""
 "By purchasing the premium version of the plugin, you will take advantage of "
 "the advanced features of the product and you will get one year of free "
 "updates and support through our platform available 24h/24."
 msgstr ""
 
-#: ../plugin-options/settings-options.php:39
-#: ../plugin-options/settings-options.php:48
+#: ../plugin-options/settings-options.php:40
+#: ../plugin-options/settings-options.php:49
 #: ../plugin-options/settings-options.php:99
 #: ../plugin-options/settings-options.php:107
 msgid "\"Add to cart\" button"
 msgstr ""
 
-#: ../plugin-options/settings-options.php:41
+#: ../plugin-options/settings-options.php:42
 msgid "Exclude selected products (See \"Exclusions\" tab)"
 msgstr ""
 
-#: ../plugin-options/settings-options.php:50
+#: ../plugin-options/settings-options.php:51
 msgid "Reverse Exclusion List (Restrict Catalog Mode to selected items only)"
 msgstr ""
 
-#: ../plugin-options/settings-options.php:57
+#: ../plugin-options/settings-options.php:58
 msgid "Variable products"
 msgstr ""
 
-#: ../plugin-options/settings-options.php:59
+#: ../plugin-options/settings-options.php:60
 msgid "Hide product variations"
 msgstr ""
 
-#: ../plugin-options/settings-options.php:69
+#: ../plugin-options/settings-options.php:71
 msgid "General Settings"
 msgstr ""
 
-#: ../plugin-options/settings-options.php:75
+#: ../plugin-options/settings-options.php:76
 msgid "Enable YITH Woocommerce Catalog Mode"
 msgstr ""
 
-#: ../plugin-options/settings-options.php:82
+#: ../plugin-options/settings-options.php:83
 msgid "Admin View"
 msgstr ""
 
-#: ../plugin-options/settings-options.php:84
+#: ../plugin-options/settings-options.php:85
 msgid "Enable Catalog Mode also for administrators"
 msgstr ""
 
-#: ../plugin-options/settings-options.php:93
+#: ../plugin-options/settings-options.php:94
 msgid "Catalog Mode Settings"
 msgstr ""
 
@@ -145,4 +145,106 @@ msgstr ""
 
 #: ../plugin-options/settings-options.php:120
 msgid "Hide and disable all shop features"
+msgstr ""
+
+#: ../templates/admin/premium.php:226 ../templates/admin/premium.php:352
+#, php-format
+msgid ""
+"Upgrade to %1$spremium version%2$s of %1$sYITH WooCommerce Catalog Mode%2$s "
+"to benefit from all features!"
+msgstr ""
+
+#: ../templates/admin/premium.php:229 ../templates/admin/premium.php:355
+msgid "UPGRADE"
+msgstr ""
+
+#: ../templates/admin/premium.php:230 ../templates/admin/premium.php:356
+msgid "to the premium version"
+msgstr ""
+
+#: ../templates/admin/premium.php:236
+msgid "Premium Features"
+msgstr ""
+
+#: ../templates/admin/premium.php:244
+msgid "Hide price"
+msgstr ""
+
+#: ../templates/admin/premium.php:247
+#, php-format
+msgid ""
+"Hide the price of products in your shop and replace it with a text. Decide "
+"if some of the products have to be excluded and if %1$shiding price%2$s has "
+"to be applied to all or restricted only to unlogged users."
+msgstr ""
+
+#: ../templates/admin/premium.php:257
+msgid "Inquiry form"
+msgstr ""
+
+#: ../templates/admin/premium.php:260
+#, php-format
+msgid ""
+"Improve single product page by adding a tab with an %1$sinquiry form%2$s "
+"explicitly thought to let them send messages to site administrator."
+msgstr ""
+
+#: ../templates/admin/premium.php:276
+msgid "Custom button"
+msgstr ""
+
+#: ../templates/admin/premium.php:279
+#, php-format
+msgid ""
+"Add a button in single product page to call users to a specific %1$saction"
+"%2$s, depending on the specified %1$slink%2$s (email sending, skype call, "
+"telephone call)."
+msgstr ""
+
+#: ../templates/admin/premium.php:289
+msgid "Product reviews"
+msgstr ""
+
+#: ../templates/admin/premium.php:292
+#, php-format
+msgid ""
+"You can disable product %1$sreviewing system%2$s of your shop and decide if "
+"applying it to all users or just to unlogged ones."
+msgstr ""
+
+#: ../templates/admin/premium.php:308
+msgid "Exclusion list"
+msgstr ""
+
+#: ../templates/admin/premium.php:311
+#, php-format
+msgid ""
+"Set plugin options, but if you want that options concerning price visibility "
+"and ‘Add to cart’ do not apply to specific products, add them to "
+"%1$sexclusion list%2$s and, voilà, problem solved."
+msgstr ""
+
+#: ../templates/admin/premium.php:321
+msgid "REVERSE EXCLUSION LIST"
+msgstr ""
+
+#: ../templates/admin/premium.php:324
+#, php-format
+msgid ""
+"Apply Catalog Mode to some items only: add them to the \"Exclusion List\" "
+"and %1$smake it work in the opposite way as usual%2$s. All items in the shop "
+"show price and “Add to Cart” button, while items in the list don’t."
+msgstr ""
+
+#: ../templates/admin/premium.php:340
+msgid "Source page of the request"
+msgstr ""
+
+#: ../templates/admin/premium.php:343
+#, php-format
+msgid ""
+"Thanks to the %1$s\"Product Permalink\"%2$s option you will be able to know "
+"from which page your users have generated the request.%3$sThe email "
+"generated from the request form will include the address of the page: "
+"another important information that can be really useful for you."
 msgstr ""
