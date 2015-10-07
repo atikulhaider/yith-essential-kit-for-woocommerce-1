@@ -1,9 +1,9 @@
 <?php
 
-function yith_vendors_update_1_0_2() {
-    $vendors_db_option = get_option( 'yith_product_vendors_db_version' );
+    //Add support to YITH Product Vendors db version 1.0.1
 
-    //Add support to YITH Product Vendors 1.0.2
+function yith_vendors_update_1_0_1() {
+    $vendors_db_option = get_option( 'yith_product_vendors_db_version' );
     if ( $vendors_db_option && version_compare( $vendors_db_option, '1.0.1', '<' ) ) {
         global $wpdb;
 
@@ -30,10 +30,21 @@ function yith_vendors_update_1_0_2() {
             }
         }
 
-        $sql = "ALTER TABLE `{$wpdb->prefix}yith_vendors_commissions` CHANGE `rate` `rate` DECIMAL(5,4) NOT NULL";
-        $wpdb->query( $sql );
-
         update_option( 'yith_product_vendors_db_version', '1.0.1' );
     }
 }
+
+//Add support to YITH Product Vendors db version 1.0.2
+function yith_vendors_update_1_0_2() {
+    $vendors_db_option = get_option( 'yith_product_vendors_db_version' );
+    if ( $vendors_db_option && version_compare( $vendors_db_option, '1.0.2', '<' ) ) {
+        global $wpdb;
+
+        $sql = "ALTER TABLE `{$wpdb->prefix}yith_vendors_commissions` CHANGE `rate` `rate` DECIMAL(5,4) NOT NULL";
+        $wpdb->query( $sql );
+
+        update_option( 'yith_product_vendors_db_version', '1.0.2' );
+    }
+}
+add_action( 'admin_init', 'yith_vendors_update_1_0_1' );
 add_action( 'admin_init', 'yith_vendors_update_1_0_2' );

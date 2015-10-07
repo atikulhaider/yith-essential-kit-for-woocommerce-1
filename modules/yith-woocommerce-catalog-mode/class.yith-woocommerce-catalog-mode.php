@@ -599,22 +599,22 @@ class YITH_WC_Catalog_Mode {
         }
 
         $admin_tabs = array(
-            'settings' => __( 'Settings', 'ywctm' ),
+            'settings' => __( 'Settings', 'yith-woocommerce-catalog-mode' ),
         );
 
         if ( defined( 'YWCTM_PREMIUM' ) ) {
-            $admin_tabs['premium']    = __( 'Premium Settings', 'ywctm' );
-            $admin_tabs['exclusions'] = __( 'Exclusion List', 'ywctm' );
+            $admin_tabs['premium']    = __( 'Premium Settings', 'yith-woocommerce-catalog-mode' );
+            $admin_tabs['exclusions'] = __( 'Exclusion List', 'yith-woocommerce-catalog-mode' );
         }
         else {
-            $admin_tabs['premium-landing'] = __( 'Premium Version', 'ywctm' );
+            $admin_tabs['premium-landing'] = __( 'Premium Version', 'yith-woocommerce-catalog-mode' );
         }
 
         $args = array(
             'create_menu_page' => true,
             'parent_slug'      => '',
-            'page_title'       => __( 'Catalog Mode', 'ywctm' ),
-            'menu_title'       => __( 'Catalog Mode', 'ywctm' ),
+            'page_title'       => __( 'Catalog Mode', 'yith-woocommerce-catalog-mode' ),
+            'menu_title'       => __( 'Catalog Mode', 'yith-woocommerce-catalog-mode' ),
             'capability'       => 'manage_options',
             'parent'           => '',
             'parent_page'      => 'yit_plugin_panel',
@@ -668,10 +668,10 @@ class YITH_WC_Catalog_Mode {
      */
     public function action_links( $links ) {
 
-        $links[] = '<a href="' . admin_url( "admin.php?page={$this->_panel_page}" ) . '">' . __( 'Settings', 'ywctm' ) . '</a>';
+        $links[] = '<a href="' . admin_url( "admin.php?page={$this->_panel_page}" ) . '">' . __( 'Settings', 'yith-woocommerce-catalog-mode' ) . '</a>';
 
         if ( defined( 'YWCTM_FREE_INIT' ) ) {
-            $links[] = '<a href="' . $this->get_premium_landing_uri() . '" target="_blank">' . __( 'Premium Version', 'ywctm' ) . '</a>';
+            $links[] = '<a href="' . $this->get_premium_landing_uri() . '" target="_blank">' . __( 'Premium Version', 'yith-woocommerce-catalog-mode' ) . '</a>';
         }
 
         return $links;
@@ -697,7 +697,7 @@ class YITH_WC_Catalog_Mode {
             ( defined( 'YWCTM_FREE_INIT' ) && ( YWCTM_FREE_INIT == $plugin_file ) )
         ) {
 
-            $plugin_meta[] = '<a href="' . $this->_official_documentation . '" target="_blank">' . __( 'Plugin Documentation', 'ywctm' ) . '</a>';
+            $plugin_meta[] = '<a href="' . $this->_official_documentation . '" target="_blank">' . __( 'Plugin Documentation', 'yith-woocommerce-catalog-mode' ) . '</a>';
         }
 
         return $plugin_meta;

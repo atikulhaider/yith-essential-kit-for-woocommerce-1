@@ -4,8 +4,8 @@ Plugin Name: YITH WooCommerce Cart Messages
 Plugin URI: http://yithemes.com/themes/plugins/yith-woocommerce-cart-messages
 Description: WooCommerce plugin for add custom messages to your customers
 Author: Yithemes
-Text Domain: ywcm
-Version: 1.1.1
+Text Domain: yith-woocommerce-cart-messages
+Version: 1.1.2
 Author URI: http://yithemes.com/
 */
 
@@ -24,7 +24,7 @@ if ( defined( 'YITH_YWCM_PREMIUM' ) ) {
     function yith_ywcm_install_free_admin_notice() {
         ?>
         <div class="error">
-            <p><?php _e( 'You can\'t activate the free version of YITH WooCommerce Cart Messages while you are using the premium one.', 'ywcm' ); ?></p>
+            <p><?php _e( 'You can\'t activate the free version of YITH WooCommerce Cart Messages while you are using the premium one.', 'yith-woocommerce-cart-messages' ); ?></p>
         </div>
     <?php
     }
@@ -45,7 +45,7 @@ register_activation_hook( __FILE__, 'yith_plugin_registration_hook' );
 if ( defined( 'YITH_YWCM_VERSION' ) ) {
 	return;
 }else{
-    define( 'YITH_YWCM_VERSION', '1.1.1' );
+    define( 'YITH_YWCM_VERSION', '1.1.2' );
 }
 
 if ( ! defined( 'YITH_YWCM_FREE_INIT' ) ) {
@@ -79,7 +79,7 @@ function yith_ywcm_constructor(){
         function yith_ywcm_install_woocommerce_admin_notice() {
             ?>
             <div class="error">
-                <p><?php _e( 'YITH WooCommerce Cart Messages is enabled but not effective. It requires WooCommerce in order to work.', 'ywcm' ); ?></p>
+                <p><?php _e( 'YITH WooCommerce Cart Messages is enabled but not effective. It requires WooCommerce in order to work.', 'yith-woocommerce-cart-messages' ); ?></p>
             </div>
         <?php
         }
@@ -89,7 +89,7 @@ function yith_ywcm_constructor(){
     }
 
     /* Load YITH_YWCM text domain */
-    load_plugin_textdomain( 'ywcm', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+    load_plugin_textdomain( 'yith-woocommerce-cart-messages', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
     // Load required classes and functions
     require_once( YITH_YWCM_DIR . 'yith-cart-messages-functions.php' );

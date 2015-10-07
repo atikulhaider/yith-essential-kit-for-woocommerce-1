@@ -44,7 +44,7 @@ $item_id = $commission->line_item_id;
 									<select name="new_status">
 										<option value=""><?php _e( 'Actions', 'yith_wc_product_vendors' ) ?></option>
 										<?php foreach ( YITH_Commissions()->get_status() as $status => $display ) : if ( ! YITH_Commissions()->is_status_changing_permitted( $status, $commission->status ) ) continue; ?>
-											<option value="<?php echo $status ?>"><?php printf( __( 'Change to %s' ), $display ) ?></option>
+											<option value="<?php echo $status ?>"><?php printf( __( 'Change to %s', 'yith_wc_product_vendors' ), $display ) ?></option>
 										<?php endforeach; ?>
 									</select>
 
@@ -130,6 +130,19 @@ $item_id = $commission->line_item_id;
                                         $order_number    = '<strong>#' . esc_attr( $order->get_order_number() ) . '</strong>';
                                         $order_uri       = sprintf( '<a href="%s">#%d</a>', 'post.php?post=' . absint( $order->id ) . '&action=edit', $order->get_order_number() );
                                         $order_info      = $vendor->is_super_user() ? $order_uri : $order_number;
+
+                                        if( $vendor->is_super_user() ){
+                                            $order_info = $order_uri;
+                                        }
+
+                                        else if( defined( 'YITH_WPV_PREMIUM' ) && YITH_WPV_PREMIUM && $vendor->has_limited_access() && wp_get_post_parent_id( $order->id )&& in_array($order->id, $vendor->get_orders() ) ){
+                                            $order_info = $order_uri;
+                                        }
+
+                                        else {
+                                            $order_info = $order_number;
+                                        }
+
                                         $wc_order_status = wc_get_order_statuses();
 
 										printf( _x( 'credited to %s &#8212; from order %s &#8212; order status: %s', 'Commission credited to [user]', 'yith_wc_product_vendors' ), $username, $order_info, $wc_order_status[ $order->post_status ] );

@@ -51,6 +51,12 @@ if ( ! class_exists( 'YITH_Vendors_Frontend' ) ) {
 
             /* Ajax Product Filter Support */
             add_filter( 'yith_wcan_product_taxonomy_type', array( $this, 'add_taxonomy_page' ) );
+
+            /* Vendor Admin Bar */
+            add_action( 'template_redirect', array( YITH_Vendors(), 'remove_wp_bar_admin_menu' ) );
+
+            /* MyAccount -> My Order: Disable suborder view */
+            add_filter( 'woocommerce_my_account_my_orders_query', array( $this, 'my_account_my_orders_query' ) );
         }
 
         /**
@@ -245,6 +251,23 @@ if ( ! class_exists( 'YITH_Vendors_Frontend' ) ) {
         public function add_taxonomy_page( $pages ){
             $pages[] = YITH_Vendors()->get_taxonomy_name();
             return $pages;
+        }
+
+        /**
+         * Filter the My account -> My Order page
+         *
+         * Disable suborder view
+         *
+         * @param $query_args Unfiltered query args
+         *
+         * @author Andrea Grillo <andrea.grillo@yithemes.com>
+         * @since 1.6
+         * @return array The order query args
+         * @use woocommerce_my_account_my_orders_query hook
+         */
+        public function my_account_my_orders_query( $query_args ){
+            $query_args['post_parent'] = 0;
+            return $query_args;
         }
     }
 }

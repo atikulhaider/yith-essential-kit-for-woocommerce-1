@@ -14,7 +14,6 @@ return apply_filters( 'yith_wpv_panel_commissions_options', array(
 
             'commissions_options_start'          => array(
                 'type'  => 'sectionstart',
-                'id'    => 'yith_wpv_commissions_options_start'
             ),
 
             'commissions_options_title'          => array(
@@ -40,7 +39,6 @@ return apply_filters( 'yith_wpv_panel_commissions_options', array(
 
             'commissions_options_end'          => array(
                 'type'  => 'sectionend',
-                'id'    => 'yith_wpv_commissions_options_end'
             ),
         )
     ), 'commissions'

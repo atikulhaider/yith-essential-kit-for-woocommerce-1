@@ -89,6 +89,14 @@ if ( ! class_exists( 'YITH_Vendors' ) ) {
 		 */
 		public $frontend = null;
 
+         /**
+		 * Main Orders Instance
+		 *
+		 * @var YITH_Vendors_Frontend
+		 * @since 1.0
+		 */
+		public $orders = null;
+
 		/**
 		 * Constructor
 		 *
@@ -98,6 +106,7 @@ if ( ! class_exists( 'YITH_Vendors' ) ) {
 		 * @access public
 		 */
 		public function __construct() {
+
 			/* === Main Classes to Load === */
 			$require = apply_filters( 'yith_wcpv_require_class',
 				array(
@@ -109,6 +118,7 @@ if ( ! class_exists( 'YITH_Vendors' ) ) {
 						'includes/class.yith-commissions.php',
 						'includes/class.yith-vendors-credit.php',
 						'includes/class.yith-vendors-frontend.php',
+                        'includes/class.yith-orders.php',
 						'includes/lib/class.yith-walker-category-dropdown.php',
 						'widgets/class.yith-woocommerce-vendors-widget.php'
 					),
@@ -170,6 +180,8 @@ if ( ! class_exists( 'YITH_Vendors' ) ) {
 			if ( ! is_admin() || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
 				$this->frontend = new YITH_Vendors_Frontend();
 			}
+
+            $this->orders = new YITH_Orders();
 		}
 
 		/**
@@ -235,7 +247,7 @@ if ( ! class_exists( 'YITH_Vendors' ) ) {
 				'rewrite'           => array( 'slug' => 'vendor' ),
 			);
 
-			register_taxonomy( $this->_taxonomy_name, 'product', $args );
+			register_taxonomy( $this->_taxonomy_name, apply_filters( 'yith_wcmv_register_taxonomy_object_type', array( 'product' ) ), $args );
 		}
 
 		/**
@@ -412,12 +424,27 @@ if ( ! class_exists( 'YITH_Vendors' ) ) {
 		 * @fire yith_wcpv_widgets filter
 		 */
 		public function widgets_init() {
-
 			$widgets = apply_filters( 'yith_wpv_register_widgets', array( 'YITH_Woocommerce_Vendors_Widget' ) );
-
 			foreach ( $widgets as $widget ) {
 				register_widget( $widget );
 			}
 		}
+
+        /**
+         * Remove new post and comments wp bar admin menu for vendor
+         *
+         * @author Andrea Grillo <andrea.grillo@yithemes.com>
+         * @since 1.5.1
+         * @return void
+         */
+        public function remove_wp_bar_admin_menu() {
+            $vendor = yith_get_vendor( 'current', 'user' );
+
+            if( $vendor->is_valid() && $vendor->has_limited_access() ){
+                remove_action( 'admin_bar_menu', 'wp_admin_bar_comments_menu', 60 );
+                remove_action( 'admin_bar_menu', 'wp_admin_bar_new_content_menu', 70 );
+            }
+        }
+
 	}
 }

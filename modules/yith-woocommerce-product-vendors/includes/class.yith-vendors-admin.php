@@ -61,6 +61,9 @@ if ( ! class_exists( 'YITH_Vendors_Admin' ) ) {
         public function __construct() {
 	        $this->_taxonomy_name   = YITH_Vendors()->get_taxonomy_name();
 
+            /* Add Admin Body Class */
+            add_filter( 'admin_body_class', array( $this, 'admin_body_class' ) );
+
              /* Panel Settings */
             add_action( 'admin_menu', array( $this, 'register_panel' ), 5 );
             add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
@@ -106,7 +109,7 @@ if ( ! class_exists( 'YITH_Vendors_Admin' ) ) {
 	        add_action( 'admin_menu', array( $this, 'menu_items' ) );
 	        add_action( 'admin_menu', array( $this, 'remove_media_page' ) );
 	        add_action( 'admin_menu', array( $this, 'remove_dashboard_widgets' ) );
-            add_action( 'admin_init', array( $this, 'remove_wp_bar_admin_menu' ) );
+            add_action( 'admin_init', array( YITH_Vendors(), 'remove_wp_bar_admin_menu' ) );
             add_action( 'admin_bar_menu', array( $this, 'show_admin_bar_visit_store' ), 31 );
 
 	        /* Vendor information management */
@@ -114,6 +117,16 @@ if ( ! class_exists( 'YITH_Vendors_Admin' ) ) {
 
             /* Prevent WooCommerce Access Admin */
             add_filter( 'woocommerce_prevent_admin_access', array( $this, 'prevent_admin_access' ) );
+
+            /* Pending Product Notifier */
+            add_action( 'admin_menu', array( $this, 'products_to_approve' ) );
+
+            /* Order management */
+            add_filter( 'request', array( $this, 'filter_order_list' ), 10, 1 );
+            add_filter( 'wp_count_posts', array( $this, 'vendor_count_shop_orders' ), 10, 3 );
+
+            /* Add Vendors Page Link in WP Dashboard */
+            add_action( 'admin_menu', array( $this, 'admin_vendor_link' ) );
         }
 
         /**
@@ -168,6 +181,7 @@ if ( ! class_exists( 'YITH_Vendors_Admin' ) ) {
          * @author   Andrea Grillo <andrea.grillo@yithemes.com>
          */
         public function enqueue_scripts() {
+            wp_enqueue_script( 'yith-wpv-admin', YITH_WPV_ASSETS_URL . 'js/admin.js', array( 'jquery' ), '1.0.0', true );
             wp_enqueue_style( 'yith-wc-product-vendors-admin', YITH_WPV_ASSETS_URL . 'css/admin.css', array( 'jquery-chosen' ) );
         }
 
@@ -304,19 +318,24 @@ if ( ! class_exists( 'YITH_Vendors_Admin' ) ) {
 		        return;
 	        }
 
-	        $menu_args = apply_filters( 'yith_wc_product_vendors_details_menu_items',
+	        $menus = apply_filters( 'yith_wc_product_vendors_details_menu_items',
 		        array(
-			        'page_title'  => __( 'Vendor Details', 'yith_wc_product_vendors' ),
-			        'menu_title'  => __( 'Vendor Details', 'yith_wc_product_vendors' ),
-			        'capability'  => 'edit_products',
-			        'menu_slug'   => 'yith_vendor_details',
-			        'function'    => array( $this, 'admin_details_page' )
-		        )
+                    'vendor_details' => array(
+                        'page_title'  => __( 'Vendor Details', 'yith_wc_product_vendors' ),
+                        'menu_title'  => __( 'Vendor Details', 'yith_wc_product_vendors' ),
+                        'capability'  => 'edit_products',
+                        'menu_slug'   => 'yith_vendor_details',
+                        'function'    => array( $this, 'admin_details_page' ),
+                        'icon'        => 'dashicons-id-alt',
+                        'position'    => 56
+		            ),
+                )
 	        );
 
-	        extract( $menu_args );
-
-	        add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, 'dashicons-id-alt', 30 );
+            foreach( $menus as $menu_args ){
+                extract( $menu_args );
+	            add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon, $position );
+            }
         }
 
         /**
@@ -356,18 +375,10 @@ if ( ! class_exists( 'YITH_Vendors_Admin' ) ) {
 	     * @fire product_vendors_details_fields_save action
 	     */
         public function filter_vendor_linked_products( $query ) {
-            global $pagenow, $post;
-
 	        $vendor = yith_get_vendor( 'current', 'user' );
 	        $action = isset( $_GET['action'] ) ? $_GET['action'] : false;
 
-	        if (
-		        $vendor->has_limited_access()
-		        && (
-			        ( is_ajax() && 'woocommerce_json_search_products' == $action )
-			        || ( ! empty( $post ) && 'product' == $post->post_type && ( 'post-new.php' == $pagenow || 'post.php' == $pagenow ) )
-		        )
-	        ) {
+	        if ( $vendor->is_valid() && $vendor->has_limited_access() && ( 'woocommerce_json_search_products' == $action || 'woocommerce_json_search_grouped_products' == $action ) ) {
 	            $query_args = $vendor->get_query_products_args();
 	            $query->set( 'tax_query', $query_args['tax_query'] );
             }
@@ -962,22 +973,6 @@ if ( ! class_exists( 'YITH_Vendors_Admin' ) ) {
         }
 
         /**
-         * Remove new post and comments wp bar admin menu for vendor
-         *
-         * @author Andrea Grillo <andrea.grillo@yithemes.com>
-         * @since 1.5.1
-         * @return void
-         */
-        public function remove_wp_bar_admin_menu() {
-            $vendor = yith_get_vendor( 'current', 'user' );
-
-            if( $vendor->is_valid() && $vendor->has_limited_access() ){
-                remove_action( 'admin_bar_menu', 'wp_admin_bar_comments_menu', 60 );
-                remove_action( 'admin_bar_menu', 'wp_admin_bar_new_content_menu', 70 );
-            }
-        }
-
-        /**
          * Replace the Visit Store link from WooCommerce
          * with the vendor store page link, if user is a vendor
          * and is are logged in
@@ -998,6 +993,172 @@ if ( ! class_exists( 'YITH_Vendors_Admin' ) ) {
                         'href'   => $vendor->get_url( 'frontend' )
                     )
                 );
+            }
+        }
+
+        /**
+         * Add an extra body classes for vendors dashboard
+         *
+         * @author Andrea Grillo <andrea.grillo@yithemes.com>
+         * @since 1.5.1
+         * @param $admin_body_classes
+         * @return string
+         */
+        public function admin_body_class( $admin_body_classes ){
+            global $post;
+            $vendor             = yith_get_vendor( 'current', 'user' );
+            $is_ajax            = defined( 'DOING_AJAX' ) && DOING_AJAX;
+            $is_order_details   = is_admin() && ! $is_ajax && 'shop_order' == get_current_screen()->id;
+
+            if( $vendor->is_valid() && $vendor->has_limited_access() ){
+                $admin_body_classes = $admin_body_classes . ' vendor_limited_access';
+            }
+
+            else if( $vendor->is_super_user() ){
+                $admin_body_classes = $admin_body_classes . ' vendor_super_user';
+
+                if( $post && wp_get_post_parent_id( $post->ID ) && 'shop_order' == $post->post_type && $is_order_details ){
+                    $admin_body_classes = $admin_body_classes . ' vendor_suborder_detail';
+                }
+            }
+
+            return $admin_body_classes;
+        }
+
+        /**
+         * Add a bubble notification icon for pending products
+         *
+         * @author   Andrea Grillo <andrea.grillo@yithemes.com>
+         * @since    1.5.1
+         * @return string
+         */
+        public function products_to_approve(){
+            $vendor = yith_get_vendor( 'current', 'user' );
+            /* Add the pending products bubble on Products -> Vendors menu */
+            if ( $vendor->is_super_user() ) {
+                global $menu, $submenu;
+                $products = get_posts( array( 'post_type' => 'product', 'post_status' => 'pending' ) );
+                $num_pending_products = count( $products );
+
+                if ( $num_pending_products > 0 ) {
+                    $bubble              = " <span class='awaiting-mod count-{$num_pending_products}'><span class='pending-count'>{$num_pending_products}</span></span>";
+                    $products_uri        = htmlspecialchars( add_query_arg( array( 'post_type' => 'product' ), 'edit.php' ) );
+
+                    foreach ( $menu as $key => $value ) {
+                        if ( $menu[$key][2] == $products_uri && $num_pending_products > 0 ) {
+                            $menu[$key][0] .= $bubble;
+                        }
+                    }
+
+                    foreach ( $submenu as $key => $value ) {
+                        $submenu_items = $submenu[$key];
+                        foreach ( $submenu_items as $position => $value ) {
+                            if ( $submenu[$key][$position][2] == $products_uri ) {
+                                $submenu[$key][$position][0] .= $bubble;
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /**
+         * Only show vendor's order
+         *
+         * @author Andrea Grillo <andrea.grillo@yithemes.com>
+         *
+         * @param  arr $request Current request
+         *
+         * @return arr          Modified request
+         * @since  1.6
+         */
+        public function filter_order_list( $query ) {
+            global $typenow;
+
+            if ( 'shop_order' == $typenow ) {
+                $vendor = yith_get_vendor( 'current', 'vendor' );
+                if ( $vendor->is_super_user() ) {
+                    $query['post_parent'] = 0;
+                }
+                return apply_filters( "yith_wcmv_{$typenow}_request", $query );
+            }
+            return $query;
+        }
+
+         /**
+         * Filter the post count for vendor
+         *
+         * @author   Andrea Grillo <andrea.grillo@yithemes.com>
+         *
+         * @param $counts   The post count
+         * @param $type     Post type
+         * @param $perm     The read permission
+         *
+         * @return arr  Modified request
+         * @since    1.0
+         * @use wp_post_count action
+         */
+        public function vendor_count_shop_orders( $counts, $type, $perm ) {
+            if ( 'shop_order' == $type ) {
+                /**
+                 * Get a list of post statuses.
+                 */
+                $vendor = yith_get_vendor( 'current', 'user' );
+                $stati = get_post_stati();
+
+                if ( $vendor->is_valid() && $vendor->has_limited_access() ) {
+                    foreach ( $stati as $status ) {
+                        $orders          = $vendor->get_orders( 'suborder', $status );
+                        $counts->$status = count( $orders );
+                    }
+                    return $counts;
+                }
+
+                else {
+                    global $wpdb;
+                    foreach ( $stati as $status ) {
+                        $orders = $wpdb->get_col(
+                            $wpdb->prepare(
+                                "SELECT DISTINCT ID FROM {$wpdb->posts} WHERE post_parent=%d AND post_status=%s AND post_type=%s", 0, $status, 'shop_order'
+                            )
+                        );
+                        $counts->$status = count( $orders );
+                    }
+                }
+            }
+            return $counts;
+        }
+
+        /**
+         * Add items to dashboard menu
+         *
+         * @author Andrea Grillo <andrea.grillo@yithemes.com>
+         * @since  1.0.0
+         * @return void
+         */
+        public function admin_vendor_link() {
+            $vendor = yith_get_vendor( 'current', 'user' );
+
+            if ( $vendor->is_super_user() ) {
+                $url_args = array(
+                    'taxonomy'  => YITH_Vendors()->get_taxonomy_name(),
+                    'post_type' => 'product'
+                );
+
+                $menu_args = apply_filters( 'yith_wc_product_vendors_taxonomy_menu_items',
+                    array(
+                        'page_title' => YITH_Vendors()->get_vendors_taxonomy_label( 'menu_name' ),
+                        'menu_title' => YITH_Vendors()->get_vendors_taxonomy_label( 'menu_name' ),
+                        'capability' => 'manage_options',
+                        'menu_slug'  => htmlspecialchars( add_query_arg( $url_args, 'edit-tags.php' ) ),
+                        'function'   => '',
+                        'icon'       => 'dashicons-admin-multisite',
+                        'position'   => 56
+                    )
+                );
+                extract( $menu_args );
+                add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon, $position );
             }
         }
     }

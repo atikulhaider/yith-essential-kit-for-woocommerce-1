@@ -68,23 +68,23 @@ if ( !class_exists( 'YWCM_Cart_Message' ) ) {
         function message_post_type() {
 
             $labels = array(
-                'name'               => _x( 'Yith Cart Messages', 'Post Type General Name', 'ywcm' ),
-                'singular_name'      => _x( 'Yith Cart Message', 'Post Type Singular Name', 'ywcm' ),
-                'menu_name'          => __( 'Cart Message', 'ywcm' ),
-                'parent_item_colon'  => __( 'Parent Item:', 'ywcm' ),
-                'all_items'          => __( 'All Messages', 'ywcm' ),
-                'view_item'          => __( 'View Messages', 'ywcm' ),
-                'add_new_item'       => __( 'Add New Message', 'ywcm' ),
-                'add_new'            => __( 'Add New Message', 'ywcm' ),
-                'edit_item'          => __( 'Edit Message', 'ywcm' ),
-                'update_item'        => __( 'Update Message', 'ywcm' ),
-                'search_items'       => __( 'Search Message', 'ywcm' ),
-                'not_found'          => __( 'Not found', 'ywcm' ),
-                'not_found_in_trash' => __( 'Not found in Trash', 'ywcm' ),
+                'name'               => _x( 'Yith Cart Messages', 'Post Type General Name', 'yith-woocommerce-cart-messages' ),
+                'singular_name'      => _x( 'Yith Cart Message', 'Post Type Singular Name', 'yith-woocommerce-cart-messages' ),
+                'menu_name'          => __( 'Cart Message', 'yith-woocommerce-cart-messages' ),
+                'parent_item_colon'  => __( 'Parent Item:', 'yith-woocommerce-cart-messages' ),
+                'all_items'          => __( 'All Messages', 'yith-woocommerce-cart-messages' ),
+                'view_item'          => __( 'View Messages', 'yith-woocommerce-cart-messages' ),
+                'add_new_item'       => __( 'Add New Message', 'yith-woocommerce-cart-messages' ),
+                'add_new'            => __( 'Add New Message', 'yith-woocommerce-cart-messages' ),
+                'edit_item'          => __( 'Edit Message', 'yith-woocommerce-cart-messages' ),
+                'update_item'        => __( 'Update Message', 'yith-woocommerce-cart-messages' ),
+                'search_items'       => __( 'Search Message', 'yith-woocommerce-cart-messages' ),
+                'not_found'          => __( 'Not found', 'yith-woocommerce-cart-messages' ),
+                'not_found_in_trash' => __( 'Not found in Trash', 'yith-woocommerce-cart-messages' ),
             );
             $args   = array(
-                'label'               => __( 'ywcm_message', 'ywcm' ),
-                'description'         => __( 'Yith Cart Message Description', 'ywcm' ),
+                'label'               => __( 'ywcm_message', 'yith-woocommerce-cart-messages' ),
+                'description'         => __( 'Yith Cart Message Description', 'yith-woocommerce-cart-messages' ),
                 'labels'              => $labels,
                 'supports'            => array( 'title' ),
                 'hierarchical'        => false,
@@ -107,8 +107,8 @@ if ( !class_exists( 'YWCM_Cart_Message' ) ) {
 
         public function add_submenu_woocommerce() {
             add_submenu_page( 'woocommerce',
-                __( 'WooCommerce Cart Notices', 'ywcm' ),
-                __( 'Yith Cart Messages', 'ywcm' ),
+                __( 'Yith Cart Messages', 'yith-woocommerce-cart-messages' ),
+                __( 'Yith Cart Messages', 'yith-woocommerce-cart-messages' ),
                 'manage_woocommerce',
                 'edit.php?post_type=' . $this->post_type_name,
                 false
@@ -143,12 +143,12 @@ if ( !class_exists( 'YWCM_Cart_Message' ) ) {
 
             $columns = array(
                 'cb'          => '<input type="checkbox" />',
-                'title'       => __( 'Title', 'ywcm' ),
-                'type'        => __( 'Type', 'ywcm' ),
-                'message'     => __( 'Message', 'ywcm' ),
-                'button_text' => __( 'Button Text', 'ywcm' ),
-                'button_url'  => __( 'Button Url', 'ywcm' ),
-                'date'        => __( 'Date', 'ywcm' ),
+                'title'       => __( 'Title', 'yith-woocommerce-cart-messages' ),
+                'type'        => __( 'Type', 'yith-woocommerce-cart-messages' ),
+                'message'     => __( 'Message', 'yith-woocommerce-cart-messages' ),
+                'button_text' => __( 'Button Text', 'yith-woocommerce-cart-messages' ),
+                'button_url'  => __( 'Button Url', 'yith-woocommerce-cart-messages' ),
+                'date'        => __( 'Date', 'yith-woocommerce-cart-messages' ),
             );
 
             return $columns;
@@ -188,15 +188,15 @@ if ( !class_exists( 'YWCM_Cart_Message' ) ) {
 
         public function get_types() {
             $types = array(
-                'products_cart'   => __( 'Products in Cart', 'ywcm' ),
-                'categories_cart' => __( 'Categories in Cart', 'ywcm' ),
-                'simple_message'  => __( 'Simple Message', 'ywcm' ),
+                'products_cart'   => __( 'Products in Cart', 'yith-woocommerce-cart-messages' ),
+                'categories_cart' => __( 'Categories in Cart', 'yith-woocommerce-cart-messages' ),
+                'simple_message'  => __( 'Simple Message', 'yith-woocommerce-cart-messages' ),
             );
 
             if ( defined( 'YITH_YWCM_PREMIUM' ) ) {
-                $types['minimum_amount'] = __( 'Minimum Amount', 'ywcm' );
-                $types['deadline']       = __( 'Deadline', 'ywcm' );
-                $types['referer']        = __( 'Referer', 'ywcm' );
+                $types['minimum_amount'] = __( 'Minimum Amount', 'yith-woocommerce-cart-messages' );
+                $types['deadline']       = __( 'Deadline', 'yith-woocommerce-cart-messages' );
+                $types['referer']        = __( 'Referer', 'yith-woocommerce-cart-messages' );
             }
 
             return apply_filters( 'ywcm_cart_message_type', $types );

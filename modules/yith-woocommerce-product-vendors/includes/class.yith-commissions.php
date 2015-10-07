@@ -89,7 +89,7 @@ if ( ! class_exists( 'YITH_Commissions' ) ) {
          * @since 1.0
          * @access protected
          */
-        protected static $_db_version = '1.0.1';
+        protected static $_db_version = YITH_WPV_DB_VERSION;
 
         /**
          * Status changing capabilities
@@ -136,7 +136,7 @@ if ( ! class_exists( 'YITH_Commissions' ) ) {
 	        add_action( 'init', array( $this, 'add_commissions_table_wpdb' ), 0 );
 	        add_action( 'switch_blog', array( $this, 'add_commissions_table_wpdb' ), 0 );
 
-            add_action( 'woocommerce_checkout_order_processed', array( $this, 'register_commissions' ), 10, 2 );
+            add_action( 'yith_wcmv_checkout_order_processed', array( $this, 'register_commissions' ), 10, 1 );
             add_action( 'woocommerce_order_status_changed', array( $this, 'manage_status_changing' ), 10, 3 );
             add_action( 'woocommerce_refund_created', array( $this, 'register_commission_refund' ) );
             add_action( 'before_delete_post', array( $this, 'remove_refund_commission_helper' ) );
@@ -190,7 +190,6 @@ if ( ! class_exists( 'YITH_Commissions' ) ) {
         public function get_screen() {
             return $this->_screen;
         }
-
 
         /**
          * Define the list of status
@@ -280,7 +279,7 @@ if ( ! class_exists( 'YITH_Commissions' ) ) {
                         'menu_slug'  => $this->_screen,
                         'function'   => array( $this, 'commissions_details_page' ),
                         'icon'       => 'dashicons-tickets',
-                        'position'   => 56 /* After WC Products */
+                        'position'   => 58 /* After WC Products */
                     )
                 );
 
@@ -380,7 +379,7 @@ if ( ! class_exists( 'YITH_Commissions' ) ) {
                         user_id bigint(20) NOT NULL,
                         vendor_id bigint(20) NOT NULL,
                         line_item_id bigint(20) NOT NULL,
-                        rate decimal(3,2) NOT NULL,
+                        rate decimal(5,4) NOT NULL,
                         amount double(15,4) NOT NULL,
                         status varchar(100) NOT NULL,
                         last_edit DATETIME NOT NULL DEFAULT '000-00-00 00:00:00',
@@ -691,7 +690,7 @@ if ( ! class_exists( 'YITH_Commissions' ) ) {
          *
          * @since 1.0
          */
-        public function register_commissions( $order_id, $posted ) {
+        public function register_commissions( $order_id ) {
 
             // Only process commissions once
             $processed = get_post_meta( $order_id, '_commissions_processed', true );
@@ -732,9 +731,10 @@ if ( ! class_exists( 'YITH_Commissions' ) ) {
                     // add commission in pending
                     $commission_id = YITH_Commission()->add( $args );
 
-                    // add line item to retrieve simply the commission associated
+                    // add line item to retrieve simply the commission associated (parent order)
                     wc_add_order_item_meta( $item_id, '_commission_id', $commission_id );
 
+                    do_action( 'yith_wcmv_after_single_register_commission', $commission_id, $item_id, '_commission_id', $order );
                 }
             }
 

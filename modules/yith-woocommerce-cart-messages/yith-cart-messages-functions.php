@@ -8,7 +8,7 @@ if ( !function_exists( 'ywcm_get_shop_categories' ) ) {
 
         $categories = array();
         if ( $show_all ) {
-            $categories['0'] = __( 'All categories', 'ywcm' );
+            $categories['0'] = __( 'All categories', 'yith-woocommerce-cart-messages' );
         }
         if ( $terms ) {
             foreach ( $terms as $cat ) {

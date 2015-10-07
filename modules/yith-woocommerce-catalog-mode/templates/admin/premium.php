@@ -223,17 +223,17 @@
         <div class="landing-container">
             <div class="premium-cta">
                 <p>
-                    <?php echo sprintf( __('Upgrade to %1$spremium version%2$s of %1$sYITH WooCommerce Catalog Mode%2$s to benefit from all features!','ywctm'),'<span class="highlight">','</span>' );?>
+                    <?php echo sprintf( __('Upgrade to %1$spremium version%2$s of %1$sYITH WooCommerce Catalog Mode%2$s to benefit from all features!','yith-woocommerce-catalog-mode'),'<span class="highlight">','</span>' );?>
                 </p>
                 <a href="<?php echo $this->get_premium_landing_uri() ?>" target="_blank" class="premium-cta-button button btn">
-                    <span class="highlight"><?php _e('UPGRADE','ywctm');?></span>
-                    <span><?php _e('to the premium version','ywctm');?></span>
+                    <span class="highlight"><?php _e('UPGRADE','yith-woocommerce-catalog-mode');?></span>
+                    <span><?php _e('to the premium version','yith-woocommerce-catalog-mode');?></span>
                 </a>
             </div>
         </div>
     </div>
     <div class="one section section-even clear">
-        <h1><?php _e('Premium Features','ywctm');?></h1>
+        <h1><?php _e('Premium Features','yith-woocommerce-catalog-mode');?></h1>
         <div class="landing-container">
             <div class="col-1">
                 <img src="<?php echo YWCTM_ASSETS_URL?>/images/01.png" alt="Hide price" />
@@ -241,10 +241,10 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YWCTM_ASSETS_URL?>/images/01-icon.png" alt="icon 01"/>
-                    <h2><?php _e('Hide price','ywctm');?></h2>
+                    <h2><?php _e('Hide price','yith-woocommerce-catalog-mode');?></h2>
                 </div>
                 <p>
-                    <?php echo sprintf(__('Hide the price of products in your shop and replace it with a text. Decide if some of the products have to be excluded and if %1$shiding price%2$s has to be applied to all or restricted only to unlogged users.', 'ywctm'), '<b>', '</b>');?>
+                    <?php echo sprintf(__('Hide the price of products in your shop and replace it with a text. Decide if some of the products have to be excluded and if %1$shiding price%2$s has to be applied to all or restricted only to unlogged users.', 'yith-woocommerce-catalog-mode'), '<b>', '</b>');?>
                 </p>
             </div>
         </div>
@@ -254,10 +254,10 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YWCTM_ASSETS_URL?>/images/02-icon.png" alt="icon 02" />
-                    <h2><?php _e('Inquiry form','ywctm');?></h2>
+                    <h2><?php _e('Inquiry form','yith-woocommerce-catalog-mode');?></h2>
                 </div>
                 <p>
-                    <?php echo sprintf(__('Improve single product page by adding a tab with an %1$sinquiry form%2$s explicitly thought to let them send messages to site administrator.', 'ywctm'), '<b>', '</b>');?>
+                    <?php echo sprintf(__('Improve single product page by adding a tab with an %1$sinquiry form%2$s explicitly thought to let them send messages to site administrator.', 'yith-woocommerce-catalog-mode'), '<b>', '</b>');?>
                 </p>
             </div>
             <div class="col-1">
@@ -273,10 +273,10 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YWCTM_ASSETS_URL?>/images/03-icon.png" alt="icon 03" />
-                    <h2><?php _e( 'Custom button','ywctm');?></h2>
+                    <h2><?php _e( 'Custom button','yith-woocommerce-catalog-mode');?></h2>
                 </div>
                 <p>
-                    <?php echo sprintf(__('Add a button in single product page to call users to a specific %1$saction%2$s, depending on the specified %1$slink%2$s (email sending, skype call, telephone call).', 'ywctm'), '<b>', '</b>');?>
+                    <?php echo sprintf(__('Add a button in single product page to call users to a specific %1$saction%2$s, depending on the specified %1$slink%2$s (email sending, skype call, telephone call).', 'yith-woocommerce-catalog-mode'), '<b>', '</b>');?>
                 </p>
             </div>
         </div>
@@ -286,10 +286,10 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YWCTM_ASSETS_URL?>/images/04-icon.png" alt="icon 04" />
-                    <h2><?php _e('Product reviews','ywctm');?></h2>
+                    <h2><?php _e('Product reviews','yith-woocommerce-catalog-mode');?></h2>
                 </div>
                 <p>
-                    <?php echo sprintf(__('You can disable product %1$sreviewing system%2$s of your shop and decide if applying it to all users or just to unlogged ones.', 'ywctm'), '<b>', '</b>');?>
+                    <?php echo sprintf(__('You can disable product %1$sreviewing system%2$s of your shop and decide if applying it to all users or just to unlogged ones.', 'yith-woocommerce-catalog-mode'), '<b>', '</b>');?>
                 </p>
             </div>
             <div class="col-1">
@@ -305,10 +305,10 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YWCTM_ASSETS_URL?>/images/05-icon.png" alt="icon 05" />
-                    <h2><?php _e('Exclusion list','ywctm');?></h2>
+                    <h2><?php _e('Exclusion list','yith-woocommerce-catalog-mode');?></h2>
                 </div>
                 <p>
-                    <?php echo sprintf( __('Set plugin options, but if you want that options concerning price visibility and ‘Add to cart’ do not apply to specific products, add them to %1$sexclusion list%2$s and, voilà, problem solved.','ywctm'),'<b>','</b>'); ?>
+                    <?php echo sprintf( __('Set plugin options, but if you want that options concerning price visibility and ‘Add to cart’ do not apply to specific products, add them to %1$sexclusion list%2$s and, voilà, problem solved.','yith-woocommerce-catalog-mode'),'<b>','</b>'); ?>
                 </p>
             </div>
         </div>
@@ -318,10 +318,10 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YWCTM_ASSETS_URL?>/images/06-icon.png" alt="icon 06" />
-                    <h2><?php _e('REVERSE EXCLUSION LIST','ywctm');?></h2>
+                    <h2><?php _e('REVERSE EXCLUSION LIST','yith-woocommerce-catalog-mode');?></h2>
                 </div>
                 <p>
-                    <?php echo sprintf( __( 'Apply Catalog Mode to some items only: add them to the "Exclusion List" and %1$smake it work in the opposite way as usual%2$s. All items in the shop show price and “Add to Cart” button, while items in the list don’t.','ywctm' ),'<b>','</b>' ) ?>
+                    <?php echo sprintf( __( 'Apply Catalog Mode to some items only: add them to the "Exclusion List" and %1$smake it work in the opposite way as usual%2$s. All items in the shop show price and “Add to Cart” button, while items in the list don’t.','yith-woocommerce-catalog-mode' ),'<b>','</b>' ) ?>
                 </p>
             </div>
             <div class="col-1">
@@ -337,10 +337,10 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YWCTM_ASSETS_URL?>/images/07-icon.png" alt="icon 05" />
-                    <h2><?php _e('Source page of the request','ywctm');?></h2>
+                    <h2><?php _e('Source page of the request','yith-woocommerce-catalog-mode');?></h2>
                 </div>
                 <p>
-                    <?php echo sprintf( __('Thanks to the %1$s"Product Permalink"%2$s option you will be able to know from which page your users have generated the request.%3$sThe email generated from the request form will include the address of the page: another important information that can be really useful for you.','ywctm'),'<b>','</b>','<br>'); ?>
+                    <?php echo sprintf( __('Thanks to the %1$s"Product Permalink"%2$s option you will be able to know from which page your users have generated the request.%3$sThe email generated from the request form will include the address of the page: another important information that can be really useful for you.','yith-woocommerce-catalog-mode'),'<b>','</b>','<br>'); ?>
                 </p>
             </div>
         </div>
@@ -349,11 +349,11 @@
         <div class="landing-container">
             <div class="premium-cta">
                 <p>
-                    <?php echo sprintf( __('Upgrade to %1$spremium version%2$s of %1$sYITH WooCommerce Catalog Mode%2$s to benefit from all features!','ywctm'),'<span class="highlight">','</span>' );?>
+                    <?php echo sprintf( __('Upgrade to %1$spremium version%2$s of %1$sYITH WooCommerce Catalog Mode%2$s to benefit from all features!','yith-woocommerce-catalog-mode'),'<span class="highlight">','</span>' );?>
                 </p>
                 <a href="<?php echo $this->get_premium_landing_uri() ?>" target="_blank" class="premium-cta-button button btn">
-                    <span class="highlight"><?php _e('UPGRADE','ywctm');?></span>
-                    <span><?php _e('to the premium version','ywctm');?></span>
+                    <span class="highlight"><?php _e('UPGRADE','yith-woocommerce-catalog-mode');?></span>
+                    <span><?php _e('to the premium version','yith-woocommerce-catalog-mode');?></span>
                 </a>
             </div>
         </div>

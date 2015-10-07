@@ -59,8 +59,10 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
             $this->_modules_list_query_value  = self::MODULES_LIST_QUERY_VALUE.$this->$index;
             $this->_plugin_list_hide_notice_option_name = self::PLUGIN_LIST_HIDE_NOTICE_OPTION_NAME.$this->$index;
 
-            $this->plugin_fw_loader();
 			$this->load_modules();
+
+            /* Load Plugin Framework */
+            add_action( 'after_setup_theme', array( $this, 'plugin_fw_loader' ), 1 );
 
             // admin page
             add_action( 'admin_init', array( $this, 'deactivate_singular_plugins' ) );

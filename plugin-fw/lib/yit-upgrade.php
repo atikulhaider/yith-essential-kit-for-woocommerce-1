@@ -190,15 +190,34 @@ if ( ! class_exists( 'YIT_Upgrade' ) ) {
          * @author   Andrea Grillo <andrea.grillo@yithemes.com>
          */
         protected function _upgrader_pre_download( $reply, $package, $upgrader ) {
+            $plugin = false;
+            $is_bulk = $upgrader->skin instanceof Bulk_Plugin_Upgrader_Skin;
+
+            if( ! $is_bulk ){
+                $plugin = isset( $upgrader->skin->plugin ) ? $upgrader->skin->plugin : false;
+            }
+
+            else {
+                //Bulk action upgrade
+                $action_url = parse_url( $upgrader->skin->options['url'] );
+                parse_str( rawurldecode( htmlspecialchars_decode( $action_url['query'] ) ) );
+                $plugins = explode( ',', $plugins );
+                foreach( $plugins as $plugin_init ){
+                    $to_upgrade = get_plugin_data( WP_PLUGIN_DIR . DIRECTORY_SEPARATOR .  $plugin_init );
+                    if( $to_upgrade['Name'] == $upgrader->skin->plugin_info['Name'] ){
+                        $plugin = $plugin_init;
+                    }
+                }
+            }
 
             /**
              * It isn't YITH Premium plugins, please wordpress update it for me!
              */
-            if( ! isset( $upgrader->skin->plugin ) ) {
+            if( ! $plugin ) {
                 return $reply;
             }
                 
-             $plugin_info = YIT_Plugin_Licence()->get_product( $upgrader->skin->plugin );
+            $plugin_info = YIT_Plugin_Licence()->get_product( $plugin );
 
             /**
              * False ? It isn't YITH Premium plugins, please wordpress update it for me!

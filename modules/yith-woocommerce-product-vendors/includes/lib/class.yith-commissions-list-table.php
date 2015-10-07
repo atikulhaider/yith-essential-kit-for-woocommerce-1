@@ -93,9 +93,11 @@ if ( ! class_exists( 'YITH_Commissions_List_Table' ) ) {
 
             // commissions args
             $args = array(
-                'status' => $this->get_current_view(),
-                'paged'  => $current_page,
-                'number' => $per_page,
+                'status'  => $this->get_current_view(),
+                'paged'   => $current_page,
+                'number'  => $per_page,
+                'orderby' => 'ID',
+	            'order'   => 'DESC',
             );
 
 	        // merge Unpaid with Processing
@@ -238,7 +240,19 @@ if ( ! class_exists( 'YITH_Commissions_List_Table' ) ) {
 
                     $order_number    = '<strong>#' . esc_attr( $order->get_order_number() ) . '</strong>';
                     $order_uri       = '<a href="' . admin_url( 'post.php?post=' . absint( $order->id ) . '&action=edit' ) . '">' . $order_number . '</a>';
-                    $order_info      = $this->_vendor->is_super_user() ? $order_uri : $order_number;
+                    $order_info      = $this->_vendor->is_super_user() ? $order_uri :  apply_filters( 'yith_wcmv_commissions_order_column', $order_number, $order->get_order_number() );
+
+                    if( $this->_vendor->is_super_user() ){
+                        $order_info = $order_uri;
+                    }
+
+                    else if( defined( 'YITH_WPV_PREMIUM' ) && YITH_WPV_PREMIUM && $this->_vendor->has_limited_access() && wp_get_post_parent_id( $order->id )&& in_array($order->id, $this->_vendor->get_orders() ) ){
+                        $order_info = $order_uri;
+                    }
+
+                    else {
+                        $order_info = $order_number;
+                    }
 
                     printf( _x( '%s by %s', 'Order number by user', 'yith_wc_product_vendors' ), $order_info, $username );
 

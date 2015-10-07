@@ -16,10 +16,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <h2>
     <a href="<?php echo $vendor_url ?>">
-        <?php echo $vendor_name ?>
+        <?php echo __( $vendor_name, 'yith_wc_product_vendors' ) ?>
     </a>
 </h2>
 
 <div class="vendor-description">
-    <?php echo $vendor_description ?>
+    <?php echo __( $vendor_description, 'yith_wc_product_vendors' ) ?>
 </div>

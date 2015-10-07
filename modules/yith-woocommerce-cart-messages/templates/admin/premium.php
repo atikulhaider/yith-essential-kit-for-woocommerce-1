@@ -196,12 +196,11 @@
         <div class="landing-container">
             <div class="premium-cta">
                 <p>
-                    Upgrade to the <span class="highlight">premium version</span>
-                    of <span class="highlight">YITH WooCommerce Cart Messages</span> to benefit from all features!
+                    <?php echo sprintf(__('Upgrade to the %1$spremium version%2$s of %1$sYITH WooCommerce Cart Messages%2$s to benefit from all features!','yith-woocommerce-cart-messages'),'<span class="highlight">','</span>');?>
                 </p>
                 <a href="<?php echo $YWCM_Instance->get_premium_landing_uri() ?>" target="_blank" class="premium-cta-button button btn">
-                    <span class="highlight">UPGRADE</span>
-                    <span>to the premium version</span>
+                    <span class="highlight"><?php _e('UPGRADE','yith-woocommerce-cart-messages');?></span>
+                    <span><?php _e('to the premium version','yith-woocommerce-cart-messages');?></span>
                 </a>
             </div>
         </div>
@@ -210,14 +209,14 @@
         <h1>Premium Features</h1>
         <div class="landing-container">
             <div class="col-1">
-                <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/01.png" alt="Review Title" />
+                <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/01.png" alt=<?php _e('create message regarding','yith-woocommerce-cart-messages');?> />
             </div>
             <div class="col-2">
                 <div class="section-title">
-                    <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/01-icon.png" alt="Review Title"/>
-                    <h2>CREATE MESSAGES REGARDING A MINIMUM AMOUNT TO SPEND</h2>
+                    <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/01-icon.png" alt="icon-01"/>
+                    <h2><?php _e('CREATE MESSAGES REGARDING A MINIMUM AMOUNT TO SPEND','yith-woocommerce-cart-messages');?></h2>
                 </div>
-                <p>It encourages users to exceed a certain amount of purchases to get a benefit (for example, if you spend more than $100 you will get free shipping), and it also shows the amount needed to fill the gap.</p>
+                <p><?php echo sprintf(__('It encourages users to exceed a certain amount of purchases to get a benefit for example, %1$sif you spend more than $100 you will get free shipping%2$s, and it also shows the amount needed to fill the gap.','yith-woocommerce-cart-messages'),'<b>','</b>');?></p>
             </div>
         </div>
     </div>
@@ -225,27 +224,27 @@
         <div class="landing-container">
             <div class="col-2">
                 <div class="section-title">
-                    <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/02-icon.png" alt="Attachment List" />
-                    <h2>ANALYZE THE REFERRER</h2>
+                    <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/02-icon.png" alt="icon-02" />
+                    <h2><?php _e('ANALYZE THE REFERRER');?></h2>
                 </div>
-                <p>It shows a notification based on the source site. For example, if users come from Google, you can let them see an additional discount message.</p>
+                <p><?php echo sprintf(__('It shows a notification based on the source site. For example, %1$sif users come from Google%2$s, you can let them see an additional %1$sdiscount message%2$s.','yith-woocommerce-cart-messages'),'<b>','</b>');?></p>
             </div>
             <div class="col-1">
-                <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/02.png" alt="Attachment List" />
+                <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/02.png" alt=<?php _e('analyze the referrer','yith-woocommerce-cart-messages');?> />
             </div>
         </div>
     </div>
     <div class="section section-even clear" style="background: url(<?php echo YITH_YWCM_ASSETS_URL ?>/images/03-bg.png) no-repeat #fff; background-position: 85% 100%">
         <div class="landing-container">
             <div class="col-1">
-                <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/03.png" alt="Vote the review" />
+                <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/03.png" alt=<?php _e('create message deadline','yith-woocommerce-cart-messages');?> />
             </div>
             <div class="col-2">
                 <div class="section-title">
-                    <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/03-icon.png" alt="Vote the review" />
-                    <h2>CREATE MESSAGES WITH A DEADLINE</h2>
+                    <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/03-icon.png" alt="icon-03" />
+                    <h2><?php _e('CREATE MESSAGES WITH A DEADLINE','yith-woocommerce-cart-messages');?></h2>
                 </div>
-                <p>It lets you set messages with a time limit, for example: "if you make a purchase before 6 p.m., your order will be shipped today".</p>
+                <p><?php echo sprintf(__('It lets you set messages with a time limit, for example: %1$s"if you make a purchase before 6 p.m., your order will be shipped today"%2$s.','yith-woocommerce-cart-messages'),'<b>','</b>');?></p>
             </div>
         </div>
     </div>
@@ -253,27 +252,27 @@
         <div class="landing-container">
             <div class="col-2">
                 <div class="section-title">
-                    <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/04-icon.png" alt="Number" />
-                    <h2>CHOOSE AMONG DIFFERENT LAYOUTS AND CUSTOMIZE THEM QUICKLY AND EASILY</h2>
+                    <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/04-icon.png" alt="icon-04" />
+                    <h2><?php _e('CHOOSE AMONG DIFFERENT LAYOUTS AND CUSTOMIZE THEM QUICKLY AND EASILY','yith-woocommerce-cart-messages');?></h2>
                 </div>
-                <p>You have 6 different layouts to give the style you want to your messages from the administration panel.</p>
+                <p><?php echo sprintf(__('You have %1$s6 different layouts%2$s to give the style you want to your messages from the %1$sadministration panel.%2$s','yith-woocommerce-cart-messages'),'<b>','</b>');?></p>
             </div>
             <div class="col-1">
-                <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/04.png" alt="Number" />
+                <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/04.png" alt=<?php _e('choose amoung different','yith-woocommerce-cart-messages');?> />
             </div>
         </div>
     </div>
     <div class="section section-even clear" style="background: url(<?php echo YITH_YWCM_ASSETS_URL ?>/images/05-bg.png) no-repeat #fff; background-position: 85% 100%">
         <div class="landing-container">
             <div class="col-1">
-                <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/05.png" alt="Filter by rating" />
+                <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/05.png" alt=<?php _e('choose who can see','yith-woocommerce-cart-messages');?> />
             </div>
             <div class="col-2">
                 <div class="section-title">
-                    <img src="<?php echo YITH_YWCM_ASSETS_URL?>/images/05-icon.png" alt="Filter by rating" />
-                    <h2>CHOOSE WHO CAN SEE YOUR MESSAGES</h2>
+                    <img src="<?php echo YITH_YWCM_ASSETS_URL?>/images/05-icon.png" alt="icon-05" />
+                    <h2><?php _e('CHOOSE WHO CAN SEE YOUR MESSAGES','yith-woocommerce-cart-messages');?></h2>
                 </div>
-                <p>You can show a message to your clients, or decide to show it only to guests or to logged in users.</p>
+                <p><?php echo sprintf(__('You can show a message to your %1$sclients,%2$s or decide to show it only to %1$sguests%2$s or to logged in %1$susers.%2$s','yith-woocommerce-cart-messages'),'<b>','</b>');?></p>
             </div>
         </div>
     </div>
@@ -281,13 +280,13 @@
         <div class="landing-container">
             <div class="col-2">
                 <div class="section-title">
-                    <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/06-icon.png" alt="Number" />
-                    <h2>DECIDE THE PAGES WHERE TO SHOW YOUR MESSAGES</h2>
+                    <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/06-icon.png" alt="icon-06" />
+                    <h2><?php _e('DECIDE THE PAGES WHERE TO SHOW YOUR MESSAGES','yith-woocommerce-cart-messages');?></h2>
                 </div>
-                <p>You can freely decide where to show every single message (single page, shop, cart, checkout).</p>
+                <p><?php echo sprintf(__('You can freely decide where to show every single message %1$s(single page, shop, cart, checkout).%2$s','yith-woocommerce-cart-messages'),'<b>','</b>');?></p>
             </div>
             <div class="col-1">
-                <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/06.png" alt="Number" />
+                <img src="<?php echo YITH_YWCM_ASSETS_URL ?>/images/06.png" alt=<?php _e('decide the pages where to','yith-woocommerce-cart-messages');?> />
             </div>
         </div>
     </div>
@@ -295,12 +294,11 @@
         <div class="landing-container">
             <div class="premium-cta">
                 <p>
-                    Upgrade to the <span class="highlight">premium version</span>
-                    of <span class="highlight">YITH WooCommerce Cart Messages</span> to benefit from all features!
+                    <?php echo sprintf(__('Upgrade to the premium version of YITH WooCommerce Cart Messages to benefit from all features!','yith-woocommerce-cart-messages'),'<span class="highlight">');?>
                 </p>
                 <a href="<?php echo $YWCM_Instance->get_premium_landing_uri() ?>" target="_blank" class="premium-cta-button button btn">
-                    <span class="highlight">UPGRADE</span>
-                    <span>to the premium version</span>
+                    <span class="highlight"><?php _e('UPGRADE','yith-woocommerce-cart-messages');?></span>
+                    <span><?php _e('to the premium version','yith-woocommerce-cart-messages');?></span>
                 </a>
             </div>
         </div>

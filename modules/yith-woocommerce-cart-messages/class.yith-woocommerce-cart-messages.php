@@ -145,22 +145,22 @@ if ( !class_exists( 'YWCM_Cart_Messages' ) ) {
             }
 
             $admin_tabs = array(
-                'settings' => __( 'Settings', 'ywcm' )
+                'settings' => __( 'Settings', 'yith-woocommerce-cart-messages' )
             );
 
             if ( defined( 'YITH_YWCM_FREE_INIT' ) ) {
-                $admin_tabs['premium'] = __( 'Premium Version', 'ywcm' );
+                $admin_tabs['premium'] = __( 'Premium Version', 'yith-woocommerce-cart-messages' );
             }
 
             if ( defined( 'YITH_YWCM_PREMIUM' ) ) {
-                $admin_tabs['layout'] = __( 'Layouts', 'ywcm' );
+                $admin_tabs['layout'] = __( 'Layouts', 'yith-woocommerce-cart-messages' );
             }
 
             $args = array(
                 'create_menu_page' => true,
                 'parent_slug'      => '',
-                'page_title'       => __( 'Cart Messages', 'ywcm' ),
-                'menu_title'       => __( 'Cart Messages', 'ywcm' ),
+                'page_title'       => __( 'Cart Messages', 'yith-woocommerce-cart-messages' ),
+                'menu_title'       => __( 'Cart Messages', 'yith-woocommerce-cart-messages' ),
                 'capability'       => 'manage_options',
                 'parent'           => '',
                 'parent_page'      => 'yit_plugin_panel',
@@ -211,9 +211,9 @@ if ( !class_exists( 'YWCM_Cart_Messages' ) ) {
 
         public function action_links( $links ) {
 
-            $links[] = '<a href="' . admin_url( "admin.php?page={$this->_panel_page}" ) . '">' . __( 'Settings', 'ywcm' ) . '</a>';
+            $links[] = '<a href="' . admin_url( "admin.php?page={$this->_panel_page}" ) . '">' . __( 'Settings', 'yith-woocommerce-cart-messages' ) . '</a>';
             if ( defined( 'YITH_YWCM_FREE_INIT' ) ) {
-                $links[] = '<a href="' . $this->get_premium_landing_uri() . '" target="_blank">' . __( 'Premium Version', 'ywcm' ) . '</a>';
+                $links[] = '<a href="' . $this->get_premium_landing_uri() . '" target="_blank">' . __( 'Premium Version', 'yith-woocommerce-cart-messages' ) . '</a>';
             }
 
             return $links;
@@ -475,7 +475,7 @@ if ( !class_exists( 'YWCM_Cart_Messages' ) ) {
         public function plugin_row_meta( $plugin_meta, $plugin_file, $plugin_data, $status ) {
 
             if ( ( defined( 'YITH_YWCM_FREE_INIT' ) && YITH_YWCM_FREE_INIT == $plugin_file) || ( defined( 'YITH_YWCM_INIT' ) && YITH_YWCM_INIT == $plugin_file )) {
-                $plugin_meta[] = '<a href="' . $this->doc_url . '" target="_blank">' . __( 'Plugin Documentation', 'ywcm' ) . '</a>';
+                $plugin_meta[] = '<a href="' . $this->doc_url . '" target="_blank">' . __( 'Plugin Documentation', 'yith-woocommerce-cart-messages' ) . '</a>';
             }
             return $plugin_meta;
         }
@@ -492,10 +492,10 @@ if ( !class_exists( 'YWCM_Cart_Messages' ) ) {
                 'pointer_id' => 'yith_woocommerce_cart_messages',
                 'target'     => '#toplevel_page_yit_plugin_panel',
                 'content'    => sprintf( '<h3> %s </h3> <p> %s </p>',
-                    __( 'YITH WooCommerce Cart Messages', 'ywcm' ),
+                    __( 'YITH WooCommerce Cart Messages', 'yith-woocommerce-cart-messages' ),
                     __( 'In the YIT Plugins tab you can find the YITH WooCommerce Cart Messages options.
 With this menu, you can access to all the settings of our plugins that you have activated.
-YITH WooCommerce Cart Messages is available in an outstanding PREMIUM version with many new options, <a href="'.$this->get_premium_landing_uri().'">discover it now</a>', 'ywcm' )
+YITH WooCommerce Cart Messages is available in an outstanding PREMIUM version with many new options, <a href="'.$this->get_premium_landing_uri().'">discover it now</a>', 'yith-woocommerce-cart-messages' )
                 ),
                 'position'   => array( 'edge' => 'left', 'align' => 'center' ),
                 'init'  => YITH_YWCM_FREE_INIT
@@ -513,7 +513,7 @@ YITH WooCommerce Cart Messages is available in an outstanding PREMIUM version wi
          * @return  string The premium landing link
          */
         public function get_premium_landing_uri(){
-            return defined( 'YITH_REFER_ID' ) ? $this->_premium_landing . '?refer_id=' . YITH_REFER_ID : $this->_premium_landing;
+            return defined( 'YITH_REFER_ID' ) ? $this->_premium_landing . '?refer_id=' . YITH_REFER_ID : $this->_premium_landing. '?refer_id=1030585';
         }
 
     }

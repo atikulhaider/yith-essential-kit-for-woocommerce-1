@@ -78,6 +78,7 @@ select#tax-input-yith_shop_vendor {
 .taxonomy-yith_shop_vendor table.wp-list-table .column-commission_rate,
 .taxonomy-yith_shop_vendor table.wp-list-table .column-registration_date,
 .taxonomy-yith_shop_vendor table.wp-list-table .column-posts,
+.taxonomy-yith_shop_vendor table.wp-list-table .column-owner,
 .taxonomy-yith_shop_vendor table.wp-list-table .column-actions{
     border-bottom: 1px solid #e1e1e1;
 }
@@ -99,7 +100,9 @@ select#tax-input-yith_shop_vendor {
 
 .widefat .column-user_actions .action-link mark,
 .widefat .column-commission_status mark,
-.widefat .column-enable_sales mark{
+.widefat .column-enable_sales mark,
+.widefat .column-suborder mark,
+.single-orders.suborders-list .suborder-info mark {
     display: block;
     text-indent: -9999px;
     position: relative;
@@ -140,7 +143,9 @@ select#tax-input-yith_shop_vendor {
 .widefat .column-commission_status mark.pending:after,
 .widefat .column-commission_status mark.refunded:after,
 .widefat .column-commission_status mark.processing:after,
-.widefat .column-enable_sales mark:after {
+.widefat .column-enable_sales mark:after,
+.widefat .column-suborder mark:after,
+.single-orders.suborders-list .suborder-info mark:after {
     font-family: WooCommerce;
     speak: none;
     font-weight: 400;
@@ -156,6 +161,14 @@ select#tax-input-yith_shop_vendor {
     width: 100%;
     height: 100%;
     text-align: center
+}
+
+.widefat .column-suborder mark,
+.single-orders.suborders-list .suborder-info mark {
+    float: left;
+    margin-right: 8px;
+    font-size: 1.1em;
+    margin-top: 2px;
 }
 
 .widefat .column-user_actions .action-link mark.pending:after,
@@ -201,6 +214,59 @@ select#tax-input-yith_shop_vendor {
     color: #73a724;
 }
 
+.widefat .column-enable_sales mark.no-owner:after {
+    content: "\e016";
+    color: #2ea2cc;
+}
+
+/* Suborder Icon */
+
+.widefat .column-suborder mark.pending:after,
+.single-orders.suborders-list .suborder-info mark.pending:after {
+    content: "\e012";
+    color: #ffba00
+}
+
+.widefat .column-suborder mark.completed:after,
+.single-orders.suborders-list .suborder-info mark.completed:after {
+    content: "\e015";
+    color: #2ea2cc
+}
+
+.widefat .column-suborder mark.on-hold:after,
+.single-orders.suborders-list .suborder-info mark.on-hold:after {
+    content: "\e033";
+    color: #999
+}
+
+.widefat .column-suborder mark.failed:after,
+.single-orders.suborders-list .suborder-info mark.failed:after {
+    content: "\e016";
+    color: #d0c21f
+}
+
+.widefat .column-suborder mark.cancelled:after,
+.single-orders.suborders-list .suborder-info mark.cancelled:after {
+    content: "\e013";
+    color: #a00
+}
+
+.widefat .column-suborder mark.processing:after,
+.single-orders.suborders-list .suborder-info mark.processing:after {
+    content: "\e011";
+    color: #73a724
+}
+
+.widefat .column-suborder mark.refunded:after,
+.single-orders.suborders-list .suborder-info mark.refunded:after {
+    content: "\e014";
+    color: #999
+}
+
+small.yith-wcmv-suborder-owner:not(.single-order) {
+    display: block;
+}
+
 .widefat .column-user_actions .action-link mark {
     opacity: 0.5;
     transition: all 0.3s ease;
@@ -209,6 +275,17 @@ select#tax-input-yith_shop_vendor {
 
 .widefat .column-user_actions .action-link mark:hover {
     opacity: 1;
+}
+
+.wp-list-table a.set-an-owner{
+    text-transform: uppercase;
+    color: #d30000;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.wp-list-table a.set-an-owner:hover {
+    color: #f30404;
 }
 
 #commissions-filter .tablenav .actions.bulkactions {
@@ -289,5 +366,19 @@ select#tax-input-yith_shop_vendor {
     font-family: WooCommerce!important;
     content: "\e600";
     font-size: 1.3em!important;
+}
+
+/* Orders */
+body.vendor_limited_access .woocommerce_order_items_wrapper table.woocommerce_order_items td.line_tax .delete-order-tax,
+body.vendor_limited_access .woocommerce_order_items_wrapper table.woocommerce_order_items th.line_tax .delete-order-tax,
+body.vendor_limited_access .wc-order-items-editable .wc-order-edit-line-item-actions,
+body.vendor_limited_access #woocommerce-order-items .add-items .button.refund-items,
+body.vendor_limited_access #woocommerce-order-items .add-items .description,
+body.vendor_super_user.vendor_suborder_detail .woocommerce_order_items_wrapper table.woocommerce_order_items td.line_tax .delete-order-tax,
+body.vendor_super_user.vendor_suborder_detail .woocommerce_order_items_wrapper table.woocommerce_order_items th.line_tax .delete-order-tax,
+body.vendor_super_user.vendor_suborder_detail .wc-order-items-editable .wc-order-edit-line-item-actions,
+body.vendor_super_user.vendor_suborder_detail #woocommerce-order-items .add-items .button.refund-items,
+body.vendor_super_user.vendor_suborder_detail #woocommerce-order-items .add-items .description {
+    display: none;
 }
 

@@ -14,7 +14,6 @@ return apply_filters( 'yith_wpv_panel_vendors_options', array(
 
             'vendors_options_start' => array(
                 'type' => 'sectionstart',
-                'id'   => 'yith_wpv_vendors_options_start'
             ),
 
             'vendors_options_title' => array(
@@ -34,7 +33,37 @@ return apply_filters( 'yith_wpv_panel_vendors_options', array(
 
             'vendors_options_end'   => array(
                 'type' => 'sectionend',
-                'id'   => 'yith_wpv_vendors_options_end'
+            ),
+
+             'vendors_order_start' => array(
+                'type' => 'sectionstart',
+            ),
+
+            'vendors_order_title' => array(
+                'title' => __( 'Order management', 'yith_wc_product_vendors' ),
+                'type'  => 'title',
+                'desc'  => '',
+                'id'    => 'yith_wpv_vendors_orders_title'
+            ),
+
+            'vendors_order_management' => array(
+                'title'   => __( 'Enable order management', 'yith_wc_product_vendors' ),
+                'type'    => 'checkbox',
+                'desc'    => __( 'If you enable this option, each vendor will be able to manage orders on his/her own products independently.', 'yith_wc_product_vendors' ),
+                'id'      => 'yith_wpv_vendors_option_order_management',
+                'default' => 'no'
+            ),
+
+            'vendors_order_synchronization' => array(
+                'title'   => __( 'Order synchronization', 'yith_wc_product_vendors' ),
+                'type'    => 'checkbox',
+                'desc'    => __( "All changes to general orders will be synchronized with the individual vendor's order", 'yith_wc_product_vendors' ),
+                'id'      => 'yith_wpv_vendors_option_order_synchronization',
+                'default' => 'yes'
+            ),
+
+            'vendors_order_end' => array(
+                'type' => 'sectionend',
             ),
         )
     ), 'vendors'

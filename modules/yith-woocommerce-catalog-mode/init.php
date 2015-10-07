@@ -4,8 +4,8 @@ Plugin Name: YITH WooCommerce Catalog Mode
 Plugin URI: http://yithemes.com/themes/plugins/yith-woocommerce-catalog-mode/
 Description: YITH Woocommerce Catalog Mode allows you to disable shop functions.
 Author: Yithemes
-Text Domain: ywctm
-Version: 1.1.3
+Text Domain: yith-woocommerce-catalog-mode
+Version: 1.1.4
 Author URI: http://yithemes.com/
 */
 
@@ -20,7 +20,7 @@ if ( ! function_exists( 'is_plugin_active' ) ) {
 function ywctm_install_woocommerce_admin_notice() {
     ?>
     <div class="error">
-        <p><?php _e( 'YITH WooCommerce Catalog Mode is enabled but not effective. It requires WooCommerce in order to work.', 'ywctm' ); ?></p>
+        <p><?php _e( 'YITH WooCommerce Catalog Mode is enabled but not effective. It requires WooCommerce in order to work.', 'yith-woocommerce-catalog-mode' ); ?></p>
     </div>
     <?php
 }
@@ -28,13 +28,13 @@ function ywctm_install_woocommerce_admin_notice() {
 function ywctm_install_free_admin_notice() {
     ?>
     <div class="error">
-        <p><?php _e( 'You can\'t activate the free version of YITH WooCommerce Catalog Mode while you are using the premium one.', 'ywctm' ); ?></p>
+        <p><?php _e( 'You can\'t activate the free version of YITH WooCommerce Catalog Mode while you are using the premium one.', 'yith-woocommerce-catalog-mode' ); ?></p>
     </div>
     <?php
 }
 
 if ( ! defined( 'YWCTM_VERSION' ) ) {
-    define( 'YWCTM_VERSION', '1.1.3' );
+    define( 'YWCTM_VERSION', '1.1.4' );
 }
 
 if ( ! defined( 'YWCTM_FREE_INIT' ) ) {
@@ -64,7 +64,7 @@ if ( ! defined( 'YWCTM_TEMPLATE_PATH' ) ) {
 function ywctm_init() {
 
     /* Load YWCTM text domain */
-    load_plugin_textdomain( 'ywctm', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+    load_plugin_textdomain( 'yith-woocommerce-catalog-mode', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
     global $YITH_WC_Catalog_Mode;
     $YITH_WC_Catalog_Mode = new YITH_WC_Catalog_Mode();

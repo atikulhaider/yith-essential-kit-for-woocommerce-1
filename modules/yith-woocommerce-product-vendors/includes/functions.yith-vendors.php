@@ -26,7 +26,7 @@ if ( ! function_exists( 'yith_wcpv_get_template' ) ) {
 
         $ext = strpos( $filename, '.php' ) === false ? '.php' : '';
         $template_name      = $section . '/' . $filename . $ext;
-        $template_path      = WC()->template_path() . 'product-vendors/';
+        $template_path      = WC()->template_path();
         $default_path       = YITH_WPV_TEMPLATE_PATH;
 
         if( defined( 'YITH_WPV_PREMIUM' ) ){
@@ -76,5 +76,18 @@ if ( ! function_exists( 'yith_wcpv_add_vendor_caps' ) ) {
                 $user->add_cap( $cap );
             }
         }
+    }
+}
+
+if ( ! function_exists( 'yith_has_live_chat_plugin' ) ) {
+    /**
+     * Check if user has YITH Live Chat Premium plugin
+     *
+     * @author Andrea Grillo <andrea.grillo@yithemes.com>
+     * @since  1.0
+     * @return bool
+     */
+    function yith_has_live_chat_plugin() {
+        return defined( 'YLC_PREMIUM' ) && YLC_PREMIUM && defined( 'YLC_VERSION' ) && version_compare( YLC_VERSION, apply_filters( 'yith_wcmv_live_chat_min_version', '1.0.5' ), '>' );
     }
 }
