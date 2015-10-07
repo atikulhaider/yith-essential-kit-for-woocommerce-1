@@ -152,7 +152,7 @@ YITH Essential Kit for WooCommerce #1 will add a new submenu called "YITH Essent
 
 = 1.1.5 =
 
-* Updated: YITH WooCommerce Ajax Navigation issue
+* Fixed: YITH WooCommerce Ajax Navigation issue
 
 = 1.1.4 =
 
