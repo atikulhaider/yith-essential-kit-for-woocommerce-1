@@ -195,20 +195,19 @@
     }
 </style>
 <div class="landing live-chat">
-    <div class="section section-cta section-odd">
-        <div class="landing-container">
-            <div class="premium-cta">
-                <p>
-                    Upgrade to the <span class="highlight">premium version</span>
-                    of <span class="highlight">YITH Live Chat</span> to benefit from all features!
-                </p>
-                <a href="<?php echo $this->get_premium_landing_uri() ?>" target="_blank" class="premium-cta-button button btn">
-                    <span class="highlight">UPGRADE</span>
-                    <span>to the premium version</span>
-                </a>
-            </div>
+<div class="section section-cta section-odd">
+    <div class="landing-container">
+        <div class="premium-cta">
+            <p>
+                <?php echo sprintf( __('Upgrade to %1$spremium version%2$s of %1$sYITH Live Chat%2$s to benefit from all features!','yith-live-chat' ),'<span class="highlight">','</span>' );?>
+            </p>
+            <a href="<?php echo $this->get_premium_landing_uri() ?>" target="_blank" class="premium-cta-button button btn">
+                <span class="highlight"><?php _e('UPGRADE','yith-live-chat' ); ?></span>
+                <span><?php _e('to the premium version','yith-live-chat' ); ?></span>
+            </a>
         </div>
     </div>
+</div>
     <div class="section section-even clear" style="background: url(<?php echo YLC_ASSETS_URL ?>/images/01-bg.png) no-repeat #fff; background-position: 85% 75%">
         <h1>Premium Features</h1>
         <div class="landing-container">
@@ -218,12 +217,10 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YLC_ASSETS_URL ?>/images/01-icon.png" alt="CHAT LOGS"/>
-                    <h2>CHAT LOGS</h2>
+                    <h2><?php _e('CHAT LOGS','yith-live-chat');?></h2>
                 </div>
                 <p>
-                    Just a click on <b>“Save Chat”</b> button and your chat will be saved into your “Chat logs”. In this
-                    section you can find all conversations and also summary information about them, from IP address
-                    associated to the date, to the appreciation degree expressed by the user, to the chat duration.
+                    <?php echo sprintf( __( 'Just a click on %1$s"Save Chat"%2$s button and your chat will be saved into your "Chat logs". In this section you can find all conversations and also summary information about them, from IP address associated to the date, to the appreciation degree expressed by the user, to the chat duration.','yith-live-chat'),'<b>','</b>'  );?>
                 </p>
             </div>
         </div>
@@ -233,13 +230,11 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YLC_ASSETS_URL ?>/images/02-icon.png" alt="OFFLINE MESSAGES" />
-                    <h2>OFFLINE MESSAGES</h2>
+                    <h2><?php _e('OFFLINE MESSAGES','yith-live-chat');?></h2>
                 </div>
                 <p>
-                    Put your instant chat service is not active 24 hours a day, but you would like your users to be able
-                    to contact you anyway, even though the chat console is “closed”. You can: <b>access section “offline
-                    messages” to read all messages sent to you</b>, set an email address to which offline messages are sent
-                    and customise content of the replying email sent to users.
+                    <?php echo sprintf( __( 'Put your instant chat service is not active 24 hours a day, but you would like your users to be able to contact you anyway, even though the chat console is "closed2. You can: %1$saccess section "offline  messages" to read all messages sent to you%2$s, set an email address to which offline messages are sent and customise content of the replying email sent to users.','yith-live-chat' ),'<b>','</b>' );?>
+
                 </p>
             </div>
             <div class="col-1">
@@ -255,11 +250,10 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YLC_ASSETS_URL ?>/images/03-icon.png" alt="AUTOPLAY" />
-                    <h2>OFFLINE MESSAGES WHEN ALL OPERATORS ARE BUSY</h2>
+                    <h2><?php _e('OFFLINE MESSAGES WHEN ALL OPERATORS ARE BUSY','yith-live-chat');?></h2>
                 </div>
                 <p>
-                    Because of the maximum number of allowed conversations, set from the plugin option panel, it may be possible that users can't start a conversation because all operators are busy.
-                    Give them the freedom to send you an offline message in any case, activating the related option from the Offline Messages section.
+                    <?php echo sprintf( __( 'Because of the maximum number of allowed conversations, set from the plugin option panel, it may be possible that users can\'t start a conversation because all operators are busy. Give them the freedom to send you an %1$soffline message%2$s in any case, activating the related option from the Offline Messages section.','yith-live-chat' ),'<b>','</b>' );?>
                 </p>
             </div>
         </div>
@@ -269,12 +263,10 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YLC_ASSETS_URL ?>/images/04-icon.png" alt="MAXIMUM NUMBER OF SIMULTANEOUS CONVERSATIONS" />
-                    <h2>MAXIMUM NUMBER OF SIMULTANEOUS CONVERSATIONS</h2>
+                    <h2><?php _e('MAXIMUM NUMBER OF SIMULTANEOUS CONVERSATIONS','yith-live-chat');?></h2>
                 </div>
                 <p>
-                    Do not limit your conversations to two at the same time only. The premium version of the plugin
-                    gives you the possibility to choose the <b>maximum number of users holding a chat conversation at the
-                    same time</b>, so that you decide how much care you want to devote to each of the users contacting you.
+                    <?php echo sprintf( __( 'Do not limit your conversations to two at the same time only. The premium version of the plugin gives you the possibility to choose the %1$smaximum number of users holding a chat conversation at the same time%2$s, so that you decide how much care you want to devote to each of the users contacting you.','yith-live-chat' ),'<b>','</b>' );?>
                 </p>
             </div>
             <div class="col-1">
@@ -290,14 +282,10 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YLC_ASSETS_URL?>/images/05-icon.png" alt="CONVERSATION COPY" />
-                    <h2>CONVERSATION COPY</h2>
+                    <h2><?php _e('CONVERSATION COPY','yith-live-chat');?></h2>
                 </div>
                 <p>
-                    At the end of the chat session, logged users in your site can ask for a <b>copy of the chat
-                    conversation</b>.
-                    Customise the content of the email in which the chat copy is sent and set possible email addresses
-                    to which this has to be forwarded in case you wanted, for instance, to supervise your operators’
-                    behaviour.
+                    <?php echo sprintf( __( ' At the end of the chat session, logged users in your site can ask for a %1$scopy of the chat conversation%2$s. Customise the content of the email in which the chat copy is sent and set possible email addresses to which this has to be forwarded in case you wanted, for instance, to supervise your operators’ behaviour.','yith-live-chat' ),'<b>','</b>' );?>
                 </p>
             </div>
         </div>
@@ -307,12 +295,10 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YLC_ASSETS_URL ?>/images/06-icon.png" alt="icon 07" />
-                    <h2>CHAT EVALUATION</h2>
+                    <h2><?php _e('CHAT EVALUATION','yith-live-chat');?></h2>
                 </div>
                 <p>
-                    Make your users able to tell you if the chat and support services have satisfied them or not, once
-                    chat conversation has been closed. They will be able to send their <b>feedback</b> with a simple click and
-                    give you, as admin, the possibility to monitor chat operators’ behaviour.
+                    <?php echo sprintf( __( 'Make your users able to tell you if the chat and support services have satisfied them or not, once chat conversation has been closed. They will be able to send their %1$sfeedback%2$s with a simple click and give you, as admin, the possibility to monitor chat operators’ behaviour.','yith-live-chat' ),'<b>','</b>' );?>
                 </p>
             </div>
             <div class="col-1">
@@ -328,12 +314,10 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YLC_ASSETS_URL?>/images/07-icon.png" alt="CONVERSATION COPY" />
-                    <h2>CUSTOM INTERFACE </h2>
+                    <h2><?php _e('CUSTOM INTERFACE','yith-live-chat');?> </h2>
                 </div>
                 <p>
-                    Make the colours of your chat console as fitted as possible to those of your theme, so that such an
-                    external service can be perfectly integrated with all that surrounds it. You’ll find an <b>option panel</b>
-                    available for you to edit login form and chat window, size and position.
+                    <?php echo sprintf( __( 'Make the colours of your chat console as fitted as possible to those of your theme, so that such an external service can be perfectly integrated with all that surrounds it. You\'ll find an %1$soption panel%2$s available for you to edit login form and chat window, size and position.','yith-live-chat' ),'<b>','</b>' );?>
                 </p>
             </div>
         </div>
@@ -343,10 +327,10 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YLC_ASSETS_URL ?>/images/08-icon.png" alt="CONVERSATION DURATION" />
-                    <h2>CONVERSATION DURATION</h2>
+                    <h2><?php _e('CONVERSATION DURATION','yith-live-chat');?></h2>
                 </div>
                 <p>
-                    The premium version of the plugin allows you to monitor the duration of each chat conversation in real time and to recover total duration also in saved chats.
+                    <?php _e('The premium version of the plugin allows you to monitor the duration of each chat conversation in real time and to recover total duration also in saved chats.','yith-live-chat');?>
                 </p>
             </div>
             <div class="col-1">
@@ -362,12 +346,10 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YLC_ASSETS_URL?>/images/09-icon.png" alt="MOBILE READY" />
-                    <h2>MOBILE READY</h2>
+                    <h2><?php _e( 'MOBILE READY','yith-live-chat');?></h2>
                 </div>
                 <p>
-                    In an era in which web navigation is not limited to desktop surfing only, it is important that your
-                    site and all services in it are accessible from <b>any device</b>. YITH Live Chat Premium has been created
-                    to fit this need, so that anyone can use your chat, regardless of the device they are using.
+                    <?php echo sprintf( __( 'In an era in which web navigation is not limited to desktop surfing only, it is important that your site and all services in it are accessible from %1$sany device%2$s. YITH Live Chat Premium has been created to fit this need, so that anyone can use your chat, regardless of the device they are using.','yith-live-chat' ),'<b>','</b>' );?>
                 </p>
             </div>
         </div>
@@ -377,10 +359,10 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YLC_ASSETS_URL ?>/images/10-icon.png" alt="CUSTOM AGENT PROFILE" />
-                    <h2>CUSTOM AGENT PROFILE</h2>
+                    <h2><?php _e('CUSTOM AGENT PROFILE','yith-live-chat');?></h2>
                 </div>
                 <p>
-                    Customise the profile of the Live Chat operator. Set priviledges that the chat operator user has once logged into the site and customise the default avatar.
+                    <?php _e('Customise the profile of the Live Chat operator. Set priviledges that the chat operator user has once logged into the site and customise the default avatar.','yith-live-chat');?>
                 </p>
             </div>
             <div class="col-1">
@@ -388,16 +370,47 @@
             </div>
         </div>
     </div>
+    <div class="section section-even clear" style="background: url(<?php echo YLC_ASSETS_URL ?>/images/11-bg.png) no-repeat #fff; background-position: 85% 100%">
+        <div class="landing-container">
+            <div class="col-1">
+                <img src="<?php echo YLC_ASSETS_URL ?>/images/11.png" alt="" />
+            </div>
+            <div class="col-2">
+                <div class="section-title">
+                    <img src="<?php echo YLC_ASSETS_URL?>/images/11-icon.png" alt="" />
+                    <h2><?php _e( 'COMPATIBILITY WITH MULTI VENDOR','yith-live-chat');?></h2>
+                </div>
+                <p>
+                    <?php echo sprintf( __( 'All features of %1$sYITH Live Chat%2$s and %1$sYITH WooCommerce Multi Vendor%2$s in one fell swoop, in order to activate the chat in the page of every vendor of the shop. In this way, your users will be free to contact immediately the vendors of the site to solve their doubts.','yith-live-chat' ),'<b>','</b>' );?>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="section section-odd clear" style="background: url(<?php echo YLC_ASSETS_URL ?>/images/12-bg.png) no-repeat #f1f1f1; background-position: 15% 100%">
+        <div class="landing-container">
+            <div class="col-2">
+                <div class="section-title">
+                    <img src="<?php echo YLC_ASSETS_URL ?>/images/12-icon.png" alt="CHAT AVAILABLE ONLY WHEN OPERATORS ARE ONLINE" />
+                    <h2><?php _e('CHAT AVAILABLE ONLY WHEN OPERATORS ARE ONLINE','yith-live-chat');?></h2>
+                </div>
+                <p>
+                    <?php _e('A chat available to users only when operators are ready to answer. Otherwise, the %1$scontact form%2$s to send messages will be removed from the page, and users won\'t be able to send any request.','yith-live-chat');?>
+                </p>
+            </div>
+            <div class="col-1">
+                <img src="<?php echo YLC_ASSETS_URL ?>/images/12.png" alt="CHAT AVAILABLE ONLY WHEN OPERATORS ARE ONLINE" />
+            </div>
+        </div>
+    </div>
     <div class="section section-cta section-odd">
         <div class="landing-container">
             <div class="premium-cta">
                 <p>
-                    Upgrade to the <span class="highlight">premium version</span>
-                    of <span class="highlight">YITH Live Chat</span> to benefit from all features!
+                    <?php echo sprintf( __('Upgrade to %1$spremium version%2$s of %1$sYITH Live Chat%2$s to benefit from all features!','yith-live-chat' ),'<span class="highlight">','</span>' );?>
                 </p>
                 <a href="<?php echo $this->get_premium_landing_uri() ?>" target="_blank" class="premium-cta-button button btn">
-                    <span class="highlight">UPGRADE</span>
-                    <span>to the premium version</span>
+                    <span class="highlight"><?php _e('UPGRADE','yith-live-chat' ); ?></span>
+                    <span><?php _e('to the premium version','yith-live-chat' ); ?></span>
                 </a>
             </div>
         </div>

@@ -100,7 +100,7 @@ if ( ! class_exists( 'YITH_WCWTL_Meta' ) ) {
 				return;
 			}
 
-			$title = __( 'Waiting list', 'yith-wcwtl' );
+			$title = __( 'Waiting list', 'yith-woocommerce-waiting-list' );
 			// get product
 			$product = wc_get_product( $post->ID );
 
@@ -118,7 +118,7 @@ if ( ! class_exists( 'YITH_WCWTL_Meta' ) ) {
 						continue;
 					}
 
-					$title = sprintf( __( 'Waiting list for the variation: #%s', 'yith-wcwtl' ), $variation['variation_id'] );
+					$title = sprintf( __( 'Waiting list for the variation: #%s', 'yith-woocommerce-waiting-list' ), $variation['variation_id'] );
 					$this->add_meta( $variation['variation_id'], $title );
 				}
 			}
@@ -165,11 +165,11 @@ if ( ! class_exists( 'YITH_WCWTL_Meta' ) ) {
 
 			if ( ! empty( $users ) ) {
 				echo '<p class="users-on-waitlist">';
-				echo sprintf( _n( 'There is %s user in the waiting list for this product', 'There are %s users in the waiting list for this product', count( $users ), 'yith-wcwtl' ), count( $users ) );
+				echo sprintf( _n( 'There is %s user in the waiting list for this product', 'There are %s users in the waiting list for this product', count( $users ), 'yith-woocommerce-waiting-list' ), count( $users ) );
 				echo '</p>';
 			}
 			else {
-				echo __( 'There are no users in this waiting list', 'yith-wcwtl' );
+				echo __( 'There are no users in this waiting list', 'yith-woocommerce-waiting-list' );
 			}
 
 			do_action( 'yith-wcwtl-before-send-button', $users, $id );
@@ -190,7 +190,7 @@ if ( ! class_exists( 'YITH_WCWTL_Meta' ) ) {
 		 */
 		public function button_to_send_mail( $id ) {
 			?>
-			<input type="button" class="button yith-waitlist-send-mail" data-product_id="<?php echo $id ?>" value="<?php echo apply_filters( 'yith_wcwtl_button_send_mail_label', __( 'Send the email to the users', 'yith-wcwtl' ) ); ?>" />
+			<input type="button" class="button yith-waitlist-send-mail" data-product_id="<?php echo $id ?>" value="<?php echo apply_filters( 'yith_wcwtl_button_send_mail_label', __( 'Send the email to the users', 'yith-woocommerce-waiting-list' ) ); ?>" />
 			<?php
 		}
 
@@ -221,13 +221,13 @@ if ( ! class_exists( 'YITH_WCWTL_Meta' ) ) {
 
 			// check response
 			if( $response ) {
-				$msg    = apply_filters( 'yith_wcwtl_send_mail_success', __( 'Email sent correctly.', 'yith-wcwtl' ) );
+				$msg    = apply_filters( 'yith_wcwtl_send_mail_success', __( 'Email sent correctly.', 'yith-woocommerce-waiting-list' ) );
 				$send   = true;
 				// empty waitlist
 				yith_waitlist_empty( $product_id );
 			}
 			else {
-				$msg    = apply_filters( 'yith_wcwtl_send_mail_error', __( 'An error has occurred, please try again.', 'yith-wcwtl' ) );
+				$msg    = apply_filters( 'yith_wcwtl_send_mail_error', __( 'An error has occurred, please try again.', 'yith-woocommerce-waiting-list' ) );
 				$send   = false;
 			}
 

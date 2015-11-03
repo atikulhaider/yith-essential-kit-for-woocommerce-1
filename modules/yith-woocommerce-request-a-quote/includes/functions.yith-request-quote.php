@@ -356,7 +356,7 @@ function yith_ywraq_get_contact_forms(){
  */
 function yith_ywraq_wpcf7_get_contact_forms(){
     if( ! function_exists( 'wpcf7_contact_form' ) ){
-        return array( '' => __( 'Plugin not activated or not installed', 'ywctm' ) );
+        return array( '' => __( 'Plugin not activated or not installed', 'ywraq' ) );
     }
 
     $posts = WPCF7_ContactForm::find();
@@ -365,7 +365,7 @@ function yith_ywraq_wpcf7_get_contact_forms(){
         $array[ $post->id() ] = $post->title();
     }
 
-    if( $array == array() ) return array( '' => __( 'No contact form found', 'ywctm' ) );
+    if( $array == array() ) return array( '' => __( 'No contact form found', 'ywraq' ) );
 
     return $array;
 }

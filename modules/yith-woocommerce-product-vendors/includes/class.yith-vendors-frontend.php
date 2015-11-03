@@ -177,7 +177,7 @@ if ( ! class_exists( 'YITH_Vendors_Frontend' ) ) {
                     array(
                         'taxonomy' => YITH_Vendors()->get_taxonomy_name(),
                         'field'    => 'id',
-                        'terms'    => $to_exclude,
+                        'terms'    => apply_filters( 'yith_wcmv_to_exclude_terms_in_loop', $to_exclude ),
                         'operator' => 'NOT IN' //use NOT IN in query args to include the super admin products
                     )
                 );

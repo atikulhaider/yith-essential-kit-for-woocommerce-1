@@ -433,13 +433,13 @@ if (!class_exists('YITH_WooCommerce_Order_Tracking')) {
             }
 
             $admin_tabs = array(
-                'general' => __('General', 'ywot'),
+                'general' => __('General', 'yith-woocommerce-order-tracking'),
             );
 
             if (defined('YITH_YWOT_PREMIUM')) {
-                $admin_tabs['carriers'] = __('Carriers', 'ywot');
+                $admin_tabs['carriers'] = __('Carriers', 'yith-woocommerce-order-tracking');
             } else {
-                $admin_tabs['premium-landing'] = __('Premium Version', 'ywot');
+                $admin_tabs['premium-landing'] = __('Premium Version', 'yith-woocommerce-order-tracking');
             }
 
             $args = array(
@@ -499,10 +499,10 @@ if (!class_exists('YITH_WooCommerce_Order_Tracking')) {
         public function action_links($links)
         {
 
-            $links[] = '<a href="' . admin_url("admin.php?page={$this->_panel_page}") . '">' . __('Settings', 'ywot') . '</a>';
+            $links[] = '<a href="' . admin_url("admin.php?page={$this->_panel_page}") . '">' . __('Settings', 'yith-woocommerce-order-tracking') . '</a>';
 
             if (defined('YITH_YWOT_FREE_INIT')) {
-                $links[] = '<a href="' . $this->get_premium_landing_uri() . '" target="_blank">' . __('Premium Version', 'ywot') . '</a>';
+                $links[] = '<a href="' . $this->get_premium_landing_uri() . '" target="_blank">' . __('Premium Version', 'yith-woocommerce-order-tracking') . '</a>';
             }
 
             return $links;
@@ -528,7 +528,7 @@ if (!class_exists('YITH_WooCommerce_Order_Tracking')) {
             if ((defined('YITH_YWOT_INIT') && (YITH_YWOT_INIT == $plugin_file)) ||
                 (defined('YITH_YWOT_FREE_INIT') && (YITH_YWOT_FREE_INIT == $plugin_file))
             ) {
-                $plugin_meta[] = '<a href="' . $this->_official_documentation . '" target="_blank">' . __('Plugin Documentation', 'ywot') . '</a>';
+                $plugin_meta[] = '<a href="' . $this->_official_documentation . '" target="_blank">' . __('Plugin Documentation', 'yith-woocommerce-order-tracking') . '</a>';
             }
 
             return $plugin_meta;
@@ -542,16 +542,16 @@ if (!class_exists('YITH_WooCommerce_Order_Tracking')) {
 
             $premium_message = defined('YITH_YWOT_PREMIUM')
                 ? ''
-                : __('YITH WooCommerce Order Tracking is available in an outstanding PREMIUM version with many new options, discover it now.', 'ywot') .
-                ' <a href="' . $this->get_premium_landing_uri() . '">' . __('Premium version', 'ywot') . '</a>';
+                : __('YITH WooCommerce Order Tracking is available in an outstanding PREMIUM version with many new options, discover it now.', 'yith-woocommerce-order-tracking') .
+                ' <a href="' . $this->get_premium_landing_uri() . '">' . __('Premium version', 'yith-woocommerce-order-tracking') . '</a>';
 
             $args[] = array(
                 'screen_id' => 'plugins',
                 'pointer_id' => 'yith_woocommerce_order_tracking',
                 'target' => '#toplevel_page_yit_plugin_panel',
                 'content' => sprintf('<h3> %s </h3> <p> %s </p>',
-                    __('YITH WooCommerce Order Tracking', 'ywot'),
-                    __('In YIT Plugins tab you can find YITH WooCommerce Advanced Reviews options. From this menu you can access all settings of YITH plugins activated.', 'ywot') . '<br>' . $premium_message
+                    __('YITH WooCommerce Order Tracking', 'yith-woocommerce-order-tracking'),
+                    __('In YIT Plugins tab you can find YITH WooCommerce Advanced Reviews options. From this menu you can access all settings of YITH plugins activated.', 'yith-woocommerce-order-tracking') . '<br>' . $premium_message
                 ),
                 'position' => array('edge' => 'left', 'align' => 'center'),
                 'init' => defined('YITH_YWOT_PREMIUM') ? YITH_YWOT_INIT : YITH_YWOT_FREE_INIT
@@ -588,7 +588,7 @@ if (!class_exists('YITH_WooCommerce_Order_Tracking')) {
         function add_order_tracking_metabox()
         {
 
-            add_meta_box('yith-order-tracking-information', __('Order tracking', 'ywot'), array(
+            add_meta_box('yith-order-tracking-information', __('Order tracking', 'yith-woocommerce-order-tracking'), array(
                 $this,
                 'show_order_tracking_metabox'
             ), 'shop_order', 'side', 'high');
@@ -615,33 +615,33 @@ if (!class_exists('YITH_WooCommerce_Order_Tracking')) {
             ?>
             <div class="track-information">
                 <p>
-                    <label for="ywot_tracking_code"> <?php _e('Tracking code:', 'ywot'); ?></label>
+                    <label for="ywot_tracking_code"> <?php _e('Tracking code:', 'yith-woocommerce-order-tracking'); ?></label>
                     <br/>
                     <input style="width: 100%" type="text" name="ywot_tracking_code" id="ywot_tracking_code"
-                           placeholder="<?php _e('Enter tracking code', 'ywot'); ?>"
+                           placeholder="<?php _e('Enter tracking code', 'yith-woocommerce-order-tracking'); ?>"
                            value="<?php echo $order_tracking_code; ?>"/>
                 </p>
 
                 <p>
-                    <label for="ywot_carrier_name"> <?php _e('Carrier name:', 'ywot'); ?></label>
+                    <label for="ywot_carrier_name"> <?php _e('Carrier name:', 'yith-woocommerce-order-tracking'); ?></label>
                     <br/>
                     <input style="width: 100%" type="text" id="ywot_carrier_name" name="ywot_carrier_name"
-                           placeholder="<?php _e('Enter carrier name', 'ywot'); ?>"
+                           placeholder="<?php _e('Enter carrier name', 'yith-woocommerce-order-tracking'); ?>"
                            value="<?php echo $order_carrier_name; ?>"/>
                 </p>
 
                 <p class="form-field form-field-wide">
-                    <label for="ywot_pick_up_date"> <?php _e('Pickup date:', 'ywot'); ?></label>
+                    <label for="ywot_pick_up_date"> <?php _e('Pickup date:', 'yith-woocommerce-order-tracking'); ?></label>
                     <br/>
                     <input style="width: 100%" type="text" class="date-picker-field" id="ywot_pick_up_date"
-                           name="ywot_pick_up_date" placeholder="<?php _e('Enter pick up date', 'ywot'); ?>"
+                           name="ywot_pick_up_date" placeholder="<?php _e('Enter pick up date', 'yith-woocommerce-order-tracking'); ?>"
                            value="<?php echo $order_pick_up_date; ?>"
                            pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"/>
                 </p>
 
                 <p>
                     <label><input type="checkbox"
-                                  name="ywot_picked_up" <?php echo $order_picked_up; ?> ><?php _e('Order picked up', 'ywot'); ?>
+                                  name="ywot_picked_up" <?php echo $order_picked_up; ?> ><?php _e('Order picked up', 'yith-woocommerce-order-tracking'); ?>
                     </label>
                 </p>
             </div>

@@ -15,14 +15,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 $tax_settings = array(
 	'tax' => array(
 		array(
-			'name' => __( 'Tax Settings', 'ywev' ),
+			'name' => __( 'Tax Settings', 'yith-woocommerce-eu-vat' ),
 			'type' => 'title',
 			'desc' => '',
 			'id'   => 'ywev_tax_settings'
 		),
 		array(
-			'name'    => __( 'EU VAT taxes', 'ywev' ),
-			'desc'    => __( 'Select the taxes that have to be registered at the checkout to respect the EU VAT law terms.', 'ywev' ),
+			'name'    => __( 'EU VAT taxes', 'yith-woocommerce-eu-vat' ),
+			'desc'    => __( 'Select the taxes that have to be registered at the checkout to respect the EU VAT law terms.', 'yith-woocommerce-eu-vat' ),
 			'id'      => 'ywev_eu_vat_tax_list',
 			'std'     => 'no',
 			'default' => 'no',
@@ -31,13 +31,13 @@ $tax_settings = array(
 		array( 'type' => 'sectionend', 'id' => 'ywev_tax_settings_end' ),
 
 		array(
-			'name' => __( 'Tax Report', 'ywev' ),
+			'name' => __( 'Tax Report', 'yith-woocommerce-eu-vat' ),
 			'type' => 'title',
 			'desc' => '',
 			'id'   => 'ywev_tax_report'
 		),
 		array(
-			'name'    => __( 'EU VAT taxes report', 'ywev' ),
+			'name'    => __( 'EU VAT taxes report', 'yith-woocommerce-eu-vat' ),
 			'desc'    => '',
 			'id'      => 'ywev_eu_vat_tax_report',
 			'std'     => 'no',

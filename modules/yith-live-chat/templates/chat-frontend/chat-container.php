@@ -1,9 +1,3 @@
-<?php
-
-$plugin_opts = ylc_get_plugin_options();
-
-?>
-
 <div id="YLC"></div>
 <script type="text/javascript">
 
@@ -11,17 +5,15 @@ $plugin_opts = ylc_get_plugin_options();
 
         $(document).ready(function () {
 
-            $( '#YLC' ).ylc(
-                {
-                    <?php ylc_print_plugin_options( $plugin_opts ); ?>
-                },
-                {
-                    <?php apply_filters( 'ylc_js_premium', '') ?>
-                }
-            );
+            var options = {<?php ylc_get_plugin_options(); ?>};
+            var premium = {};
+
+            <?php apply_filters( 'ylc_js_premium', '' ); ?>
+
+            $('#YLC').ylc(options, premium);
 
         });
 
-    } (window.jQuery || window.Zepto));
+    }(window.jQuery || window.Zepto));
 
 </script>

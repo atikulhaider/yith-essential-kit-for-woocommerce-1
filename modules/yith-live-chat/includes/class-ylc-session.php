@@ -34,6 +34,12 @@ class YLC_Session {
      */
     public function __construct() {
 
+        if ( !session_id() ) {
+
+            add_action( 'init', 'session_start', - 2 );
+
+        }
+
         add_action( 'wp_login', array( $this, 'destroy_session' ) );
         add_action( 'wp_logout', array( $this, 'logout' ) );
         add_action( 'init', array( $this, 'init' ), - 1 );
@@ -41,7 +47,7 @@ class YLC_Session {
     }
 
     /**
-     * Set the instance of WP_Session
+     * Set the instance of YLC_Session
      *
      * @since   1.0.0
      * @return  array
@@ -109,13 +115,11 @@ class YLC_Session {
      */
     public function logout() {
 
-        global $yith_livechat;
-
         $this->destroy_session();
 
         $sess_user = array( 'user_disconnected' => true ); // We should know user disconnected by clicking logout!
 
-        $yith_livechat->session->set( 'user_data', $sess_user ); // Update user in session
+        YITH_Live_Chat()->session->set( 'user_data', $sess_user ); // Update user in session
 
     }
 
@@ -128,16 +132,13 @@ class YLC_Session {
      */
     public function destroy_session() {
 
-        global $yith_livechat;
-
-        $yith_livechat->session->set( 'user_data', NULL );
+        YITH_Live_Chat()->session->set( 'user_data', NULL );
 
         if ( isset( $_SESSION['yith_live_chat'] ) ) {
 
             unset( $_SESSION['yith_live_chat'] );
 
         }
-
     }
 
 }

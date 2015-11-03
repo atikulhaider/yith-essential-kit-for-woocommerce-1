@@ -1,5 +1,9 @@
 <style>
     .section{
+        overflow-x: hidden;
+    }
+
+    .section{
         margin-left: -20px;
         margin-right: -20px;
         font-family: "Raleway",san-serif;
@@ -202,28 +206,27 @@
         <div class="landing-container">
             <div class="premium-cta">
                 <p>
-                    Upgrade to the <span class="highlight">premium version</span>
-                    of <span class="highlight">YITH WooCommerce Quick View</span> to benefit from all features!
+                    <?php echo sprintf( __('Upgrade to %1$spremium version%2$s of %1$sYITH WooCommerce Quick View%2$s to benefit from all features!','ywqa'),'<span class="highlight">','</span>' );?>
                 </p>
                 <a href="<?php echo YITH_WCQV_Admin()->get_premium_landing_uri() ?>" target="_blank" class="premium-cta-button button btn">
-                    <span class="highlight">UPGRADE</span>
-                    <span>to the premium version</span>
+                    <span class="highlight"><?php _e('UPGRADE','yith-woocommerce-quick-view');?></span>
+                    <span><?php _e('to the premium version','yith-woocommerce-quick-view');?></span>
                 </a>
             </div>
         </div>
     </div>
     <div class="section section-even clear" style="background: url(<?php echo YITH_WCQV_ASSETS_URL ?>/image/01-bg.png) no-repeat #fff; background-position: 85% 75%">
-        <h1>Premium Features</h1>
+        <h1><?php _e('Premium Features','yith-woocommerce-quick-view');?></h1>
         <div class="landing-container">
             <div class="col-1">
-                <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/01.png" alt="Review Title" />
+                <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/01.png" alt="<?php _e('Button type','yith-woocommerce-quick-view') ?>" />
             </div>
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/01-icon.png" alt="Review Title"/>
-                    <h2>BUTTON TYPE</h2>
+                    <h2><?php _e('BUTTON TYPE','yith-woocommerce-quick-view');?></h2>
                 </div>
-                <p>Choose between the button or a custom icon to access the Quick View: you can choose to place it after the "Add To Cart" button or inside the thumbnail of the product.</p>
+                <p><?php echo sprintf( __('Choose between the button or a custom icon to access the %1$sQuick View%2$s: you can choose to place it after the "Add To Cart" button or inside the thumbnail of the product.','yith-woocommerce-quick-view'),'<b>','</b>' );?></p>
             </div>
         </div>
     </div>
@@ -231,27 +234,27 @@
         <div class="landing-container">
             <div class="col-2">
                 <div class="section-title">
-                    <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/02-icon.png" alt="Attachment List" />
-                    <h2>Product Navigation </h2>
+                    <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/02-icon.png" alt="<?php _e('Product Navigation','yith-woocommerce-quick-view');?>" />
+                    <h2><?php _e('Product Navigation','yith-woocommerce-quick-view'); ?> </h2>
                 </div>
-                <p>The navigation in the "Quick View" allows browsing between the products within the same category. The navigation arrows show on mousehover the image of the next/previous product.</p>
+                <p><?php echo sprintf( __('The navigation in the "Quick View" allows browsing among %1$sproducts%2$s displayed in it. The navigation arrows show on mousehover the image of the next/previous product.','yith-woocommerce-quick-view'),'<b>','</b>' );?></p>
             </div>
             <div class="col-1">
-                <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/02.png" alt="Attachment List" />
+                <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/02.png" alt="<?php _e('Product Navigation','yith-woocommerce-quick-view');?>" />
             </div>
         </div>
     </div>
     <div class="section section-even clear" style="background: url(<?php echo YITH_WCQV_ASSETS_URL ?>/image/03-bg.png) no-repeat #fff; background-position: 85% 100%">
         <div class="landing-container">
             <div class="col-1">
-                <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/03.png" alt="Vote the review" />
+                <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/03.png" alt="Icon 03" />
             </div>
             <div class="col-2">
                 <div class="section-title">
-                    <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/03-icon.png" alt="Vote the review" />
-                    <h2>Content to display</h2>
+                    <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/03-icon.png" alt="<?php _e('Content to display','yith-woocommerce-quick-view') ?>" />
+                    <h2><?php _e('Content to display','yith-woocommerce-quick-view') ?></h2>
                 </div>
-                <p>The display of the product information in the "Quick View" are managed by administrors who can decide whether to show everything or only a part of it.</p>
+                <p><?php echo sprintf( __('The display of the product information in the "Quick View" are managed by %1$sadministrators%2$s who can decide whether to show everything or only a part of it.','yith-woocommerce-quick-view'),'<b>','</b>' );?></p>
             </div>
         </div>
     </div>
@@ -259,27 +262,27 @@
         <div class="landing-container">
             <div class="col-2">
                 <div class="section-title">
-                    <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/07-icon.png" alt="Attachment List" />
-                    <h2>Quick View Type </h2>
+                    <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/07-icon.png" alt="icon 04" />
+                    <h2><?php _e('Quick View Type','yith-woocommerce-quick-view');?> </h2>
                 </div>
-                <p>Quick view has two different displaying modes: the first one opens it as a modal window, the other one opens it in the page itself with a cascading effect above content page.</p>
+                <p><?php echo sprintf( __('Quick view has two different displaying modes: the first one opens it as a %1$smodal window%2$s, the other one opens it in the page itself with a %1$scascading effect%2$s above content page.','yith-woocommerce-quick-view'),'<b>','</b>' );?></p>
             </div>
             <div class="col-1">
-                <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/07.png" alt="Attachment List" />
+                <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/07.png" alt="<?php _e('Quick view type','yith-woocommerce-quick-view');?>" />
             </div>
         </div>
     </div>
     <div class="section section-even clear" style="background: url(<?php echo YITH_WCQV_ASSETS_URL ?>/image/08-bg.png) no-repeat #fff; background-position: 85% 100%">
         <div class="landing-container">
             <div class="col-1">
-                <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/08.png" alt="Vote the review" />
+                <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/08.png" alt="View details" />
             </div>
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/08-icon.png" alt="Vote the review" />
-                    <h2>“View details” button</h2>
+                    <h2><?php _e('"View details" button','yith-woocommerce-quick-view');?></h2>
                 </div>
-                <p>An additional button that allows users to access product detail page directly from quick view window just with a click of the mouse.</p>
+                <p><?php echo sprintf( __('An additional button that allows users to access product detail page directly from quick view window just with a click of the mouse.','yith-woocommerce-quick-view'),'<b>','</b>' );?></p>
             </div>
         </div>
     </div>
@@ -288,26 +291,26 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/04-icon.png" alt="Number" />
-                    <h2>Type of product images</h2>
+                    <h2><?php _e('Type of product images','yith-woocommerce-quick-view');?></h2>
                 </div>
-                <p>Each product can have more than one image: choose whether to hide or show them with the slider effect or in the classic WooCommerce display.</p>
+                <p><?php echo sprintf( __('Each product can have more than one image: choose whether to hide or show them with the %1$sslider%2$s effect or in the classic %1$sWooCommerce%2$s display.','yith-woocommerce-quick-view'),'<b>','</b>' );?></p>
             </div>
             <div class="col-1">
-                <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/04.png" alt="Number" />
+                <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/04.png" alt="Icon 04" />
             </div>
         </div>
     </div>
     <div class="section section-even clear" style="background: url(<?php echo YITH_WCQV_ASSETS_URL ?>/image/05-bg.png) no-repeat #fff; background-position: 85% 100%">
         <div class="landing-container">
             <div class="col-1">
-                <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/05.png" alt="Filter by rating" />
+                <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/05.png" alt="Share" />
             </div>
             <div class="col-2">
                 <div class="section-title">
-                    <img src="<?php echo YITH_WCQV_ASSETS_URL?>/image/05-icon.png" alt="Filter by rating" />
-                    <h2>SHARE</h2>
+                    <img src="<?php echo YITH_WCQV_ASSETS_URL?>/image/05-icon.png" alt="icon 05" />
+                    <h2><?php _e('SHARE','yith-woocommerce-quick-view');?></h2>
                 </div>
-                <p>Quick View is also social-friendly! Activating this option, you will be able to share the Quick View on Facebook, Twitter, Pinterest, Google+, or sending an email.</p>
+                <p><?php echo sprintf( __('%1$sQuick View is also social-friendly!%2$s Activating this option, you will be able to share the Quick View on Facebook, Twitter, Pinterest, Google+, or sending an email.','yith-woocommerce-quick-view'),'<b>','</b>' );?></p>
             </div>
         </div>
     </div>
@@ -315,13 +318,41 @@
         <div class="landing-container">
             <div class="col-2">
                 <div class="section-title">
-                    <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/06-icon.png" alt="Number" />
-                    <h2>Style Options</h2>
+                    <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/06-icon.png" alt="Icon 06" />
+                    <h2><?php _e('Style Options','yith-woocommerce-quick-view');?></h2>
                 </div>
-                <p>A rich option panel to change the colors of the "Quick View" button and of everything that is within the modal window generated. </p>
+                <p><?php echo sprintf( __('A rich option panel to change the colors of the %1$s"Quick View"%2$s button and of everything that is within the modal window generated.','yith-woocommerce-quick-view'),'<b>','</b>' );?></p>
             </div>
             <div class="col-1">
-                <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/06.png" alt="Number" />
+                <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/06.png" alt="<?php _e('Style Options','yith-woocommerce-quick-view') ?>" />
+            </div>
+        </div>
+    </div>
+    <div class="section section-even clear" style="background: url(<?php echo YITH_WCQV_ASSETS_URL ?>/image/09-bg.png) no-repeat #fff; background-position: 85% 100%">
+        <div class="landing-container">
+            <div class="col-1">
+                <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/09.png" alt="" />
+            </div>
+            <div class="col-2">
+                <div class="section-title">
+                    <img src="<?php echo YITH_WCQV_ASSETS_URL?>/image/09-icon.png" alt="icon 09" />
+                    <h2><?php _e('SHORTCODE','yith-woocommerce-quick-view');?></h2>
+                </div>
+                <p><?php echo sprintf( __('The shortcode of plugin is a $1$srapid$2$s and $1$seasy$2$s solution: you can add a button in any spot of the page to allow your users to see the quick view of a specific product in your store.','yith-woocommerce-quick-view'),'<b>','</b>' );?></p>
+            </div>
+        </div>
+    </div>
+    <div class="section section-odd clear" style="background: url(<?php echo YITH_WCQV_ASSETS_URL ?>/image/09-bg.png) no-repeat #f1f1f1; background-position: 15% 100%">
+        <div class="landing-container">
+            <div class="col-2">
+                <div class="section-title">
+                    <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/09-icon.png" alt="Icon 10" />
+                    <h2><?php _e('Compatibility with other YITH\'s plugins','yith-woocommerce-quick-view');?></h2>
+                </div>
+                <p><?php echo sprintf( __('Thanks to the compatibility with %1$sYITH WooCommerce Zoom Magnifier, YITH WooCommerce Badge Management%2$s and %1$sYITH WooCommerce Wishlist%2$s, you will be free to enrich further the content of your quick view.%3$s Zoom the product image, show a badge, or add the button to open the quick view in all products available in your users\' wishlists. With YITH\'s plugins you make the difference.','yith-woocommerce-quick-view'),'<b>','</b>','<br>' );?></p>
+            </div>
+            <div class="col-1">
+                <img src="<?php echo YITH_WCQV_ASSETS_URL ?>/image/10.png" alt="" />
             </div>
         </div>
     </div>
@@ -329,12 +360,11 @@
         <div class="landing-container">
             <div class="premium-cta">
                 <p>
-                    Upgrade to the <span class="highlight">premium version</span>
-                    of <span class="highlight">YITH WooCommerce Quick View</span> to benefit from all features!
+                    <?php echo sprintf( __('Upgrade to %1$spremium version%2$s of %1$sYITH WooCommerce Quick View%2$s to benefit from all features!','ywqa'),'<span class="highlight">','</span>' );?>
                 </p>
                 <a href="<?php echo YITH_WCQV_Admin()->get_premium_landing_uri() ?>" target="_blank" class="premium-cta-button button btn">
-                    <span class="highlight">UPGRADE</span>
-                    <span>to the premium version</span>
+                    <span class="highlight"><?php _e('UPGRADE','yith-woocommerce-quick-view');?></span>
+                    <span><?php _e('to the premium version','yith-woocommerce-quick-view');?></span>
                 </a>
             </div>
         </div>

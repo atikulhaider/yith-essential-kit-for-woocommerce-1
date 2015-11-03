@@ -86,7 +86,7 @@ if ( ! class_exists( 'YITH_WCWL' ) ) {
                 $this->wcwl_admin_init = YITH_WCWL_Admin_Init();
             }
 
-            add_action( 'after_setup_theme', array( $this, 'plugin_fw_loader' ), 1 );
+            add_action( 'plugins_loaded', array( $this, 'plugin_fw_loader' ), 15 );
 
             // add rewrite rule
             add_action( 'init', array( $this, 'add_rewrite_rules' ), 0 );
@@ -124,8 +124,12 @@ if ( ! class_exists( 'YITH_WCWL' ) ) {
          * @since 2.0.0
          */
         public function plugin_fw_loader() {
-            if ( ! defined( 'YIT' ) || ! defined( 'YIT_CORE_PLUGIN' ) ) {
-                require_once( YITH_WCWL_DIR . '/plugin-fw/yit-plugin.php' );
+            if ( ! defined( 'YIT_CORE_PLUGIN' ) ) {
+                global $plugin_fw_data;
+                if( ! empty( $plugin_fw_data ) ){
+                    $plugin_fw_file = array_shift( $plugin_fw_data );
+                    require_once( $plugin_fw_file );
+                }
             }
         }
 
@@ -379,6 +383,32 @@ if ( ! class_exists( 'YITH_WCWL' ) ) {
                     $sql .= " WHERE l.`is_default` = %d AND l.`user_id` = %d";
                     $query = $wpdb->prepare( $sql, array( 1, get_current_user_id() ) );
                 }
+
+                $results = $wpdb->get_var( $query );
+                return $results;
+            }
+            else {
+                $cookie = yith_getcookie( 'yith_wcwl_products' );
+
+                return count( $cookie );
+            }
+        }
+
+        /**
+         * Count all user items in wishlists
+         *
+         * @return int Count of items added all over wishlist from current user
+         * @since 2.0.12
+         */
+        public function count_all_products() {
+            global $wpdb;
+
+            if( is_user_logged_in() ) {
+                $sql = "SELECT COUNT(*) AS `cnt`
+                        FROM `{$wpdb->yith_wcwl_items}` AS i
+                        WHERE i.`user_id` = %d";
+
+                $query = $wpdb->prepare( $sql, get_current_user_id() );
 
                 $results = $wpdb->get_var( $query );
                 return $results;
@@ -1414,8 +1444,6 @@ if ( ! class_exists( 'YITH_WCWL' ) ) {
 
 		    return get_option( 'yith_wcwl_redirect_cart' ) == 'yes' ? WC()->cart->get_cart_url() : $this->get_wishlist_url();
 	    }
-
-
     }
 }
 

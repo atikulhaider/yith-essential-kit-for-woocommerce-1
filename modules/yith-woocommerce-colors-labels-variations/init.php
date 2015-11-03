@@ -3,7 +3,7 @@
  * Plugin Name: YITH WooCommerce Colors and Labels Variations
  * Plugin URI: http://yithemes.com/
  * Description: YITH WooCommerce Ajax Colors and Labels Variations replaces the dropdown select of your variable products with Colors and Labels
- * Version: 1.2.1
+ * Version: 1.2.2
  * Author: Yithemes
  * Author URI: http://yithemes.com/
  * Text Domain: ywcl
@@ -11,7 +11,7 @@
  *
  * @author Yithemes
  * @package YITH WooCommerce Colors and Labels Variations
- * @version 1.2.1
+ * @version 1.2.2
  */
 /*  Copyright 2013  Your Inspiration Themes  (email : plugins@yithemes.com)
 
@@ -53,18 +53,30 @@ if ( defined( 'YITH_WCCL_PREMIUM' ) ) {
 if ( ! defined( 'YITH_WCCL_FREE_INIT' ) ) {
 	define( 'YITH_WCCL_FREE_INIT', plugin_basename( __FILE__ ) );
 }
+if ( ! defined( 'YITH_WCCL' ) ) {
+	define( 'YITH_WCCL', true );
+}
+if ( ! defined( 'YITH_WCCL_URL' ) ) {
+	define( 'YITH_WCCL_URL', plugin_dir_url( __FILE__ ) );
+}
+if ( ! defined( 'YITH_WCCL_DIR' ) ) {
+	define( 'YITH_WCCL_DIR', plugin_dir_path( __FILE__ ) );
+}
+if ( ! defined( 'YITH_WCCL_VERSION' ) ) {
+	define( 'YITH_WCCL_VERSION', '1.2.2' );
+}
 
+/* Plugin Framework Version Check */
+if( ! function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YITH_WCCL_DIR . 'plugin-fw/init.php' ) ) {
+    require_once( YITH_WCCL_DIR . 'plugin-fw/init.php' );
+}
+yit_maybe_plugin_fw_loader( YITH_WCCL_DIR  );
 
 function yith_wccl_constructor() {
     global $woocommerce;
     if ( ! isset( $woocommerce ) ) return;
 
     load_plugin_textdomain( 'ywcl', false, dirname( plugin_basename( __FILE__ ) ). '/languages/' );
-
-    define( 'YITH_WCCL', true );
-    define( 'YITH_WCCL_URL', plugin_dir_url( __FILE__ ) );
-    define( 'YITH_WCCL_DIR', plugin_dir_path( __FILE__ ) );
-    define( 'YITH_WCCL_VERSION', '1.2.1' );
 
     // Load required classes and functions
     require_once('functions.yith-wccl.php');

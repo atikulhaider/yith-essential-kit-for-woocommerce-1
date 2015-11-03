@@ -1,4 +1,8 @@
 <div class="sidebar-info">
+    <strong>ylc.name_title</strong>
+    ylc.name
+</div>
+<div class="sidebar-info">
     <strong>ylc.ip_title</strong>
     ylc.ip_address
 </div>

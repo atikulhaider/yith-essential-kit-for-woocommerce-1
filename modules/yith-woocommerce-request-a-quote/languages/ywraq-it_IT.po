@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: YIT WooCommerce Request a Quote\n"
-"POT-Creation-Date: 2015-07-31 10:14+0100\n"
-"PO-Revision-Date: 2015-07-31 10:18+0100\n"
+"POT-Creation-Date: 2015-09-01 17:05+0100\n"
+"PO-Revision-Date: 2015-09-01 17:06+0100\n"
 "Last-Translator: \n"
 "Language-Team: Yithemes <plugins@yithemes.com>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.6\n"
+"X-Generator: Poedit 1.8\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e;_n:1,2;__ngettext:1,2;"
 "__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;"
 "_nx_noop:4c,1,2\n"
@@ -238,22 +238,21 @@ msgstr "Scopri le caratteristiche avanzate"
 
 #: ../plugin-options/settings-options.php:26
 msgid ""
-"Upgrade to the PREMIUM VERSION\n"
-"of YITH Woocommerce Request A Quote to benefit from all features!"
+"Upgrade to the PREMIUM VERSION of YITH Woocommerce Request A Quote to "
+"benefit from all features!"
 msgstr ""
-"Aggiorna alla VERSIONE PREMIUM \n"
-"di YITH WooCommerce Request A Quote per beneficiare di tutte le "
-"caratteristiche!"
+"Passa alla VERSIONE PREMIUM di YITH Woocommerce Request A Quote per "
+"usufruire di tutte le funzionalità!"
 
-#: ../plugin-options/settings-options.php:31
+#: ../plugin-options/settings-options.php:30
 msgid "YITH WooCommerce Request A Quote"
 msgstr "YITH WooCommerce Request A Quote"
 
-#: ../plugin-options/settings-options.php:33
+#: ../plugin-options/settings-options.php:32
 msgid "Get Support and Pro Features"
 msgstr "Ottieni il supporto e le caratteristiche premium"
 
-#: ../plugin-options/settings-options.php:34
+#: ../plugin-options/settings-options.php:33
 msgid ""
 "By purchasing the premium version of the plugin, you will benefit from the "
 "advanced features of the product and you will get one year of free update "
@@ -264,39 +263,39 @@ msgstr ""
 "aggiornamenti gratuiti e di supporto attraverso la nostra piattaforma "
 "disponibile 24h/24."
 
-#: ../plugin-options/settings-options.php:44
+#: ../plugin-options/settings-options.php:43
 msgid "Request a Quote - General settings"
 msgstr "Request a Quote - Impostazioni generali"
 
-#: ../plugin-options/settings-options.php:50
+#: ../plugin-options/settings-options.php:49
 msgid "Request Quote Page"
 msgstr "Pagina Richiesta Preventivo"
 
-#: ../plugin-options/settings-options.php:51
+#: ../plugin-options/settings-options.php:50
 msgid "Page contents: [yith_ywraq_request_quote]"
 msgstr "Contenuti pagina: [yith_ywraq_request_quote]"
 
-#: ../plugin-options/settings-options.php:60
+#: ../plugin-options/settings-options.php:59
 msgid "Button type"
 msgstr "Tipo di pulsante"
 
-#: ../plugin-options/settings-options.php:65
+#: ../plugin-options/settings-options.php:64
 msgid "Link"
 msgstr "Collegamento"
 
-#: ../plugin-options/settings-options.php:66
+#: ../plugin-options/settings-options.php:65
 msgid "Button"
 msgstr "Pulsante"
 
-#: ../plugin-options/settings-options.php:72
+#: ../plugin-options/settings-options.php:71
 msgid "Button/Link text"
 msgstr "Testo del pulsante/collegamento"
 
-#: ../plugin-options/settings-options.php:76
+#: ../plugin-options/settings-options.php:75
 msgid "Add to quote"
 msgstr "Aggiungi al preventivo"
 
-#: ../plugin-options/settings-options.php:80
+#: ../plugin-options/settings-options.php:79
 msgid "Hide \"Add to cart\" button"
 msgstr "Nascondi pulsante \"Aggiungi al carrello\""
 
@@ -320,6 +319,14 @@ msgstr "AGGIORNA"
 #: ../templates/admin/premium.php:202 ../templates/admin/premium.php:417
 msgid "to the premium version"
 msgstr "alla versione premium"
+
+#: ../templates/admin/premium.php:208
+msgid "Premium Features"
+msgstr "Funzionalità premium"
+
+#: ../templates/admin/premium.php:216
+msgid "CUSTOMISED BUTTON"
+msgstr "PULSANTE PERSONALIZZATO"
 
 #: ../templates/admin/premium.php:219
 #, php-format
@@ -345,8 +352,8 @@ msgid ""
 "in other pages of your store."
 msgstr ""
 "Dai la possibilità ai tuoi utenti di aggiungere uno o più prodotti alla loro "
-"lista di richiesta preventivo anche in pagine diverse da quella del "
-"dettaglio prodotto. Abilita l'opzione ed il pulsante sarà disponibile "
+"lista di richiesta preventivo anche in %spagine diverse da quella del "
+"dettaglio prodotto%s. Abilita l'opzione ed il pulsante sarà disponibile "
 "insieme al prodotto anche nelle altre pagine del tuo store."
 
 #: ../templates/admin/premium.php:247
@@ -376,7 +383,7 @@ msgid ""
 msgstr ""
 "Una lista dedicata in cui aggiungere i prodotti che vuoi escludere dalle "
 "richieste di preventivo. Abilitando l’opzione apposita i prodotti in "
-"questione non saranno accompagnati dal pulsante 'Aggiungi al preventivo' "
+"questione %snon saranno accompagnati%s dal pulsante 'Aggiungi al preventivo' "
 "solitamente previsto dal plugin."
 
 #: ../templates/admin/premium.php:276
@@ -393,8 +400,8 @@ msgid ""
 msgstr ""
 "Un'opzione apposita ti permette di filtrare gli utenti cui mettere a "
 "disposizione le funzionalità del plugin. Puoi scegliere tra utenti "
-"registrati, tra quelli non registrati, o decidere di non fare distinzione "
-"alcuna."
+"%1$sregistrati%2$s, tra quelli non registrati, o decidere di non fare "
+"distinzione alcuna."
 
 #: ../templates/admin/premium.php:288
 msgid "REQUEST FORM"
@@ -409,7 +416,7 @@ msgid ""
 "external plugins that, once correctly set, work perfectly to improve your "
 "plugin features."
 msgstr ""
-"Il plugin integra un form di default per l'invio delle email che vengono "
+"Il plugin integra un form di default per %sl'invio delle email%s che vengono "
 "generate, ma se non ti senti soddisfatto, divertiti a creare i tuoi moduli "
 "di contatto con \"Contact Form 7\" e \"YIT Contact Form\". Due plugin "
 "esterni che, correttamente configurati, sono perfettamente compatibili con "
@@ -430,7 +437,7 @@ msgid ""
 msgstr ""
 "Ogni richiesta viene vista come un ordine! Proprio così. Quando una di esse "
 "viene inviata dagli utenti, risulta subito disponibile tra la sezione "
-"'Ordini' di WooCommerce. Tanti dettagli per ogni richiesta, dallo stato "
+"'Ordini' di WooCommerce. %sTanti dettagli per ogni richiesta%s, dallo stato "
 "attuale sino al nome dell’utente che l’ha generato. Una ricca pagina "
 "dedicata per avere tutto a disposizione."
 
@@ -447,14 +454,12 @@ msgid ""
 msgstr ""
 "Massima interazione con i tuoi utenti. Loro inviano la loro richiesta e tu "
 "puoi rispondere comodamente inserendo i dati dal tuo pannello di "
-"amministrazione. Pochi passi per inviare la proposta giusta che convinca il "
-"tuo utente ad acquistare."
+"amministrazione. Pochi passi per inviare la proposta giusta che %sconvinca%s "
+"il tuo utente ad acquistare."
 
 #: ../templates/admin/premium.php:337
 msgid "ACCEPT OR REJECT?"
-msgstr ""
-"Questa email è inviata dopo che l'utente ha fatto clic sul pulsante "
-"\"Accetta/Rifiuta\" di una proposta"
+msgstr "Accetti o rifiuti?"
 
 #: ../templates/admin/premium.php:340
 #, php-format
@@ -464,10 +469,10 @@ msgid ""
 "that show professionalism and that your users will certainly appreciate. In "
 "case they accept, they will be redirected to the order checkout."
 msgstr ""
-"L’utente può decidere di accettare o rifiutare la tua proposta direttamente "
-"dall'email che tu invii. Due possibilità comode e professionali che il tuo "
-"utente certamente gradirà. In caso accettasse, sarà rimandato direttamente "
-"al checkout dell’ordine."
+"L’utente può decidere di %1$saccettare%2$s o %1$srifiutare%2$s la tua "
+"proposta direttamente dall'email che tu invii. Due possibilità comode e "
+"professionali che il tuo utente certamente gradirà. In caso accettasse, sarà "
+"rimandato direttamente al checkout dell’ordine."
 
 #: ../templates/admin/premium.php:351
 msgid "A QUOTE WITH EXPIRATION"
@@ -482,8 +487,8 @@ msgid ""
 "while you are writing your undeniable proposal."
 msgstr ""
 "Hai fatto una buona offerta, quasi irrinunciabile, e vuoi mettere fretta al "
-"tuo utente, comunicargli una data limite oltre la quale la proposta non avrà "
-"più validità? Inserisci la data di scadenza direttamente dalla pagina "
+"tuo utente, %scomunicargli una data limite oltre la quale la proposta non "
+"avrà più validità?%s Inserisci la data di scadenza direttamente dalla pagina "
 "dettaglio della richiesta in fase di compilazione della proposta che vuoi "
 "inoltrare."
 
@@ -514,8 +519,8 @@ msgid ""
 "selected and added to the quote request so far."
 msgstr ""
 "Un widget da inserire nelle sidebar del tuo shop e mettere a disposizione "
-"dell'utente. Verrà prodotto un elenco con la lista dei prodotti selezionati "
-"ed inseriti sino a quel momento."
+"dell'utente. Verrà prodotto un %selenco%s con la lista dei prodotti "
+"selezionati ed inseriti sino a quel momento."
 
 #: ../templates/admin/premium.php:401
 msgid "Recent requests in \"My Account\""
@@ -529,8 +534,8 @@ msgid ""
 "for them."
 msgstr ""
 "Tutti gli utenti registrati al tuo store possono verificare l’elenco delle "
-"loro richieste di preventivo ed il loro stato direttamente dalla pagina 'Il "
-"Mio Account'."
+"loro richieste di preventivo ed il loro stato direttamente dalla pagina "
+"%s'Il Mio Account'%s."
 
 #: ../templates/emails/plain/request-quote.php:15
 #, php-format
@@ -638,6 +643,14 @@ msgid ""
 msgstr ""
 "YITH WooCommerce Request A Quote è attivo ma non funzionante. Il plugin "
 "richiede WooCommerce per funzionare correttamente."
+
+#~ msgid ""
+#~ "Upgrade to the PREMIUM VERSION\n"
+#~ "of YITH Woocommerce Request A Quote to benefit from all features!"
+#~ msgstr ""
+#~ "Aggiorna alla VERSIONE PREMIUM \n"
+#~ "di YITH WooCommerce Request A Quote per beneficiare di tutte le "
+#~ "caratteristiche!"
 
 #~ msgid "You must be logged in to access this page"
 #~ msgstr "Devi aver effettuato l'accesso per visualizzare questa pagina"

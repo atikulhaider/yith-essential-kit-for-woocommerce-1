@@ -3,7 +3,7 @@
  * Plugin Name: YITH WooCommerce Compare
  * Plugin URI: https://yithemes.com/
  * Description: YITH WooCommerce Compare allows you to compare more products with WooCommerce plugin, through product attributes.
- * Version: 2.0.4
+ * Version: 2.0.5
  * Author: Yithemes
  * Author URI: http://yithemes.com/
  * Text Domain: yith-woocommerce-compare
@@ -11,7 +11,7 @@
  *
  * @author Yithemes
  * @package YITH WooCommerce Compare
- * @version 2.0.4
+ * @version 2.0.5
  */
 /*  Copyright 2013  Your Inspiration Themes  (email : plugins@yithemes.com)
 
@@ -56,7 +56,7 @@ if ( ! function_exists( 'yith_plugin_registration_hook' ) ) {
 register_activation_hook( __FILE__, 'yith_plugin_registration_hook' );
 
 if ( ! defined( 'YITH_WOOCOMPARE_VERSION' ) ){
-	define( 'YITH_WOOCOMPARE_VERSION', '2.0.4' );
+	define( 'YITH_WOOCOMPARE_VERSION', '2.0.5' );
 }
 if ( ! defined( 'YITH_WOOCOMPARE_FREE_INIT' ) ) {
 	define( 'YITH_WOOCOMPARE_FREE_INIT', plugin_basename( __FILE__ ) );
@@ -83,6 +83,11 @@ if ( ! defined( 'YITH_WOOCOMPARE_ASSETS_URL' ) ) {
 	define( 'YITH_WOOCOMPARE_ASSETS_URL', YITH_WOOCOMPARE_URL . 'assets' );
 }
 
+/* Plugin Framework Version Check */
+if( ! function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YITH_WOOCOMPARE_DIR . 'plugin-fw/init.php' ) ) {
+	require_once( YITH_WOOCOMPARE_DIR . 'plugin-fw/init.php' );
+}
+yit_maybe_plugin_fw_loader( YITH_WOOCOMPARE_DIR  );
 
 function yith_woocompare_constructor() {
 

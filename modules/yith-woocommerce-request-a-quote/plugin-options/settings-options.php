@@ -23,8 +23,7 @@ return array(
             'default' => array(
                 'plugin_name'        => __( 'YITH Woocommerce Request A Quote', 'ywraq' ),
                 'title_first_column' => __( 'Discover the Advanced Features', 'ywraq' ),
-                'description_first_column' => __('Upgrade to the PREMIUM VERSION
-of YITH Woocommerce Request A Quote to benefit from all features!', 'ywraq'),
+                'description_first_column' => __('Upgrade to the PREMIUM VERSION of YITH Woocommerce Request A Quote to benefit from all features!', 'ywraq'),
                 'video' => array(
                     'video_id'           => '123722478',
                     'video_image_url'    =>  YITH_YWRAQ_ASSETS_URL.'/images/request-a-quote.jpg',
@@ -47,7 +46,7 @@ of YITH Woocommerce Request A Quote to benefit from all features!', 'ywraq'),
 		),
 
         'page_id' => array(
-            'name'     => __( 'Request Quote Page', 'yit' ),
+            'name'     => __( 'Request Quote Page', 'ywraq' ),
             'desc'     => __( 'Page contents: [yith_ywraq_request_quote]', 'ywraq' ),
             'id'       => 'ywraq_page_id',
             'type'     => 'single_select_page',

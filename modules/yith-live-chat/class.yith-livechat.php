@@ -1,7 +1,7 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-exit;
+if ( !defined( 'ABSPATH' ) ) {
+    exit;
 } // Exit if accessed directly
 
 /**
@@ -13,14 +13,14 @@ exit;
  * @author  Your Inspiration Themes
  */
 
-if ( ! class_exists( 'YITH_Livechat' ) ) {
+if ( !class_exists( 'YITH_Livechat' ) ) {
 
     class YITH_Livechat {
 
         /**
          * @var string $_options_name The name for the options db entry
          */
-        protected $_options_name = 'live_chat';
+        public $_options_name = 'live_chat';
 
         /**
          * Panel object
@@ -57,6 +57,57 @@ if ( ! class_exists( 'YITH_Livechat' ) ) {
         protected $_console_page = 'yith_live_chat';
 
         /**
+         * @var null User info
+         */
+        var $user = null;
+
+        /**
+         * @var null Session info
+         */
+        var $session = null;
+
+        /**
+         * @var null plugin options
+         */
+        var $options = null;
+
+        /**
+         * @var null default plugin options
+         */
+        var $defaults = null;
+
+        /**
+         * @var true chat visibility
+         */
+        var $show_chat = true;
+
+        /**
+         * Single instance of the class
+         *
+         * @var \YITH_Livechat
+         * @since 1.1.0
+         */
+        protected static $instance;
+
+        /**
+         * Returns single instance of the class
+         *
+         * @return \YITH_Livechat
+         * @since 1.1.0
+         */
+        public static function get_instance() {
+
+            if ( is_null( self::$instance ) ) {
+
+                self::$instance = new self;
+
+            }
+
+            return self::$instance;
+
+        }
+
+        /**
          * Constructor
          *
          * @since   1.0.0
@@ -65,32 +116,56 @@ if ( ! class_exists( 'YITH_Livechat' ) ) {
          */
         public function __construct() {
 
-            add_action( 'after_setup_theme', array( $this, 'plugin_fw_loader' ), 1 );
+            add_action( 'plugins_loaded', array( $this, 'plugin_fw_loader' ), 12 );
             add_filter( 'plugin_action_links_' . plugin_basename( YLC_DIR . '/' . basename( YLC_FILE ) ), array( $this, 'action_links' ) );
             add_filter( 'plugin_row_meta', array( $this, 'plugin_row_meta' ), 10, 4 );
 
-            $this->options = get_option( 'yit_' . $this->_options_name . '_options' );
-
-            add_action( 'admin_menu', array( $this, 'add_menu_page' ), 5 );
-            add_action( 'yith_live_chat_premium', array( $this, 'premium_tab' ) );
-            add_action( 'yit_panel_custom-text', array( $this, 'custom_text_template' ), 10, 3  );
-            add_action( 'admin_enqueue_scripts', array( $this, 'options_panel_scripts' ) );
+            $this->defaults = $this->ylc_get_defaults();
 
             // Include required files
             $this->includes();
 
-            $plugin_enable = isset( $this->options['plugin-enable'] ) ? $this->options['plugin-enable'] : 'no';
+            $this->options = get_option( 'yit_' . $this->_options_name . '_options' );
+
+            if ( is_admin() ) {
+
+                add_action( 'admin_menu', array( $this, 'add_menu_page' ), 5 );
+                add_action( 'yith_live_chat_premium', array( $this, 'premium_tab' ) );
+                add_action( 'yit_panel_custom-text', array( $this, 'custom_text_template' ), 10, 3 );
+                add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
+
+            }
+
+            $plugin_enable      = $this->options['plugin-enable'];
+            $firebase_appurl    = $this->options['firebase-appurl'];
+            $firebase_appsecret = $this->options['firebase-appsecret'];
 
             if ( $plugin_enable == 'yes' ) {
 
-                add_action( 'admin_menu', array( $this, 'add_console_page' ), 5 );
-                add_action( 'admin_enqueue_scripts', array( $this, 'chat_console_scripts' ) );
 
-                $this->session = new YLC_Session();
+                if ( !empty( $firebase_appurl ) && !empty( $firebase_appsecret ) ) {
 
-                add_action( 'admin_notices', array( $this, 'admin_notices' ) );
-                add_action( 'init', array( &$this, 'init' ), 0 );
-                add_filter( 'ylc_js_console' , array( $this, 'console_resize') );
+                    add_action( 'init', array( $this, 'user_init' ), 0 );
+
+                    if ( is_admin() ) {
+
+                        add_action( 'admin_menu', array( $this, 'add_console_page' ), 5 );
+                        add_filter( 'ylc_js_console', array( $this, 'console_resize' ) );
+
+                    }
+                    else {
+
+                        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+                        add_action( 'wp_footer', array( $this, 'show_chat' ) );
+
+                    }
+                }
+                else {
+
+                    add_action( 'admin_notices', array( $this, 'admin_notices' ) );
+
+                }
+
             }
 
         }
@@ -114,6 +189,297 @@ if ( ! class_exists( 'YITH_Livechat' ) ) {
         }
 
         /**
+         * Add styles and scripts for Chat Console or Chat Frontend
+         *
+         * @since   1.1.0
+         * @return  void
+         * @author  Alberto Ruggiero
+         */
+        public function admin_frontend_scripts() {
+
+            //Google Fonts
+            wp_register_style( 'ylc-google-fonts', '//fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,700,600', array(), null );
+            wp_enqueue_style( 'ylc-google-fonts' );
+
+            //Load FontAwesome
+            $this->load_fontawesome();
+
+            // AutoSize Plug-in
+            wp_register_script( 'jquery-autosize', YLC_ASSETS_URL . '/js/jquery.autosize' . $this->is_script_debug_active() . '.js', array( 'jquery' ), '1.17.1' );
+            wp_enqueue_script( 'jquery-autosize' );
+
+            //Firebase Engine
+            wp_register_script( 'ylc-firebase', YLC_ASSETS_URL . '/js/firebase.js' );
+            wp_enqueue_script( 'ylc-firebase' );
+
+        }
+
+        /**
+         * Load FontAwesome
+         *
+         * @since   1.0.0
+         * @return  void
+         * @author  Alberto Ruggiero
+         */
+        public function load_fontawesome() {
+
+            $css_prefix = is_admin() ? 'yit-' : '';
+            wp_enqueue_style( $css_prefix . 'font-awesome', YLC_ASSETS_URL . '/css/font-awesome' . $this->is_script_debug_active() . '.css' );
+
+        }
+
+        /**
+         * User Init
+         *
+         * @since   1.1.0
+         * @return  void
+         * @author  Alberto Ruggiero
+         */
+        public function user_init() {
+
+            $this->session = new YLC_Session();
+
+            if ( current_user_can( 'answer_chat' ) && is_admin() ) {
+
+                define( 'YLC_OPERATOR', true );
+
+            }
+            else {
+
+                define( 'YLC_GUEST', true );
+
+            }
+
+            $display_name = '';
+            $user_email   = '';
+
+            if ( is_user_logged_in() ) {
+
+                global $current_user;
+
+                get_currentuserinfo();
+
+                $user_id      = $current_user->ID;
+                $display_name = $current_user->display_name;
+                $user_email   = $current_user->user_email;
+
+            }
+            else {
+
+                $user_id = $this->session->get( 'visitor_id' );
+
+                if ( empty( $user_id ) ) {
+
+                    $user_id = uniqid( rand(), false );
+                    $this->session->set( 'visitor_id', $user_id );
+
+                }
+
+            }
+
+            $this->user = ( object ) array(
+                'ID'           => $user_id,
+                'display_name' => $display_name,
+                'user_email'   => $user_email,
+                'user_ip'      => ylc_get_ip_address(),
+                'current_page' => ylc_get_current_page_url(),
+            );
+
+        }
+
+        /**
+         * User Authentication
+         *
+         * @since   1.0.0
+         * @return  string
+         * @author  Alberto Ruggiero
+         */
+        public function user_auth() {
+
+            if ( empty( $this->options['firebase-appsecret'] ) ) {
+                return;
+            }
+
+            $token_gen = new Services_FirebaseTokenGenerator( esc_html( $this->options['firebase-appsecret'] ) );
+            $prefix    = ( is_user_logged_in() && !defined( 'YLC_OPERATOR' ) ) ? 'usr-' : '';
+            $data      = array(
+                'uid'         => $prefix . $this->user->ID,
+                'is_operator' => ( defined( 'YLC_OPERATOR' ) ) ? true : false,
+            );
+            $opts      = array(
+                'admin' => ( current_user_can( 'manage_options' ) ) ? true : false,
+                'debug' => true
+            );
+
+            return $token_gen->createToken( $data, $opts );
+
+        }
+
+        /**
+         * Get all strings for frontend and backend
+         *
+         * @since   1.1.0
+         * @return  array
+         * @author  Alberto Ruggiero
+         */
+        public function get_strings() {
+
+            $options = $this->options;
+
+            return array(
+                'months'       => array(
+                    'jan' => __( 'January', 'yith-live-chat' ),
+                    'feb' => __( 'February', 'yith-live-chat' ),
+                    'mar' => __( 'March', 'yith-live-chat' ),
+                    'apr' => __( 'April', 'yith-live-chat' ),
+                    'may' => __( 'May', 'yith-live-chat' ),
+                    'jun' => __( 'June', 'yith-live-chat' ),
+                    'jul' => __( 'July', 'yith-live-chat' ),
+                    'aug' => __( 'August', 'yith-live-chat' ),
+                    'sep' => __( 'September', 'yith-live-chat' ),
+                    'oct' => __( 'October', 'yith-live-chat' ),
+                    'nov' => __( 'November', 'yith-live-chat' ),
+                    'dec' => __( 'December', 'yith-live-chat' )
+                ),
+                'months_short' => array(
+                    'jan' => __( 'Jan', 'yith-live-chat' ),
+                    'feb' => __( 'Feb', 'yith-live-chat' ),
+                    'mar' => __( 'Mar', 'yith-live-chat' ),
+                    'apr' => __( 'Apr', 'yith-live-chat' ),
+                    'may' => __( 'May', 'yith-live-chat' ),
+                    'jun' => __( 'Jun', 'yith-live-chat' ),
+                    'jul' => __( 'Jul', 'yith-live-chat' ),
+                    'aug' => __( 'Aug', 'yith-live-chat' ),
+                    'sep' => __( 'Sep', 'yith-live-chat' ),
+                    'oct' => __( 'Oct', 'yith-live-chat' ),
+                    'nov' => __( 'Nov', 'yith-live-chat' ),
+                    'dec' => __( 'Dec', 'yith-live-chat' )
+                ),
+                'time'         => array(
+                    'suffix'  => __( 'ago', 'yith-live-chat' ),
+                    'seconds' => __( 'less than a minute', 'yith-live-chat' ),
+                    'minute'  => __( 'about a minute', 'yith-live-chat' ),
+                    'minutes' => __( '%d minutes', 'yith-live-chat' ),
+                    'hour'    => __( 'about an hour', 'yith-live-chat' ),
+                    'hours'   => __( 'about %d hours', 'yith-live-chat' ),
+                    'day'     => __( 'a day', 'yith-live-chat' ),
+                    'days'    => __( '%d days', 'yith-live-chat' ),
+                    'month'   => __( 'about a month', 'yith-live-chat' ),
+                    'months'  => __( '%d months', 'yith-live-chat' ),
+                    'year'    => __( 'about a year', 'yith-live-chat' ),
+                    'years'   => __( '%d years', 'yith-live-chat' ),
+                ),
+                'fields'       => array(
+                    'name'       => __( 'Your Name', 'yith-live-chat' ),
+                    'name_ph'    => __( 'Please enter your name', 'yith-live-chat' ),
+                    'email'      => __( 'Your Email', 'yith-live-chat' ),
+                    'email_ph'   => __( 'Please enter your email', 'yith-live-chat' ),
+                    'message'    => __( 'Your Message', 'yith-live-chat' ),
+                    'message_ph' => __( 'Write your question', 'yith-live-chat' ),
+                ),
+                'msg'          => array(
+                    'chat_title'        => ylc_sanitize_text( esc_html( $options['text-chat-title'] ) ),
+                    'prechat_msg'       => ylc_sanitize_text( esc_html( $options['text-welcome'] ), true ),
+                    'welc_msg'          => ylc_sanitize_text( esc_html( $options['text-start-chat'] ), true ),
+                    'start_chat'        => __( 'Start Chat', 'yith-live-chat' ),
+                    'offline_body'      => ylc_sanitize_text( esc_html( $options['text-offline'] ), true ),
+                    'busy_body'         => ylc_sanitize_text( esc_html( $options['text-busy'] ), true ),
+                    'close_msg'         => ylc_sanitize_text( esc_html( $options['text-close'] ), true ),
+                    'close_msg_user'    => __( 'The user has closed the conversation', 'yith-live-chat' ),
+                    'reply_ph'          => __( 'Type here and hit enter to chat', 'yith-live-chat' ),
+                    'send_btn'          => __( 'Send', 'yith-live-chat' ),
+                    'no_op'             => __( 'No operators online', 'yith-live-chat' ),
+                    'no_msg'            => __( 'No messages found', 'yith-live-chat' ),
+                    'sending'           => __( 'Sending', 'yith-live-chat' ),
+                    'connecting'        => __( 'Connecting', 'yith-live-chat' ),
+                    'writing'           => __( '%s is writing', 'yith-live-chat' ),
+                    'please_wait'       => __( 'Please wait', 'yith-live-chat' ),
+                    'chat_online'       => __( 'Chat Online', 'yith-live-chat' ),
+                    'chat_offline'      => __( 'Chat Offline', 'yith-live-chat' ),
+                    'your_msg'          => __( 'Your message', 'yith-live-chat' ),
+                    'end_chat'          => __( 'End chat', 'yith-live-chat' ),
+                    'conn_err'          => __( 'Connection error!', 'yith-live-chat' ),
+                    'you'               => __( 'You', 'yith-live-chat' ),
+                    'online_btn'        => __( 'Online', 'yith-live-chat' ),
+                    'offline_btn'       => __( 'Offline', 'yith-live-chat' ),
+                    'field_empty'       => __( 'Please fill out all required fields', 'yith-live-chat' ),
+                    'invalid_email'     => __( 'Email is invalid', 'yith-live-chat' ),
+                    'invalid_username'  => __( 'Username is invalid', 'yith-live-chat' ),
+                    'user_name'         => __( 'User Name', 'yith-live-chat' ),
+                    'user_email'        => __( 'User Email', 'yith-live-chat' ),
+                    'user_ip'           => __( 'IP Address', 'yith-live-chat' ),
+                    'user_page'         => __( 'Current Page', 'yith-live-chat' ),
+                    'connect'           => __( 'Connect', 'yith-live-chat' ),
+                    'disconnect'        => __( 'Disconnect', 'yith-live-chat' ),
+                    'you_offline'       => __( 'You are offline', 'yith-live-chat' ),
+                    'save_chat'         => __( 'Save chat', 'yith-live-chat' ),
+                    'ntf_close_console' => __( 'If you leave the chat, you will be logged out. However you will be able to save the conversations into your server when you will come back in the console!', 'yith-live-chat' ),
+                    'new_msg'           => __( 'New Message', 'yith-live-chat' ),
+                    'new_user_online'   => __( 'New User Online', 'yith-live-chat' ),
+                    'saving'            => __( 'Saving', 'yith-live-chat' ),
+                    'waiting_users'     => ( defined( 'YLC_PREMIUM' ) ) ? __( 'User queue: %d', 'yith-live-chat' ) : __( 'There are people waiting to talk', 'yith-live-chat' ),
+                    'good'              => __( 'Good', 'yith-live-chat' ),
+                    'bad'               => __( 'Bad', 'yith-live-chat' ),
+                    'chat_evaluation'   => __( 'Was this conversation useful? Vote this chat session.', 'yith-live-chat' ),
+                    'talking_label'     => __( 'Talking with %s', 'yith-live-chat' ),
+                    'timer'             => __( 'Elapsed time', 'yith-live-chat' ),
+                    'chat_copy'         => __( 'Receive the copy of the chat via e-mail', 'yith-live-chat' ),
+                    'already_logged'    => __( 'A user is already logged in with the same email address', 'yith-live-chat' ),
+                    'current_shop'      => __( '%s shop', 'yith-live-chat' ),
+                )
+            );
+
+        }
+
+        /**
+         * Get suffix if SCRIPT_DEBUG is inactive
+         *
+         * @since   1.1.0
+         * @return  array
+         * @author  Alberto Ruggiero
+         */
+        public function is_script_debug_active() {
+
+            return defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
+        }
+
+        /**
+         * Get options defaults
+         *
+         * @since   1.1.0
+         * @return  array
+         * @author  Alberto Ruggiero
+         */
+        public function ylc_get_defaults() {
+
+            $defaults = array(
+                'plugin-enable'      => 'no',
+                'firebase-appurl'    => '',
+                'firebase-appsecret' => '',
+                'text-chat-title'    => __( 'Chat with us', 'yith-live-chat' ),
+                'text-welcome'       => __( 'Have you got question? Write to us!', 'yith-live-chat' ),
+                'text-start-chat'    => __( 'Questions, doubts, issues? We\'re here to help you!', 'yith-live-chat' ),
+                'text-close'         => __( 'This chat session has ended', 'yith-live-chat' ),
+                'text-offline'       => __( 'None of our operators are available at the moment. Please, try again later.', 'yith-live-chat' ),
+                'text-busy'          => __( 'Our operators are busy. Please try again later', 'yith-live-chat' ),
+            );
+
+            if ( defined( 'YLC_PREMIUM' ) ) {
+
+                $defaults = $this->ylc_get_defaults_premium( $defaults );
+
+            }
+
+            return $defaults;
+
+        }
+
+        /**
+         * ADMIN FUNCTIONS
+         */
+
+        /**
          * Add a panel under YITH Plugins tab
          *
          * @since   1.0.0
@@ -124,30 +490,31 @@ if ( ! class_exists( 'YITH_Livechat' ) ) {
          */
         public function add_menu_page() {
 
-            if ( ! empty( $this->_panel ) ) {
+            if ( !empty( $this->_panel ) ) {
                 return;
             }
 
             $admin_tabs = array(
-                'general'   => __( 'General', 'ylc' ),
-                'texts'     => __( 'Messages', 'ylc' )
+                'general' => __( 'General', 'yith-live-chat' ),
+                'texts'   => __( 'Messages', 'yith-live-chat' )
             );
 
             if ( defined( 'YLC_PREMIUM' ) ) {
-                $admin_tabs['offline']          = __( 'Offline Messages', 'ylc' );
-                $admin_tabs['transcript']       = __( 'Conversation', 'ylc' );
-                $admin_tabs['style']            = __( 'Appearance', 'ylc' );
-                //$admin_tabs['autoplay']         = __( 'Autoplay', 'ylc' );
-                $admin_tabs['user']             = __( 'Users', 'ylc' );
-            } else {
-                $admin_tabs['premium-landing']  = __( 'Premium Version', 'ylc' );
+                $admin_tabs['offline']    = __( 'Offline Messages', 'yith-live-chat' );
+                $admin_tabs['transcript'] = __( 'Conversation', 'yith-live-chat' );
+                $admin_tabs['style']      = __( 'Appearance', 'yith-live-chat' );
+                //$admin_tabs['autoplay']         = __( 'Autoplay', 'yith-live-chat' );
+                $admin_tabs['user'] = __( 'Users', 'yith-live-chat' );
+            }
+            else {
+                $admin_tabs['premium-landing'] = __( 'Premium Version', 'yith-live-chat' );
             }
 
             $args = array(
                 'create_menu_page' => true,
                 'parent_slug'      => '',
-                'page_title'       => __( 'Live Chat', 'ylc' ),
-                'menu_title'       => __( 'Live Chat', 'ylc' ),
+                'page_title'       => __( 'Live Chat', 'yith-live-chat' ),
+                'menu_title'       => __( 'Live Chat', 'yith-live-chat' ),
                 'capability'       => 'manage_options',
                 'parent'           => $this->_options_name,
                 'parent_page'      => 'yit_plugin_panel',
@@ -170,17 +537,20 @@ if ( ! class_exists( 'YITH_Livechat' ) ) {
          */
         public function add_console_page() {
 
-            $page_title = __( 'YITH Live Chat', 'ylc');
+            $page_title = __( 'YITH Live Chat', 'yith-live-chat' );
 
             /* === Add Chat Console Page === */
-            if( current_user_can( 'manage_options' ) ) {
+            if ( current_user_can( 'manage_options' ) ) {
 
-                add_menu_page( $page_title, $page_title, 'manage_options', $this->_console_page, array( $this, 'get_console_template' ), YLC_ASSETS_URL  . '/images/favicon.png', 63 );
+                add_menu_page( $page_title, $page_title, 'manage_options', $this->_console_page, array( $this, 'get_console_template' ), YLC_ASSETS_URL . '/images/favicon.png', 63 );
 
-            } else if( current_user_can( 'answer_chat' ) ){
+            }
+            else {
+                if ( current_user_can( 'answer_chat' ) ) {
 
-                add_menu_page( $page_title, $page_title, 'ylc_chat_op', $this->_console_page, array( $this, 'get_console_template' ), YLC_ASSETS_URL  . '/images/favicon.png', 63 );
+                    add_menu_page( $page_title, $page_title, 'answer_chat', $this->_console_page, array( $this, 'get_console_template' ), YLC_ASSETS_URL . '/images/favicon.png', 63 );
 
+                }
             }
 
         }
@@ -193,77 +563,148 @@ if ( ! class_exists( 'YITH_Livechat' ) ) {
          * @author  Alberto Ruggiero
          */
         public function admin_notices() {
-            if ( empty( $this->options['firebase-appurl'] ) || empty( $this->options['firebase-appsecret'] ) ) : ?>
-                <div class="error">
-                    <p>
-                        <?php _e( 'Please enter Firebase App URL and Firebase App Secret for YITH Live Chat', 'ylc' ); ?>
-                    </p>
-                </div>
-            <?php
-            endif;
+
+            ?>
+
+            <div class="error">
+                <p>
+                    <?php _e( 'Please enter Firebase App URL and Firebase App Secret for YITH Live Chat', 'yith-live-chat' ); ?>
+                </p>
+            </div>
+
+        <?php
+
         }
 
         /**
-         * Plugin Init
+         * Add styles and scripts for options panel and chat console
          *
          * @since   1.0.0
          * @return  void
          * @author  Alberto Ruggiero
          */
-        public function init() {
+        public function admin_scripts() {
 
-            $this->current_page = ylc_get_current_page_url();
-            $this->ip           = ylc_get_ip_address();
+            switch ( ylc_get_current_page() ) {
 
-            if( current_user_can( 'answer_chat' ) ) {
+                case $this->_panel_page:
 
-                define( 'YLC_OPERATOR', true );
+                    wp_register_style( 'ylc-styles', YLC_ASSETS_URL . '/css/ylc-styles.css' );
+                    wp_enqueue_style( 'ylc-styles' );
 
-            } else {
+                    break;
 
-                define( 'YLC_GUEST', true );
+                case $this->_console_page:
+
+                    $this->admin_frontend_scripts();
+
+                    //YLC Console Engine
+                    wp_register_script( 'ylc-engine-console', YLC_ASSETS_URL . '/js/ylc-engine-console' . $this->is_script_debug_active() . '.js', array( 'jquery', 'ylc-firebase' ) );
+                    wp_enqueue_script( 'ylc-engine-console' );
+
+                    $js_vars = array(
+                        'ajax_url'             => str_replace( array( 'https:', 'http:' ), '', admin_url( 'admin-ajax.php' ) ),
+                        'plugin_url'           => YLC_ASSETS_URL,
+                        'is_premium'           => ( defined( 'YLC_PREMIUM' ) ) ? true : false,
+                        'company_avatar'       => apply_filters( 'ylc_company_avatar', '' ),
+                        'default_user_avatar'  => apply_filters( 'ylc_default_avatar', '', 'user' ),
+                        'default_admin_avatar' => apply_filters( 'ylc_default_avatar', '', 'admin' ),
+                        'yith_wpv_active'      => ( defined( 'YLC_PREMIUM' ) && defined( 'YITH_WPV_PREMIUM' ) ) ? true : false,
+                        'active_vendor'        => apply_filters( 'ylc_vendor', array(
+                            'vendor_id'   => 0,
+                            'vendor_name' => ''
+                        ) ),
+                        'vendor_only_chat'     => apply_filters( 'ylc_vendor_only', false ),
+                        'templates'            => array(
+                            'console_chat_line'    => file_get_contents( YLC_DIR . 'templates/chat-backend/console-chat-line.php' ),
+                            'console_user_item'    => file_get_contents( YLC_DIR . 'templates/chat-backend/console-user-item.php' ),
+                            'console_conversation' => file_get_contents( YLC_DIR . 'templates/chat-backend/console-conversation.php' ),
+                            'console_user_info'    => file_get_contents( YLC_DIR . 'templates/chat-backend/console-user-info.php' ),
+                            'console_user_tools'   => file_get_contents( YLC_DIR . 'templates/chat-backend/console-user-tools.php' ),
+                            'premium'              => apply_filters( 'ylc_templates_premium', array(), 'console' ),
+                        ),
+                        'strings'              => $this->get_strings()
+                    );
+                    wp_localize_script( 'ylc-engine-console', 'ylc', $js_vars );
+
+                    // Console stylesheet
+                    wp_register_style( 'ylc-console', YLC_ASSETS_URL . '/css/ylc-console.css' );
+                    wp_enqueue_style( 'ylc-console' );
+
+                    break;
 
             }
-
-            if ( ! is_admin() || defined( 'DOING_AJAX' ) ) {
-
-                add_action( 'wp_enqueue_scripts', array( &$this, 'enqueue_scripts' ) );
-
-            }
-
-            add_action( 'wp_ajax_ylc_ajax_callback', 'ylc_ajax_callback' );
-            add_action( 'wp_ajax_nopriv_ylc_ajax_callback', 'ylc_ajax_callback' );
-
-            if( is_user_logged_in() ) {
-
-                global $current_user;
-
-                get_currentuserinfo();
-
-                $this->user = $current_user;
-
-            } else {
-
-                $visitor_id = $this->session->get( 'visitor_id' );
-
-                if( empty( $visitor_id ) ) {
-
-                    $visitor_id = uniqid( rand(), false );
-                    $this->session->set( 'visitor_id', $visitor_id );
-
-                }
-
-                $this->user = ( object ) array(
-                    'ID'            => $visitor_id,
-                    'display_name'  => null,
-                    'user_email'    => null
-                );
-
-            }
-
-            add_action( 'wp_footer', array( &$this, 'show_chat') );
 
         }
+
+        /**
+         * Create / Update Chat Operator Role
+         *
+         * @since   1.0.0
+         *
+         * @param   $role
+         *
+         * @return  void
+         * @author  Alberto Ruggiero
+         */
+        public function ylc_operator_role( $role ) {
+
+            remove_role( 'ylc_chat_op' ); // First clean role
+            $op_role = add_role( 'ylc_chat_op', __( 'YITH Live Chat Operator', 'yith-live-chat' ) ); // Create operator role
+            $op_role->add_cap( 'answer_chat' ); // Add common operator capability
+
+            switch ( $role ) {
+
+                /** N/A */
+                case 'none':
+                    $op_role->add_cap( 'read' );
+                    break;
+                /** Other roles */
+                default:
+                    $r = get_role( $role ); // Get editor role
+
+                    // Add editor caps to chat operator
+                    foreach ( $r->capabilities as $custom_role => $v ) {
+                        $op_role->add_cap( $custom_role );
+                    }
+            }
+
+        }
+
+        /**
+         * Load Console Template
+         *
+         * @since   1.0.0
+         * @return  void
+         * @author  Alberto Ruggiero
+         */
+        public function get_console_template() {
+
+            require_once( YLC_TEMPLATE_PATH . '/chat-backend/chat-console.php' );
+
+        }
+
+        /**
+         * Load Custom Text Template
+         *
+         * @since   1.0.0
+         *
+         * @param   $option
+         * @param   $db_value
+         * @param   $custom_attributes
+         *
+         * @return  void
+         * @author  Alberto Ruggiero
+         */
+        public function custom_text_template( $option, $db_value, $custom_attributes ) {
+
+            require_once( YLC_TEMPLATE_PATH . '/admin/custom-text.php' );
+
+        }
+
+        /**
+         * FRONTEND FUNCTIONS
+         */
 
         /**
          * Enqueue Scripts
@@ -274,284 +715,47 @@ if ( ! class_exists( 'YITH_Livechat' ) ) {
          */
         public function enqueue_scripts() {
 
-            $this->load_fontawesome();
+            if ( $this->show_chat ) {
 
-            wp_register_style( 'ylc-google-fonts','//fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,700,600', array(), null );
-            wp_enqueue_style( 'ylc-google-fonts' );
+                $this->admin_frontend_scripts();
 
+                wp_register_style( 'ylc-frontend', YLC_ASSETS_URL . '/css/ylc-frontend.css' );
+                wp_enqueue_style( 'ylc-frontend' );
 
-            wp_register_style( 'ylc-frontend', YLC_ASSETS_URL  . '/css/ylc-frontend.css' );
-            wp_enqueue_style( 'ylc-frontend' );
+                wp_register_script( 'ylc-engine-frontend', YLC_ASSETS_URL . '/js/ylc-engine-frontend' . $this->is_script_debug_active() . '.js', array( 'jquery', 'ylc-firebase' ) );
+                wp_enqueue_script( 'ylc-engine-frontend' );
 
-            wp_enqueue_script( 'jquery' );
+                $js_vars = array(
+                    'ajax_url'           => str_replace( array( 'https:', 'http:' ), '', admin_url( 'admin-ajax.php' ) ),
+                    'plugin_url'         => YLC_ASSETS_URL,
+                    'frontend_op_access' => ( current_user_can( 'answer_chat' ) ) ? true : false,
+                    'is_premium'         => ( defined( 'YLC_PREMIUM' ) ) ? true : false,
+                    'show_busy_form'     => apply_filters( 'ylc_busy_form', false ),
+                    'max_guests'         => apply_filters( 'ylc_max_guests', 2 ),
+                    'send_transcript'    => apply_filters( 'ylc_send_transcript', false ),
+                    'chat_evaluation'    => apply_filters( 'ylc_chat_evaluation', false ),
+                    'company_avatar'     => apply_filters( 'ylc_company_avatar', '' ),
+                    'autoplay_opts'      => apply_filters( 'ylc_autoplay_opts', array() ),
+                    'yith_wpv_active'    => ( defined( 'YLC_PREMIUM' ) && defined( 'YITH_WPV_PREMIUM' ) ) ? true : false,
+                    'active_vendor'      => apply_filters( 'ylc_vendor', array(
+                        'vendor_id'   => 0,
+                        'vendor_name' => ''
+                    ) ),
+                    'vendor_only_chat'   => apply_filters( 'ylc_vendor_only', false ),
+                    'templates'          => array(
+                        'chat_popup'        => file_get_contents( YLC_DIR . 'templates/chat-frontend/chat-popup.php' ),
+                        'chat_connecting'   => file_get_contents( YLC_DIR . 'templates/chat-frontend/chat-connecting.php' ),
+                        'chat_btn'          => file_get_contents( YLC_DIR . 'templates/chat-frontend/chat-btn.php' ),
+                        'chat_offline'      => file_get_contents( YLC_DIR . 'templates/chat-frontend/chat-offline.php' ),
+                        'chat_login'        => file_get_contents( YLC_DIR . 'templates/chat-frontend/chat-login.php' ),
+                        'chat_conversation' => file_get_contents( YLC_DIR . 'templates/chat-frontend/chat-conversation.php' ),
+                        'chat_line'         => file_get_contents( YLC_DIR . 'templates/chat-frontend/chat-line.php' ),
+                        'premium'           => apply_filters( 'ylc_templates_premium', array(), 'frontend' ),
+                    ),
+                    'strings'            => $this->get_strings()
+                );
 
-            // § Plug-in
-            wp_register_script( 'jquery-autosize', YLC_ASSETS_URL . '/js/jquery.autosize.min.js', array( 'jquery' ), '1.17.1' );
-            wp_enqueue_script( 'jquery-autosize' );
-
-            // Application JS
-            $this->load_livechat_js();
-
-        }
-
-        /**
-         * Add styles and scripts for options panel
-         *
-         * @since   1.0.0
-         * @return  void
-         * @author  Alberto Ruggiero
-         */
-        public function options_panel_scripts() {
-
-            if ( ylc_get_current_page() == $this->_panel_page ) {
-
-                wp_register_style( 'ylc-styles', YLC_ASSETS_URL . '/css/ylc-styles.css' );
-                wp_enqueue_style( 'ylc-styles' );
-
-            }
-
-        }
-
-        /**
-         * Add styles and scripts for Chat Console
-         *
-         * @since   1.0.0
-         * @return  void
-         * @author  Alberto Ruggiero
-         */
-        public function chat_console_scripts() {
-
-            // Load in chat console
-            if( ylc_get_current_page() == $this->_console_page  ) {
-
-                ylc_set_firebase_security();
-
-                // Get currently logged user info
-                get_currentuserinfo();
-
-                //Load FontAwesome
-                $this->load_fontawesome();
-
-                // AutoSize Plug-in
-                wp_register_script( 'jquery-autosize', YLC_ASSETS_URL . '/js/jquery.autosize.min.js', array( 'jquery' ), '1.17.1' );
-                wp_enqueue_script( 'jquery-autosize' );
-
-                // Application JS
-                $this->load_livechat_js();
-
-                wp_register_style( 'ylc-google-fonts','//fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,700,600', array(), null );
-                wp_enqueue_style( 'ylc-google-fonts' );
-
-                // Console stylesheet
-                wp_register_style( 'ylc-console', YLC_ASSETS_URL . '/css/ylc-console.css' );
-                wp_enqueue_style( 'ylc-console' );
-
-            }
-
-        }
-
-        /**
-         * Console Resize scripts
-         *
-         * @since   1.0.0
-         * @return  void
-         * @author  Alberto Ruggiero
-         */
-        public function console_resize() {
-
-            echo file_get_contents( YLC_DIR . 'assets/js/ylc-console.js' );
-
-        }
-
-        /**
-         * Load Live Chat scripts
-         *
-         * @since   1.0.0
-         * @return  void
-         * @author  Alberto Ruggiero
-         */
-        public function load_livechat_js() {
-
-            wp_register_script( 'ylc-firebase', YLC_ASSETS_URL . '/js/firebase.js' );
-            wp_enqueue_script( 'ylc-firebase' );
-
-            wp_register_script( 'ylc-engine', YLC_ASSETS_URL . '/js/ylc-engine.js', array( 'jquery', 'ylc-firebase' ) );
-            wp_enqueue_script( 'ylc-engine' );
-
-            $options = $this->options;
-
-            $js_vars = array(
-                'app_id'            => esc_html( $options['firebase-appurl'] ),
-                'ajax_url'   		=> str_replace( array('https:', 'http:'), '', admin_url( 'admin-ajax.php' ) ),
-                'plugin_url'        => YLC_ASSETS_URL,
-                'is_front_end' 	    => ( ! is_admin() ) ? true : null,
-                'is_op' 			=> ( defined( 'YLC_OPERATOR' ) && is_admin() ) ? true : false,
-                'is_premium' 		=> ( defined( 'YLC_PREMIUM' ) ) ? true : false,
-                'current_page'		=> $this->current_page,
-                'user_ip' 			=> $this->ip,
-                'show_busy_form'    => apply_filters( 'ylc_busy_form', false ),
-                'max_guests'        => apply_filters( 'ylc_max_guests', 2 ),
-                'send_transcript'   => apply_filters( 'ylc_send_transcript', false ),
-                'chat_evaluation'   => apply_filters( 'ylc_chat_evaluation', false ),
-                'company_avatar'    => apply_filters( 'ylc_company_avatar', ''),
-                'autoplay_opts'     => apply_filters( 'ylc_autoplay_opts', array() ),
-                'templates'         => array(
-                     'chat_popup'           => file_get_contents( YLC_DIR . 'templates/chat-frontend/chat-popup.php' ),
-                     'chat_connecting'      => file_get_contents( YLC_DIR . 'templates/chat-frontend/chat-connecting.php' ),
-                     'chat_btn'             => file_get_contents( YLC_DIR . 'templates/chat-frontend/chat-btn.php' ),
-                     'chat_offline'         => file_get_contents( YLC_DIR . 'templates/chat-frontend/chat-offline.php' ),
-                     'chat_login'           => file_get_contents( YLC_DIR . 'templates/chat-frontend/chat-login.php' ),
-                     'chat_conversation'    => file_get_contents( YLC_DIR . 'templates/chat-frontend/chat-conversation.php' ),
-                     'chat_line'            => file_get_contents( YLC_DIR . 'templates/chat-frontend/chat-line.php' ),
-                     'console_user_item'    => file_get_contents( YLC_DIR . 'templates/chat-backend/console-user-item.php' ),
-                     'console_conversation' => file_get_contents( YLC_DIR . 'templates/chat-backend/console-conversation.php' ),
-                     'console_user_info'    => file_get_contents( YLC_DIR . 'templates/chat-backend/console-user-info.php' ),
-                     'console_user_tools'   => file_get_contents( YLC_DIR . 'templates/chat-backend/console-user-tools.php' ),
-                     'premium'              => apply_filters( 'ylc_templates_premium', array() ),
-                 ),
-                'strings'           => array(
-                     'months'       => array(
-                         'jan' => __( 'January', 'ylc' ),
-                         'feb' => __( 'February', 'ylc' ),
-                         'mar' => __( 'March', 'ylc' ),
-                         'apr' => __( 'April', 'ylc' ),
-                         'may' => __( 'May', 'ylc' ),
-                         'jun' => __( 'June', 'ylc' ),
-                         'jul' => __( 'July', 'ylc' ),
-                         'aug' => __( 'August', 'ylc' ),
-                         'sep' => __( 'September', 'ylc' ),
-                         'oct' => __( 'October', 'ylc' ),
-                         'nov' => __( 'November', 'ylc' ),
-                         'dec' => __( 'December', 'ylc' )
-                     ),
-                     'months_short' => array(
-                         'jan' => __( 'Jan', 'ylc' ),
-                         'feb' => __( 'Feb', 'ylc' ),
-                         'mar' => __( 'Mar', 'ylc' ),
-                         'apr' => __( 'Apr', 'ylc' ),
-                         'may' => __( 'May', 'ylc' ),
-                         'jun' => __( 'Jun', 'ylc' ),
-                         'jul' => __( 'Jul', 'ylc' ),
-                         'aug' => __( 'Aug', 'ylc' ),
-                         'sep' => __( 'Sep', 'ylc' ),
-                         'oct' => __( 'Oct', 'ylc' ),
-                         'nov' => __( 'Nov', 'ylc' ),
-                         'dec' => __( 'Dec', 'ylc' )
-                     ),
-                     'time'         => array(
-                         'suffix'   => __( 'ago', 'ylc' ),
-                         'seconds'  => __( 'less than a minute', 'ylc' ),
-                         'minute'   => __( 'about a minute', 'ylc' ),
-                         'minutes'  => __( '%d minutes', 'ylc' ),
-                         'hour'     => __( 'about an hour', 'ylc' ),
-                         'hours'    => __( 'about %d hours', 'ylc' ),
-                         'day'      => __( 'a day', 'ylc' ),
-                         'days'     => __( '%d days', 'ylc' ),
-                         'month'    => __( 'about a month', 'ylc' ),
-                         'months'   => __( '%d months', 'ylc' ),
-                         'year'     => __( 'about a year', 'ylc' ),
-                         'years'    => __( '%d years', 'ylc' ),
-                     ),
-                     'fields'       => array(
-                         'name'         => __( 'Your Name', 'ylc' ),
-                         'name_ph'      => __( 'Please enter your name', 'ylc' ),
-                         'email'        => __( 'Your Email', 'ylc' ),
-                         'email_ph'     => __( 'Please enter your email', 'ylc' ),
-                         'message'      => __( 'Your Message', 'ylc' ),
-                         'message_ph'   => __( 'Write your question', 'ylc' ),
-                     ),
-                     'msg'          => array(
-                         'chat_title'           => ylc_sanitize_text( esc_html( $options['text-chat-title'] ) ),
-                         'prechat_msg'          => ylc_sanitize_text( esc_html( $options['text-welcome'] ), true ),
-                         'welc_msg'             => ylc_sanitize_text( esc_html( $options['text-start-chat'] ), true ),
-                         'start_chat'           => __( 'Start Chat', 'ylc' ),
-                         'offline_body'         => ylc_sanitize_text( esc_html( $options['text-offline'] ), true ),
-                         'busy_body'            => ylc_sanitize_text( esc_html( $options['text-busy'] ), true ),
-                         'close_msg'            => ylc_sanitize_text( esc_html( $options['text-close'] ), true ),
-                         'close_msg_user'       => __( 'The user has closed the conversation', 'ylc' ),
-                         'reply_ph'             => __( 'Type here and hit enter to chat', 'ylc' ),
-                         'send_btn'             => __( 'Send', 'ylc' ),
-                         'no_op'                => __( 'No operators online', 'ylc' ),
-                         'no_msg'               => __( 'No messages found', 'ylc' ),
-                         'sending'              => __( 'Sending', 'ylc' ),
-                         'connecting'           => __( 'Connecting', 'ylc' ),
-                         'writing'              => __( '%s is writing', 'ylc' ),
-                         'please_wait'          => __( 'Please wait', 'ylc' ),
-                         'chat_online'          => __( 'Chat Online', 'ylc' ),
-                         'chat_offline'         => __( 'Chat Offline', 'ylc' ),
-                         'your_msg'             => __( 'Your message', 'ylc' ),
-                         'end_chat'             => __( 'End chat', 'ylc' ),
-                         'conn_err'             => __( 'Connection error!', 'ylc' ),
-                         'you'                  => __( 'You', 'ylc' ),
-                         'online_btn'           => __( 'Online', 'ylc' ),
-                         'offline_btn'          => __( 'Offline', 'ylc' ),
-                         'field_empty'          => __( 'Please fill out all required fields', 'ylc' ),
-                         'invalid_email'        => __( 'Email is invalid', 'ylc' ),
-                         'invalid_username'     => __( 'Username is invalid', 'ylc' ),
-                         'user_email'           => __( 'User Email', 'ylc' ),
-                         'user_ip'              => __( 'IP Address', 'ylc' ),
-                         'user_page'            => __( 'Current Page', 'ylc' ),
-                         'connect'              => __( 'Connect', 'ylc' ),
-                         'disconnect'           => __( 'Disconnect', 'ylc' ),
-                         'you_offline'          => __( 'You are offline', 'ylc' ),
-                         'save_chat'            => __( 'Save chat', 'ylc' ),
-                         'ntf_close_console'    => __( 'If you leave the chat, you will be logged out. However you will be able to save the conversations into your server when you will come back in the console!', 'ylc' ),
-                         'new_msg'              => __( 'New Message', 'ylc' ),
-                         'new_user_online'      => __( 'New User Online', 'ylc' ),
-                         'saving'               => __( 'Saving', 'ylc' ),
-                         'waiting_users'        => ( defined( 'YLC_PREMIUM' ) ) ? __( 'User queue: %d', 'ylc' ) : __( 'There are people waiting to talk', 'ylc' ),
-                         'good'                 => __( 'Good', 'ylc' ),
-                         'bad'                  => __( 'Bad', 'ylc' ),
-                         'chat_evaluation'      => __( 'Was this conversation useful? Vote this chat session.', 'ylc' ),
-                         'talking_label'        => __( 'Talking with %s', 'ylc' ),
-                         'timer'                => __( 'Elapsed time', 'ylc' ),
-                         'chat_copy'            => __( 'Receive the copy of the chat via e-mail', 'ylc' ),
-                         'already_logged'       => __( 'A user is already logged in with the same email address', 'ylc' )
-                     )
-                 )
-            );
-
-            if( is_user_logged_in() ) {
-
-                if ( defined( 'YLC_OPERATOR' ) && is_admin() ) {
-
-                    $user_prefix   = 'ylc-op-';
-                    $user_type     = 'operator';
-
-                } else {
-
-                    $user_prefix   = '';
-                    $user_type     = 'visitor';
-
-                }
-
-                $js_vars['user_id']            = $user_prefix . $this->user->ID;
-                $js_vars['user_name']          = apply_filters( 'ylc_nickname', $this->user->display_name );
-                $js_vars['user_email']         = $this->user->user_email;
-                $js_vars['user_email_hash']    = md5( $this->user->user_email );
-                $js_vars['user_type']          = $user_type;
-                $js_vars['avatar_type']        = apply_filters( 'ylc_avatar_type', '' );
-                $js_vars['avatar_image']       = apply_filters( 'ylc_avatar_image', '' );
-                $js_vars['frontend_op_access'] = ( current_user_can( 'answer_chat' ) ) ? true : false;
-
-            }
-
-            wp_localize_script( 'ylc-engine', 'ylc', $js_vars );
-        }
-
-        /**
-         * Load FontAwesome
-         *
-         * @since   1.0.0
-         * @return  void
-         * @author  Alberto Ruggiero
-         */
-        public function load_fontawesome() {
-
-            if ( ! class_exists( 'YIT_Asset' ) ){
-
-                $css_prefix = is_admin() ? 'yit-' : '';
-                wp_enqueue_style( $css_prefix . 'font-awesome', YLC_ASSETS_URL . '/css/font-awesome.min.css' );
+                wp_localize_script( 'ylc-engine-frontend', 'ylc', $js_vars );
 
             }
 
@@ -566,97 +770,17 @@ if ( ! class_exists( 'YITH_Livechat' ) ) {
          */
         public function show_chat() {
 
-            require_once ( YLC_TEMPLATE_PATH . '/chat-frontend/chat-container.php' );
+            if ( $this->show_chat ) {
 
-        }
+                require_once( YLC_TEMPLATE_PATH . '/chat-frontend/chat-container.php' );
 
-        /**
-         * Load Console Template
-         *
-         * @since   1.0.0
-         * @return  void
-         * @author  Alberto Ruggiero
-         */
-        public function get_console_template() {
-
-            require_once ( YLC_TEMPLATE_PATH . '/chat-backend/chat-console.php' );
-
-        }
-
-        /**
-         * Load Custom Text Template
-         *
-         * @since   1.0.0
-         * @param   $option
-         * @param   $db_value
-         * @param   $custom_attributes
-         * @return  void
-         * @author  Alberto Ruggiero
-         */
-        public function custom_text_template( $option, $db_value, $custom_attributes ) {
-
-            require_once ( YLC_TEMPLATE_PATH . '/admin/custom-text.php' );
-
-        }
-
-        /**
-         * User Authentication
-         *
-         * @since   1.0.0
-         * @return  string
-         * @author  Alberto Ruggiero
-         */
-        public function user_auth() {
-
-            if( empty( $this->options['firebase-appsecret'] ) ) {
-                return;
             }
 
-            $token_gen  = new Services_FirebaseTokenGenerator( esc_html( $this->options['firebase-appsecret'] ) );
-            $prefix     = ( is_user_logged_in() && !defined( 'YLC_OPERATOR' ) ) ? 'usr-' : '';
-            $data       = array(
-                'uid' 		  => $prefix . $this->user->ID,
-                'is_operator' => ( defined( 'YLC_OPERATOR' ) ) ? true : false,
-            );
-            $opts       = array(
-                'admin'	=> ( current_user_can( 'manage_options' ) ) ? true : false,
-                'debug' => true
-            );
-
-            return $token_gen->createToken( $data, $opts );
-
         }
 
         /**
-         * Create / Update Chat Operator Role
-         *
-         * @since   1.0.0
-         * @param   $role
-         * @return  void
-         * @author  Alberto Ruggiero
+         * YITH FRAMEWORK
          */
-        public function ylc_operator_role( $role ) {
-
-            remove_role( 'ylc_chat_op' ); // First clean role
-            $op_role = add_role( 'ylc_chat_op', __( 'YITH Live Chat Operator', 'ylc' ) ); // Create operator role
-            $op_role->add_cap( 'answer_chat' ); // Add common operator capability
-
-            switch( $role ) {
-
-                /** N/A */
-                case 'none':
-                    $op_role->add_cap( 'read' );
-                    break;
-                /** Other roles */
-                default:
-                    $r = get_role( $role ); // Get editor role
-
-                    // Add editor caps to chat operator
-                    foreach( $r->capabilities as $custom_role => $v ) {
-                        $op_role->add_cap( $custom_role );
-                    }
-            }
-        }
 
         /**
          * Enqueue css file
@@ -666,8 +790,12 @@ if ( ! class_exists( 'YITH_Livechat' ) ) {
          * @author  Andrea Grillo <andrea.grillo@yithemes.com>
          */
         public function plugin_fw_loader() {
-            if ( ! defined( 'YIT' ) || ! defined( 'YIT_CORE_PLUGIN' ) ) {
-                require_once( 'plugin-fw/yit-plugin.php' );
+            if ( !defined( 'YIT_CORE_PLUGIN' ) ) {
+                global $plugin_fw_data;
+                if ( !empty( $plugin_fw_data ) ) {
+                    $plugin_fw_file = array_shift( $plugin_fw_data );
+                    require_once( $plugin_fw_file );
+                }
             }
         }
 
@@ -695,7 +823,7 @@ if ( ! class_exists( 'YITH_Livechat' ) ) {
          * @author  Andrea Grillo <andrea.grillo@yithemes.com>
          */
         public function get_premium_landing_uri() {
-            return defined( 'YITH_REFER_ID' ) ? $this->_premium_landing . '?refer_id=' . YITH_REFER_ID : $this->_premium_landing;
+            return defined( 'YITH_REFER_ID' ) ? $this->_premium_landing . '?refer_id=' . YITH_REFER_ID : $this->_premium_landing . '?refer_id=1030585';
         }
 
         /**
@@ -704,17 +832,19 @@ if ( ! class_exists( 'YITH_Livechat' ) ) {
          * add the action links to plugin admin page
          *
          * @since   1.0.0
+         *
          * @param   $links | links plugin array
+         *
          * @return  mixed
          * @author  Andrea Grillo <andrea.grillo@yithemes.com>
          * @use     plugin_action_links_{$plugin_file_name}
          */
         public function action_links( $links ) {
 
-            $links[] = '<a href="' . admin_url( "admin.php?page={$this->_panel_page}" ) . '">' . __( 'Settings', 'ylc' ) . '</a>';
+            $links[] = '<a href="' . admin_url( "admin.php?page={$this->_panel_page}" ) . '">' . __( 'Settings', 'yith-live-chat' ) . '</a>';
 
             if ( defined( 'YLC_FREE_INIT' ) ) {
-                $links[] = '<a href="' . $this->get_premium_landing_uri() . '" target="_blank">' . __( 'Premium Version', 'ylc' ) . '</a>';
+                $links[] = '<a href="' . $this->get_premium_landing_uri() . '" target="_blank">' . __( 'Premium Version', 'yith-live-chat' ) . '</a>';
             }
 
             return $links;
@@ -726,10 +856,12 @@ if ( ! class_exists( 'YITH_Livechat' ) ) {
          * add the action links to plugin admin page
          *
          * @since   1.0.0
+         *
          * @param   $plugin_meta
          * @param   $plugin_file
          * @param   $plugin_data
          * @param   $status
+         *
          * @return  Array
          * @author  Andrea Grillo <andrea.grillo@yithemes.com>
          * @use     plugin_row_meta
@@ -739,7 +871,7 @@ if ( ! class_exists( 'YITH_Livechat' ) ) {
                 ( defined( 'YLC_FREE_INIT' ) && ( YLC_FREE_INIT == $plugin_file ) )
             ) {
 
-                $plugin_meta[] = '<a href="' . $this->_official_documentation . '" target="_blank">' . __( 'Plugin Documentation', 'ylc' ) . '</a>';
+                $plugin_meta[] = '<a href="' . $this->_official_documentation . '" target="_blank">' . __( 'Plugin Documentation', 'yith-live-chat' ) . '</a>';
             }
 
             return $plugin_meta;

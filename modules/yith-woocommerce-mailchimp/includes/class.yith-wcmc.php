@@ -71,7 +71,7 @@ if ( ! class_exists( 'YITH_WCMC' ) ) {
 			) );
 
 			// load plugin-fw
-			add_action( 'after_setup_theme', array( $this, 'plugin_fw_loader' ), 1 );
+			add_action( 'plugins_loaded', array( $this, 'plugin_fw_loader' ), 15 );
 
 			// init api key
 			add_action( 'update_option_yith_wcmc_mailchimp_api_key', array( $this, 'init_api' ) );
@@ -98,8 +98,12 @@ if ( ! class_exists( 'YITH_WCMC' ) ) {
 		 * @since 2.0.0
 		 */
 		public function plugin_fw_loader() {
-			if ( ! defined( 'YIT' ) || ! defined( 'YIT_CORE_PLUGIN' ) ) {
-				require_once( YITH_WCMC_DIR . '/plugin-fw/yit-plugin.php' );
+			if ( ! defined( 'YIT_CORE_PLUGIN' ) ) {
+				global $plugin_fw_data;
+				if( ! empty( $plugin_fw_data ) ){
+					$plugin_fw_file = array_shift( $plugin_fw_data );
+					require_once( $plugin_fw_file );
+				}
 			}
 		}
 

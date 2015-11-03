@@ -164,9 +164,9 @@ if ( ! class_exists( 'YITH_INFS_Admin' ) ) {
 		 */
 		public function action_links( $links ) {
 
-			$links[] = '<a href="' . admin_url( "admin.php?page={$this->_panel_page}" ) . '">' . __( 'Settings', 'yith-infs' ) . '</a>';
+			$links[] = '<a href="' . admin_url( "admin.php?page={$this->_panel_page}" ) . '">' . __( 'Settings', 'yith-infinite-scrolling' ) . '</a>';
 			if ( ! ( defined( 'YITH_INFS_PREMIUM' ) && YITH_INFS_PREMIUM ) ) {
-				$links[] = '<a href="' . $this->get_premium_landing_uri() . '" target="_blank">' . __( 'Premium Version', 'yith-infs' ) . '</a>';
+				$links[] = '<a href="' . $this->get_premium_landing_uri() . '" target="_blank">' . __( 'Premium Version', 'yith-infinite-scrolling' ) . '</a>';
 			}
 			return $links;
 		}
@@ -187,18 +187,18 @@ if ( ! class_exists( 'YITH_INFS_Admin' ) ) {
 			}
 
 			$admin_tabs = array(
-				'general' => __( 'Settings', 'yith-infs' )
+				'general' => __( 'Settings', 'yith-infinite-scrolling' )
 			);
 
 			if ( ! ( defined( 'YITH_INFS_PREMIUM' ) && YITH_INFS_PREMIUM ) ) {
-				$admin_tabs['premium']  = __( 'Premium Version', 'yith-infs' );
+				$admin_tabs['premium']  = __( 'Premium Version', 'yith-infinite-scrolling' );
 			}
 
 			$args = array(
 				'create_menu_page' => true,
 				'parent_slug'      => '',
-				'page_title'       => __( 'Infinite Scrolling', 'yith-infs' ),
-				'menu_title'       => __( 'Infinite Scrolling', 'yith-infs' ),
+				'page_title'       => __( 'Infinite Scrolling', 'yith-infinite-scrolling' ),
+				'menu_title'       => __( 'Infinite Scrolling', 'yith-infinite-scrolling' ),
 				'parent'           => 'infs',
 				'parent_page'      => 'yit_plugin_panel',
 				'plugin-url'       => YITH_INFS_URL,
@@ -252,7 +252,7 @@ if ( ! class_exists( 'YITH_INFS_Admin' ) ) {
 
 			if ( defined( 'YITH_INFS_FREE_INIT' ) && YITH_INFS_FREE_INIT == $plugin_file ||
 				 defined( 'YITH_INFS_INIT') && YITH_INFS_INIT == $plugin_file ) {
-				$plugin_meta[] = '<a href="' . $this->doc_url . '" target="_blank">' . __( 'Plugin Documentation', 'yith-infs' ) . '</a>';
+				$plugin_meta[] = '<a href="' . $this->doc_url . '" target="_blank">' . __( 'Plugin Documentation', 'yith-infinite-scrolling' ) . '</a>';
 			}
 
 			return $plugin_meta;

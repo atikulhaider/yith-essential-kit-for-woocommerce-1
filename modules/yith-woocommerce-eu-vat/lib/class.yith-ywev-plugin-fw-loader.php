@@ -123,11 +123,11 @@ if ( ! class_exists( 'YITH_YWEV_Plugin_FW_Loader' ) ) {
 				return;
 			}
 
-			$admin_tabs['general'] = __( 'General', 'ywev' );
-			$admin_tabs['tax'] = __( 'Tax', 'ywev' );
+			$admin_tabs['general'] = __( 'General', 'yith-woocommerce-eu-vat' );
+			$admin_tabs['tax'] = __( 'Tax', 'yith-woocommerce-eu-vat' );
 
 			if ( ! defined( 'YITH_YWEV_PREMIUM' )  ) {
-				$admin_tabs['premium-landing'] = __( 'Premium Version', 'ywev' );
+				$admin_tabs['premium-landing'] = __( 'Premium Version', 'yith-woocommerce-eu-vat' );
 			}
 
 			$args = array(
@@ -186,10 +186,10 @@ if ( ! class_exists( 'YITH_YWEV_Plugin_FW_Loader' ) ) {
 		 * @use plugin_action_links_{$plugin_file_name}
 		 */
 		public function action_links( $links ) {
-			$links[] = '<a href="' . admin_url( "admin.php?page={$this->_panel_page}" ) . '">' . __( 'Settings', 'ywev' ) . '</a>';
+			$links[] = '<a href="' . admin_url( "admin.php?page={$this->_panel_page}" ) . '">' . __( 'Settings', 'yith-woocommerce-eu-vat' ) . '</a>';
 
 			if ( defined( 'YITH_YWEV_FREE_INIT' ) ) {
-				$links[] = '<a href="' . $this->_premium_landing . '" target="_blank">' . __( 'Premium Version', 'ywev' ) . '</a>';
+				$links[] = '<a href="' . $this->_premium_landing . '" target="_blank">' . __( 'Premium Version', 'yith-woocommerce-eu-vat' ) . '</a>';
 			}
 
 			return $links;
@@ -214,7 +214,7 @@ if ( ! class_exists( 'YITH_YWEV_Plugin_FW_Loader' ) ) {
 			if ( ( defined( 'YITH_YWEV_INIT' ) && ( YITH_YWEV_INIT == $plugin_file ) ) ||
 			     ( defined( 'YITH_YWEV_FREE_INIT' ) && ( YITH_YWEV_FREE_INIT == $plugin_file ) )
 			) {
-				$plugin_meta[] = '<a href="' . $this->_official_documentation . '" target="_blank">' . __( 'Plugin Documentation', 'ywev' ) . '</a>';
+				$plugin_meta[] = '<a href="' . $this->_official_documentation . '" target="_blank">' . __( 'Plugin Documentation', 'yith-woocommerce-eu-vat' ) . '</a>';
 			}
 
 			return $plugin_meta;
@@ -227,16 +227,16 @@ if ( ! class_exists( 'YITH_YWEV_Plugin_FW_Loader' ) ) {
 
 			$premium_message = defined( 'YITH_YWEV_PREMIUM' )
 				? ''
-				: __( 'YITH WooCommerce EU VAT is available in an outstanding PREMIUM version with many new options, discover it now.', 'ywev' ) .
-				  ' <a href="' . $this->_premium_landing . '">' . __( 'Premium version', 'ywev' ) . '</a>';
+				: __( 'YITH WooCommerce EU VAT is available in an outstanding PREMIUM version with many new options, discover it now.', 'yith-woocommerce-eu-vat' ) .
+				  ' <a href="' . $this->_premium_landing . '">' . __( 'Premium version', 'yith-woocommerce-eu-vat' ) . '</a>';
 
 			$args[] = array(
 				'screen_id'  => 'plugins',
 				'pointer_id' => 'yith_woocommerce_eu-vat',
 				'target'     => '#toplevel_page_yit_plugin_panel',
 				'content'    => sprintf( '<h3> %s </h3> <p> %s </p>',
-					__( 'YITH WooCommerce EU VAT', 'ywev' ),
-					__( 'In YIT Plugins tab, you can find the YITH WooCommerce EU VAT options.<br> From this menu you can access all settings of the activated YITH plugins.', 'ywev' ) . '<br>' . $premium_message
+					__( 'YITH WooCommerce EU VAT', 'yith-woocommerce-eu-vat' ),
+					__( 'In YIT Plugins tab, you can find the YITH WooCommerce EU VAT options.<br> From this menu you can access all settings of the activated YITH plugins.', 'yith-woocommerce-eu-vat' ) . '<br>' . $premium_message
 				),
 				'position'   => array( 'edge' => 'left', 'align' => 'center' ),
 				'init'       => defined( 'YITH_YWEV_PREMIUM' ) ? YITH_YWEV_INIT : YITH_YWEV_FREE_INIT

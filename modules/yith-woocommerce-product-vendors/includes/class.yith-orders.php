@@ -39,8 +39,8 @@ if ( ! class_exists( 'YITH_Orders' ) ) {
             add_action( 'woocommerce_checkout_update_order_meta', array( $this, 'check_suborder' ), 10, 2 );
 
             /* Prevent Multiple Email Notifications for Suborders */
-            add_filter( 'woocommerce_email_enabled_new_order', array( $this, 'woocommerce_email_enabled_new_order' ), 10, 2 );
-            add_filter( 'woocommerce_email_enabled_cancelled_order', array( $this, 'woocommerce_email_enabled_new_order' ), 10, 2 );
+            add_filter( 'woocommerce_email_recipient_new_order', array( $this, 'woocommerce_email_recipient_new_order' ), 10, 2 );
+            add_filter( 'woocommerce_email_recipient_cancelled_order', array( $this, 'woocommerce_email_recipient_new_order' ), 10, 2 );
             add_filter( 'woocommerce_email_enabled_customer_processing_order', array( $this, 'woocommerce_email_enabled_new_order' ), 10, 2 );
             add_filter( 'woocommerce_email_enabled_customer_completed_order', array( $this, 'woocommerce_email_enabled_new_order' ), 10, 2 );
             add_filter( 'woocommerce_email_enabled_customer_partially_refunded_order', array( $this, 'woocommerce_email_enabled_new_order' ), 10, 2 );
@@ -55,7 +55,7 @@ if ( ! class_exists( 'YITH_Orders' ) ) {
             add_filter( 'wc_order_is_editable', array( $this, 'vendor_single_order_page' ) );
 
             add_filter( 'woocommerce_attribute_label', array( $this, 'commissions_attribute_label' ), 10, 3 );
-            
+
             /* Single Order Page for Vendor */
             add_filter( 'wc_order_is_editable', array( $this, 'vendor_single_order_page' ) );
 
@@ -385,7 +385,7 @@ if ( ! class_exists( 'YITH_Orders' ) ) {
                 foreach ( $suborder_ids as $suborder_id ) {
                     /** @var $suborder WC_Order */
                     $suborder = wc_get_order( $suborder_id );
-                    $suborder->update_status( $new_status, _x( 'Website owner update: ', 'Order note', 'yith_wc_product_vendors' ) );
+                    $suborder->update_status( $new_status, _x( 'Update by admin: ', 'Order note', 'yith_wc_product_vendors' ) );
                 }
             }
         }
@@ -652,7 +652,7 @@ if ( ! class_exists( 'YITH_Orders' ) ) {
             if ( ! is_array( $order_item_ids ) && is_numeric( $order_item_ids ) ) {
                 $order_item_ids = array( $order_item_ids );
             }
-//TODO: add check order_id if ( ! wp_get_post_parent_id( $parent_order_id ) ) {
+            //TODO: add check order_id if ( ! wp_get_post_parent_id( $parent_order_id ) ) {
             if ( sizeof( $order_item_ids ) > 0 ) {
                 /** @var $wpdb wpdb */
                 global $wpdb;
@@ -707,7 +707,7 @@ if ( ! class_exists( 'YITH_Orders' ) ) {
                     if ( ! empty( $suborder_ids ) ) {
                         foreach ( $suborder_ids as $suborder_id ) {
                             $suborder = wc_get_order( $suborder_id );
-                            $note_id  = $suborder->add_order_note( _x( 'Website owner update: ', 'Order note', 'yith_wc_product_vendors' ) . $note, $is_customer_note, true );
+                            $note_id  = $suborder->add_order_note( _x( 'Update by admin: ', 'Order note', 'yith_wc_product_vendors' ) . $note, $is_customer_note, true );
                             add_comment_meta( $note_id, 'parent_note_id', $parent_note_id );
                         }
                     }
@@ -1283,6 +1283,13 @@ if ( ! class_exists( 'YITH_Orders' ) ) {
         }
 
         /**
+         * Check for email recipient
+         */
+        public function woocommerce_email_recipient_new_order( $recipient, $object ){
+            return ( $recipient == get_option('recipient') || $recipient == get_option('admin_email') ) && $object instanceof WC_Order && wp_get_post_parent_id( $object->id ) ? false: $recipient;
+        }
+
+        /**
          * Handle a refund via the edit order screen.
          * Called after wp_ajax_woocommerce_refund_line_items action
          *
@@ -1380,11 +1387,6 @@ if ( ! class_exists( 'YITH_Orders' ) ) {
                     }
                 }
             }
-
-            else{
-                //is suborder
-                //TODO: Suborder sub-routine
-            }
         }
 
         /**
@@ -1412,11 +1414,6 @@ if ( ! class_exists( 'YITH_Orders' ) ) {
                         wp_delete_post( $child_refund_id );
                     }
                 }
-            }
-
-            else{
-                //is suborder
-                //TODO: Suborder sub-routine
             }
         }
 
@@ -1475,7 +1472,7 @@ if ( ! class_exists( 'YITH_Orders' ) ) {
          * @author   Andrea Grillo <andrea.grillo@yithemes.com>
          */
         public function hidden_order_itemmeta( $to_hidden ) {
-            if( ! defined( 'WP_DEBUG' ) ){
+            if( ! defined( 'WP_DEBUG' ) || ( defined( 'WP_DEBUG' ) && ! WP_DEBUG ) ){
                 $to_hidden[] = '_parent_line_item_id';
             }
 
@@ -1522,7 +1519,7 @@ if ( ! class_exists( 'YITH_Orders' ) ) {
 
             switch ( $column ) {
                 case 'suborder' :
-                    $suborder_ids = self::get_suborder( $the_order->id );
+                    $suborder_ids = self::get_suborder( $_the_order->id );
 
                     if ( $suborder_ids ) {
                         foreach ( $suborder_ids as $suborder_id ) {
@@ -1557,6 +1554,10 @@ if ( ! class_exists( 'YITH_Orders' ) ) {
           * @author Andrea Grillo <andrea.grillo@yithemes.com>
          */
         public function add_meta_boxes() {
+            if( 'shop_order' != get_current_screen()->id ){
+                return;
+            }
+
             global $post;
             $vendor         = yith_get_vendor( 'current', 'user' );
             $has_suborder   = self::get_suborder( absint( $post->ID ) );

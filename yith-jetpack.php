@@ -59,9 +59,9 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
             $this->_modules_list_query_value  = self::MODULES_LIST_QUERY_VALUE.$this->$index;
             $this->_plugin_list_hide_notice_option_name = self::PLUGIN_LIST_HIDE_NOTICE_OPTION_NAME.$this->$index;
 
-            $this->plugin_fw_loader();
+            add_action( 'plugins_loaded', array( $this, 'plugin_fw_loader' ), 15 );
 
-			$this->load_modules();
+            add_action( 'plugins_loaded', array( $this, 'load_modules' ) , 5 );
 
             // admin page
             add_action( 'admin_init', array( $this, 'deactivate_singular_plugins' ) );
@@ -354,6 +354,7 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
 
             $modules = $this->get_modules();
             $active  = get_option( $this->_activate_module_option_name, array() );
+
             foreach ( $active as $m ) {
                 if ( isset( $modules[$m] ) ) {
                     $this->_active_modules[$m] = $modules[$m];
@@ -565,6 +566,10 @@ if ( ! class_exists( 'YITH_JetPack' ) ) {
             }
 
             add_submenu_page( 'yit_plugin_panel', $title, $title, 'install_plugins', $this->_modules_list_query_value , array( $this, 'admin_modules_page' ) );
+
+            /* === Duplicate Items Hack === */
+            remove_submenu_page( 'yit_plugin_panel', 'yit_plugin_panel' );
+
         }
 
         public function get_new_added_plugin(){

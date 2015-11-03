@@ -1,126 +1,109 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: YIT WooCommerce Waiting List\n"
-"POT-Creation-Date: 2015-04-22 16:20+0100\n"
-"PO-Revision-Date: 2015-04-22 16:20+0100\n"
+"Project-Id-Version: YITH WooCommerce Order Tracking\n"
+"POT-Creation-Date: 2015-03-04 14:38+0100\n"
+"PO-Revision-Date: 2015-03-04 14:38+0100\n"
 "Last-Translator: \n"
-"Language-Team: Yithemes <plugins@yithemes.com>\n"
+"Language-Team: Your Inspiration Themes <plugins@yithemes.com>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.4\n"
-"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e;_n:1,2;__ngettext:1,2;"
-"__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;"
-"_nx_noop:4c,1,2\n"
+"X-Generator: Poedit 1.5.5\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=n!=1;\n"
+"X-Poedit-KeywordsList: __ ;_e;_n:1,2;__ngettext:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../includes/class.yith-wcwtl-admin.php:129
-#: ../includes/class.yith-wcwtl-admin.php:152
-#: ../plugin-fw/lib/yit-cpt-unlimited.php:1048
-#: ../plugin-fw/lib/yit-cpt-unlimited.php:1196
-#: ../plugin-fw/lib/yit-cpt-unlimited.php:1202
-#: ../plugin-fw/lib/yit-plugin-panel.php:64
-msgid "Settings"
+#: ../class.yith-woocommerce-order-tracking.php:426
+msgid "General"
 msgstr ""
 
-#: ../includes/class.yith-wcwtl-admin.php:131
-#: ../includes/class.yith-wcwtl-admin.php:156
+#: ../class.yith-woocommerce-order-tracking.php:430
+msgid "Carriers"
+msgstr ""
+
+#: ../class.yith-woocommerce-order-tracking.php:432
+#: ../class.yith-woocommerce-order-tracking.php:493
 msgid "Premium Version"
 msgstr ""
 
-#: ../includes/class.yith-wcwtl-admin.php:162
-#: ../includes/class.yith-wcwtl-admin.php:163
-msgid "Waiting List"
+#: ../class.yith-woocommerce-order-tracking.php:490
+#: ../plugin-fw/lib/yit-cpt-unlimited.php:1048
+#: ../plugin-fw/lib/yit-cpt-unlimited.php:1196
+#: ../plugin-fw/lib/yit-cpt-unlimited.php:1202
+#: ../plugin-fw/lib/yit-plugin-panel.php:62
+msgid "Settings"
 msgstr ""
 
-#: ../includes/class.yith-wcwtl-admin.php:215
+#: ../class.yith-woocommerce-order-tracking.php:518
 msgid "Plugin Documentation"
 msgstr ""
 
-#: ../includes/class.yith-wcwtl-email.php:32
-msgid "YITH Waiting list"
-msgstr ""
-
-#: ../includes/class.yith-wcwtl-email.php:33
+#: ../class.yith-woocommerce-order-tracking.php:531
 msgid ""
-"When a product is no more Out-of-Stock and it is In-Stock again, this email "
-"is sent to all users registered in the waiting list for that product."
+"YITH WooCommerce Order Tracking is available in an outstanding PREMIUM "
+"version with many new options, discover it now."
 msgstr ""
 
-#: ../includes/class.yith-wcwtl-email.php:35
-msgid "{product_title} is now back in stock at {blogname}"
+#: ../class.yith-woocommerce-order-tracking.php:532
+msgid "Premium version"
 msgstr ""
 
-#: ../includes/class.yith-wcwtl-email.php:36
-msgid "A product you are waiting for is back in stock"
+#: ../class.yith-woocommerce-order-tracking.php:539
+#: ../plugin-options/general-options.php:78
+msgid "YITH WooCommerce Order Tracking"
 msgstr ""
 
-#: ../includes/class.yith-wcwtl-frontend.php:158
-msgid "Email Address"
-msgstr ""
-
-#: ../includes/class.yith-wcwtl-frontend.php:197
+#: ../class.yith-woocommerce-order-tracking.php:540
 msgid ""
-"You must provide a valid email address to join the waiting list of this "
-"product"
+"In YIT Plugins tab you can find YITH WooCommerce Advanced Reviews options. "
+"From this menu you can access all settings of YITH plugins activated."
 msgstr ""
 
-#: ../includes/class.yith-wcwtl-frontend.php:220
-msgid "You have already registered for this waiting list"
+#: ../class.yith-woocommerce-order-tracking.php:575
+msgid "Order tracking"
 msgstr ""
 
-#: ../includes/class.yith-wcwtl-frontend.php:227
-msgid "You have been removed from the waiting list for this product"
+#: ../class.yith-woocommerce-order-tracking.php:601
+msgid "Tracking code:"
 msgstr ""
 
-#: ../includes/class.yith-wcwtl-frontend.php:230
-msgid "An error has occurred. Please try again."
+#: ../class.yith-woocommerce-order-tracking.php:604
+msgid "Enter tracking code"
 msgstr ""
 
-#: ../includes/class.yith-wcwtl-meta.php:103
-msgid "Waiting list"
+#: ../class.yith-woocommerce-order-tracking.php:609
+msgid "Carrier name:"
 msgstr ""
 
-#: ../includes/class.yith-wcwtl-meta.php:121
-#, php-format
-msgid "Waiting list for the variation: #%s"
+#: ../class.yith-woocommerce-order-tracking.php:612
+msgid "Enter carrier name"
 msgstr ""
 
-#: ../includes/class.yith-wcwtl-meta.php:168
-#, php-format
-msgid "There is %s user in the waiting list for this product"
-msgid_plural "There are %s users in the waiting list for this product"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../includes/class.yith-wcwtl-meta.php:172
-msgid "There are no users in this waiting list"
+#: ../class.yith-woocommerce-order-tracking.php:617
+msgid "Pickup date:"
 msgstr ""
 
-#: ../includes/class.yith-wcwtl-meta.php:193
-msgid "Send the email to the users"
+#: ../class.yith-woocommerce-order-tracking.php:620
+msgid "Enter pick up date"
 msgstr ""
 
-#: ../includes/class.yith-wcwtl-meta.php:224
-msgid "Email sent correctly."
+#: ../class.yith-woocommerce-order-tracking.php:627
+msgid "Order picked up"
 msgstr ""
 
-#: ../includes/class.yith-wcwtl-meta.php:230
-msgid "An error has occurred, please try again."
-msgstr ""
-
-#: ../init.php:41
+#: ../init.php:43
 msgid ""
-"YITH WooCommerce Waiting List is enabled but not effective. It requires "
-"WooCommerce in order to work."
+"YITH WooCommerce Order Tracking is enabled but not effective. It requires "
+"Woocommerce in order to work."
 msgstr ""
 
-#: ../init.php:50
+#: ../init.php:51
 msgid ""
-"You can't activate the free version of YITH WooCommerce Waiting List while "
+"You can't activate the free version of YITH WooCommerce Order Tracking while "
 "you are using the premium one."
 msgstr ""
 
@@ -330,81 +313,82 @@ msgstr ""
 msgid "Add with multiupload"
 msgstr ""
 
-#: ../plugin-fw/lib/yit-plugin-panel-wc.php:295
+#: ../plugin-fw/lib/yit-plugin-panel-wc.php:345
 msgid "The changes you have made will be lost if you leave this page."
 msgstr ""
 
-#: ../plugin-fw/lib/yit-plugin-panel.php:63
+#: ../plugin-fw/lib/yit-plugin-panel.php:61
 msgid "Plugin Settings"
 msgstr ""
 
-#: ../plugin-fw/lib/yit-plugin-panel.php:95
+#: ../plugin-fw/lib/yit-plugin-panel.php:92
 #: ../plugin-fw/lib/yit-plugin-subpanel.php:101
 msgid "YIT Plugins"
 msgstr ""
 
-#: ../plugin-fw/lib/yit-plugin-panel.php:292
+#: ../plugin-fw/lib/yit-plugin-panel.php:271
 #: ../plugin-fw/lib/yit-plugin-subpanel.php:142
 #: ../plugin-fw/templates/panel/woocommerce/woocommerce-form.php:5
 msgid "Save Changes"
 msgstr ""
 
-#: ../plugin-fw/lib/yit-plugin-panel.php:295
+#: ../plugin-fw/lib/yit-plugin-panel.php:274
 #: ../plugin-fw/templates/panel/woocommerce/woocommerce-form.php:8
 msgid ""
 "If you continue with this action, you will reset all options in this page."
 msgstr ""
 
-#: ../plugin-fw/lib/yit-plugin-panel.php:297
+#: ../plugin-fw/lib/yit-plugin-panel.php:276
 #: ../plugin-fw/lib/yit-plugin-subpanel.php:147
-msgid "Reset to Default"
+#: ../plugin-fw/templates/panel/woocommerce/woocommerce-form.php:10
+msgid "Reset Defaults"
 msgstr ""
 
-#: ../plugin-fw/lib/yit-plugin-panel.php:297
+#: ../plugin-fw/lib/yit-plugin-panel.php:276
 #: ../plugin-fw/lib/yit-plugin-subpanel.php:147
 #: ../plugin-fw/templates/panel/woocommerce/woocommerce-form.php:10
 msgid "Are you sure?"
 msgstr ""
 
-#: ../plugin-fw/lib/yit-plugin-panel.php:431
+#: ../plugin-fw/lib/yit-plugin-panel.php:410
 msgid ""
 "The element you have entered already exists. Please, enter another name."
 msgstr ""
 
-#: ../plugin-fw/lib/yit-plugin-panel.php:432
+#: ../plugin-fw/lib/yit-plugin-panel.php:411
 msgid "Settings saved"
 msgstr ""
 
-#: ../plugin-fw/lib/yit-plugin-panel.php:433
+#: ../plugin-fw/lib/yit-plugin-panel.php:412
 msgid "Settings reset"
 msgstr ""
 
-#: ../plugin-fw/lib/yit-plugin-panel.php:434
+#: ../plugin-fw/lib/yit-plugin-panel.php:413
 msgid "Element deleted correctly."
 msgstr ""
 
-#: ../plugin-fw/lib/yit-plugin-panel.php:435
-#: ../plugin-fw/lib/yit-plugin-panel.php:436
+#: ../plugin-fw/lib/yit-plugin-panel.php:414
+#: ../plugin-fw/lib/yit-plugin-panel.php:415
 msgid "Element updated correctly."
 msgstr ""
 
-#: ../plugin-fw/lib/yit-plugin-panel.php:437
+#: ../plugin-fw/lib/yit-plugin-panel.php:416
 msgid "Database imported correctly."
 msgstr ""
 
-#: ../plugin-fw/lib/yit-plugin-panel.php:438
+#: ../plugin-fw/lib/yit-plugin-panel.php:417
 msgid "An error has occurred during import. Please try again."
 msgstr ""
 
-#: ../plugin-fw/lib/yit-plugin-panel.php:439
+#: ../plugin-fw/lib/yit-plugin-panel.php:418
 msgid "The added file is not valid."
 msgstr ""
 
-#: ../plugin-fw/lib/yit-plugin-panel.php:440
+#: ../plugin-fw/lib/yit-plugin-panel.php:419
 msgid "Sorry, import is disabled."
 msgstr ""
 
-#: ../plugin-fw/lib/yit-plugin-panel.php:441
+#: ../plugin-fw/lib/yit-plugin-panel.php:420
 msgid "Sorting successful."
 msgstr ""
 
@@ -528,48 +512,48 @@ msgstr ""
 msgid "Update Plugin"
 msgstr ""
 
-#: ../plugin-fw/licence/lib/yit-licence.php:156
+#: ../plugin-fw/licence/lib/yit-licence.php:148
 #, php-format
 msgid "%field% field cannot be empty"
 msgstr ""
 
-#: ../plugin-fw/licence/lib/yit-licence.php:157
+#: ../plugin-fw/licence/lib/yit-licence.php:149
 msgid "%field_1% and %field_2% fields cannot be empty"
 msgstr ""
 
-#: ../plugin-fw/licence/lib/yit-licence.php:158
+#: ../plugin-fw/licence/lib/yit-licence.php:150
 msgid "Unable to contact the remote server, please try again later. Thanks!"
 msgstr ""
 
-#: ../plugin-fw/licence/lib/yit-licence.php:537
+#: ../plugin-fw/licence/lib/yit-licence.php:529
 msgid "Invalid Request"
 msgstr ""
 
-#: ../plugin-fw/licence/lib/yit-licence.php:538
+#: ../plugin-fw/licence/lib/yit-licence.php:530
 msgid "Invalid licence key"
 msgstr ""
 
-#: ../plugin-fw/licence/lib/yit-licence.php:539
+#: ../plugin-fw/licence/lib/yit-licence.php:531
 msgid "Software has been deactivated"
 msgstr ""
 
-#: ../plugin-fw/licence/lib/yit-licence.php:540
+#: ../plugin-fw/licence/lib/yit-licence.php:532
 msgid "Maximum number of activations exceeded"
 msgstr ""
 
-#: ../plugin-fw/licence/lib/yit-licence.php:541
+#: ../plugin-fw/licence/lib/yit-licence.php:533
 msgid "Invalid instance ID"
 msgstr ""
 
-#: ../plugin-fw/licence/lib/yit-licence.php:542
+#: ../plugin-fw/licence/lib/yit-licence.php:534
 msgid "Invalid security key"
 msgstr ""
 
-#: ../plugin-fw/licence/lib/yit-licence.php:543
+#: ../plugin-fw/licence/lib/yit-licence.php:535
 msgid "Licence key has expired"
 msgstr ""
 
-#: ../plugin-fw/licence/lib/yit-licence.php:544
+#: ../plugin-fw/licence/lib/yit-licence.php:536
 msgid "Licence key has been banned"
 msgstr ""
 
@@ -594,92 +578,72 @@ msgstr ""
 
 #: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:23
 msgid ""
-"I cannot find the license key for activating the theme I have bought some "
-"time ago. Where can I find it?"
-msgstr ""
-
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:26
-msgid ""
-"If you have purchased one of our products before 27 January 2015, you can "
-"benefit from support and updates (the services offered with the license)\n"
-"            until 27 January 2016 and you do not have to purchase it again "
-"to get a new license key, because, before this date, your license used to be "
-"activated automatically by our system.\n"
-"            After 27 January 2016, instead, if you want to benefit from "
-"support and updates you have to buy a new license and activate it through "
-"the license key you will be\n"
-"            provided with and that you can find in your YIThemes account, in "
-"section \"My licenses\"."
-msgstr ""
-
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:37
-msgid ""
 "Have you updated your licenses? Have you asked for an extension? Update "
 "information concerning your products."
 msgstr ""
 
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:39
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:25
 msgid "Update licence information"
 msgstr ""
 
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:49
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:35
 msgid "Products to be activated"
 msgstr ""
 
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:68
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:54
 msgid "Activate"
 msgstr ""
 
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:87
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:73
 msgid "Activated"
 msgstr ""
 
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:91
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:123
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:147
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:77
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:109
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:133
 msgid "Product Name"
 msgstr ""
 
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:92
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:124
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:148
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:148
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:340
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:78
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:110
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:134
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:145
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:337
 msgid "Email"
 msgstr ""
 
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:93
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:125
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:149
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:79
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:111
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:135
 msgid "Licence Key"
 msgstr ""
 
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:94
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:150
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:80
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:136
 msgid "Expires"
 msgstr ""
 
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:95
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:81
 msgid "Remaining"
 msgstr ""
 
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:96
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:109
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:151
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:161
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:82
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:95
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:137
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:147
 msgid "Renew"
 msgstr ""
 
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:107
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:93
 #, php-format
 msgid "%1s out of %2s"
 msgstr ""
 
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:119
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:105
 msgid "Banned"
 msgstr ""
 
-#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:143
+#: ../plugin-fw/licence/templates/panel/activation/activation-panel.php:129
 msgid "Expired"
 msgstr ""
 
@@ -695,180 +659,180 @@ msgstr ""
 msgid "+ Add New Category"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:7
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:5
 msgid "Text Input"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:8
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:6
 msgid "Checkbox"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:9
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:7
 msgid "Select"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:10
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:8
 msgid "Textarea"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:11
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:9
 msgid "Radio Input"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:12
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:10
 msgid "Password Field"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:13
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:11
 msgid "File Upload"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:47
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:45
 msgid "Theme Icon"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:48
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:46
 msgid "Custom Icon"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:49
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:47
 #: ../plugin-fw/templates/metaboxes/types/responsivesliders.php:24
 msgid "None"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:60
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:57
 msgid "Add field"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:69
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:261
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:66
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:258
 #: ../plugin-fw/templates/metaboxes/types/customtabs.php:37
 #: ../plugin-fw/templates/metaboxes/types/customtabs.php:82
 msgid "Remove"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:70
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:262
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:67
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:259
 msgid "Click to toggle"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:77
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:269
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:74
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:266
 msgid "Title Field"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:81
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:273
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:78
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:270
 msgid "Insert the title for the field."
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:86
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:278
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:83
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:275
 msgid "Data Name"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:90
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:282
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:87
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:279
 msgid ""
 "REQUIRED: Field identification name to be entered into email body. "
 "<strong>Note:</strong>Use only lowercase characters and underscores."
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:95
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:287
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:92
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:284
 msgid "Type field"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:103
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:295
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:100
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:292
 msgid "Select the type for this field."
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:108
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:300
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:105
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:297
 msgid "Checked"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:112
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:304
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:109
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:301
 msgid "Select this option if you want this field appears as already checked."
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:117
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:309
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:114
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:306
 msgid "Add options "
+msgstr ""
+
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:115
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:307
+msgid "Add option"
 msgstr ""
 
 #: ../plugin-fw/templates/metaboxes/types/contactform.php:118
 #: ../plugin-fw/templates/metaboxes/types/contactform.php:310
-msgid "Add option"
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:432
+msgid "Selected"
 msgstr ""
 
 #: ../plugin-fw/templates/metaboxes/types/contactform.php:121
 #: ../plugin-fw/templates/metaboxes/types/contactform.php:313
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:436
-msgid "Selected"
-msgstr ""
-
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:124
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:316
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:436
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:432
 msgid "Delete option"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:130
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:322
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:127
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:319
 msgid "Error Message"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:134
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:326
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:131
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:323
 msgid "Insert the error message for validation."
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:139
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:331
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:136
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:328
 msgid "Required"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:143
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:335
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:140
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:332
 msgid "Select this option if it must be required."
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:152
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:344
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:149
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:341
 msgid "Select this option if the email must be valid."
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:157
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:349
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:154
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:346
 msgid "Reply To"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:161
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:353
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:158
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:350
 msgid "Select this if it is the email you can reply to."
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:166
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:358
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:163
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:355
 msgid "Class"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:170
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:362
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:167
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:359
 msgid ""
 "Insert additional class(es) (separated by commas) for more personalization."
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:175
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:367
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:172
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:364
 msgid "Icon"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:203
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:391
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:200
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:388
 #: ../plugin-fw/templates/metaboxes/types/icon-list.php:69
 #: ../plugin-fw/templates/metaboxes/types/select-icon.php:33
 #: ../plugin-fw/templates/metaboxes/types/upload.php:21
@@ -877,25 +841,25 @@ msgstr ""
 msgid "Upload"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:209
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:397
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:206
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:394
 #: ../plugin-fw/templates/metaboxes/types/icon-list.php:75
 #: ../plugin-fw/templates/metaboxes/types/select-icon.php:39
 msgid "Image preview"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:217
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:405
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:214
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:402
 msgid "Insert an icon for more personalization."
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:222
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:409
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:219
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:406
 msgid "Width"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:247
-#: ../plugin-fw/templates/metaboxes/types/contactform.php:421
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:244
+#: ../plugin-fw/templates/metaboxes/types/contactform.php:418
 msgid "Set field length."
 msgstr ""
 
@@ -935,34 +899,34 @@ msgstr ""
 msgid "(Default: <i %s></i> )"
 msgstr ""
 
+#: ../plugin-fw/templates/metaboxes/types/image-gallery.php:35
 #: ../plugin-fw/templates/metaboxes/types/image-gallery.php:40
-#: ../plugin-fw/templates/metaboxes/types/image-gallery.php:45
-#: ../plugin-fw/templates/metaboxes/types/images.php:38
-#: ../plugin-fw/templates/metaboxes/types/images.php:64
+#: ../plugin-fw/templates/metaboxes/types/images.php:33
+#: ../plugin-fw/templates/metaboxes/types/images.php:59
 msgid "Delete image"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/image-gallery.php:45
+#: ../plugin-fw/templates/metaboxes/types/image-gallery.php:40
 msgid "Add Images to Gallery"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/image-gallery.php:45
+#: ../plugin-fw/templates/metaboxes/types/image-gallery.php:40
 msgid "Add to gallery"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/image-gallery.php:45
+#: ../plugin-fw/templates/metaboxes/types/image-gallery.php:40
 msgid "Add images"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/image-gallery.php:45
+#: ../plugin-fw/templates/metaboxes/types/image-gallery.php:40
 msgid "Delete"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/images.php:42
+#: ../plugin-fw/templates/metaboxes/types/images.php:37
 msgid "Upload new images"
 msgstr ""
 
-#: ../plugin-fw/templates/metaboxes/types/images.php:75
+#: ../plugin-fw/templates/metaboxes/types/images.php:70
 msgid "Are you sure you want to remove this image?"
 msgstr ""
 
@@ -1042,134 +1006,82 @@ msgstr ""
 msgid "Italic bold"
 msgstr ""
 
-#: ../plugin-fw/templates/panel/woocommerce/woocommerce-form.php:10
-msgid "Reset Defaults"
+#: ../plugin-options/general-options.php:19
+#: ../plugin-options/general-options.php:27
+msgid "Default carrier name"
 msgstr ""
 
-#: ../plugin-options/general-options.php:11
+#: ../plugin-options/general-options.php:22
+msgid ""
+"  To display the list of carriers, you have to select them first from the "
+"specific \"Carriers\" tab that you can find in the top part of the screen."
+msgstr ""
+
+#: ../plugin-options/general-options.php:38
+msgid "General settings"
+msgstr ""
+
+#: ../plugin-options/general-options.php:44
+msgid "Text in the Orders page"
+msgstr ""
+
+#: ../plugin-options/general-options.php:47
+msgid ""
+"Your order has been picked up by [carrier_name] on [pickup_date]. Your track "
+"code is [track_code]."
+msgstr ""
+
+#: ../plugin-options/general-options.php:48
+msgid ""
+"This is the text showed in Order details page. You can customize the text "
+"using the following 3 placeholders, representing real shipping information."
+msgstr ""
+
+#: ../plugin-options/general-options.php:52
+msgid "Position of the text in the Orders page"
+msgstr ""
+
+#: ../plugin-options/general-options.php:55
+msgid ""
+"Choose if tracking text have to be shown on top (before order product list) "
+"or on bottom (after product list)."
+msgstr ""
+
+#: ../plugin-options/general-options.php:57
+msgid "Show on top"
+msgstr ""
+
+#: ../plugin-options/general-options.php:58
+msgid "Show on bottom"
+msgstr ""
+
+#: ../plugin-options/general-options.php:75
 msgid "Upgrade to the PREMIUM VERSION"
 msgstr ""
 
-#: ../plugin-options/general-options.php:14
-#: ../plugin-options/general-options.php:21
-msgid "YITH WooCommerce Waiting List"
+#: ../plugin-options/general-options.php:79
+msgid "Discover Advanced Features"
 msgstr ""
 
-#: ../plugin-options/general-options.php:15
-msgid "Discover the Advanced Features"
-msgstr ""
-
-#: ../plugin-options/general-options.php:16
+#: ../plugin-options/general-options.php:80
 msgid ""
-"Upgrade to the PREMIUM VERSION of YITH WooCommerce Waiting List to benefit "
+"Upgrade to the PREMIUM VERSION of YITH WOOCOMMERCE ORDER TRACKING to benefit "
 "from all features!"
 msgstr ""
 
-#: ../plugin-options/general-options.php:23
+#: ../plugin-options/general-options.php:84
+msgid ""
+"See YITH WooCommerce Order tracking plugin with full premium features in "
+"action"
+msgstr ""
+
+#: ../plugin-options/general-options.php:86
 msgid "Get Support and Pro Features"
 msgstr ""
 
-#: ../plugin-options/general-options.php:24
+#: ../plugin-options/general-options.php:87
 msgid ""
 "By purchasing the premium version of the plugin, you will take advantage of "
 "the advanced features of the product and you will get one year of free "
 "updates and support through our platform available 24h/24."
-msgstr ""
-
-#: ../plugin-options/general-options.php:34
-msgid "General Options"
-msgstr ""
-
-#: ../plugin-options/general-options.php:42
-msgid "Enable Waiting List"
-msgstr ""
-
-#: ../plugin-options/general-options.php:49
-msgid "Notification message"
-msgstr ""
-
-#: ../plugin-options/general-options.php:50
-msgid ""
-"A text message to show before the waiting list form in the single product "
-"page."
-msgstr ""
-
-#: ../plugin-options/general-options.php:52
-msgid "Notify me when the item is back in stock."
-msgstr ""
-
-#: ../plugin-options/general-options.php:57
-msgid "Add button label"
-msgstr ""
-
-#: ../plugin-options/general-options.php:58
-msgid "The label of the button to be added to the waiting list"
-msgstr ""
-
-#: ../plugin-options/general-options.php:60
-msgid "Add to waiting list"
-msgstr ""
-
-#: ../plugin-options/general-options.php:65
-msgid "Remove button label"
-msgstr ""
-
-#: ../plugin-options/general-options.php:66
-msgid "The label of the button to be removed from the waiting list"
-msgstr ""
-
-#: ../plugin-options/general-options.php:68
-msgid "Leave waiting list"
-msgstr ""
-
-#: ../plugin-options/general-options.php:73
-msgid "Successful registration message"
-msgstr ""
-
-#: ../plugin-options/general-options.php:74
-msgid "The text for the successful registration in the waiting list."
-msgstr ""
-
-#: ../plugin-options/general-options.php:76
-msgid "You have been added to the waiting list for this product"
-msgstr ""
-
-#: ../templates/email/plain/yith-wcwtl-mail.php:14
-msgctxt "Email greetings"
-msgid "Hi there,"
-msgstr ""
-
-#: ../templates/email/plain/yith-wcwtl-mail.php:16
-#: ../templates/email/yith-wcwtl-mail.php:21
-#, php-format
-msgid "%1$s is now back in stock at %2$s."
-msgstr ""
-
-#: ../templates/email/plain/yith-wcwtl-mail.php:17
-msgid ""
-"You have been sent this email because your email address was registered in a "
-"waiting list for this product."
-msgstr ""
-
-#: ../templates/email/plain/yith-wcwtl-mail.php:18
-#, php-format
-msgid "If you want to purchase %s, please visit the following link: %s"
-msgstr ""
-
-#: ../templates/email/yith-wcwtl-mail.php:16
-msgctxt "Email salutation"
-msgid "Hi There,"
-msgstr ""
-
-#: ../templates/email/yith-wcwtl-mail.php:22
-msgid ""
-"You have been sent this email because your email address was registered on a "
-"waiting list for this product."
-msgstr ""
-
-#: ../templates/email/yith-wcwtl-mail.php:26
-#, php-format
-msgid ""
-"If you would like to purchase %s, please visit the following <a href=\"%s"
-"\">link</a>"
 msgstr ""

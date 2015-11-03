@@ -8,11 +8,11 @@
  * http://www.gnu.org/licenses/gpl-3.0.txt
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if ( !defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
-if ( ! function_exists( 'ylc_ajax_callback' ) ) {
+if ( !function_exists( 'ylc_ajax_callback' ) ) {
 
     /**
      * Manage AJAX Callbacks
@@ -64,9 +64,12 @@ if ( ! function_exists( 'ylc_ajax_callback' ) ) {
 
     }
 
+    add_action( 'wp_ajax_ylc_ajax_callback', 'ylc_ajax_callback' );
+    add_action( 'wp_ajax_nopriv_ylc_ajax_callback', 'ylc_ajax_callback' );
+
 }
 
-if ( ! function_exists( 'ylc_ajax_get_token' ) ) {
+if ( !function_exists( 'ylc_ajax_get_token' ) ) {
 
     /**
      * Get token
@@ -76,28 +79,29 @@ if ( ! function_exists( 'ylc_ajax_get_token' ) ) {
      * @author  Alberto Ruggiero
      */
     function ylc_ajax_get_token() {
-        global $yith_livechat;
 
-        $token = $yith_livechat->user_auth();
+        $token = YITH_Live_Chat()->user_auth();
 
         return array( 'token' => $token );
     }
 
 }
 
-if ( ! function_exists( 'ylc_ajax_save_chat' ) ) {
+if ( !function_exists( 'ylc_ajax_save_chat' ) ) {
 
     /**
      * Save chat transcripts if premium active
      *
      * @since   1.0.0
+     *
      * @param   $data
+     *
      * @return  array
      * @author  Alberto Ruggiero
      */
     function ylc_ajax_save_chat( $data ) {
 
-        $msg = array( 'msg' => __( 'Successfully closed!', 'ylc' ) );
+        $msg = array( 'msg' => __( 'Successfully closed!', 'yith-live-chat' ) );
 
         if ( defined( 'YLC_PREMIUM' ) ) {
 

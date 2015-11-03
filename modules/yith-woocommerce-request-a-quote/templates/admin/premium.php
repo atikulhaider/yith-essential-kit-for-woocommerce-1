@@ -205,7 +205,7 @@
         </div>
     </div>
     <div class="section section-even clear" style="background: url(<?php echo YITH_YWRAQ_URL ?>assets/images/01-bg.png) no-repeat #fff; background-position: 85% 75%">
-        <h1><?PHP _E('Premium Features','ywraq');?></h1>
+        <h1><?PHP _e('Premium Features','ywraq');?></h1>
         <div class="landing-container">
             <div class="col-1">
                 <img src="<?php echo YITH_YWRAQ_URL ?>assets/images/01.png" alt="CUSTOMISED BUTTON" />
@@ -213,7 +213,7 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YITH_YWRAQ_URL ?>assets/images/01-icon.png" alt="icon CUSTOMISED BUTTON"/>
-                    <h2><?PHP _E('CUSTOMISED BUTTON','ywraq');?></h2>
+                    <h2><?PHP _e('CUSTOMISED BUTTON','ywraq');?></h2>
                 </div>
                 <p>
                     <?php echo sprintf(__('Choose the style you prefer for your %s"Add to Quote"%s button! In the plugin option panel users will be able to find a section to set colours and text for the button','ywraq'),'<b>','</b>');?>

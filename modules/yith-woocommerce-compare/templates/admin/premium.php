@@ -363,6 +363,38 @@
             </div>
         </div>
     </div>
+    <div class="seven section section-even clear">
+        <div class="landing-container">
+            <div class="col-1">
+                <img src="<?php echo YITH_WOOCOMPARE_URL ?>assets/images/09.png" alt="Related products" />
+            </div>
+            <div class="col-2">
+                <div class="section-title">
+                    <img src="<?php echo YITH_WOOCOMPARE_URL?>assets/images/09-icon.png" alt="icon 09" />
+                    <h2><?php _e('CUSTOMIZED ATTRIBUTES','yith-woocommerce-compare');?></h2>
+                </div>
+                <p>
+                    <?php echo sprintf( __('Let you users compare products following every feature, and considering also all those %1$sattributes%2$s that can be manually created in within the product detail page. Every single detail will be included.','yith-woocommerce-compare'),'<b>','</b>'); ?>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="six section section-odd clear">
+        <div class="landing-container">
+            <div class="col-2">
+                <div class="section-title">
+                    <img src="<?php echo YITH_WOOCOMPARE_URL ?>assets/images/10-icon.png" alt="icon 10" />
+                    <h2><?php _e('A TAILORED TABLE','yith-woocommerce-compare');?></h2>
+                </div>
+                <p>
+                    <?php echo sprintf( __( 'Select the products you want to compare and the system will offer you the %1$sshortcode%2$s to generate a comparing table. Simple, rapid and useful.','yith-woocommerce-compare' ),'<b>','</b>' ) ?>
+                </p>
+            </div>
+            <div class="col-1">
+                <img src="<?php echo YITH_WOOCOMPARE_URL ?>assets/images/10.png" alt="Social networks" />
+            </div>
+        </div>
+    </div>
     <div class="section section-cta section-odd">
         <div class="landing-container">
             <div class="premium-cta">

@@ -1,3 +1,6 @@
+=== 1.2.2 ===
+Updated: Plugin Core
+
 === 1.2.1 ===
 Fixed: Issue with default variation attributes
 

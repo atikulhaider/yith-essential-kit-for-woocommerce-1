@@ -1,10 +1,10 @@
 <?php
 
-if( ! class_exists( 'JWT' )) {
+if ( !class_exists( 'JWT' ) ) {
     include_once dirname( __FILE__ ) . '/json-web-token.php';
 }
 
-if( ! class_exists( 'Services_FirebaseTokenGenerator' )) {
+if ( !class_exists( 'Services_FirebaseTokenGenerator' ) ) {
 
     class Services_FirebaseTokenGenerator {
         private $version = 0;
@@ -177,8 +177,8 @@ if( ! class_exists( 'Services_FirebaseTokenGenerator' )) {
                 JSON_ERROR_SYNTAX    => 'Syntax error, malformed JSON'
             );
             throw new UnexpectedValueException( isset( $messages[$errno] )
-                    ? $messages[$errno]
-                    : 'Unknown JSON error: ' . $errno
+                                                    ? $messages[$errno]
+                                                    : 'Unknown JSON error: ' . $errno
             );
         }
     }

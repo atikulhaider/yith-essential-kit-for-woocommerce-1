@@ -62,7 +62,7 @@ if ( !class_exists( 'YITH_Request_Quote' ) ) {
 			add_action( 'init', array( $this, 'start_session' ));
 
             /* plugin */
-            add_action( 'after_setup_theme', array( $this, 'plugin_fw_loader' ), 1 );
+            add_action( 'plugins_loaded', array( $this, 'plugin_fw_loader' ), 15 );
 
             /* ajax action */
             add_action( 'wp_ajax_yith_ywraq_action', array( $this, 'ajax' ) );
@@ -121,8 +121,12 @@ if ( !class_exists( 'YITH_Request_Quote' ) ) {
          * @author Andrea Grillo <andrea.grillo@yithemes.com>
          */
         public function plugin_fw_loader() {
-            if ( !defined( 'YIT' ) || !defined( 'YIT_CORE_PLUGIN' ) ) {
-                require_once( YITH_YWRAQ_DIR.'plugin-fw/yit-plugin.php' );
+            if ( ! defined( 'YIT_CORE_PLUGIN' ) ) {
+                global $plugin_fw_data;
+                if( ! empty( $plugin_fw_data ) ){
+                    $plugin_fw_file = array_shift( $plugin_fw_data );
+                    require_once( $plugin_fw_file );
+                }
             }
         }
 

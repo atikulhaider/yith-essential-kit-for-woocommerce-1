@@ -4,13 +4,13 @@ Plugin Name: YITH WooCommerce Order Tracking
 Plugin URI: http://yithemes.com/themes/plugins/yith-woocommerce-order-tracking/
 Description: Easy managing order tracking information for WooCommerce orders. Set the carrier and the tracking code and your customers will get notified about their shipping.
 Author: Yithemes
-Text Domain: ywot
-Version: 1.0.5
+Text Domain: yith-woocommerce-order-tracking
+Version: 1.0.7
 Author URI: http://yithemes.com/
 
 @author Yithemes
 @package YITH WooCommerce Order Tracking
-@version 1.0.5
+@version 1.0.7
 */
 
 /*  Copyright 2015  Your Inspiration Themes  (email : plugins@yithemes.com)
@@ -64,7 +64,7 @@ if ( ! defined( 'YITH_YWOT_FREE_INIT' ) ) {
 }
 
 if ( ! defined( 'YITH_YWOT_VERSION' ) ) {
-	define( 'YITH_YWOT_VERSION', '1.0.5' );
+	define( 'YITH_YWOT_VERSION', '1.0.7' );
 }
 
 if ( ! defined( 'YITH_YWOT_FILE' ) ) {
@@ -92,12 +92,18 @@ if ( ! defined( 'YITH_YWOT_ASSETS_IMAGES_URL' ) ) {
 }
 //endregion
 
+/* Plugin Framework Version Check */
+if ( ! function_exists ( 'yit_maybe_plugin_fw_loader' ) && file_exists ( YITH_YWOT_DIR . 'plugin-fw/init.php' ) ) {
+    require_once ( YITH_YWOT_DIR . 'plugin-fw/init.php' );
+}
+yit_maybe_plugin_fw_loader ( YITH_YWOT_DIR );
+
 function yith_ywot_init() {
 
 	/**
 	 * Load text domain and start plugin
 	 */
-	load_plugin_textdomain( 'ywot', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+	load_plugin_textdomain( 'yith-woocommerce-order-tracking', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
 	// Load required classes and functions
 	require_once( YITH_YWOT_DIR . 'class.yith-woocommerce-order-tracking.php' );

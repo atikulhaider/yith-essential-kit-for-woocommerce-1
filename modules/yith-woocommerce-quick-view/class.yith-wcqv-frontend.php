@@ -67,6 +67,7 @@ if( ! class_exists( 'YITH_WCQV_Frontend' ) ) {
 
 			// add button
 			add_action( 'woocommerce_after_shop_loop_item', array( $this, 'yith_add_quick_view_button' ), 15 );
+			add_action( 'yith_wccl_table_after_product_name', array( $this, 'yith_add_quick_view_button' ), 15 );
 
 			// load modal template
 			add_action( 'wp_footer', array( $this, 'yith_quick_view' ) );

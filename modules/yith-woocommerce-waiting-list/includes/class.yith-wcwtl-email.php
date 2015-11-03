@@ -29,11 +29,11 @@ if ( ! class_exists( 'YITH_WCWTL_Email' ) ) {
 		public function __construct() {
 
 			$this->id           = YITH_WCWTL_META . '_mailout';
-			$this->title        = __( 'YITH Waiting list', 'yith-wcwtl' );
-			$this->description  = __( 'When a product is no more Out-of-Stock and it is In-Stock again, this email is sent to all users registered in the waiting list for that product.', 'yith-wcwtl' );
+			$this->title        = __( 'YITH Waiting list', 'yith-woocommerce-waiting-list' );
+			$this->description  = __( 'When a product is no more Out-of-Stock and it is In-Stock again, this email is sent to all users registered in the waiting list for that product.', 'yith-woocommerce-waiting-list' );
 
-			$this->heading      = __( '{product_title} is now back in stock at {blogname}', 'yith-wcwtl' );
-			$this->subject      = __( 'A product you are waiting for is back in stock', 'yith-wcwtl' );
+			$this->heading      = __( '{product_title} is now back in stock at {blogname}', 'yith-woocommerce-waiting-list' );
+			$this->subject      = __( 'A product you are waiting for is back in stock', 'yith-woocommerce-waiting-list' );
 
 			$this->template_base    = YITH_WCWTL_TEMPLATE_PATH . '/email/';
 			$this->template_html    = 'yith-wcwtl-mail.php';
@@ -67,7 +67,11 @@ if ( ! class_exists( 'YITH_WCWTL_Email' ) ) {
 			$this->find[]       = '{product_title}';
 			$this->replace[]    = $this->object->get_title();
 
-			$response = $this->send( $users , $this->get_subject(), $this->get_content(), $this->get_headers(), $this->get_attachments() );
+			$response = true;
+
+			// add user to BCC
+			$header = $this->get_headers() . 'BCC: '. implode(",", $users) . "\r\n";
+			$response = $this->send( '', $this->get_subject(), $this->get_content(), $header, $this->get_attachments() );
 
 			if( $response ) {
 				add_filter( 'yith_wcwtl_send_mail_response', '__return_true' );

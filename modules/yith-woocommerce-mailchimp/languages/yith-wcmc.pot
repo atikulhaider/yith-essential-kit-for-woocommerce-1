@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: YITH WooCommerce Mailchimp\n"
-"POT-Creation-Date: 2015-08-12 13:05+0100\n"
+"POT-Creation-Date: 2015-10-23 17:07+0100\n"
 "PO-Revision-Date: 2015-04-20 10:10+0100\n"
 "Last-Translator: \n"
 "Language-Team: Your Inspiration Themes <plugins@yithemes.com>\n"
@@ -52,18 +52,18 @@ msgstr ""
 msgid "Plugin Documentation"
 msgstr ""
 
-#: includes/class.yith-wcmc.php:456
+#: includes/class.yith-wcmc.php:460
 #, php-format
 msgid "MAILCHIMP ERROR: (%s) %s"
 msgstr ""
 
-#: init.php:110
+#: init.php:114
 msgid ""
 "YITH WooCommerce MailChimp is enabled but not effective. It requires "
 "WooCommerce in order to work."
 msgstr ""
 
-#: init.php:120
+#: init.php:124
 msgid ""
 "You can't activate the free version of YITH WooCommerce MailChimp while you "
 "are using the premium one."

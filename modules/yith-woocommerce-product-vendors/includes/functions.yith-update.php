@@ -1,8 +1,11 @@
 <?php
 
-    //Add support to YITH Product Vendors db version 1.0.1
+/**
+ * Database Version Update
+ */
 
-function yith_vendors_update_1_0_1() {
+//Add support to YITH Product Vendors db version 1.0.1
+function yith_vendors_update_db_1_0_1() {
     $vendors_db_option = get_option( 'yith_product_vendors_db_version' );
     if ( $vendors_db_option && version_compare( $vendors_db_option, '1.0.1', '<' ) ) {
         global $wpdb;
@@ -35,7 +38,7 @@ function yith_vendors_update_1_0_1() {
 }
 
 //Add support to YITH Product Vendors db version 1.0.2
-function yith_vendors_update_1_0_2() {
+function yith_vendors_update_db_1_0_2() {
     $vendors_db_option = get_option( 'yith_product_vendors_db_version' );
     if ( $vendors_db_option && version_compare( $vendors_db_option, '1.0.2', '<' ) ) {
         global $wpdb;
@@ -46,5 +49,33 @@ function yith_vendors_update_1_0_2() {
         update_option( 'yith_product_vendors_db_version', '1.0.2' );
     }
 }
-add_action( 'admin_init', 'yith_vendors_update_1_0_1' );
-add_action( 'admin_init', 'yith_vendors_update_1_0_2' );
+
+//Add support to YITH Product Vendors db version 1.0.6
+function yith_vendors_update_db_1_0_3(){
+    $vendors_db_option = get_option( 'yith_product_vendors_db_version' );
+    if ( $vendors_db_option && version_compare( $vendors_db_option, '1.0.3', '<' ) ) {
+        /**
+         * Create "Become a Vendor" Page
+         */
+         if( defined( 'YITH_WPV_PREMIUM' ) ){
+            $become_a_vendor_page = get_option( 'yith_wpv_become_a_vendor_page_id' );
+            $become_a_vendor_page === false && YITH_Vendors_Admin_Premium::create_become_a_vendor_page();
+         }
+
+        /**
+         * Show Gravatar Option
+         */
+        $vendors = YITH_Vendors()->get_vendors();
+        foreach( $vendors as $vendor ){
+            if( empty( $vendor->show_gravatar ) )  {
+                $vendor->show_gravatar = 'yes';
+            }
+        }
+        update_option( 'yith_product_vendors_db_version', '1.0.3' );
+    }
+}
+
+add_action( 'admin_init', 'yith_vendors_update_db_1_0_1' );
+add_action( 'admin_init', 'yith_vendors_update_db_1_0_2' );
+add_action( 'admin_init', 'yith_vendors_update_db_1_0_3' );
+

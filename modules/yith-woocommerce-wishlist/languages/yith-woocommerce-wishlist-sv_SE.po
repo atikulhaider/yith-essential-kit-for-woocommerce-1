@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: YITH WCWL\n"
-"POT-Creation-Date: 2015-09-18 17:54+0100\n"
-"PO-Revision-Date: 2015-09-18 17:54+0100\n"
+"POT-Creation-Date: 2015-10-23 16:44+0100\n"
+"PO-Revision-Date: 2015-10-23 16:44+0100\n"
 "Last-Translator: Nicola Mustone <mail@nicolamustone.it>\n"
 "Language-Team: Your Inspiration Themes <support@yithemes.com>\n"
 "Language: sv\n"
@@ -548,43 +548,43 @@ msgstr "Twitter"
 msgid "email"
 msgstr "epost"
 
-#: includes/class.yith-wcwl.php:207
+#: includes/class.yith-wcwl.php:211
 msgid "An error occurred while adding products to the wishlist."
 msgstr "Ett fel uppstod när produkten skulle läggas till i önskelistan"
 
-#: includes/class.yith-wcwl.php:292
+#: includes/class.yith-wcwl.php:296
 msgid "An error occurred while adding products to wishlist."
 msgstr "Ett fel uppstod när produkten skulle läggas till i önskelistan"
 
-#: includes/class.yith-wcwl.php:307
+#: includes/class.yith-wcwl.php:311
 msgid "The \"Remove\" option now does not require any parameter"
 msgstr "“Ta bort”-alternativet kräver inte några parametrar"
 
-#: includes/class.yith-wcwl.php:341
+#: includes/class.yith-wcwl.php:345
 msgid "An error occurred while removing products from the wishlist"
 msgstr "Ett fel uppstod när produkten skulle tas bort ifrån önskelistan"
 
-#: includes/class.yith-wcwl.php:619
+#: includes/class.yith-wcwl.php:649
 msgid "You need to log in before creating a new wishlist"
 msgstr "Du behöver logga in innan du kan skapa en ny önskelista"
 
-#: includes/class.yith-wcwl.php:1329
+#: includes/class.yith-wcwl.php:1359
 msgid "Product successfully removed."
 msgstr "Produkten borttagen."
 
-#: includes/class.yith-wcwl.php:1333
+#: includes/class.yith-wcwl.php:1363
 msgid "Error. Unable to remove the product from the wishlist."
 msgstr "Fel. Kunde inte ta bort produkten ifrån önskelistan."
 
-#: includes/class.yith-wcwl.php:1337 templates/wishlist-view.php:260
+#: includes/class.yith-wcwl.php:1367 templates/wishlist-view.php:261
 msgid "No products were added to the wishlist"
 msgstr "Ingen produkt har blivit tillagd i önskelistan"
 
-#: includes/class.yith-wcwl.php:1379
+#: includes/class.yith-wcwl.php:1409
 msgid "An error as occurred."
 msgstr "Ett fel uppstod"
 
-#: init.php:129
+#: init.php:133
 msgid ""
 "YITH WooCommerce Wishlist is enabled but not effective. It requires "
 "WooCommerce in order to work."
@@ -592,7 +592,7 @@ msgstr ""
 "YITH WooCommerce Wishlist är på men inte effektivt då det kräver tilläget "
 "WooComerce för att fungera."
 
-#: init.php:139
+#: init.php:143
 msgid ""
 "You can't activate the free version of YITH WooCommerce Wishlist while you "
 "are using the premium one."
@@ -724,8 +724,7 @@ msgid ""
 "Your shop offers always a wide selection of products and wishlists of your "
 "users get more and more crowded everyday. Give them the possibility to "
 "select %1$ssome or all products%2$s in the wishlist and add them to cart "
-"just with one click. So that users can select some or all products in the "
-"wishlist and add them to cart just with one click."
+"just with one click."
 msgstr ""
 
 #: templates/admin/wishlist-panel-premium.php:278
@@ -879,52 +878,52 @@ msgstr "Enhetspris"
 msgid "Stock Status"
 msgstr "I lager?"
 
-#: templates/wishlist-view.php:144 templates/wishlist-view.php:250
+#: templates/wishlist-view.php:144 templates/wishlist-view.php:251
 msgid "Remove this product"
 msgstr "Ta bort denna produkt"
 
-#: templates/wishlist-view.php:174
+#: templates/wishlist-view.php:175
 msgid "Free!"
 msgstr "Gratis!"
 
-#: templates/wishlist-view.php:185
+#: templates/wishlist-view.php:186
 msgid "Out of Stock"
 msgstr "Slut i lager"
 
-#: templates/wishlist-view.php:188
+#: templates/wishlist-view.php:189
 msgid "In Stock"
 msgstr "Finns i lager"
 
-#: templates/wishlist-view.php:199
+#: templates/wishlist-view.php:200
 #, php-format
 msgid "Added on : %s"
 msgstr "Tillagd: %s"
 
-#: templates/wishlist-view.php:218
+#: templates/wishlist-view.php:219
 msgid "Move"
 msgstr "Flytta"
 
-#: templates/wishlist-view.php:230
+#: templates/wishlist-view.php:231
 msgid "Shared"
 msgstr "Delar"
 
-#: templates/wishlist-view.php:233
+#: templates/wishlist-view.php:234
 msgid "Private"
 msgstr "Privat"
 
-#: templates/wishlist-view.php:236
+#: templates/wishlist-view.php:237
 msgid "Public"
 msgstr "Offentlig"
 
-#: templates/wishlist-view.php:250
+#: templates/wishlist-view.php:251
 msgid "Remove"
 msgstr "Ta bort"
 
-#: templates/wishlist-view.php:277
+#: templates/wishlist-view.php:278
 msgid "Add the selected products to the cart"
 msgstr "Lägg till de markerade produkterna i kundvagnen"
 
-#: templates/wishlist-view.php:285 templates/wishlist-view.php:327
+#: templates/wishlist-view.php:286 templates/wishlist-view.php:328
 msgid "Ask for an estimate"
 msgstr "Fråga efter en uppskattning"
 

@@ -8,22 +8,23 @@
  * http://www.gnu.org/licenses/gpl-3.0.txt
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if ( !defined( 'ABSPATH' ) ) {
     exit;
 } // Exit if accessed directly
 
+$defaults = YITH_Live_Chat()->defaults;
 
 return array(
     'texts' => array(
 
         /* =================== HOME =================== */
-        'home'    => array(
+        'home'     => array(
             array(
-                'name'  => __( 'YITH Live Chat: Message Settings', 'ylc' ),
-                'type'  => 'title'
+                'name' => __( 'YITH Live Chat: Message Settings', 'yith-live-chat' ),
+                'type' => 'title'
             ),
             array(
-                'type'  => 'close'
+                'type' => 'close'
             )
         ),
         /* =================== END SKIN =================== */
@@ -31,69 +32,69 @@ return array(
         /* =================== MESSAGES =================== */
         'settings' => array(
             array(
-                'name'              => __( 'Chat Title', 'ylc'),
-                'desc'              => __( 'This text will appear in the chat button and the chat title', 'ylc' ),
+                'name'              => __( 'Chat Title', 'yith-live-chat' ),
+                'desc'              => __( 'This text will appear in the chat button and the chat title', 'yith-live-chat' ),
                 'id'                => 'text-chat-title',
                 'type'              => 'text',
-                'std'               => __( 'Chat with us', 'ylc' ),
+                'std'               => $defaults['text-chat-title'],
                 'custom_attributes' => array(
-                    'required'  => 'required',
-                    'style'     => 'width: 100%'
+                    'required' => 'required',
+                    'style'    => 'width: 100%'
                 )
             ),
             array(
-                'name'              => __( 'Welcome Message', 'ylc' ),
-                'desc'              => __( 'This text will appear in the login form', 'ylc' ),
+                'name'              => __( 'Welcome Message', 'yith-live-chat' ),
+                'desc'              => __( 'This text will appear in the login form', 'yith-live-chat' ),
                 'id'                => 'text-welcome',
                 'type'              => 'textarea',
-                'std'               => __( 'Have you got question? Write to us!', 'ylc' ),
+                'std'               => $defaults['text-welcome'],
                 'custom_attributes' => array(
-                    'required'  => 'required',
-                    'class'     => 'textareas'
+                    'required' => 'required',
+                    'class'    => 'textareas'
                 )
             ),
             array(
-                'name'              => __( 'Starting Chat Message', 'ylc' ),
-                'desc'              => __( 'This text will appear when the chat starts', 'ylc' ),
+                'name'              => __( 'Starting Chat Message', 'yith-live-chat' ),
+                'desc'              => __( 'This text will appear when the chat starts', 'yith-live-chat' ),
                 'id'                => 'text-start-chat',
                 'type'              => 'textarea',
-                'std'               => __( 'Questions, doubts, issues? We\'re here to help you!', 'ylc' ),
+                'std'               => $defaults['text-start-chat'],
                 'custom_attributes' => array(
-                    'required'  => 'required',
-                    'class'     => 'textareas'
+                    'required' => 'required',
+                    'class'    => 'textareas'
                 )
             ),
             array(
-                'name'              => __( 'Closing Chat Message', 'ylc' ),
-                'desc'              => __( 'This text will appear at the end of the chat', 'ylc' ),
+                'name'              => __( 'Closing Chat Message', 'yith-live-chat' ),
+                'desc'              => __( 'This text will appear at the end of the chat', 'yith-live-chat' ),
                 'id'                => 'text-close',
                 'type'              => 'textarea',
-                'std'               => __( 'This chat session has ended', 'ylc' ),
+                'std'               => $defaults['text-close'],
                 'custom_attributes' => array(
-                    'required'  => 'required',
-                    'class'     => 'textareas'
+                    'required' => 'required',
+                    'class'    => 'textareas'
                 )
             ),
             array(
-                'name'              => __( 'Offline Message', 'ylc' ),
-                'desc'              => __( 'This text will appear if no operator is online', 'ylc' ),
+                'name'              => __( 'Offline Message', 'yith-live-chat' ),
+                'desc'              => __( 'This text will appear if no operator is online', 'yith-live-chat' ),
                 'id'                => 'text-offline',
                 'type'              => 'textarea',
-                'std'               => __( 'None of our operators are available at the moment. Please, try again later.', 'ylc' ),
+                'std'               => $defaults['text-offline'],
                 'custom_attributes' => array(
-                    'required'  => 'required',
-                    'class'     => 'textareas'
+                    'required' => 'required',
+                    'class'    => 'textareas'
                 )
             ),
             array(
-                'name'              => __( 'Busy Message', 'ylc' ),
-                'desc'              => __( 'This text will appear if all operators are busy', 'ylc' ),
+                'name'              => __( 'Busy Message', 'yith-live-chat' ),
+                'desc'              => __( 'This text will appear if all operators are busy', 'yith-live-chat' ),
                 'id'                => 'text-busy',
                 'type'              => 'textarea',
-                'std'               => __( 'Our operators are busy. Please try again later', 'ylc' ),
+                'std'               => $defaults['text-busy'],
                 'custom_attributes' => array(
-                    'required'  => 'required',
-                    'class'     => 'textareas'
+                    'required' => 'required',
+                    'class'    => 'textareas'
                 )
             ),
         ),

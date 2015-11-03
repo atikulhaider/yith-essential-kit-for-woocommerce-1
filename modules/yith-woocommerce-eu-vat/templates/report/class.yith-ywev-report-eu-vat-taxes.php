@@ -30,7 +30,7 @@ class YITH_YWEV_Report_EU_VAT_Taxes extends WC_Admin_Report {
 			class="export_csv"
 			data-export="table"
 			>
-			<?php _e( 'Export CSV', 'ywev' ); ?>
+			<?php _e( 'Export CSV', 'yith-woocommerce-eu-vat' ); ?>
 		</a>
 	<?php
 	}
@@ -41,9 +41,9 @@ class YITH_YWEV_Report_EU_VAT_Taxes extends WC_Admin_Report {
 	public function output_report() {
 
 		$ranges = array(
-			'year'       => __( 'Year', 'ywev' ),
-			'last_month' => __( 'Last Month', 'ywev' ),
-			'month'      => __( 'This Month', 'ywev' ),
+			'year'       => __( 'Year', 'yith-woocommerce-eu-vat' ),
+			'last_month' => __( 'Last Month', 'yith-woocommerce-eu-vat' ),
+			'month'      => __( 'This Month', 'yith-woocommerce-eu-vat' ),
 		);
 
 		$current_range = ! empty( $_GET['range'] ) ? sanitize_text_field( $_GET['range'] ) : 'last_month';
@@ -116,9 +116,9 @@ class YITH_YWEV_Report_EU_VAT_Taxes extends WC_Admin_Report {
 		<table class="widefat">
 			<thead>
 			<tr>
-				<th><?php _e( 'Country', 'ywev' ); ?></th>
-				<th class="total_row"><?php _e( 'Number of orders', 'ywev' ); ?></th>
-				<th class="total_row"><?php _e( 'Total tax amount', 'ywev' ); ?></th>
+				<th><?php _e( 'Country', 'yith-woocommerce-eu-vat' ); ?></th>
+				<th class="total_row"><?php _e( 'Number of orders', 'yith-woocommerce-eu-vat' ); ?></th>
+				<th class="total_row"><?php _e( 'Total tax amount', 'yith-woocommerce-eu-vat' ); ?></th>
 			</tr>
 			</thead>
 			<?php if ( $taxes_by_countries ) : ?>
@@ -137,7 +137,7 @@ class YITH_YWEV_Report_EU_VAT_Taxes extends WC_Admin_Report {
 				</tbody>
 				<tfoot>
 				<tr>
-					<th scope="row"><?php _e( 'Totals', 'ywev' ); ?></th>
+					<th scope="row"><?php _e( 'Totals', 'yith-woocommerce-eu-vat' ); ?></th>
 					<th class="total_row"><?php echo array_sum( $orders_by_countries ); ?></th>
 					<th class="total_row"><?php echo wc_price( array_sum( $taxes_by_countries ) ); ?></th>
 				</tr>
@@ -145,7 +145,7 @@ class YITH_YWEV_Report_EU_VAT_Taxes extends WC_Admin_Report {
 			<?php else : ?>
 				<tbody>
 				<tr>
-					<td><?php _e( 'No taxes found in this period', 'ywev' ); ?></td>
+					<td><?php _e( 'No taxes found in this period', 'yith-woocommerce-eu-vat' ); ?></td>
 				</tr>
 				</tbody>
 			<?php endif; ?>

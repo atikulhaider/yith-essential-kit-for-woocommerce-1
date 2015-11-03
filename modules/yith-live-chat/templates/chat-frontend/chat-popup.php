@@ -1,7 +1,7 @@
 <div id="YLC_chat" class="chat-widget" style="ylc.widget_styles;">
     <div id="YLC_chat_header" class="chat-header" style="ylc.header_styles;">
         <div class="chat-ico chat fa fa-comments"></div>
-        <div class="chat-ico arrow-down fa fa-angle-down"></div>
+        <div class="chat-ico ylc-toggle fa fa-angle-ylc.arrow"></div>
         <div class="chat-title">
             ylc.title
         </div>

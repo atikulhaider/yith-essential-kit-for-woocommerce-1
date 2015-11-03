@@ -7,7 +7,7 @@ Text Domain: yith-essential-kit-for-woocommerce-1
 Domain Path: /languages/
 Author: YIThemes
 Author URI: http://yithemes.com/
-Version: 1.1.5
+Version: 1.1.6
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -38,6 +38,10 @@ if ( ! function_exists( 'yith_plugin_registration_hook' ) ) {
     require_once 'plugin-fw/yit-plugin-registration-hook.php';
 }
 register_activation_hook( __FILE__, 'yith_plugin_registration_hook' );
+
+/* Plugin Framework Version Check */
+! function_exists( 'yit_maybe_plugin_fw_loader' ) && require_once( 'plugin-fw/init.php' );
+yit_maybe_plugin_fw_loader( dirname( __FILE__ ) );
 
 /**
  * Check if a jetpack module is currently active and try disabling before activating this one

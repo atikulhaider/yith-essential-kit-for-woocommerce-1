@@ -3,7 +3,7 @@
 * Plugin Name: YITH WooCommerce Quick View
 * Plugin URI: http://yithemes.com/
 * Description: YITH WooCommerce Quick View allows your users to have a quick look about products.
-* Version: 1.0.8
+* Version: 1.1.0
 * Author: Yithemes
 * Author URI: http://yithemes.com/
 * Text Domain: yith-wcqv
@@ -11,7 +11,7 @@
 *
 * @author Yithemes
 * @package YITH WooCommerce Quick View
-* @version 1.0.8
+* @version 1.1.0
 */
 /*  Copyright 2015  Your Inspiration Themes  (email : plugins@yithemes.com)
 
@@ -38,7 +38,7 @@ if ( ! function_exists( 'is_plugin_active' ) ) {
 function yith_wcqv_install_woocommerce_admin_notice() {
 	?>
 	<div class="error">
-		<p><?php _e( 'YITH WooCommerce Quick View is enabled but not effective. It requires WooCommerce in order to work.', 'yith-wcqv' ); ?></p>
+		<p><?php _e( 'YITH WooCommerce Quick View is enabled but not effective. It requires WooCommerce in order to work.', 'yith-woocommerce-quick-view' ); ?></p>
 	</div>
 	<?php
 }
@@ -47,7 +47,7 @@ function yith_wcqv_install_woocommerce_admin_notice() {
 function yith_wcqv_install_free_admin_notice() {
 	?>
 	<div class="error">
-		<p><?php _e( 'You can\'t activate the free version of YITH WooCommerce Quick View while you are using the premium one.', 'yith-wcqv' ); ?></p>
+		<p><?php _e( 'You can\'t activate the free version of YITH WooCommerce Quick View while you are using the premium one.', 'yith-woocommerce-quick-view' ); ?></p>
 	</div>
 	<?php
 }
@@ -59,7 +59,7 @@ register_activation_hook( __FILE__, 'yith_plugin_registration_hook' );
 
 
 if ( ! defined( 'YITH_WCQV_VERSION' ) ){
-	define( 'YITH_WCQV_VERSION', '1.0.8' );
+	define( 'YITH_WCQV_VERSION', '1.1.0' );
 }
 
 if ( ! defined( 'YITH_WCQV_FREE_INIT' ) ) {
@@ -90,10 +90,15 @@ if ( ! defined( 'YITH_WCQV_ASSETS_URL' ) ) {
 	define( 'YITH_WCQV_ASSETS_URL', YITH_WCQV_URL . 'assets' );
 }
 
+/* Plugin Framework Version Check */
+if( ! function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YITH_WCQV_DIR . 'plugin-fw/init.php' ) ) {
+	require_once( YITH_WCQV_DIR . 'plugin-fw/init.php' );
+}
+yit_maybe_plugin_fw_loader( YITH_WCQV_DIR  );
 
 function yith_wcqv_init() {
 
-	load_plugin_textdomain( 'yith-wcqv', false, dirname( plugin_basename( __FILE__ ) ). '/languages/' );
+	load_plugin_textdomain( 'yith-woocommerce-quick-view', false, dirname( plugin_basename( __FILE__ ) ). '/languages/' );
 
 	// Load required classes and functions
 	require_once('class.yith-wcqv-admin.php');

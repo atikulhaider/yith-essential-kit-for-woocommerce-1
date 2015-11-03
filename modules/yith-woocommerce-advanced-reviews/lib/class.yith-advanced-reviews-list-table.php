@@ -57,11 +57,11 @@ if (!class_exists('YITH_Advanced_Reviews_List_Table')) {
         {
             $columns = array(
                 'cb' => '<input type="checkbox" />',
-                $this->ywar->custom_column_review => __('Review', 'ywar'),
-                $this->ywar->custom_column_author => __('Author', 'ywar'),
-                $this->ywar->custom_column_date => __('Date', 'ywar'),
-                $this->ywar->custom_column_rating => __('Rate', 'ywar'),
-                $this->ywar->custom_column_product => __('Product', 'ywar')
+                $this->ywar->custom_column_review => __('Review', 'yith-woocommerce-advanced-reviews'),
+                $this->ywar->custom_column_author => __('Author', 'yith-woocommerce-advanced-reviews'),
+                $this->ywar->custom_column_date => __('Date', 'yith-woocommerce-advanced-reviews'),
+                $this->ywar->custom_column_rating => __('Rate', 'yith-woocommerce-advanced-reviews'),
+                $this->ywar->custom_column_product => __('Product', 'yith-woocommerce-advanced-reviews')
             );
 
             return apply_filters('yith_advanced_reviews_custom_column', $columns);
@@ -357,12 +357,12 @@ if (!class_exists('YITH_Advanced_Reviews_List_Table')) {
         {
             $actions = array();
 
-            $actions['untrash'] = __('Restore', 'ywar');
-            $actions['trash'] = __('Move to bin', 'ywar');
+            $actions['untrash'] = __('Restore', 'yith-woocommerce-advanced-reviews');
+            $actions['trash'] = __('Move to bin', 'yith-woocommerce-advanced-reviews');
 
-            $actions['delete'] = __('Delete permanently', 'ywar');
-            $actions['approve'] = __('Approve reviews', 'ywar');
-            $actions['unapprove'] = __('Unapprove reviews', 'ywar');
+            $actions['delete'] = __('Delete permanently', 'yith-woocommerce-advanced-reviews');
+            $actions['approve'] = __('Approve reviews', 'yith-woocommerce-advanced-reviews');
+            $actions['unapprove'] = __('Unapprove reviews', 'yith-woocommerce-advanced-reviews');
 
             return apply_filters('yith_advanced_reviews_bulk_actions', $actions);
         }
@@ -376,9 +376,9 @@ if (!class_exists('YITH_Advanced_Reviews_List_Table')) {
         protected function get_views()
         {
             $views = array(
-                'all' => __('All', 'ywar'),
-                'trash' => __('Bin', 'ywar'),
-                'not_approved' => __('Not approved', 'ywar')
+                'all' => __('All', 'yith-woocommerce-advanced-reviews'),
+                'trash' => __('Bin', 'yith-woocommerce-advanced-reviews'),
+                'not_approved' => __('Not approved', 'yith-woocommerce-advanced-reviews')
             );
 
             $views = apply_filters('yith_advanced_reviews_table_views', $views);
@@ -471,8 +471,8 @@ if (!class_exists('YITH_Advanced_Reviews_List_Table')) {
                         $rating = get_post_meta($review->ID, $this->ywar->meta_key_rating, true);
 
                         echo '<div class="woocommerce">
-<div class="star-rating" title="' . sprintf(__("Rated %d out of 5", "ywar"), $rating) . '">
-<span style="width:' . (($rating / 5) * 100) . '%"><strong>' . $rating . '</strong>' . __("out of 5", "ywar") . ' </span>
+<div class="star-rating" title="' . sprintf(__("Rated %d out of 5", 'yith-woocommerce-advanced-reviews'), $rating) . '">
+<span style="width:' . (($rating / 5) * 100) . '%"><strong>' . $rating . '</strong>' . __("out of 5", 'yith-woocommerce-advanced-reviews') . ' </span>
 </div>
 </div>';
                     }
@@ -486,16 +486,26 @@ if (!class_exists('YITH_Advanced_Reviews_List_Table')) {
                     echo get_the_title($product_id) . "<br>";
 
                     if (current_user_can('edit_post', $product_id)) {
-                        echo "<a class='edit-product-review' href='" . get_edit_post_link($product_id) . "'>" . __("Edit", "ywar") . '</a>';
+                        echo "<a class='edit-product-review' href='" . get_edit_post_link($product_id) . "'>" . __("Edit", 'yith-woocommerce-advanced-reviews') . '</a>';
                     }
 
-                    echo "<a class='view-product-review' href='" . get_permalink($product_id) . "' target='_blank'>" . __("View", "ywar") . '</a>';
+                    echo "<a class='view-product-review' href='" . get_permalink($product_id) . "' target='_blank'>" . __("View", 'yith-woocommerce-advanced-reviews') . '</a>';
 
                     break;
 
                 case $this->ywar->custom_column_author:
-                    $user = get_userdata($review->post_author);
-                    $author_name = $user ? $user->display_name : __('Anonymous', 'ywar');
+                    if ($review->post_author) {
+                        $user = get_userdata($review->post_author);
+                        $author_name = $user ? $user->display_name : __('Anonymous', 'yith-woocommerce-advanced-reviews');
+                    } else {
+                        $user = yit_get_post_meta($review->ID, $this->ywar->meta_key_review_author);
+                        error_log(print_r($user, true));
+
+                        if ($user) {
+                            $author_name = $user ? $user : __('Anonymous', 'yith-woocommerce-advanced-reviews');
+                        }
+                    }
+
                     echo $author_name;
 
                     break;
@@ -549,7 +559,7 @@ if (!class_exists('YITH_Advanced_Reviews_List_Table')) {
          */
         public function no_items()
         {
-            _e('No reviews found.', 'ywar');
+            _e('No reviews found.', 'yith-woocommerce-advanced-reviews');
         }
 
 

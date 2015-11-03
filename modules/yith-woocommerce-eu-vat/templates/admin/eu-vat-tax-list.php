@@ -22,7 +22,7 @@ $eu_vat_tax_used_list = get_option( 'ywev_eu_vat_tax_list', array() );
 	<td class="forminp plugin-option">
 		<div class="ywev-import-tax-rates">
 			<a href="<?php echo esc_url(add_query_arg( "install-tax-rates", "standard" )); ?>"
-			   class="button"><?php _e( "Import standard tax rates", "ywev" ); ?></a>
+			   class="button"><?php _e( "Import standard tax rates", 'yith-woocommerce-eu-vat' ); ?></a>
 		</div>
 		<div class="tax-class-table">
 			<span class="description"><?php echo esc_html( $value['desc'] ) ?></span>
@@ -34,18 +34,18 @@ $eu_vat_tax_used_list = get_option( 'ywev_eu_vat_tax_list', array() );
 						       value="1" onClick="toggle(this)"/>
 					</th>
 
-					<th class="country-code"><?php _e( 'Country code', 'ywev' ); ?></th>
+					<th class="country-code"><?php _e( 'Country code', 'yith-woocommerce-eu-vat' ); ?></th>
 
-					<th class="state-code"><?php _e( 'State code', 'ywev' ); ?></th>
+					<th class="state-code"><?php _e( 'State code', 'yith-woocommerce-eu-vat' ); ?></th>
 
-					<th class="post-code"><?php _e( 'ZIP/Postcode', 'ywev' ); ?></th>
+					<th class="post-code"><?php _e( 'ZIP/Postcode', 'yith-woocommerce-eu-vat' ); ?></th>
 
-					<th class="city"><?php _e( 'City', 'ywev' ); ?></th>
+					<th class="city"><?php _e( 'City', 'yith-woocommerce-eu-vat' ); ?></th>
 
-					<th class="rate"><?php _e( 'Rate %', 'ywev' ); ?></th>
-					<th class="tax-class"><?php _e( 'Tax class', 'ywev' ); ?></th>
+					<th class="rate"><?php _e( 'Rate %', 'yith-woocommerce-eu-vat' ); ?></th>
+					<th class="tax-class"><?php _e( 'Tax class', 'yith-woocommerce-eu-vat' ); ?></th>
 
-					<th class="tax-name"><?php _e( 'Tax name', 'ywev' ); ?></th>
+					<th class="tax-name"><?php _e( 'Tax name', 'yith-woocommerce-eu-vat' ); ?></th>
 
 				</tr>
 				</thead>
@@ -95,7 +95,7 @@ $eu_vat_tax_used_list = get_option( 'ywev_eu_vat_tax_list', array() );
 							<?php echo esc_attr( $rate->tax_rate ) ?>
 						</td>
 						<td class="tax-class">
-							<?php echo $rate->tax_rate_class ? esc_html( $rate->tax_rate_class ) : __( 'Standard', 'ywev' ); ?>
+							<?php echo $rate->tax_rate_class ? esc_html( $rate->tax_rate_class ) : __( 'Standard', 'yith-woocommerce-eu-vat' ); ?>
 						</td>
 						<td class="tax-name">
 							<?php echo esc_attr( $rate->tax_rate_name ) ?>

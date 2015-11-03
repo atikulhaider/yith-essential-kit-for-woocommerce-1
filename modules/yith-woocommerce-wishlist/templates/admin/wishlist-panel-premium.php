@@ -272,7 +272,7 @@
                     <img src="<?php echo YITH_WCWL_URL ?>assets/images/landing/06-icon.png" alt="icon-6" />
                     <h2><?php _e('\'ADD TO CART\' CHECKBOX', 'yith-woocommerce-wishlist');?></h2>
                 </div>
-                <p><?php echo sprintf (__('Your shop offers always a wide selection of products and wishlists of your users get more and more crowded everyday. Give them the possibility to select %1$ssome or all products%2$s in the wishlist and add them to cart just with one click. So that users can select some or all products in the wishlist and add them to cart just with one click.','yith-woocommerce-wishlist'),'<strong>','</strong>');?></p>
+                <p><?php echo sprintf (__('Your shop offers always a wide selection of products and wishlists of your users get more and more crowded everyday. Give them the possibility to select %1$ssome or all products%2$s in the wishlist and add them to cart just with one click.','yith-woocommerce-wishlist'),'<strong>','</strong>');?></p>
             </div>
             <div class="col-1">
                 <img src="<?php echo YITH_WCWL_URL ?>assets/images/landing/06.png" alt="<?php _e('\'ADD TO CART\'', 'yith-woocommerce-wishlist');?>" />

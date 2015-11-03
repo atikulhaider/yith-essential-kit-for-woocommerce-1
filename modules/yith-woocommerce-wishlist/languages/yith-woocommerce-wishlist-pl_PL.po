@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: YITH WooCommerce Wishlist\n"
-"POT-Creation-Date: 2015-09-18 17:53+0100\n"
-"PO-Revision-Date: 2015-09-18 17:53+0100\n"
+"POT-Creation-Date: 2015-10-23 16:44+0100\n"
+"PO-Revision-Date: 2015-10-23 16:44+0100\n"
 "Last-Translator: \n"
 "Language-Team: Your Inspiration Themes <plugins@yithemes.com>\n"
 "Language: pl_PL\n"
@@ -532,49 +532,49 @@ msgstr "Twitter"
 msgid "email"
 msgstr "e-mail"
 
-#: ../includes/class.yith-wcwl.php:207
+#: ../includes/class.yith-wcwl.php:211
 msgid "An error occurred while adding products to the wishlist."
 msgstr ""
 
-#: ../includes/class.yith-wcwl.php:292
+#: ../includes/class.yith-wcwl.php:296
 msgid "An error occurred while adding products to wishlist."
 msgstr ""
 
-#: ../includes/class.yith-wcwl.php:307
+#: ../includes/class.yith-wcwl.php:311
 msgid "The \"Remove\" option now does not require any parameter"
 msgstr ""
 
-#: ../includes/class.yith-wcwl.php:341
+#: ../includes/class.yith-wcwl.php:345
 msgid "An error occurred while removing products from the wishlist"
 msgstr ""
 
-#: ../includes/class.yith-wcwl.php:619
+#: ../includes/class.yith-wcwl.php:649
 msgid "You need to log in before creating a new wishlist"
 msgstr ""
 
-#: ../includes/class.yith-wcwl.php:1329
+#: ../includes/class.yith-wcwl.php:1359
 msgid "Product successfully removed."
 msgstr "﻿Produkt został usunięty."
 
-#: ../includes/class.yith-wcwl.php:1333
+#: ../includes/class.yith-wcwl.php:1363
 msgid "Error. Unable to remove the product from the wishlist."
 msgstr "Błąd. Nie można usunąć produktu z listy życzeń."
 
-#: ../includes/class.yith-wcwl.php:1337 ../templates/wishlist-view.php:260
+#: ../includes/class.yith-wcwl.php:1367 ../templates/wishlist-view.php:261
 msgid "No products were added to the wishlist"
 msgstr "Nie dodano żadnych produktów do listy życzeń"
 
-#: ../includes/class.yith-wcwl.php:1379
+#: ../includes/class.yith-wcwl.php:1409
 msgid "An error as occurred."
 msgstr ""
 
-#: ../init.php:129
+#: ../init.php:133
 msgid ""
 "YITH WooCommerce Wishlist is enabled but not effective. It requires "
 "WooCommerce in order to work."
 msgstr ""
 
-#: ../init.php:139
+#: ../init.php:143
 msgid ""
 "You can't activate the free version of YITH WooCommerce Wishlist while you "
 "are using the premium one."
@@ -704,8 +704,7 @@ msgid ""
 "Your shop offers always a wide selection of products and wishlists of your "
 "users get more and more crowded everyday. Give them the possibility to "
 "select %1$ssome or all products%2$s in the wishlist and add them to cart "
-"just with one click. So that users can select some or all products in the "
-"wishlist and add them to cart just with one click."
+"just with one click."
 msgstr ""
 
 #: ../templates/admin/wishlist-panel-premium.php:278
@@ -859,52 +858,52 @@ msgstr "Cena"
 msgid "Stock Status"
 msgstr "Stan magazynowy"
 
-#: ../templates/wishlist-view.php:144 ../templates/wishlist-view.php:250
+#: ../templates/wishlist-view.php:144 ../templates/wishlist-view.php:251
 msgid "Remove this product"
 msgstr "Usuń"
 
-#: ../templates/wishlist-view.php:174
+#: ../templates/wishlist-view.php:175
 msgid "Free!"
 msgstr "Darmowe!"
 
-#: ../templates/wishlist-view.php:185
+#: ../templates/wishlist-view.php:186
 msgid "Out of Stock"
 msgstr "Wyprzedane"
 
-#: ../templates/wishlist-view.php:188
+#: ../templates/wishlist-view.php:189
 msgid "In Stock"
 msgstr "Dostępny"
 
-#: ../templates/wishlist-view.php:199
+#: ../templates/wishlist-view.php:200
 #, php-format
 msgid "Added on : %s"
 msgstr "Dodano %s temu"
 
-#: ../templates/wishlist-view.php:218
+#: ../templates/wishlist-view.php:219
 msgid "Move"
 msgstr "Przenieś"
 
-#: ../templates/wishlist-view.php:230
+#: ../templates/wishlist-view.php:231
 msgid "Shared"
 msgstr "Udostępniony"
 
-#: ../templates/wishlist-view.php:233
+#: ../templates/wishlist-view.php:234
 msgid "Private"
 msgstr "Prywatny"
 
-#: ../templates/wishlist-view.php:236
+#: ../templates/wishlist-view.php:237
 msgid "Public"
 msgstr "Publiczny"
 
-#: ../templates/wishlist-view.php:250
+#: ../templates/wishlist-view.php:251
 msgid "Remove"
 msgstr "Usuń"
 
-#: ../templates/wishlist-view.php:277
+#: ../templates/wishlist-view.php:278
 msgid "Add the selected products to the cart"
 msgstr "Dodaj wybrane produkty do koszyka"
 
-#: ../templates/wishlist-view.php:285 ../templates/wishlist-view.php:327
+#: ../templates/wishlist-view.php:286 ../templates/wishlist-view.php:328
 msgid "Ask for an estimate"
 msgstr "Poproś o oszacowanie kosztów"
 

@@ -3,15 +3,15 @@
  * Plugin Name: YITH Infinite Scrolling
  * Plugin URI: http://yithemes.com/
  * Description: YITH Infinite Scrolling add infinite scroll to your page.
- * Version: 1.0.4
+ * Version: 1.0.5
  * Author: Yithemes
  * Author URI: http://yithemes.com/
- * Text Domain: yith-infs
+ * Text Domain: yith-infinite-scrolling
  * Domain Path: /languages/
  *
  * @author Yithemes
  * @package YITH Infinite Scrolling
- * @version 1.0.4
+ * @version 1.0.5
  */
 /*  Copyright 2015  Your Inspiration Themes  ( email: plugins@yithemes.com )
 
@@ -38,7 +38,7 @@ if ( ! function_exists( 'is_plugin_active' ) ) {
 function yith_infs_install_free_admin_notice() {
 	?>
 	<div class="error">
-		<p><?php _e( 'You can\'t activate the free version of YITH Infinite Scrolling while you are using the premium one.', 'yith-infs' ); ?></p>
+		<p><?php _e( 'You can\'t activate the free version of YITH Infinite Scrolling while you are using the premium one.', 'yith-infinite-scrolling' ); ?></p>
 	</div>
 <?php
 }
@@ -50,7 +50,7 @@ register_activation_hook( __FILE__, 'yith_plugin_registration_hook' );
 
 
 if ( ! defined( 'YITH_INFS_VERSION' ) ){
-	define( 'YITH_INFS_VERSION', '1.0.4' );
+	define( 'YITH_INFS_VERSION', '1.0.5' );
 }
 
 if ( ! defined( 'YITH_INFS_FREE_INIT' ) ) {
@@ -82,10 +82,15 @@ if ( ! defined( 'YITH_INFS_ASSETS_URL' ) ) {
 	define( 'YITH_INFS_ASSETS_URL', YITH_INFS_URL . 'assets' );
 }
 
+/* Plugin Framework Version Check */
+if( ! function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YITH_INFS_DIR . 'plugin-fw/init.php' ) ) {
+	require_once( YITH_INFS_DIR . 'plugin-fw/init.php' );
+}
+yit_maybe_plugin_fw_loader( YITH_INFS_DIR  );
 
 function yith_infs_init() {
 
-	load_plugin_textdomain( 'yith-infs', false, dirname( plugin_basename( __FILE__ ) ). '/languages/' );
+	load_plugin_textdomain( 'yith-infinite-scrolling', false, dirname( plugin_basename( __FILE__ ) ). '/languages/' );
 
 	// Load required classes and functions
 	require_once( 'includes/class.yith-infs-admin.php' );

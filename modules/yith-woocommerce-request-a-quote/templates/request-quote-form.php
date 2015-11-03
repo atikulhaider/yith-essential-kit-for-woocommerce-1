@@ -5,7 +5,7 @@
  * @package YITH Woocommerce Request A Quote
  * @since   1.0.0
  * @version 1.0.0
- * @author  Yithemess
+ * @author  Yithemes
  */
 $current_user = array();
 if ( is_user_logged_in() ) {

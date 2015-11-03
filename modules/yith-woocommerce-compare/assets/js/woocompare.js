@@ -14,7 +14,7 @@ jQuery(document).ready(function($) {
             widget_list = $('.yith-woocompare-widget ul.products-list');
 
         // add ajax loader
-        if( typeof woocommerce_params != 'undefined' ) {
+        if( typeof $.fn.block != 'undefined' ) {
             button.block({message: null, overlayCSS: { background: '#fff url(' + yith_woocompare.loader + ') no-repeat center', backgroundSize: '16px 16px', opacity: 0.6}});
             widget_list.block({message: null, overlayCSS: { background: '#fff url(' + yith_woocompare.loader + ') no-repeat center', backgroundSize: '16px 16px', opacity: 0.6}});
         }
@@ -26,7 +26,7 @@ jQuery(document).ready(function($) {
             dataType: 'json',
             success: function(response){
 
-                if( typeof woocommerce_params != 'undefined' ) {
+                if( typeof $.fn.block != 'undefined' ) {
                     button.unblock();
                     widget_list.unblock()
                 }
@@ -75,7 +75,7 @@ jQuery(document).ready(function($) {
                             context: 'frontend'
                         };
 
-                    if( typeof woocommerce_params != 'undefined' ) {
+                    if( typeof $.fn.block != 'undefined' ) {
                         widget_list.block({message: null, overlayCSS: {background: '#fff url(' + yith_woocompare.loader + ') no-repeat center', backgroundSize: '16px 16px', opacity: 0.6}});
                     }
 
@@ -85,7 +85,7 @@ jQuery(document).ready(function($) {
                         data: data,
                         success: function(response){
                             // add the product in the widget
-                            if( typeof woocommerce_params != 'undefined' ) {
+                            if( typeof $.fn.block != 'undefined' ) {
                                 widget_list.unblock().html(response);
                             }
                             widget_list.html(response);
@@ -133,7 +133,7 @@ jQuery(document).ready(function($) {
             product_cell = $( 'td.product_' + data.id + ', th.product_' + data.id );
 
         // add ajax loader
-        if( typeof woocommerce_params != 'undefined' ) {
+        if( typeof $.fn.block != 'undefined' ) {
             button.block({
                 message: null,
                 overlayCSS: {
@@ -151,13 +151,11 @@ jQuery(document).ready(function($) {
             dataType:'html',
             success: function(response){
 
-                if( typeof woocommerce_params != 'undefined' ) {
-                    button.unblock();
-                }
-
                 // in compare table
                 var table = $(response).filter('table.compare-list');
                 $('body > table.compare-list').replaceWith( table );
+
+                $('.compare[data-product_id="' + button.data('product_id') + '"]', window.parent.document).removeClass('added').html( yith_woocompare.button_text );
 
                 // removed trigger
                 $(window).trigger('yith_woocompare_product_removed');
@@ -166,7 +164,8 @@ jQuery(document).ready(function($) {
     });
 
 
-    // General link to open the compare table
+    // ##### LINK OPEN COMPARE POPUP #####
+
     $('.yith-woocompare-open a, a.yith-woocompare-open').on('click', function(e){
         e.preventDefault();
         $('body').trigger('yith_woocompare_open_popup', { response: yith_add_query_arg('action', yith_woocompare.actionview) + '&iframe=true' });
@@ -202,7 +201,7 @@ jQuery(document).ready(function($) {
                 product_list = button.parents('.yith-woocompare-widget').find('ul.products-list');
 
             // add ajax loader
-            if( typeof woocommerce_params != 'undefined' ) {
+            if( typeof $.fn.block != 'undefined' ) {
                 product_list.block({message: null,
                     overlayCSS             : {
                         background    : '#fff url(' + yith_woocompare.loader + ') no-repeat center',
@@ -219,7 +218,7 @@ jQuery(document).ready(function($) {
                 dataType: 'html',
                 success: function (response) {
                     product_list.html(response);
-                    if( typeof woocommerce_params != 'undefined' ) {
+                    if( typeof $.fn.block != 'undefined' ) {
                         product_list.unblock();
                     }
                 }

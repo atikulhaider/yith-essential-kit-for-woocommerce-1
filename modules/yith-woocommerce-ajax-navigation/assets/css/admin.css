@@ -23,7 +23,6 @@ p.yit-wcan-display-color,
 p#yit-wcan-style,
 p#yit-wcan-show-count,
 p.yit-wcan-display-tags,
-p.yit-wcan-display-brands,
 div.yit-wcan-widget-tag-list {
     display: none;
 }
@@ -198,4 +197,10 @@ textarea#yit_wcan_options_yith_wcan_custom_style {
     min-height: 300px;
     padding: 8px;
     resize: none;
+}
+
+div#yit_wcan_options_yith_wcan_seo_value-container .option,
+div#yit_wcan_options_yith_wcan_seo_value-container .option .select_wrapper,
+#yit_wcan_options_yith_wcan_seo_option-container .select_wrapper {
+    width: auto;
 }

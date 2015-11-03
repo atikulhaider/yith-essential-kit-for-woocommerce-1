@@ -126,9 +126,9 @@ if ( ! class_exists( 'YITH_WCWTL_Admin' ) ) {
 		 */
 		public function action_links( $links ) {
 
-			$links[] = '<a href="' . admin_url( "admin.php?page={$this->_panel_page}" ) . '">' . __( 'Settings', 'yith-wcwtl' ) . '</a>';
+			$links[] = '<a href="' . admin_url( "admin.php?page={$this->_panel_page}" ) . '">' . __( 'Settings', 'yith-woocommerce-waiting-list' ) . '</a>';
 			if ( ! ( defined( 'YITH_WCWTL_PREMIUM' ) && YITH_WCWTL_PREMIUM ) ) {
-				$links[] = '<a href="' . $this->get_premium_landing_uri() . '" target="_blank">' . __( 'Premium Version', 'yith-wcwtl' ) . '</a>';
+				$links[] = '<a href="' . $this->get_premium_landing_uri() . '" target="_blank">' . __( 'Premium Version', 'yith-woocommerce-waiting-list' ) . '</a>';
 			}
 			return $links;
 		}
@@ -149,18 +149,18 @@ if ( ! class_exists( 'YITH_WCWTL_Admin' ) ) {
 			}
 
 			$admin_tabs = array(
-				'general' => __( 'Settings', 'yith-wcwtl' )
+				'general' => __( 'Settings', 'yith-woocommerce-waiting-list' )
 			);
 
 			if ( ! ( defined( 'YITH_WCWTL_PREMIUM' ) && YITH_WCWTL_PREMIUM ) ) {
-				$admin_tabs['premium']  = __( 'Premium Version', 'yith-wcwtl' );
+				$admin_tabs['premium']  = __( 'Premium Version', 'yith-woocommerce-waiting-list' );
 			}
 
 			$args = array(
 				'create_menu_page' => true,
 				'parent_slug'      => '',
-				'page_title'       => __( 'Waiting List', 'yith-wcwtl' ),
-				'menu_title'       => __( 'Waiting List', 'yith-wcwtl' ),
+				'page_title'       => __( 'Waiting List', 'yith-woocommerce-waiting-list' ),
+				'menu_title'       => __( 'Waiting List', 'yith-woocommerce-waiting-list' ),
 				'capability'       => 'manage_options',
 				'parent'           => '',
 				'parent_page'      => 'yit_plugin_panel',
@@ -213,7 +213,7 @@ if ( ! class_exists( 'YITH_WCWTL_Admin' ) ) {
 		public function plugin_row_meta( $plugin_meta, $plugin_file, $plugin_data, $status ) {
 
 			if( defined( 'YITH_WCWTL_INIT') && YITH_WCWTL_INIT == $plugin_file ) {
-				$plugin_meta[] = '<a href="' . $this->doc_url . '" target="_blank">' . __( 'Plugin Documentation', 'yith-wcwtl' ) . '</a>';
+				$plugin_meta[] = '<a href="' . $this->doc_url . '" target="_blank">' . __( 'Plugin Documentation', 'yith-woocommerce-waiting-list' ) . '</a>';
 			}
 
 			return $plugin_meta;

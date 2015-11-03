@@ -174,29 +174,29 @@
         <div class="landing-container">
             <div class="premium-cta">
                 <p>
-                    <?php echo sprintf( __('Upgrade to the %1$spremium version%2$s of %1$sYITH WooCommerce Order Tracking%2$s to benefit from all features!','ywot'),'<span class="highlight">','</span>');?>
+                    <?php echo sprintf( __('Upgrade to the %1$spremium version%2$s of %1$sYITH WooCommerce Order Tracking%2$s to benefit from all features!','yith-woocommerce-order-tracking'),'<span class="highlight">','</span>');?>
                 </p>
                 <a href="<?php echo $YWOT_Instance->get_premium_landing_uri(); ?>" target="_blank" class="premium-cta-button button btn">
-                    <span class="highlight"><?php _e('UPGRADE','ywot');?></span>
-                    <span><?php _e('to the premium version','ywot');?></span>
+                    <span class="highlight"><?php _e('UPGRADE','yith-woocommerce-order-tracking');?></span>
+                    <span><?php _e('to the premium version','yith-woocommerce-order-tracking');?></span>
                 </a>
             </div>
         </div>
     </div>
     <div class="section section-even clear" style="background: url(<?php echo YITH_YWOT_ASSETS_IMAGES_URL ?>01-bg.png) no-repeat #fff; background-position: 85% 75%">
-        <h1><?php _e('Premium Features','ywot');?></h1>
+        <h1><?php _e('Premium Features','yith-woocommerce-order-tracking');?></h1>
         <div class="landing-container">
             <div class="col-1">
-                <img src="<?php echo YITH_YWOT_ASSETS_IMAGES_URL ?>01.png" alt=<?php _e('Carrier list','ywot');?> />
+                <img src="<?php echo YITH_YWOT_ASSETS_IMAGES_URL ?>01.png" alt=<?php _e('Carrier list','yith-woocommerce-order-tracking');?> />
             </div>
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YITH_YWOT_ASSETS_IMAGES_URL ?>01-icon.png" alt="icon-01"/>
-                    <h2><?php _e('Carrier list','ywot');?></h2>
+                    <h2><?php _e('Carrier list','yith-woocommerce-order-tracking');?></h2>
 
                 </div>
                 <p>
-                    <?php echo sprintf( __('You can choose among many logistics companies from a list that is always %1$supdated and expanded.%2$s From the %1$splugin options,%2$s activate only the carriers you support, and the others will be ignored. You can always %1$sadd or remove%2$s some of them when you want.','ywot'),'<b>','</b>');?>
+                    <?php echo sprintf( __('You can choose among many logistics companies from a list that is always %1$supdated and expanded.%2$s From the %1$splugin options,%2$s activate only the carriers you support, and the others will be ignored. You can always %1$sadd or remove%2$s some of them when you want.','yith-woocommerce-order-tracking'),'<b>','</b>');?>
                 </p>
             </div>
         </div>
@@ -206,28 +206,28 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YITH_YWOT_ASSETS_IMAGES_URL ?>02-icon.png" alt="icon-02" />
-                    <h2><?php _e('Default carrier','ywot');?></h2>
+                    <h2><?php _e('Default carrier','yith-woocommerce-order-tracking');?></h2>
 
                 </div>
-                <p><?php echo sprintf( __('Do you use a specific carrier frequently? Set it as %1$sdefault carrier:%2$s during the creation of a new order, the carrier will be set automatically without choosing from the list.','ywot'),'<b>','</b>');?></p>
+                <p><?php echo sprintf( __('Do you use a specific carrier frequently? Set it as %1$sdefault carrier:%2$s during the creation of a new order, the carrier will be set automatically without choosing from the list.','yith-woocommerce-order-tracking'),'<b>','</b>');?></p>
             </div>
             <div class="col-1">
-                <img src="<?php echo YITH_YWOT_ASSETS_IMAGES_URL ?>02.png" alt=<?php _e('Set a default carrier','ywot');?> />
+                <img src="<?php echo YITH_YWOT_ASSETS_IMAGES_URL ?>02.png" alt=<?php _e('Set a default carrier','yith-woocommerce-order-tracking');?> />
             </div>
         </div>
     </div>
     <div class="section section-even clear" style="background: url(<?php echo YITH_YWOT_ASSETS_IMAGES_URL ?>03-bg.png) no-repeat #fff; background-position: 85% 100%">
         <div class="landing-container">
             <div class="col-1">
-                <img src="<?php echo YITH_YWOT_ASSETS_IMAGES_URL ?>03.png" alt=<?php _e('TRACK THE ORDER DIRECTLY','ywot');?> />
+                <img src="<?php echo YITH_YWOT_ASSETS_IMAGES_URL ?>03.png" alt=<?php _e('TRACK THE ORDER DIRECTLY','yith-woocommerce-order-tracking');?> />
             </div>
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YITH_YWOT_ASSETS_IMAGES_URL ?>03-icon.png" alt="icon-03" />
-                    <h2><?php _e('Tracking','ywot');?></h2>
+                    <h2><?php _e('Tracking','yith-woocommerce-order-tracking');?></h2>
 
                 </div>
-                <p><?php echo sprintf( __('Do you have a tracking code and you want to follow the delivery process? %1$sThe plugin generates dynamically an address to track your order from the site of the carrier.%2$s You can find the link everywhere: %1$sin the mail, in the order detail and in orders page.%2$s','ywot'),'<b>','</b>');?></p>
+                <p><?php echo sprintf( __('Do you have a tracking code and you want to follow the delivery process? %1$sThe plugin generates dynamically an address to track your order from the site of the carrier.%2$s You can find the link everywhere: %1$sin the mail, in the order detail and in orders page.%2$s','yith-woocommerce-order-tracking'),'<b>','</b>');?></p>
             </div>
         </div>
     </div>
@@ -236,14 +236,14 @@
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YITH_YWOT_ASSETS_IMAGES_URL ?>04-icon.png" alt="icon-05" />
-                    <h2><?php _e('EMAIL TEXT','ywot');?></h2>
+                    <h2><?php _e('EMAIL TEXT','yith-woocommerce-order-tracking');?></h2>
 
                 </div>
                 <p>
-                    <?php echo sprintf( __('Customize the email that users %1$sreceive when orders are complete%2$s adding the picking up information.','ywot'),'<b>','</b>');?></p>
+                    <?php echo sprintf( __('Customize the email that users %1$sreceive when orders are complete%2$s adding the picking up information.','yith-woocommerce-order-tracking'),'<b>','</b>');?></p>
             </div>
             <div class="col-1">
-                <img src="<?php echo YITH_YWOT_ASSETS_IMAGES_URL ?>04.png" alt=<?php _e('Email text','ywot');?> />
+                <img src="<?php echo YITH_YWOT_ASSETS_IMAGES_URL ?>04.png" alt=<?php _e('Email text','yith-woocommerce-order-tracking');?> />
             </div>
         </div>
     </div>
@@ -252,11 +252,11 @@
         <div class="landing-container">
             <div class="premium-cta">
                 <p>
-                    <?php echo sprintf( __('Upgrade to the %1$spremium version%2$s of %1$sYITH WooCommerce Order Tracking%2$s to benefit from all features!','ywot'),'<span class="highlight">','</span>');?>
+                    <?php echo sprintf( __('Upgrade to the %1$spremium version%2$s of %1$sYITH WooCommerce Order Tracking%2$s to benefit from all features!','yith-woocommerce-order-tracking'),'<span class="highlight">','</span>');?>
                 </p>
                 <a href="<?php echo $YWOT_Instance->get_premium_landing_uri(); ?>" target="_blank" class="premium-cta-button button btn">
-                    <span class="highlight"><?php _e('UPGRADE','ywot');?></span>
-                    <span><?php _e('to the premium version','ywot');?></span>
+                    <span class="highlight"><?php _e('UPGRADE','yith-woocommerce-order-tracking');?></span>
+                    <span><?php _e('to the premium version','yith-woocommerce-order-tracking');?></span>
                 </a>
             </div>
         </div>

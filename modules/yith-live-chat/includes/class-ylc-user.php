@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
+if ( !defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
@@ -13,10 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  * echo $usr->info('version'); // Get browser version
  * echo $usr->info('os'); // Get operation system
  *
- * @author Noor Ahmad Feroozi
+ * @author  Noor Ahmad Feroozi
  * @package WordPress
  */
-
 class YLC_User {
 
     private $agent;
@@ -24,38 +23,40 @@ class YLC_User {
 
     function __construct() {
 
-        $this->agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : NULL;
+        $this->agent = isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : NULL;
         $this->get_browser();
         $this->get_OS();
+
     }
 
     /**
      * Get browser info
      *
-     * @return	string
+     * @return    string
      */
     function get_browser() {
 
-        $browser = array("Navigator"            => "/Navigator(.*)/i",
-                         "Firefox"              => "/Firefox(.*)/i",
-                         "Internet Explorer"    => "/MSIE(.*)/i",
-                         "Chrome"        		=> "/chrome(.*)/i",
-                         "MAXTHON"              => "/MAXTHON(.*)/i",
-                         "Opera"                => "/Opera(.*)/i",
+        $browser = array(
+            'Navigator'         => '/Navigator(.*)/i',
+            'Firefox'           => '/Firefox(.*)/i',
+            'Internet Explorer' => '/MSIE(.*)/i',
+            'Chrome'            => '/chrome(.*)/i',
+            'MAXTHON'           => '/MAXTHON(.*)/i',
+            'Opera'             => '/Opera(.*)/i',
         );
 
         // Find browser
-        foreach( $browser as $key => $value ) {
+        foreach ( $browser as $key => $value ) {
 
-            if( preg_match( $value, $this->agent ) ){
+            if ( preg_match( $value, $this->agent ) ) {
                 $this->info = array_merge( $this->info, array( 'Browser' => $key ) );
-                $this->info = array_merge( $this->info, array(
-                    "Version" => $this->get_version( $key, $value, $this->agent ) ) );
+                $this->info = array_merge( $this->info, array( 'Version' => $this->get_version( $key, $value, $this->agent ) ) );
                 break;
 
-            } else {
-                $this->info = array_merge( $this->info,array( 'Browser' => 'N/A' ) );
-                $this->info = array_merge($this->info,array( "Version" => 'N/A' ) );
+            }
+            else {
+                $this->info = array_merge( $this->info, array( 'Browser' => 'N/A' ) );
+                $this->info = array_merge( $this->info, array( 'Version' => 'N/A' ) );
             }
 
         }
@@ -66,13 +67,13 @@ class YLC_User {
     /**
      * Get OS info
      *
-     * @return	string
+     * @return    string
      */
     function get_OS() {
 
-        $this->info['OS']    =   'N/A';
+        $this->info['OS'] = 'N/A';
 
-        $OS = array (
+        $OS = array(
 
             '/windows nt 6.2/i'     => 'Windows 8',
             '/windows nt 6.1/i'     => 'Windows 7',
@@ -100,8 +101,9 @@ class YLC_User {
 
         foreach ( $OS as $regex => $v ) {
 
-            if ( preg_match( $regex, $this->agent ) && $this->info['OS'] == 'N/A' )
+            if ( preg_match( $regex, $this->agent ) && $this->info['OS'] == 'N/A' ) {
                 $this->info['OS'] = $v;
+            }
 
         }
 
@@ -112,7 +114,7 @@ class YLC_User {
     /**
      * Get version
      *
-     * @return	string
+     * @return    string
      */
     function get_version( $browser, $search, $string ) {
 
@@ -121,23 +123,29 @@ class YLC_User {
         $browser = strtolower( $browser );
         preg_match_all( $search, $string, $match );
 
-        switch( $browser ) {
-            case "firefox": $version = str_replace( "/","",$match[1][0] );
+        switch ( $browser ) {
+            case "firefox":
+                $version = str_replace( "/", "", $match[1][0] );
                 break;
 
-            case "internet explorer": $version = substr( $match[1][0],0,4 );
+            case "internet explorer":
+                $version = substr( $match[1][0], 0, 4 );
                 break;
 
-            case "opera": $version = str_replace( "/","", substr( $match[1][0],0,5 ) );
+            case "opera":
+                $version = str_replace( "/", "", substr( $match[1][0], 0, 5 ) );
                 break;
 
-            case "navigator": $version = substr( $match[1][0], 1, 7 );
+            case "navigator":
+                $version = substr( $match[1][0], 1, 7 );
                 break;
 
-            case "maxthon": $version = str_replace( ")","", $match[1][0] );
+            case "maxthon":
+                $version = str_replace( ")", "", $match[1][0] );
                 break;
 
-            case "chrome": $version = substr( $match[1][0], 1, 10 );
+            case "chrome":
+                $version = substr( $match[1][0], 1, 10 );
         }
         return $version;
     }
@@ -145,27 +153,32 @@ class YLC_User {
     /**
      * Show user info
      *
-     * @return	mixed
+     * @return    mixed
      */
     function info( $switch ) {
-        $switch = strtolower($switch);
+        $switch = strtolower( $switch );
 
-        switch( $switch ) {
-            case 'browser': return $this->info['Browser'];
+        switch ( $switch ) {
+            case 'browser':
+                return $this->info['Browser'];
                 break;
 
-            case 'os': return $this->info['OS'];
+            case 'os':
+                return $this->info['OS'];
                 break;
 
-            case 'version': return $this->info['Version'];
+            case 'version':
+                return $this->info['Version'];
                 break;
 
-            case 'all' : return array($this->info['Version'],
-                $this->info['OS'], $this->info['Browser']);
+            case 'all' :
+                return array( $this->info['Version'],
+                              $this->info['OS'], $this->info['Browser'] );
                 break;
 
-            default: return 'N/A';
-            break;
+            default:
+                return 'N/A';
+                break;
 
         }
     }

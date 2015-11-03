@@ -21,14 +21,20 @@ if ( ! class_exists( 'YITH_Vendor' ) ) {
      * @since      1.0.0
      * @author     Your Inspiration Themes
      *
-     * @property    string     $paypal_email
-     * @property    string     $enable_selling
-     * @property    string     $payment_type
-     * @property    string     $threshold
-     * @property    string     $registration_date
-     * @property    string     $registration_date_gmt
-     * @property    array      $admins
-     * @property    int|string $commission
+     * @property    string      $paypal_email
+     * @property    string      $enable_selling
+     * @property    string      $payment_type
+     * @property    string      $threshold
+     * @property    string      $registration_date
+     * @property    string      $registration_date_gmt
+     * @property    array       $admins
+     * @property    string      $vacation_selling
+     * @property    string      $vacation_message
+     * @property    string      $vacation_start_date
+     * @property    string      $vacation_end_date
+     * @property    string      $show_gravatar
+     * @property    int|string  $commission
+     * @property    string      $vat
      */
     class YITH_Vendor {
 
@@ -193,7 +199,7 @@ if ( ! class_exists( 'YITH_Vendor' ) ) {
          * @param int  $vendor_id
          * @param null $term
          *
-         * @internal param null $vendor_term
+         * @return YITH_Vendor The current object
          *
          */
         public function __construct( $vendor_id = 0, $term = null ) {
@@ -338,7 +344,7 @@ if ( ! class_exists( 'YITH_Vendor' ) ) {
          * @return bool
          */
         public function __isset( $key ) {
-            return metadata_exists( 'woocommerce_term', $this->id, $key );
+            return isset( $this->term->$key ) ? true : metadata_exists( 'woocommerce_term', $this->id, $key );
         }
 
         /**
@@ -730,6 +736,9 @@ if ( ! class_exists( 'YITH_Vendor' ) ) {
             return ob_get_clean();
         }
 
+        public function is_on_vacation(){
+            return function_exists( 'YITH_Vendor_Vacation' ) ? YITH_Vendor_Vacation()->vendor_is_on_vacation( $this ) : false;
+        }
     }
 }
 

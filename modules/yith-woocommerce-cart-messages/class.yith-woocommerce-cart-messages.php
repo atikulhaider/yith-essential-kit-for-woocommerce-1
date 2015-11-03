@@ -58,8 +58,7 @@ if ( !class_exists( 'YWCM_Cart_Messages' ) ) {
 
             $this->create_menu_items();
 
-            $this->messages = YWCM_Cart_Message()->get_messages();
-
+            add_action( 'init', array( $this, 'load_messages'));
 
             //Add action links
             add_filter( 'plugin_action_links_' . plugin_basename( YITH_YWCM_DIR . '/' . basename( YITH_YWCM_FILE ) ), array( $this, 'action_links' ) );
@@ -80,6 +79,16 @@ if ( !class_exists( 'YWCM_Cart_Messages' ) ) {
         }
 
         /**
+         * Load the messages
+         *
+         * @since  1.1.3
+         * @author Emanuela Castorina
+         */
+        public function load_messages(){
+            $this->messages = YWCM_Cart_Message()->get_messages();
+        }
+
+        /**
          * Create Menu Items
          *
          * Print admin menu items
@@ -87,9 +96,8 @@ if ( !class_exists( 'YWCM_Cart_Messages' ) ) {
          * @since  1.0
          * @author Emanuela Castorina
          */
-
         private function create_menu_items() {
-            add_action( 'after_setup_theme', array( $this, 'plugin_fw_loader' ), 1 );
+            add_action( 'plugins_loaded', array( $this, 'plugin_fw_loader' ), 15 );
             add_action( 'after_setup_theme', array( $this, 'call_instance_object' ), 5 );
 
             // Add a panel under YITH Plugins tab
@@ -108,8 +116,12 @@ if ( !class_exists( 'YWCM_Cart_Messages' ) ) {
          */
 
         public function plugin_fw_loader() {
-            if ( !defined( 'YIT' ) || !defined( 'YIT_CORE_PLUGIN' ) ) {
-                require_once( 'plugin-fw/yit-plugin.php' );
+            if ( ! defined( 'YIT_CORE_PLUGIN' ) ) {
+                global $plugin_fw_data;
+                if( ! empty( $plugin_fw_data ) ){
+                    $plugin_fw_file = array_shift( $plugin_fw_data );
+                    require_once( $plugin_fw_file );
+                }
             }
         }
 

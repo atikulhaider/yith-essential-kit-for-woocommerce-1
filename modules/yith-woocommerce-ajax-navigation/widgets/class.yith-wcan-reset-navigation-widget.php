@@ -27,13 +27,13 @@ if ( ! class_exists( 'YITH_WCAN_Reset_Navigation_Widget' ) ) {
 
 
         function widget( $args, $instance ) {
-            global $_chosen_attributes, $woocommerce, $_attributes_array;
+            global $_chosen_attributes, $woocommerce;
 
             extract( $args );
 
-            $attributes_array = ! empty( $_attributes_array ) ? $_attributes_array : array();
+            $_attributes_array = yit_wcan_get_product_taxonomy();
 
-            if ( ! is_post_type_archive( 'product' ) && ! is_tax( array_merge( $attributes_array, apply_filters( 'yith_wcan_product_taxonomy_type', array( 'product_cat', 'product_tag' ) ) ) ) ) {
+            if ( apply_filters( 'yith_wcan_show_widget', ! is_post_type_archive( 'product' ) && ! is_tax( $_attributes_array ) ) ) {
                 return;
             }
 

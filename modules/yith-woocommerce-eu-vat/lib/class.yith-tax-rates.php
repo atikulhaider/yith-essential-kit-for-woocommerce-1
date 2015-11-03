@@ -187,12 +187,9 @@ if (!class_exists('YITH_Tax_Rates')) {
             $tax_rates = $this->get_tax_rates();
 
             foreach ($tax_rates as $tax_rate) {
-                //wp_die(var_dump($tax_rate));
 
                 $tax_rate_name = sprintf("EU VAT (%s)", $tax_rate->tax_rate_country);
-                /*wp_die("Cerco $tax_rate_name in " .$tax_rate->tax_rate_name . " pos: " . strpos($tax_rate->tax_rate_name, $tax_rate_name));*/
                 if (0 == strpos($tax_rate->tax_rate_name, $tax_rate_name)) {
-                    //wp_die(var_dump($tax_rate_name,$tax_rate->tax_rate_name ));
 
                     WC_Tax::_delete_tax_rate($tax_rate->tax_rate_id);
                 }

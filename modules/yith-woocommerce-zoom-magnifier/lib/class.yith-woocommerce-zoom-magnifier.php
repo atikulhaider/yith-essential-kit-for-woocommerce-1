@@ -25,7 +25,7 @@ if ( ! class_exists( 'YITH_WooCommerce_Zoom_Magnifier' ) ) {
 		 * @var string
 		 * @since 1.0.0
 		 */
-		public $version = '1.2.10';
+		public $version = '1.2.12';
 
 		/**
 		 * Plugin object
@@ -50,7 +50,7 @@ if ( ! class_exists( 'YITH_WooCommerce_Zoom_Magnifier' ) ) {
 			// actions
 			add_action( 'init', array( $this, 'init' ) );
 
-			if ( is_admin() ) {
+			if ( is_admin() && ( ! isset( $_REQUEST['action'] ) || ( isset( $_REQUEST['action'] ) && $_REQUEST['action'] != 'yith_load_product_quick_view' ) ) ) {
 				$this->obj = new YITH_WCMG_Admin( $this->version );
 			} else {
 				$this->obj = new YITH_WCMG_Frontend( $this->version );

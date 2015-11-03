@@ -89,7 +89,7 @@ if( ! class_exists( 'YITH_WCWTL_Frontend' ) ) {
 		public function add_form(){
 			global $post;
 
-			if( get_post_type( $post->ID ) == 'product' ) {
+			if( $post && get_post_type( $post->ID ) == 'product' ) {
 
 				$product = wc_get_product( $post->ID );
 
@@ -155,7 +155,7 @@ if( ! class_exists( 'YITH_WCWTL_Frontend' ) ) {
 			if( $product_type == 'simple' && ! $user->exists() ) {
 
 				$html .= '<form method="post" action="' . esc_url( $url ) . '" name="prova">';
-				$html .= '<label for="yith-wcwtl-email">' . __( 'Email Address', 'yith-wcwtl' ) . '<input type="email" name="yith-wcwtl-email" id="yith-wcwtl-email" /></label>';
+				$html .= '<label for="yith-wcwtl-email">' . __( 'Email Address', 'yith-woocommerce-waiting-list' ) . '<input type="email" name="yith-wcwtl-email" id="yith-wcwtl-email" /></label>';
 				$html .= '<input type="submit" value="' . $label_button_add . '" class="button alt" />';
 				$html .= '</form>';
 
@@ -194,7 +194,7 @@ if( ! class_exists( 'YITH_WCWTL_Frontend' ) ) {
 			}
 
 			if( ! $user->exists() && empty( $_REQUEST[ 'yith-wcwtl-email' ] ) ) {
-				wc_add_notice( __( 'You must provide a valid email address to join the waiting list of this product', 'yith-wcwtl' ), 'error' );
+				wc_add_notice( __( 'You must provide a valid email address to join the waiting list of this product', 'yith-woocommerce-waiting-list' ), 'error' );
 				return;
 			}
 
@@ -217,17 +217,17 @@ if( ! class_exists( 'YITH_WCWTL_Frontend' ) ) {
 				$res = yith_waitlist_register_user( $user_email, $product_id );
 
 				if( ! $res ) {
-					$msg = __( 'You have already registered for this waiting list', 'yith-wcwtl' );
+					$msg = __( 'You have already registered for this waiting list', 'yith-woocommerce-waiting-list' );
 					$msg_type = 'error';
 				}
 			}
 			elseif( $action == 'leave' ) {
 				// unregister user
 				yith_waitlist_unregister_user( $user_email, $product_id );
-				$msg = __( 'You have been removed from the waiting list for this product', 'yith-wcwtl' );
+				$msg = __( 'You have been removed from the waiting list for this product', 'yith-woocommerce-waiting-list' );
 			}
 			else {
-				$msg = __( 'An error has occurred. Please try again.', 'yith-wcwtl' );
+				$msg = __( 'An error has occurred. Please try again.', 'yith-woocommerce-waiting-list' );
 				$msg_type = 'error';
 			}
 

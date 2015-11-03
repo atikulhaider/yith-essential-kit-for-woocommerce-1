@@ -25,13 +25,7 @@ jQuery(document).ready(function($){
 
     $.fn.yith_quick_view = function() {
 
-        var button  = $(document).find( '.yith-wcqv-button' );
-
-        // remove prev click event
-        button.off( 'click' );
-
-        button.on( 'click', function(e){
-
+        $(document).off( 'click', '.yith-wcqv-button' ).on( 'click', '.yith-wcqv-button', function(e){
             e.preventDefault();
 
             var t           = $(this),
@@ -48,6 +42,13 @@ jQuery(document).ready(function($){
                         cursor    : 'none'
                     }
                 });
+
+                if( ! qv_modal.hasClass( 'loading' ) ) {
+                    qv_modal.addClass('loading');
+                }
+
+                // stop loader
+                $(document).trigger( 'qv_loading' );
             }
             ajax_call( t, product_id, is_blocked );
         });
@@ -91,7 +92,7 @@ jQuery(document).ready(function($){
             }
 
             if( ! qv_modal.hasClass( 'open' ) ) {
-                qv_modal.addClass('open');
+                qv_modal.removeClass('loading').addClass('open');
                 if( is_blocked )
                     t.unblock();
             }
@@ -124,7 +125,7 @@ jQuery(document).ready(function($){
         });
 
         var close_qv = function() {
-            qv_modal.removeClass('open');
+            qv_modal.removeClass('open').removeClass('loading');
 
             setTimeout(function () {
                 qv_content.html('');

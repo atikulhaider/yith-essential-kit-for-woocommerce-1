@@ -3,7 +3,7 @@
  * Plugin Name: YITH WooCommerce Tab Manager
  * Plugin URI: http://yithemes.com/themes/plugins/yith-woocommerce-tab-manager/
  * Description: YITH WooCommerce Tab Manager allows you to add Tab to products.
- * Version: 1.0.4
+ * Version: 1.0.6
  * Author: Yithemes
  * Author URI: http://yithemes.com/
  * Text Domain: yith_wc_tab_manager
@@ -11,7 +11,7 @@
  *
  * @author Your Inspiration Themes
  * @package YITH WooCommerce Tab Manager
- * @version 1.0.4
+ * @version 1.0.6
  */
 
 /*  Copyright 2013  Your Inspiration Themes  (email : plugins@yithemes.com)
@@ -49,11 +49,7 @@ if ( !function_exists( 'WC' ) ) {
     <?php
     }
 
-    add_action( 'admin_notices', 'yith_ywtm_install_woocommerce_admin_notice' );
-    return;
 }
-
-if ( defined( 'YWTM_PREMIUM' ) ) {
     function yith_ywtm_install_free_admin_notice() {
         ?>
         <div class="error">
@@ -62,11 +58,6 @@ if ( defined( 'YWTM_PREMIUM' ) ) {
     <?php
     }
 
-    add_action( 'admin_notices', 'yith_ywtm_install_free_admin_notice' );
-
-    deactivate_plugins( plugin_basename( __FILE__ ) );
-    return;
-}
 
 if ( !function_exists( 'yith_plugin_registration_hook' ) ) {
     require_once 'plugin-fw/yit-plugin-registration-hook.php';
@@ -74,7 +65,7 @@ if ( !function_exists( 'yith_plugin_registration_hook' ) ) {
 
 
 if ( !defined( 'YWTM_VERSION' ) ) {
-	define( 'YWTM_VERSION', '1.0.4' );
+	define( 'YWTM_VERSION', '1.0.6' );
 }
 
 if ( !defined( 'YWTM_FREE_INIT' ) ) {
@@ -105,35 +96,56 @@ if ( !defined( 'YWTM_INC' ) ) {
 	define( 'YWTM_INC', YWTM_DIR . 'includes/' );
 }
 
+/* Plugin Framework Version Check */
+if( !function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YWTM_DIR . 'plugin-fw/init.php' ) ) {
+    require_once(YWTM_DIR . 'plugin-fw/init.php');
+}
+yit_maybe_plugin_fw_loader( YWTM_DIR  );
 
-/* Load YWTM text domain */
-load_plugin_textdomain( 'yith_wc_tab_manager', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-
-if ( ! function_exists( 'YITH_Tab_Manager' ) ) {
+if ( ! function_exists( 'YITH_Tab_Manager_Init' ) ) {
 	/**
 	 * Unique access to instance of YITH_Tab_Manager class
 	 *
-	 * @return YITH_Tab_Manager|YITH_Tab_Manager_Premium
-	 * @since 1.0.0
+	 * @return YITH_Tab_Manager
+	 * @since 1.0.5
 	 */
-	function YITH_Tab_Manager() {
+	function YITH_Tab_Manager_Init() {
+
+        /* Load YWTM text domain */
+        load_plugin_textdomain( 'yith_wc_tab_manager', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+
 		// Load required classes and functions
         require_once( YWTM_INC .'functions.yith-tab-manager.php' );
 		require_once( YWTM_INC . 'class.yith-woocommerce-tab-manager.php' );
 
-		if ( defined( 'YWTM_PREMIUM' ) && file_exists( YWTM_INC . 'class.yith-woocommerce-tab-manager-premium.php' ) ) {
-			require_once( YWTM_INC . 'class.yith-woocommerce-tab-manager-premium.php' );
-			return YITH_WC_Tab_Manager_Premium::get_instance();
-		}
-
-		return YITH_WC_Tab_Manager::get_instance();
+        global $YIT_Tab_Manager;
+        $YIT_Tab_Manager= YITH_WC_Tab_Manager::get_instance();
 	}
 }
 
-/**
- * Instance main plugin class
- */
-YITH_Tab_Manager();
+add_action('yith_wc_tabmanager_init', 'YITH_Tab_Manager_Init' );
+
+if( !function_exists( 'yith_tab_manager_install' ) ){
+    /**
+     * install tab manager
+     * @author YIThemes
+     * @since 1.0.5
+     */
+    function yith_tab_manager_install(){
+
+        if( !function_exists( 'WC' ) ){
+            add_action( 'admin_notices', 'yith_ywtm_install_woocommerce_admin_notice' );
+        }elseif( defined( 'YWTM_PREMIUM' ) ){
+            add_action( 'admin_notices', 'yith_ywtm_install_free_admin_notice' );
+            deactivate_plugins( plugin_basename( __FILE__ ) );
+        }
+        else
+            do_action( 'yith_wc_tabmanager_init' );
+
+    }
+}
+
+add_action( 'plugins_loaded', 'yith_tab_manager_install', 11 );
 
 
 

@@ -11,7 +11,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
-
+$vendor_description = do_shortcode( $vendor_description );
 ?>
 
 <h2>

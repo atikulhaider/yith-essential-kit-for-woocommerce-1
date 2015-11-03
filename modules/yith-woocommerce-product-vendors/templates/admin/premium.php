@@ -507,17 +507,15 @@
             </div>
         </div>
     </div>
-    <div class="section section-odd clear"
-         style="background: url(<?php echo YITH_WPV_URL ?>assets/images/16-bg.png) no-repeat #f1f1f1; background-position: 15% 100%">
+    <div class="section section-odd clear" style="background: url(<?php echo YITH_WPV_URL ?>assets/images/16-bg.png) no-repeat #f1f1f1; background-position: 15% 100%">
         <div class="landing-container">
             <div class="col-2">
                 <div class="section-title">
                     <img src="<?php echo YITH_WPV_URL ?>assets/images/16-icon.png" alt="Icon"/>
-                    <h2><?php _e( 'REGISTRATION FROM THE “MY ACCOUNT” PAGE','yith_wc_product_vendors' );?> </h2>
+                    <h2><?php _e( 'VENDOR REGISTRATION','yith_wc_product_vendors' );?> </h2>
                 </div>
                 <p>
-                    <?php _e( 'A more dynamic management for whoever would like to become a vendor of your store. All new users can register as "vendors" of the shop directly from the “My Account” page, and use immediately an administration area. After the confirmation by the administrator, the vendors will be able to sell their products.','yith_wc_product_vendors' )?>
-
+                    <?php _e( 'A more dynamic management for whoever wants to become a vendor in your store. It doesn\'t matter whether you are a registered user or a new one: everyone will be free to register as a vendor with the related %1$sregistration form.%2$s Following your settings, the registration request can be accepted automatically or manually by administrators','yith_wc_product_vendors' )?>
                 </p>
             </div>
             <div class="col-1">
@@ -651,6 +649,70 @@
             </div>
             <div class="col-1">
                 <img src="<?php echo YITH_WPV_URL ?>assets/images/23.png" alt="Screenshot"/>
+            </div>
+        </div>
+    </div>
+    <div class="section section-even clear"style="background: url(<?php echo YITH_WPV_URL ?>assets/images/25-bg.png) no-repeat #fff; background-position: 85% 100%">
+        <div class="landing-container">
+            <div class="col-1">
+                <img src="<?php echo YITH_WPV_URL ?>assets/images/25.png" alt="Screenshot"/>
+            </div>
+            <div class="col-2">
+                <div class="section-title">
+                    <img src="<?php echo YITH_WPV_URL ?>assets/images/25-icon.png" alt="icon"/>
+                    <h2><?php _e('Shop closed','yith_wc_product_vendors'); ?></h2>
+                </div>
+                <p>
+                    <?php _e( 'Even the owners of online shops need a break, maybe for deserved vacations or for other reasons. Therefore, when administrators offers this freedom to their vendors, they will be free to close their stores, showing a customized message to users. Vendors will also be free to decide whether they want to keep their products purchasable, or showing them in catalogue mode with no opportunity to add them to the cart. ','yith_wc_product_vendors' )?>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="section section-odd clear" style="background: url(<?php echo YITH_WPV_URL ?>assets/images/26-bg.png) no-repeat #f1f1f1; background-position: 15% 100%">
+        <div class="landing-container">
+            <div class="col-2">
+                <div class="section-title">
+                    <img src="<?php echo YITH_WPV_URL ?>assets/images/26-icon.png" alt="Icon"/>
+                    <h2><?php _e('Vendor Chat','yith_wc_product_vendors');?></h2>
+                </div>
+                <p>
+                    <?php _e( 'Thanks to the integration with %1$sYITH Live Chat%2$s, vendors of your site will be free to answer immediately to their customers\' questions. In this way, vendors and purchasers will be even nearer, for a complete success of your e-commerce.','yith_wc_product_vendors' )?>
+                </p>
+            </div>
+            <div class="col-1">
+                <img src="<?php echo YITH_WPV_URL ?>assets/images/26.png" alt="Screenshot"/>
+            </div>
+        </div>
+    </div>
+    <div class="section section-even clear"style="background: url(<?php echo YITH_WPV_URL ?>assets/images/yith-bg.png) no-repeat #fff; background-position: 85% 100%">
+        <div class="landing-container">
+            <div class="col-1">
+                <img src="<?php echo YITH_WPV_URL ?>assets/images/27.jpg" alt="Screenshot"/>
+            </div>
+            <div class="col-2">
+                <div class="section-title">
+                    <img src="<?php echo YITH_WPV_URL ?>assets/images/yith-icon.png" alt="icon"/>
+                    <h2><?php _e('VAT numbers','yith_wc_product_vendors'); ?></h2>
+                </div>
+                <p>
+                    <?php _e( 'If you need the VAT number of your vendors, make it mandatory during the registration. In this way, no request to become vendor could be completed without adding the VAT number, as this can also be showed in the related detailed vendor\'s page.','yith_wc_product_vendors' )?>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="section section-odd clear" style="background: url(<?php echo YITH_WPV_URL ?>assets/images/yith-bg.png) no-repeat #f1f1f1; background-position: 15% 100%">
+        <div class="landing-container">
+            <div class="col-2">
+                <div class="section-title">
+                    <img src="<?php echo YITH_WPV_URL ?>assets/images/yith-icon.png" alt="Icon"/>
+                    <h2><?php _e('Refund management','yith_wc_product_vendors');?></h2>
+                </div>
+                <p>
+                    <?php _e( 'Now refund management can be designated to the vendors of your shop. In fact, they will be able to refund partially or totally users about the products they own, with a related recalculation of the commissions received. Another way to empower your vendors about the management of their shops.','yith_wc_product_vendors' )?>
+                </p>
+            </div>
+            <div class="col-1">
+                <img src="<?php echo YITH_WPV_URL ?>assets/images/28.jpg" alt="Screenshot"/>
             </div>
         </div>
     </div>

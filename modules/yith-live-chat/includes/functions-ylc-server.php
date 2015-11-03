@@ -8,11 +8,11 @@
  * http://www.gnu.org/licenses/gpl-3.0.txt
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if ( !defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
-if ( ! function_exists( 'ylc_get_ip_address' ) ) {
+if ( !function_exists( 'ylc_get_ip_address' ) ) {
 
     /**
      * Get user IP address
@@ -57,13 +57,15 @@ if ( ! function_exists( 'ylc_get_ip_address' ) ) {
 
 }
 
-if ( ! function_exists( 'ylc_get_server_item' ) ) {
+if ( !function_exists( 'ylc_get_server_item' ) ) {
 
     /**
      * Get item from $_SERVER array
      *
      * @since   1.0.0
+     *
      * @param   $index
+     *
      * @return  string
      * @author  Alberto Ruggiero
      */
@@ -77,15 +79,17 @@ if ( ! function_exists( 'ylc_get_server_item' ) ) {
 
 }
 
-if ( ! function_exists( 'ylc_validate_ip' ) ) {
+if ( !function_exists( 'ylc_validate_ip' ) ) {
 
     /**
      * Validate IP Address
      *
      * @since   1.0.0
-     * @param	$ip
-     * @param	$which	(ipv4 or ipv6)
-     * @return	bool
+     *
+     * @param    $ip
+     * @param    $which (ipv4 or ipv6)
+     *
+     * @return    bool
      * @author  Alberto Ruggiero
      */
     function ylc_validate_ip( $ip, $which = '' ) {
@@ -126,14 +130,16 @@ if ( ! function_exists( 'ylc_validate_ip' ) ) {
 
 }
 
-if ( ! function_exists( 'ylc_validate_ipv4' ) ) {
+if ( !function_exists( 'ylc_validate_ipv4' ) ) {
 
     /**
      * Validate IPv4 Address
      *
      * @since   1.0.0
-     * @param	$ip
-     * @return	bool
+     *
+     * @param    $ip
+     *
+     * @return    bool
      * @author  Alberto Ruggiero
      */
     function ylc_validate_ipv4( $ip ) {
@@ -150,7 +156,7 @@ if ( ! function_exists( 'ylc_validate_ipv4' ) ) {
         }
 
         // Check each segment
-        foreach( $ip_segments as $segment ) {
+        foreach ( $ip_segments as $segment ) {
             // IP segments must be digits and can not be longer than 3 digits or greater then 255
             if ( $segment == '' || preg_match( "/[^0-9]/", $segment ) || $segment > 255 || strlen( $segment ) > 3 ) {
                 return false;
@@ -161,22 +167,24 @@ if ( ! function_exists( 'ylc_validate_ipv4' ) ) {
 
 }
 
-if ( ! function_exists( 'ylc_validate_ipv6' ) ) {
+if ( !function_exists( 'ylc_validate_ipv6' ) ) {
 
     /**
      * Validate IPv6 Address
      *
      * @since   1.0.0
-     * @param	$str
-     * @return	bool
+     *
+     * @param    $str
+     *
+     * @return    bool
      * @author  Alberto Ruggiero
      */
     function ylc_validate_ipv6( $str ) {
 
         // 8 groups, separated by : 0-ffff per group one set of consecutive 0 groups can be collapsed to ::
-        $groups = 8;
+        $groups    = 8;
         $collapsed = false;
-        $chunks = array_filter( preg_split( '/(:{1,2})/', $str, NULL, PREG_SPLIT_DELIM_CAPTURE ) );
+        $chunks    = array_filter( preg_split( '/(:{1,2})/', $str, NULL, PREG_SPLIT_DELIM_CAPTURE ) );
 
         // Rule out easy nonsense
         if ( current( $chunks ) == ':' || end( $chunks ) == ':' ) {
@@ -184,17 +192,17 @@ if ( ! function_exists( 'ylc_validate_ipv6' ) ) {
         }
 
         // PHP supports IPv4-mapped IPv6 addresses, so we'll expect those as well
-        if ( strpos( end( $chunks ) , '.' ) !== false ) {
+        if ( strpos( end( $chunks ), '.' ) !== false ) {
             $ipv4 = array_pop( $chunks );
             if ( !ylc_validate_ipv4( $ipv4 ) ) {
                 return false;
             }
-            $groups--;
+            $groups --;
         }
 
         while ( $seg = array_pop( $chunks ) ) {
             if ( $seg[0] == ':' ) {
-                if ( --$groups == 0 ) {
+                if ( -- $groups == 0 ) {
                     return false; // too many groups
                 }
                 if ( strlen( $seg ) > 2 ) {
@@ -217,13 +225,13 @@ if ( ! function_exists( 'ylc_validate_ipv6' ) ) {
 
 }
 
-if ( ! function_exists( 'ylc_get_current_page_url' ) ) {
+if ( !function_exists( 'ylc_get_current_page_url' ) ) {
 
     /**
      * Get the user current page URL
      *
      * @since   1.0.0
-     * @return	bool
+     * @return    bool
      * @author  Alberto Ruggiero
      */
     function ylc_get_current_page_url() {

@@ -43,12 +43,20 @@
     00
 */
 
-.chat-clear { *zoom: 1; }
+.chat-clear {
+    *zoom: 1;
+}
 
 .chat-clear:before,
-.chat-clear:after { display: table; content: ""; line-height: 0; }
+.chat-clear:after {
+    display: table;
+    content: "";
+    line-height: 0;
+}
 
-.chat-clear:after { clear: both; }
+.chat-clear:after {
+    clear: both;
+}
 
 /**
  * Reset
@@ -80,7 +88,7 @@
 .chat-widget input[type="text"],
 .chat-widget input[type="email"],
 .chat-widget select {
-    vertical-align:middle;
+    vertical-align: middle;
 }
 
 .chat-widget input[type="text"],
@@ -92,9 +100,6 @@
     line-height: 16px;
     border: none;
     background-color: #fff;
-    border-color: transparent;
-    border-width: 0;
-    border-style: none;
     outline: none;
     resize: none;
     text-shadow: none;
@@ -117,9 +122,6 @@
 .chat-widget input[type="email"]:focus,
 .chat-widget textarea:focus {
     border: none;
-    border-color: transparent;
-    border-width: 0;
-    border-style: none;
     outline: none;
     resize: none;
     -webkit-border-radius: 0;
@@ -164,9 +166,9 @@
  */
 .chat-widget {
     font-size: 14px;
-    -webkit-box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 1px 12px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.1);
     -webkit-border-radius: 5px 5px 0 0;
     -moz-border-radius: 5px 5px 0 0;
     border-radius: 5px 5px 0 0;
@@ -192,9 +194,9 @@
  */
 .chat-header,
 .chat-chat-btn {
-    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
     -webkit-transition: background-color .3s;
     -moz-transition: background-color .3s;
     -o-transition: background-color .3s;
@@ -224,10 +226,8 @@
     text-transform: uppercase;
 }
 
-.chat-header > .chat-ico.arrow-up,
-.chat-header > .chat-ico.arrow-down,
-.chat-chat-btn > .chat-ico.arrow-up,
-.chat-chat-btn > .chat-ico.arrow-down {
+.chat-header > .chat-ico.ylc-toggle,
+.chat-chat-btn > .chat-ico.ylc-toggle {
     float: right;
 }
 
@@ -275,9 +275,9 @@
     margin-bottom: 20px;
 }
 
-.chat-form .form-line .chat-ico{
+.chat-form .form-line .chat-ico {
     position: absolute;
-    top:12px;
+    top: 12px;
     right: 13px;
     font-size: 20px;
     color: #b1b1b1;
@@ -342,7 +342,7 @@
 }
 
 .chat-form-btn:hover {
-    color:#ffffff;
+    color: #ffffff;
 }
 
 .chat-disabled {
@@ -363,9 +363,13 @@
     margin-bottom: 7px;
 }
 
-.chat-ntf.chat-error { color: #e54440; }
+.chat-ntf.chat-error {
+    color: #e54440;
+}
 
-.chat-ntf.chat-success { color: #008000; }
+.chat-ntf.chat-success {
+    color: #008000;
+}
 
 .chat-ntf.chat-typing {
     min-height: 16px;
@@ -414,7 +418,7 @@
 }
 
 .chat-cnv-line.chat-you .chat-avatar {
-    right:0;
+    right: 0;
     left: auto;
 }
 
@@ -496,7 +500,7 @@
     cursor: text;
 }
 
-.chat-cnv-input textarea.chat-reply-input{
+.chat-cnv-input textarea.chat-reply-input {
     width: 100%;
     height: 20px;
     font-size: 13px;
@@ -528,7 +532,7 @@
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 600;
-    float:right
+    float: right
 }
 
 .chat-tools a:hover {
@@ -556,9 +560,13 @@
     text-align: center;
 }
 
-.chat-evaluation a.bad { color: #e54440; }
+.chat-evaluation a.bad {
+    color: #e54440;
+}
 
-.chat-evaluation a.good { color: #008000; }
+.chat-evaluation a.good {
+    color: #008000;
+}
 
 .chat-evaluation a:hover,
 .chat-transcript a:hover {
@@ -566,19 +574,26 @@
     border-color: #ddd;
 }
 
-
 /**
  * Scroll style
  */
-.chat-widget ::-webkit-scrollbar { width: 7px; height: 10px; }
+.chat-widget ::-webkit-scrollbar {
+    width: 7px;
+    height: 10px;
+}
 
 .chat-widget ::-webkit-scrollbar-button:start:decrement,
-.chat-widget ::-webkit-scrollbar-button:end:increment  { display: none; }
+.chat-widget ::-webkit-scrollbar-button:end:increment {
+    display: none;
+}
 
-.chat-widget ::-webkit-scrollbar-track-piece  { background-color: #efefef; }
+.chat-widget ::-webkit-scrollbar-track-piece {
+    background-color: #efefef;
+}
 
-.chat-widget ::-webkit-scrollbar-thumb:vertical { background-color: #999; }
-
+.chat-widget ::-webkit-scrollbar-thumb:vertical {
+    background-color: #999;
+}
 
 /**
 * CSS animations

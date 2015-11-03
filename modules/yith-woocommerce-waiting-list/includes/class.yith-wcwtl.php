@@ -60,7 +60,7 @@ if ( ! class_exists( 'YITH_WCWTL' ) ) {
 		public function __construct() {
 
 			// Load Plugin Framework
-			add_action( 'after_setup_theme', array( $this, 'plugin_fw_loader' ), 1 );
+			add_action( 'plugins_loaded', array( $this, 'plugin_fw_loader' ), 15 );
 
 			// Class admin
 			if ( is_admin() ) {
@@ -85,11 +85,13 @@ if ( ! class_exists( 'YITH_WCWTL' ) ) {
 		 * @author Andrea Grillo <andrea.grillo@yithemes.com>
 		 */
 		public function plugin_fw_loader() {
-
-			if ( ! defined( 'YIT' ) || ! defined( 'YIT_CORE_PLUGIN' ) ) {
-				require_once( YITH_WCWTL_DIR . '/plugin-fw/yit-plugin.php' );
+			if ( ! defined( 'YIT_CORE_PLUGIN' ) ) {
+				global $plugin_fw_data;
+				if( ! empty( $plugin_fw_data ) ){
+					$plugin_fw_file = array_shift( $plugin_fw_data );
+					require_once( $plugin_fw_file );
+				}
 			}
-
 		}
 
 		/**

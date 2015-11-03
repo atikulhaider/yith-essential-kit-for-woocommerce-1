@@ -18,7 +18,7 @@
     </div>
     <div class="chat-send">
         <div id="YLC_popup_ntf" class="chat-ntf"></div>
-        <a href="javascript:void(0)" id="YLC_login_btn" class="chat-form-btn" style="ylc.btn_styles" >
+        <a href="javascript:void(0)" id="YLC_login_btn" class="chat-form-btn" style="ylc.btn_styles">
             ylc.btn_text
         </a>
     </div>

@@ -296,7 +296,7 @@
 
             var self = this;
 
-            this.manage_conn();
+            this.manage_connections();
 
             this.data._new_user = new_user;
             this.data.auth      = this.data.ref.authWithCustomToken( this.data.auth_token, function( error ) {
@@ -957,7 +957,7 @@
                 }
 
                 // Check user connection
-                this.manage_conn();
+                this.manage_connections();
 
                 // Callback: Logged in successfully
                 self.trigger( 'logged_in', this.data.user );
@@ -1039,7 +1039,7 @@
                         self.trigger( 'logged_in', self.data.user );
 
                         // Check this new user connection again
-                        self.manage_conn();
+                        self.manage_connections();
 
                         // Now listen users activity
                         self.listen_users();
@@ -2257,7 +2257,7 @@
         /**
          * Manage connections
          */
-        manage_conn         : function () {
+        manage_connections         : function () {
 
             var self = this;
 

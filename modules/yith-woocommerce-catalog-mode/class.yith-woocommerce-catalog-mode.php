@@ -15,7 +15,11 @@ if ( !defined( 'ABSPATH' ) ) {
 class YITH_WC_Catalog_Mode {
 
     /**
-     * @var $_panel Panel Object
+     * Panel object
+     *
+     * @var     /Yit_Plugin_Panel object
+     * @since   1.0.0
+     * @see     plugin-fw/lib/yit-plugin-panel.php
      */
     protected $_panel;
 
@@ -44,8 +48,9 @@ class YITH_WC_Catalog_Mode {
      *
      * Initialize plugin and registers actions and filters to be used
      *
-     * @since  1.0
-     * @author Alberto Ruggiero
+     * @since   1.0.0
+     * @return  mixed
+     * @author  Alberto Ruggiero
      */
     public function __construct() {
         if ( !function_exists( 'WC' ) ) {
@@ -53,14 +58,10 @@ class YITH_WC_Catalog_Mode {
         }
 
         // Load Plugin Framework
-        add_action( 'after_setup_theme', array( $this, 'plugin_fw_loader' ), 1 );
+        add_action( 'plugins_loaded', array( $this, 'plugin_fw_loader' ), 12 );
 
         //Add action links
-        add_filter( 'plugin_action_links_' . plugin_basename( YWCTM_DIR . '/' . basename( YWCTM_FILE ) ), array(
-            $this,
-            'action_links'
-        ) );
-
+        add_filter( 'plugin_action_links_' . plugin_basename( YWCTM_DIR . '/' . basename( YWCTM_FILE ) ), array( $this, 'action_links' ) );
         add_filter( 'plugin_row_meta', array( $this, 'plugin_row_meta' ), 10, 4 );
 
         //  Add stylesheets and scripts files
@@ -96,11 +97,63 @@ class YITH_WC_Catalog_Mode {
     }
 
     /**
+     * ADMIN FUNCTIONS
+     */
+
+    /**
+     * Add a panel under YITH Plugins tab
+     *
+     * @since   1.0.0
+     * @return  void
+     * @author  Alberto Ruggiero
+     * @use     /Yit_Plugin_Panel class
+     * @see     plugin-fw/lib/yit-plugin-panel.php
+     */
+    public function add_menu_page() {
+
+        if ( !empty( $this->_panel ) ) {
+            return;
+        }
+
+        $admin_tabs = array(
+            'settings' => __( 'Settings', 'yith-woocommerce-catalog-mode' ),
+        );
+
+        if ( defined( 'YWCTM_PREMIUM' ) ) {
+            $admin_tabs['premium']    = __( 'Premium Settings', 'yith-woocommerce-catalog-mode' );
+            $admin_tabs['exclusions'] = __( 'Exclusion List', 'yith-woocommerce-catalog-mode' );
+            $admin_tabs['custom-url'] = __( 'Custom Button Url List', 'yith-woocommerce-catalog-mode' );
+        }
+        else {
+            $admin_tabs['premium-landing'] = __( 'Premium Version', 'yith-woocommerce-catalog-mode' );
+        }
+
+        $args = array(
+            'create_menu_page' => true,
+            'parent_slug'      => '',
+            'page_title'       => __( 'Catalog Mode', 'yith-woocommerce-catalog-mode' ),
+            'menu_title'       => __( 'Catalog Mode', 'yith-woocommerce-catalog-mode' ),
+            'capability'       => 'manage_options',
+            'parent'           => '',
+            'parent_page'      => 'yit_plugin_panel',
+            'page'             => $this->_panel_page,
+            'admin-tabs'       => $admin_tabs,
+            'options-path'     => YWCTM_DIR . '/plugin-options'
+        );
+
+        $this->_panel = new YIT_Plugin_Panel_WooCommerce( $args );
+    }
+
+    /**
+     * FRONTEND FUNCTIONS
+     */
+
+    /**
      * Check if catalog mode is enabled for administrator
      *
      * @since   1.0.2
-     * @author  Alberto Ruggiero
      * @return  bool
+     * @author  Alberto Ruggiero
      */
     public function check_user_admin_enable() {
 
@@ -112,8 +165,8 @@ class YITH_WC_Catalog_Mode {
      * Checks if "Cart & Checkout pages" needs to be hidden
      *
      * @since   1.0.2
-     * @author  Alberto Ruggiero
      * @return  bool
+     * @author  Alberto Ruggiero
      */
     public function check_hide_cart_checkout_pages() {
 
@@ -128,8 +181,8 @@ class YITH_WC_Catalog_Mode {
      *
      * @param   $action
      *
-     * @author  Alberto Ruggiero
      * @return  void
+     * @author  Alberto Ruggiero
      */
     public function hide_add_to_cart_single( $action = '' ) {
 
@@ -147,10 +200,12 @@ class YITH_WC_Catalog_Mode {
 
     }
 
-
     /**
      * Hide add to cart button in quick view
      *
+     * @since   1.0.7
+     * @return  mixed
+     * @author  Francesco Licandro
      */
     public function hide_add_to_cart_quick_view() {
 
@@ -182,8 +237,8 @@ class YITH_WC_Catalog_Mode {
      *
      * @param   $post_id
      *
-     * @author  Alberto Ruggiero
      * @return  bool
+     * @author  Alberto Ruggiero
      */
     public function check_price_hidden( $post_id ) {
 
@@ -234,12 +289,12 @@ class YITH_WC_Catalog_Mode {
      * Checks if "Add to cart" needs to be hidden
      *
      * @since   1.0.2
-     * @author  Alberto Ruggiero
      *
      * @param   $priority
      * @param   $product_id
      *
      * @return  bool
+     * @author  Alberto Ruggiero
      */
     public function check_add_to_cart_single( $priority = true, $product_id = false ) {
 
@@ -290,15 +345,16 @@ class YITH_WC_Catalog_Mode {
                             }
 
                         }
+
+                        $reverse_criteria = get_option( 'ywctm_exclude_hide_add_to_cart_reverse' );
+
+                        if ( $reverse_criteria == 'yes' ) {
+
+                            $hide = !$hide;
+
+                        }
+
                     }
-
-                }
-
-                $reverse_criteria = get_option( 'ywctm_exclude_hide_add_to_cart_reverse' );
-
-                if ( $reverse_criteria == 'yes' ) {
-
-                    $hide = !$hide;
 
                 }
 
@@ -319,12 +375,12 @@ class YITH_WC_Catalog_Mode {
      * Checks if "Add to cart" needs to be avoided
      *
      * @since   1.0.5
-     * @author  Alberto Ruggiero
      *
      * @param   $passed
      * @param   $product_id
      *
      * @return  bool
+     * @author  Alberto Ruggiero
      */
     public function avoid_add_to_cart( $passed, $product_id ) {
 
@@ -362,15 +418,15 @@ class YITH_WC_Catalog_Mode {
 
                         }
 
+                        $reverse_criteria = get_option( 'ywctm_exclude_hide_add_to_cart_reverse' );
+
+                        if ( $reverse_criteria == 'yes' ) {
+
+                            $passed = !$passed;
+
+                        }
+
                     }
-
-                }
-
-                $reverse_criteria = get_option( 'ywctm_exclude_hide_add_to_cart_reverse' );
-
-                if ( $reverse_criteria == 'yes' ) {
-
-                    $passed = !$passed;
 
                 }
 
@@ -391,8 +447,8 @@ class YITH_WC_Catalog_Mode {
      * Checks if "Add to cart" needs to be hidden from loop page
      *
      * @since   1.0.6
-     * @author  Alberto Ruggiero
      * @return  bool
+     * @author  Alberto Ruggiero
      */
     public function check_hide_add_cart_loop() {
 
@@ -437,15 +493,15 @@ class YITH_WC_Catalog_Mode {
 
                     }
 
+                    $reverse_criteria = get_option( 'ywctm_exclude_hide_add_to_cart_reverse' );
+
+                    if ( $reverse_criteria == 'yes' ) {
+
+                        $remove = !$remove;
+
+                    }
+
                 }
-
-            }
-
-            $reverse_criteria = get_option( 'ywctm_exclude_hide_add_to_cart_reverse' );
-
-            if ( $reverse_criteria == 'yes' ) {
-
-                $remove = !$remove;
 
             }
 
@@ -472,8 +528,8 @@ class YITH_WC_Catalog_Mode {
      * Hides "Add to cart" button, if not excluded, from loop page
      *
      * @since   1.0.0
-     * @author  Alberto Ruggiero
      * @return  void
+     * @author  Alberto Ruggiero
      */
     public function hide_add_to_cart_loop() {
 
@@ -496,8 +552,8 @@ class YITH_WC_Catalog_Mode {
      * Enqueue css file
      *
      * @since   1.0.0
-     * @author  Alberto Ruggiero
      * @return  void
+     * @author  Alberto Ruggiero
      */
     public function enqueue_styles() {
         if ( get_option( 'ywctm_hide_cart_header' ) == 'yes' ) {
@@ -510,8 +566,8 @@ class YITH_WC_Catalog_Mode {
      * Avoid Cart and Checkout Pages to be visited
      *
      * @since   1.0.4
-     * @author  Alberto Ruggiero
      * @return  void
+     * @author  Alberto Ruggiero
      */
     public function check_pages_redirect() {
 
@@ -533,7 +589,6 @@ class YITH_WC_Catalog_Mode {
 
     }
 
-
     /**
      * Removes Cart and checkout pages from menu
      *
@@ -541,8 +596,8 @@ class YITH_WC_Catalog_Mode {
      *
      * @param   $pages
      *
-     * @author  Alberto Ruggiero
      * @return  mixed
+     * @author  Alberto Ruggiero
      */
     public function hide_cart_checkout_pages( $pages ) {
 
@@ -571,59 +626,35 @@ class YITH_WC_Catalog_Mode {
     }
 
     /**
-     * Enqueue css file
+     * Say if the code is execute by quick view
      *
-     * @since  1.0
-     * @access public
-     * @return void
-     * @author Andrea Grillo <andrea.grillo@yithemes.com>
+     * @since    1.0.7
+     * @return   bool
+     * @author   Andrea Frascaspata <andrea.frascaspata@yithemes.com>
      */
-    public function plugin_fw_loader() {
-        if ( !defined( 'YIT' ) || !defined( 'YIT_CORE_PLUGIN' ) ) {
-            require_once( 'plugin-fw/yit-plugin.php' );
-        }
+    public function is_quick_view() {
+        return defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_REQUEST['action'] ) && ( $_REQUEST['action'] == 'yith_load_product_quick_view' || $_REQUEST['action'] == 'yit_load_product_quick_view' );
     }
 
     /**
-     * Add a panel under YITH Plugins tab
-     *
-     * @return   void
-     * @since    1.0
-     * @author   Andrea Grillo <andrea.grillo@yithemes.com>
-     * @use      /Yit_Plugin_Panel class
-     * @see      plugin-fw/lib/yit-plugin-panel.php
+     * YITH FRAMEWORK
      */
-    public function add_menu_page() {
-        if ( !empty( $this->_panel ) ) {
-            return;
+
+    /**
+     * Load plugin framework
+     *
+     * @since   1.0.0
+     * @return  void
+     * @author  Andrea Grillo <andrea.grillo@yithemes.com>
+     */
+    public function plugin_fw_loader() {
+        if ( !defined( 'YIT_CORE_PLUGIN' ) ) {
+            global $plugin_fw_data;
+            if ( !empty( $plugin_fw_data ) ) {
+                $plugin_fw_file = array_shift( $plugin_fw_data );
+                require_once( $plugin_fw_file );
+            }
         }
-
-        $admin_tabs = array(
-            'settings' => __( 'Settings', 'yith-woocommerce-catalog-mode' ),
-        );
-
-        if ( defined( 'YWCTM_PREMIUM' ) ) {
-            $admin_tabs['premium']    = __( 'Premium Settings', 'yith-woocommerce-catalog-mode' );
-            $admin_tabs['exclusions'] = __( 'Exclusion List', 'yith-woocommerce-catalog-mode' );
-        }
-        else {
-            $admin_tabs['premium-landing'] = __( 'Premium Version', 'yith-woocommerce-catalog-mode' );
-        }
-
-        $args = array(
-            'create_menu_page' => true,
-            'parent_slug'      => '',
-            'page_title'       => __( 'Catalog Mode', 'yith-woocommerce-catalog-mode' ),
-            'menu_title'       => __( 'Catalog Mode', 'yith-woocommerce-catalog-mode' ),
-            'capability'       => 'manage_options',
-            'parent'           => '',
-            'parent_page'      => 'yit_plugin_panel',
-            'page'             => $this->_panel_page,
-            'admin-tabs'       => $admin_tabs,
-            'options-path'     => YWCTM_DIR . '/plugin-options'
-        );
-
-        $this->_panel = new YIT_Plugin_Panel_WooCommerce( $args );
     }
 
     /**
@@ -632,8 +663,8 @@ class YITH_WC_Catalog_Mode {
      * Load the premium tab template on admin page
      *
      * @since   1.0.0
-     * @author  Andrea Grillo <andrea.grillo@yithemes.com>
      * @return  void
+     * @author  Andrea Grillo <andrea.grillo@yithemes.com>
      */
     public function premium_tab() {
         $premium_tab_template = YWCTM_TEMPLATE_PATH . '/admin/' . $this->_premium;
@@ -646,25 +677,24 @@ class YITH_WC_Catalog_Mode {
      * Get the premium landing uri
      *
      * @since   1.0.0
-     * @author  Andrea Grillo <andrea.grillo@yithemes.com>
      * @return  string The premium landing link
+     * @author  Andrea Grillo <andrea.grillo@yithemes.com>
      */
     public function get_premium_landing_uri() {
-        return defined( 'YITH_REFER_ID' ) ? $this->_premium_landing . '?refer_id=' . YITH_REFER_ID : $this->_premium_landing . '?refer_id=1030585';
+        return defined( 'YITH_REFER_ID' ) ? $this->_premium_landing . '?refer_id=' . YITH_REFER_ID : $this->_premium_landing;
     }
 
     /**
      * Action Links
      *
      * add the action links to plugin admin page
+     * @since   1.0.0
      *
-     * @param $links | links plugin array
+     * @param   $links | links plugin array
      *
-     * @return   mixed Array
-     * @since    1.0
-     * @author   Andrea Grillo <andrea.grillo@yithemes.com>
-     * @return mixed
-     * @use      plugin_action_links_{$plugin_file_name}
+     * @return  mixed
+     * @author  Andrea Grillo <andrea.grillo@yithemes.com>
+     * @use     plugin_action_links_{$plugin_file_name}
      */
     public function action_links( $links ) {
 
@@ -678,19 +708,20 @@ class YITH_WC_Catalog_Mode {
     }
 
     /**
-     * plugin_row_meta
+     * Plugin row meta
      *
      * add the action links to plugin admin page
      *
-     * @param $plugin_meta
-     * @param $plugin_file
-     * @param $plugin_data
-     * @param $status
+     * @since   1.0.0
      *
-     * @return   Array
-     * @since    1.0
-     * @author   Andrea Grillo <andrea.grillo@yithemes.com>
-     * @use      plugin_row_meta
+     * @param   $plugin_meta
+     * @param   $plugin_file
+     * @param   $plugin_data
+     * @param   $status
+     *
+     * @return  Array
+     * @author  Andrea Grillo <andrea.grillo@yithemes.com>
+     * @use     plugin_row_meta
      */
     public function plugin_row_meta( $plugin_meta, $plugin_file, $plugin_data, $status ) {
         if ( ( defined( 'YWCTM_INIT' ) && ( YWCTM_INIT == $plugin_file ) ) ||
@@ -701,18 +732,6 @@ class YITH_WC_Catalog_Mode {
         }
 
         return $plugin_meta;
-    }
-
-    /**
-     *
-     * say if the code is execute by quick view
-     *
-     * @return   bool
-     * @since    1.0.7
-     * @author   Andrea Frascaspata <andrea.frascaspata@yithemes.com>
-     */
-    public function is_quick_view() {
-        return defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_REQUEST['action'] ) && ( $_REQUEST['action'] == 'yith_load_product_quick_view' || $_REQUEST['action'] == 'yit_load_product_quick_view' );
     }
 
 }

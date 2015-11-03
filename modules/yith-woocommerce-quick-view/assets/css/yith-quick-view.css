@@ -36,12 +36,14 @@
     vertical-align: middle;
     min-width: 300px;
     max-width: 1000px;
+    overflow: hidden;
     z-index: 2000;
     visibility: hidden;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     backface-visibility: hidden;
     text-align: initial;
+    padding: 15px;
 }
 #yith-quick-view-modal.open .yith-wcqv-wrapper {
     visibility: visible;
@@ -71,6 +73,15 @@
     -ms-transform: translateY(0);
     transform: translateY(0);
     opacity: 1;
+    height: 100%;
+}
+@media screen and ( max-height: 800px ){
+    #yith-quick-view-modal .yith-wcqv-wrapper {
+        height: 80%;
+    }
+    #yith-quick-view-modal.open .yith-wcqv-main {
+        overflow-y: scroll;
+    }
 }
 
 #yith-quick-view-close {

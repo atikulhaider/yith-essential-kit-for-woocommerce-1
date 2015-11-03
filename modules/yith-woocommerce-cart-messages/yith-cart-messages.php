@@ -5,7 +5,7 @@ Plugin URI: http://yithemes.com/themes/plugins/yith-woocommerce-cart-messages
 Description: WooCommerce plugin for add custom messages to your customers
 Author: Yithemes
 Text Domain: yith-woocommerce-cart-messages
-Version: 1.1.2
+Version: 1.1.4
 Author URI: http://yithemes.com/
 */
 
@@ -18,6 +18,16 @@ if ( ! function_exists( 'is_plugin_active' ) ) {
     require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 }
 
+
+if ( ! defined( 'YITH_YWCM_DIR' ) ) {
+    define( 'YITH_YWCM_DIR', plugin_dir_path( __FILE__ ) );
+}
+
+/* Plugin Framework Version Check */
+if( ! function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YITH_YWCM_DIR . 'plugin-fw/init.php' ) ) {
+    require_once( YITH_YWCM_DIR . 'plugin-fw/init.php' );
+}
+yit_maybe_plugin_fw_loader( YITH_YWCM_DIR  );
 
 
 if ( defined( 'YITH_YWCM_PREMIUM' ) ) {
@@ -45,7 +55,7 @@ register_activation_hook( __FILE__, 'yith_plugin_registration_hook' );
 if ( defined( 'YITH_YWCM_VERSION' ) ) {
 	return;
 }else{
-    define( 'YITH_YWCM_VERSION', '1.1.2' );
+    define( 'YITH_YWCM_VERSION', '1.1.4' );
 }
 
 if ( ! defined( 'YITH_YWCM_FREE_INIT' ) ) {
@@ -56,9 +66,6 @@ if ( ! defined( 'YITH_YWCM_FILE' ) ) {
 	define( 'YITH_YWCM_FILE', __FILE__ );
 }
 
-if ( ! defined( 'YITH_YWCM_DIR' ) ) {
-	define( 'YITH_YWCM_DIR', plugin_dir_path( __FILE__ ) );
-}
 
 if ( ! defined( 'YITH_YWCM_URL' ) ) {
 	define( 'YITH_YWCM_URL', plugins_url( '/', __FILE__ ) );

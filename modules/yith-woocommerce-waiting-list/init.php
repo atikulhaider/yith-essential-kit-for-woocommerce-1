@@ -3,15 +3,15 @@
  * Plugin Name: YITH WooCommerce Waiting List
  * Plugin URI: http://yithemes.com/
  * Description: YITH WooCommerce Waiting List allow users to request an email notification when an out-of-stock product comes back into stock.
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: Yithemes
  * Author URI: http://yithemes.com/
- * Text Domain: yith-wcwtl
+ * Text Domain: yith-woocommerce-waiting-list
  * Domain Path: /languages/
  *
  * @author Yithemes
  * @package YITH WooCommerce Waiting List
- * @version 1.0.2
+ * @version 1.0.3
  */
 /*  Copyright 2015  Your Inspiration Themes  (email : plugins@yithemes.com)
 
@@ -38,7 +38,7 @@ if ( ! function_exists( 'is_plugin_active' ) ) {
 function yith_wcwtl_install_woocommerce_admin_notice() {
 	?>
 	<div class="error">
-		<p><?php _e( 'YITH WooCommerce Waiting List is enabled but not effective. It requires WooCommerce in order to work.', 'yith-wcwtl' ); ?></p>
+		<p><?php _e( 'YITH WooCommerce Waiting List is enabled but not effective. It requires WooCommerce in order to work.', 'yith-woocommerce-waiting-list' ); ?></p>
 	</div>
 <?php
 }
@@ -47,7 +47,7 @@ function yith_wcwtl_install_woocommerce_admin_notice() {
 function yith_wcwtl_install_free_admin_notice() {
 	?>
 	<div class="error">
-		<p><?php _e( 'You can\'t activate the free version of YITH WooCommerce Waiting List while you are using the premium one.', 'yith-wcwtl' ); ?></p>
+		<p><?php _e( 'You can\'t activate the free version of YITH WooCommerce Waiting List while you are using the premium one.', 'yith-woocommerce-waiting-list' ); ?></p>
 	</div>
 <?php
 }
@@ -59,7 +59,7 @@ register_activation_hook( __FILE__, 'yith_plugin_registration_hook' );
 
 
 if ( ! defined( 'YITH_WCWTL_VERSION' ) ){
-	define( 'YITH_WCWTL_VERSION', '1.0.2' );
+	define( 'YITH_WCWTL_VERSION', '1.0.3' );
 }
 
 if ( ! defined( 'YITH_WCWTL_FREE_INIT' ) ) {
@@ -98,10 +98,15 @@ if ( ! defined( 'YITH_WCWTL_META' ) ) {
 	define( 'YITH_WCWTL_META', '_yith_wcwtl_users_list' );
 }
 
+/* Plugin Framework Version Check */
+if( ! function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YITH_WCWTL_DIR . 'plugin-fw/init.php' ) ) {
+	require_once( YITH_WCWTL_DIR . 'plugin-fw/init.php' );
+}
+yit_maybe_plugin_fw_loader( YITH_WCWTL_DIR  );
 
 function yith_wcwtl_init() {
 
-	load_plugin_textdomain( 'yith-wcwtl', false, dirname( plugin_basename( __FILE__ ) ). '/languages/' );
+	load_plugin_textdomain( 'yith-woocommerce-waiting-list', false, dirname( plugin_basename( __FILE__ ) ). '/languages/' );
 
 	// Load required classes and functions
 	require_once('includes/class.yith-wcwtl-admin.php');

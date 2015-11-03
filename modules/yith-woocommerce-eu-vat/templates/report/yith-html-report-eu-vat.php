@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				}
 				?>
 				<li class="custom <?php echo $current_range == 'custom' ? 'active' : ''; ?>">
-					<?php _e( 'Custom:', 'ywev' ); ?>
+					<?php _e( 'Custom:', 'yith-woocommerce-eu-vat' ); ?>
 					<form method="GET">
 						<div>
 							<?php
@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<input type="hidden" name="range" value="custom" />
 							<input type="text" size="9" placeholder="yyyy-mm-dd" value="<?php if ( ! empty( $_GET['start_date'] ) ) echo esc_attr( $_GET['start_date'] ); ?>" name="start_date" class="range_datepicker from" />
 							<input type="text" size="9" placeholder="yyyy-mm-dd" value="<?php if ( ! empty( $_GET['end_date'] ) ) echo esc_attr( $_GET['end_date'] ); ?>" name="end_date" class="range_datepicker to" />
-							<input type="submit" class="button" value="<?php _e( 'Go', 'ywev' ); ?>" />
+							<input type="submit" class="button" value="<?php _e( 'Go', 'yith-woocommerce-eu-vat' ); ?>" />
 						</div>
 					</form>
 				</li>
