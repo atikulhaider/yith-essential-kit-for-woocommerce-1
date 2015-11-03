@@ -49,12 +49,6 @@ yith_define ( 'YITH_YWAR_TEMPLATE_PATH', YITH_YWAR_DIR . 'templates' );
 yith_define ( 'YITH_YWAR_TEMPLATES_DIR', YITH_YWAR_DIR . '/templates/' );
 yith_define ( 'YITH_YWAR_ASSETS_IMAGES_URL', YITH_YWAR_ASSETS_URL . '/images/' );
 
-/* Plugin Framework Version Check */
-if ( ! function_exists ( 'yit_maybe_plugin_fw_loader' ) && file_exists ( YITH_YWAR_DIR . 'plugin-fw/init.php' ) ) {
-    require_once ( YITH_YWAR_DIR . 'plugin-fw/init.php' );
-}
-yit_maybe_plugin_fw_loader ( YITH_YWAR_DIR );
-
 function yith_ywar_init () {
     
     /**

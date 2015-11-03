@@ -61,12 +61,6 @@ if ( !defined( 'YWRR_TEMPLATE_PATH' ) ) {
     define( 'YWRR_TEMPLATE_PATH', YWRR_DIR . 'templates/' );
 }
 
-/* Plugin Framework Version Check */
-if ( !function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YWRR_DIR . 'plugin-fw/init.php' ) ) {
-    require_once( YWRR_DIR . 'plugin-fw/init.php' );
-}
-yit_maybe_plugin_fw_loader( YWRR_DIR );
-
 function ywrr_init() {
 
     /* Load YWRR text domain */

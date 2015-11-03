@@ -96,12 +96,6 @@ if ( !defined( 'YWTM_INC' ) ) {
 	define( 'YWTM_INC', YWTM_DIR . 'includes/' );
 }
 
-/* Plugin Framework Version Check */
-if( !function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YWTM_DIR . 'plugin-fw/init.php' ) ) {
-    require_once(YWTM_DIR . 'plugin-fw/init.php');
-}
-yit_maybe_plugin_fw_loader( YWTM_DIR  );
-
 if ( ! function_exists( 'YITH_Tab_Manager_Init' ) ) {
 	/**
 	 * Unique access to instance of YITH_Tab_Manager class

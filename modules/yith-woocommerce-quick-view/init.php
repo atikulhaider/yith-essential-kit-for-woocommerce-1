@@ -90,12 +90,6 @@ if ( ! defined( 'YITH_WCQV_ASSETS_URL' ) ) {
 	define( 'YITH_WCQV_ASSETS_URL', YITH_WCQV_URL . 'assets' );
 }
 
-/* Plugin Framework Version Check */
-if( ! function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YITH_WCQV_DIR . 'plugin-fw/init.php' ) ) {
-	require_once( YITH_WCQV_DIR . 'plugin-fw/init.php' );
-}
-yit_maybe_plugin_fw_loader( YITH_WCQV_DIR  );
-
 function yith_wcqv_init() {
 
 	load_plugin_textdomain( 'yith-woocommerce-quick-view', false, dirname( plugin_basename( __FILE__ ) ). '/languages/' );

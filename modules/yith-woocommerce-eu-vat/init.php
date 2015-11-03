@@ -100,12 +100,6 @@ if ( ! defined ( 'YITH_YWEV_LIB_DIR' ) ) {
 }
 //endregion
 
-/* Plugin Framework Version Check */
-if ( ! function_exists ( 'yit_maybe_plugin_fw_loader' ) && file_exists ( YITH_YWEV_DIR . 'plugin-fw/init.php' ) ) {
-    require_once ( YITH_YWEV_DIR . 'plugin-fw/init.php' );
-}
-yit_maybe_plugin_fw_loader ( YITH_YWEV_DIR );
-
 function yith_ywev_init () {
 
     /**

@@ -53,11 +53,6 @@ if ( !defined( 'YLC_TEMPLATE_PATH' ) ) {
     define( 'YLC_TEMPLATE_PATH', YLC_DIR . 'templates' );
 }
 
-/* Plugin Framework Version Check */
-if ( !function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YLC_DIR . 'plugin-fw/init.php' ) ) {
-    require_once( YLC_DIR . 'plugin-fw/init.php' );
-}
-yit_maybe_plugin_fw_loader( YLC_DIR );
 
 function ylc_free_init() {
 

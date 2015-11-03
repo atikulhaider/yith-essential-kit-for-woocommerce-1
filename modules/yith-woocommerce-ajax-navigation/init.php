@@ -69,12 +69,6 @@ if ( defined( 'YITH_WCAN_VERSION' ) ) {
 ! defined( 'YITH_WCAN_FREE_INIT')   && define( 'YITH_WCAN_FREE_INIT', plugin_basename( __FILE__ ) );
 ! defined( 'YITH_WCAN_FILE' )       && define( 'YITH_WCAN_FILE', __FILE__ );
 
-/* Plugin Framework Version Check */
-if( ! function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YITH_WCAN_DIR . 'plugin-fw/init.php' ) ) {
-    require_once( YITH_WCAN_DIR . 'plugin-fw/init.php' );
-}
-yit_maybe_plugin_fw_loader( YITH_WCAN_DIR  );
-
 /**
  * Init default plugin settings
  */

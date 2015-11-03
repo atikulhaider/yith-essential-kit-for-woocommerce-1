@@ -66,12 +66,6 @@ if ( ! defined( 'YITH_WCCL_VERSION' ) ) {
 	define( 'YITH_WCCL_VERSION', '1.2.2' );
 }
 
-/* Plugin Framework Version Check */
-if( ! function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YITH_WCCL_DIR . 'plugin-fw/init.php' ) ) {
-    require_once( YITH_WCCL_DIR . 'plugin-fw/init.php' );
-}
-yit_maybe_plugin_fw_loader( YITH_WCCL_DIR  );
-
 function yith_wccl_constructor() {
     global $woocommerce;
     if ( ! isset( $woocommerce ) ) return;

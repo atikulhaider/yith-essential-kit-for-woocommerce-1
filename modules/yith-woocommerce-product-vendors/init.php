@@ -111,12 +111,6 @@ if ( ! function_exists( 'YITH_Vendors' ) ) {
 	}
 }
 
-/* Plugin Framework Version Check */
-if( ! function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YITH_WPV_PATH . 'plugin-fw/init.php' ) ) {
-    require_once( YITH_WPV_PATH . 'plugin-fw/init.php' );
-}
-yit_maybe_plugin_fw_loader( YITH_WPV_PATH  );
-
 /**
  * Instance main plugin class
  */

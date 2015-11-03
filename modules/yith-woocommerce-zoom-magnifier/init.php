@@ -98,13 +98,6 @@ if ( ! defined( 'YITH_YWZM_LIB_DIR' ) ) {
 
 //endregion
 
-/* Plugin Framework Version Check */
-if ( ! function_exists ( 'yit_maybe_plugin_fw_loader' ) && file_exists ( YITH_YWZM_DIR . 'plugin-fw/init.php' ) ) {
-    require_once ( YITH_YWZM_DIR . 'plugin-fw/init.php' );
-}
-yit_maybe_plugin_fw_loader ( YITH_YWZM_DIR );
-
-
 function yith_ywzm_init() {
 
 	/**

@@ -63,13 +63,6 @@ if ( ! defined( 'YITH_WCMC_FREE_INIT' ) ) {
 	define( 'YITH_WCMC_FREE_INIT', plugin_basename( __FILE__ ) );
 }
 
-/* Plugin Framework Version Check */
-if( ! function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YITH_WCMC_DIR . 'plugin-fw/init.php' ) ) {
-    require_once( YITH_WCMC_DIR . 'plugin-fw/init.php' );
-}
-
-yit_maybe_plugin_fw_loader( YITH_WCMC_DIR  );
-
 if( ! function_exists( 'yith_mailchimp_constructor' ) ) {
 	function yith_mailchimp_constructor() {
 		load_plugin_textdomain( 'yith-wcmc', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );

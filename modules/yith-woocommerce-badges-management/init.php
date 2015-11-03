@@ -122,7 +122,3 @@ function yith_wcbm_install() {
     }
 }
 add_action( 'plugins_loaded', 'yith_wcbm_install', 11 );
-
-/* Plugin Framework Version Check */
-! function_exists( 'yit_maybe_plugin_fw_loader' ) && require_once( plugin_dir_path( __FILE__ ) . 'plugin-fw/init.php' );
-yit_maybe_plugin_fw_loader( plugin_dir_path( __FILE__ )  );

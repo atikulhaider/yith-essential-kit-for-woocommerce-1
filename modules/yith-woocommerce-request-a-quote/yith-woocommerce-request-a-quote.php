@@ -28,15 +28,6 @@ if ( ! defined( 'YITH_YWRAQ_DIR' ) ) {
     define( 'YITH_YWRAQ_DIR', plugin_dir_path( __FILE__ ) );
 }
 
-
-/* Plugin Framework Version Check */
-if( ! function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YITH_YWRAQ_DIR . 'plugin-fw/init.php' ) ) {
-    require_once( YITH_YWRAQ_DIR . 'plugin-fw/init.php' );
-}
-yit_maybe_plugin_fw_loader( YITH_YWRAQ_DIR  );
-
-
-
 // This version can't be activate if premium version is active  ________________________________________
 if ( defined( 'YITH_YWRAQ_PREMIUM' ) ) {
     function yith_ywraq_install_free_admin_notice() {

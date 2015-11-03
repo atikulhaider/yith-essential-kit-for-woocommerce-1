@@ -61,12 +61,6 @@ if ( !defined( 'YWCTM_TEMPLATE_PATH' ) ) {
     define( 'YWCTM_TEMPLATE_PATH', YWCTM_DIR . 'templates/' );
 }
 
-/* Plugin Framework Version Check */
-if ( !function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YWCTM_DIR . 'plugin-fw/init.php' ) ) {
-    require_once( YWCTM_DIR . 'plugin-fw/init.php' );
-}
-yit_maybe_plugin_fw_loader( YWCTM_DIR );
-
 function ywctm_init() {
 
     /* Load YWCTM text domain */

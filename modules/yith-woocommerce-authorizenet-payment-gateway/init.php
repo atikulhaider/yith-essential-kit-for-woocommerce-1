@@ -68,12 +68,6 @@ if ( ! defined( 'YITH_WCAUTHNET_INC' ) ) {
 	define( 'YITH_WCAUTHNET_INC', YITH_WCAUTHNET_DIR . 'includes/' );
 }
 
-/* Plugin Framework Version Check */
-if( ! function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YITH_WCAUTHNET_DIR . 'plugin-fw/init.php' ) ) {
-	require_once( YITH_WCAUTHNET_DIR . 'plugin-fw/init.php' );
-}
-yit_maybe_plugin_fw_loader( YITH_WCAUTHNET_DIR  );
-
 if( ! function_exists( 'yith_wcauthnet_constructor' ) ) {
 	function yith_wcauthnet_constructor(){
 		load_plugin_textdomain( 'yit', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );

@@ -4,7 +4,7 @@ Contributors: yithemes
 Tags: woocommerce,jetpack,woocommerce jetpack, essential, kit, plugins, plugin, product, e-commerce, ecommerce, commerce, shop, yith, yit, yithemes,yith woocommerce colors and labels variations, colors and labels variations,colors and labels variations jetpack,yith woocommerce zoom magnifier,zoom magnifier,zoom magnifier jetpack,yith woocommerce wishlist,wishlist,wishlist jetpack,yith woocommerce compare,compare,compare jetpack,yith woocommerce ajax product filter,ajax product filter,ajax product filter jetpack,yith woocommerce ajax search,ajax search,ajax search jetpack,yith woocommerce catalog mode,catalog mode,catalog mode jetpack,yith woocommerce order tracking,order tracking,order tracking jetpack, yith woocommerce advanced reviews,advanced reviews,advanced reviews jetpack,yith woocommerce badges management,badges management,badges management jetpack,yith woocommerce cart messages,cart messages,cart messages jetpack,yith woocommerce review reminder,review reminder,review reminder jetpack,yith woocommerce quick view,quick view,quick view jetpack,yith live chat,live chat,live chat jetpack,yith woocommerce eu vat,eu vat,eu vat jetpack,yith woocommerce mailchimp,mailchimp,mailchimp jetpack,yith woocommerce stripe,stripe, stripe jetpack,yith infinite scrolling,infinite scrolling,infinite scrolling jetpack,yith woocommerce request a quote,request a quote,request a quote jetpack,yith woocommerce waiting list,waiting list,waiting list jetpack,yith woocommerce tab manager,tab manager,tab manager jetpack,yith woocommerce multi vendor,multi vendor,multi vendor jetpack,product vendor,products vendor,products vendor jetpack, booster for woocommerce
 Requires at least: 3.5.1
 Tested up to: 4.2.4
-Stable tag: 1.1.6
+Stable tag: 1.1.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -150,6 +150,10 @@ YITH Essential Kit for WooCommerce #1 will add a new submenu called "YITH Essent
 
 == Changelog ==
 
+= 1.1.7 =
+
+* Fixed: Prevent warning 
+
 = 1.1.6 =
 
 * Updated: All YITH plugins to latest version
@@ -228,4 +232,4 @@ YITH Essential Kit for WooCommerce #1 will add a new submenu called "YITH Essent
 
 == Upgrade Notice ==
 
-Last Stable Tag 1.1.6
+Last Stable Tag 1.1.7

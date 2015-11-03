@@ -70,13 +70,6 @@ if ( ! defined( 'YITH_WCWL_FREE_INIT' ) ) {
     define( 'YITH_WCWL_FREE_INIT', plugin_basename( __FILE__ ) );
 }
 
-/* Plugin Framework Version Check */
-if( ! function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YITH_WCWL_DIR . 'plugin-fw/init.php' ) ) {
-    require_once( YITH_WCWL_DIR . 'plugin-fw/init.php' );
-}
-
-yit_maybe_plugin_fw_loader( YITH_WCWL_DIR  );
-
 if( ! function_exists( 'yith_wishlist_constructor' ) ) {
     function yith_wishlist_constructor() {
 

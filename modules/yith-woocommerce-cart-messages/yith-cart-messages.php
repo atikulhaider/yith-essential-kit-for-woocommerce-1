@@ -23,12 +23,6 @@ if ( ! defined( 'YITH_YWCM_DIR' ) ) {
     define( 'YITH_YWCM_DIR', plugin_dir_path( __FILE__ ) );
 }
 
-/* Plugin Framework Version Check */
-if( ! function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YITH_YWCM_DIR . 'plugin-fw/init.php' ) ) {
-    require_once( YITH_YWCM_DIR . 'plugin-fw/init.php' );
-}
-yit_maybe_plugin_fw_loader( YITH_YWCM_DIR  );
-
 
 if ( defined( 'YITH_YWCM_PREMIUM' ) ) {
     function yith_ywcm_install_free_admin_notice() {

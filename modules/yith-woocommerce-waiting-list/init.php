@@ -98,12 +98,6 @@ if ( ! defined( 'YITH_WCWTL_META' ) ) {
 	define( 'YITH_WCWTL_META', '_yith_wcwtl_users_list' );
 }
 
-/* Plugin Framework Version Check */
-if( ! function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YITH_WCWTL_DIR . 'plugin-fw/init.php' ) ) {
-	require_once( YITH_WCWTL_DIR . 'plugin-fw/init.php' );
-}
-yit_maybe_plugin_fw_loader( YITH_WCWTL_DIR  );
-
 function yith_wcwtl_init() {
 
 	load_plugin_textdomain( 'yith-woocommerce-waiting-list', false, dirname( plugin_basename( __FILE__ ) ). '/languages/' );

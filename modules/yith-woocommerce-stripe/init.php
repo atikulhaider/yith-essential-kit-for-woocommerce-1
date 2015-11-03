@@ -101,12 +101,6 @@ if ( ! defined( 'YITH_WCSTRIPE_INC' ) ) {
 	define( 'YITH_WCSTRIPE_INC', YITH_WCSTRIPE_DIR . 'includes/' );
 }
 
-/* Plugin Framework Version Check */
-if( ! function_exists( 'yit_maybe_plugin_fw_loader' ) && file_exists( YITH_WCSTRIPE_DIR . 'plugin-fw/init.php' ) ) {
-	require_once( YITH_WCSTRIPE_DIR . 'plugin-fw/init.php' );
-}
-yit_maybe_plugin_fw_loader( YITH_WCSTRIPE_DIR  );
-
 if ( ! function_exists( 'YITH_WCStripe' ) ) {
 	/**
 	 * Unique access to instance of YITH_WCStripe class
